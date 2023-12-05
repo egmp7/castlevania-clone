@@ -25,6 +25,15 @@ public class BanditController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
     }
 
+    private void OnEnable()
+    {
+        EventManager.onPlayerDeath += StopAttacking;
+    }
+    private void OnDisable()
+    {
+        EventManager.onPlayerDeath -= StopAttacking;
+    }
+
     public void Attack()
     {
         // get player collision
@@ -49,17 +58,6 @@ public class BanditController : MonoBehaviour
         }
     }
 
-    private void Die()
-    {
-        // Die animation
-        _animator.SetBool("Death",true);
-
-        // Disable enemy
-        _rb.isKinematic = true;
-        GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
-    }
-
     public void LookAtPlayer() 
     {
         Vector3 flipped = transform.localScale;
@@ -80,6 +78,21 @@ public class BanditController : MonoBehaviour
         }
     }
 
+    private void Die()
+    {
+        // Die animation
+        _animator.SetBool("Death", true);
+
+        // Disable enemy
+        _rb.isKinematic = true;
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+    }
+
+    private void StopAttacking()
+    {
+        _animator.SetInteger("AnimState", 1);
+    }
 
     private void OnDrawGizmosSelected()
     {
