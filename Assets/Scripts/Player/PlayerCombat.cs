@@ -49,7 +49,7 @@ public class PlayerCombat : MonoBehaviour
     private void Attack()
     {
         // play attack animation
-        _animator.SetTrigger("Attack");
+        _animator.SetTrigger("Attack1");
     }
 
     private void OnDrawGizmosSelected()
