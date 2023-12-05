@@ -2,19 +2,40 @@ using UnityEngine;
 
 public class PlayerSensor : MonoBehaviour
 {
-    PlayerHealth playerHealth;
 
-    private void Start()
+    private int m_ColCount = 0;
+
+    private float m_DisableTimer;
+
+    private void OnEnable()
     {
-        playerHealth = GetComponent<PlayerHealth>();
+        m_ColCount = 0;
     }
 
-    void OnCollisionEnter2D(Collision2D collision) 
+    public bool State()
     {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            playerHealth.TakeDamage(50);
-        }
+        if (m_DisableTimer > 0)
+            return false;
+        return m_ColCount > 0;
     }
-    
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        m_ColCount++;
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        m_ColCount--;
+    }
+
+    void Update()
+    {
+        m_DisableTimer -= Time.deltaTime;
+    }
+
+    public void Disable(float duration)
+    {
+        m_DisableTimer = duration;
+    }
 }
