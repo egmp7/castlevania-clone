@@ -3,7 +3,11 @@ using UnityEngine;
 public class PlayerController2D : MonoBehaviour
 {
     [SerializeField] float speed = 2.0f;
+
+    [Header ("Jump")]
     [SerializeField] int jumpForce = 900;
+    [SerializeField] LayerMask whatIsGround;
+    [SerializeField] [Range(0f, 2f)] float boxCastDistance = 1f;
 
     // animation
     private Animator _animator;
@@ -17,19 +21,21 @@ public class PlayerController2D : MonoBehaviour
 
     // sensors
     private bool _grounded;
-    private PlayerSensor _groundSensor;
-    
+    private Collider2D _collider;
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<Collider2D>();
         _animator = GetComponent<Animator>();
-        _groundSensor = transform.Find("GroundSensor").GetComponent<PlayerSensor>();
     }
 
     private void Update()
     {
         // check if player is grounded
-        UpdateGrounded();
+        _grounded = GroundCheck(_collider.bounds,boxCastDistance);
+        // grounded animation
+        _animator.SetBool("Grounded", _grounded);
         // input from player
         _inputX = Input.GetAxisRaw("Horizontal");
         // jump
@@ -37,7 +43,7 @@ public class PlayerController2D : MonoBehaviour
         // running animation
         AnimateRunning(_inputX);
         //Set AirSpeed in animator
-        _animator.SetFloat("AirSpeedY", _rb.velocity.y);
+        _animator.SetFloat("AirSpeedY", _rb.velocity.y);  
     }
 
     private void FixedUpdate()
@@ -46,22 +52,35 @@ public class PlayerController2D : MonoBehaviour
         _rb.velocity = new Vector2(_inputX * speed, _rb.velocity.y);
     }
 
-    private void UpdateGrounded()
+    private bool GroundCheck(Bounds bounds,float distance)
     {
-        if (!_grounded && _groundSensor.State())
-        {
-            _grounded = true;
-            _animator.SetBool("Grounded", _grounded);
-        }
+        // BoxCast parameters
+        Vector3 origin = bounds.center;
+        Vector3 size = bounds.size;
+        float angle = 0f;
+        Vector2 direction = Vector2.down;
+        Color rayColor;
+
+        // Get ground collisions 
+        RaycastHit2D hit =  Physics2D.BoxCast(origin,size,angle,direction,distance,whatIsGround);
+
+        // Debug BoxCast
+        if (hit.collider != null) rayColor = Color.yellow; 
+        else rayColor = Color.red;
+        Utilities.DebugDrawBoxCast(origin, size, angle, direction,distance, rayColor);
+       
+        // Check if collide with ground
+        if (hit.collider != null) return true;
+        else return false;
     }
 
     private void Jump()
     {
-        _grounded = false;
+        //_grounded = false;
         _animator.SetTrigger("Jump");
-        _animator.SetBool("Grounded", _grounded);
+        //_animator.SetBool("Grounded", _grounded);
         _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
-        _groundSensor.Disable(0.2f);
+        //_groundSensor.Disable(0.2f);
     }
 
     private void Flip()
