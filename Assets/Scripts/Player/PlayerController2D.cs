@@ -60,6 +60,10 @@ public class PlayerController2D : MonoBehaviour
         }
     }
 
+    private void CheckIfGrounded()
+    {
+        
+    }
 
     public void Move(float move, bool crouch, bool jump)
     {
