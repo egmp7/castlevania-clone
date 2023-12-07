@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BanditRunningState : StateMachineBehaviour
+public class RunningBehavior : StateMachineBehaviour
 {
     [SerializeField] float speed = 2.5f;
     [SerializeField] float attackRange = 3.0f;
@@ -9,8 +9,6 @@ public class BanditRunningState : StateMachineBehaviour
     private Rigidbody2D rb;
     private BanditController _banditController;
 
-
-
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // instatiate
@@ -18,7 +16,6 @@ public class BanditRunningState : StateMachineBehaviour
         rb = animator.GetComponent<Rigidbody2D>();
         _banditController = animator.GetComponent<BanditController>(); 
     }
-
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateinfo, int layerindex)
     {
@@ -40,10 +37,8 @@ public class BanditRunningState : StateMachineBehaviour
         {
             // trigger animation
             animator.SetTrigger("Attack");
-
         }
     }
-
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
