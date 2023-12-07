@@ -9,6 +9,9 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField] LayerMask whatIsGround;
     [SerializeField] [Range(0f, 2f)] float boxCastDistance = 1f;
 
+    [Header("Boundary")]
+    [SerializeField] float yBoundary = -30f;
+
     // animation
     private Animator _animator;
     private int _idleAnimState = 0;
@@ -50,6 +53,11 @@ public class PlayerController2D : MonoBehaviour
     {
         // move
         _rb.velocity = new Vector2(_inputX * speed, _rb.velocity.y);
+    }
+
+    public bool isOutOfBoundary()
+    {
+        return transform.position.y < yBoundary;
     }
 
     private bool GroundCheck(Bounds bounds,float distance)
