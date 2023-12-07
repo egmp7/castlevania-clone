@@ -26,8 +26,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8f2a60dab5cff4298d02c2000132b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
   LookPointRange: 2
-  PatrolRange: 0
+  PatrolRange: 2.807
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0

@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class BanditController : MonoBehaviour
 {
+    public bool isFlipped = false;
+
     [SerializeField] int maxHealth = 100;
-    [SerializeField] bool isFlipped = false;
 
     [SerializeField] Transform attackPoint;
     [SerializeField] Vector3 attackOffset;
@@ -77,6 +78,20 @@ public class BanditController : MonoBehaviour
             transform.Rotate(0.0f, 180.0f, 0.0f);
             isFlipped = true;
         }
+    }
+
+    public void Flip()
+    {
+        Vector3 flipped = transform.localScale;
+        flipped.z *= -1;
+
+        transform.localScale = flipped;
+        transform.Rotate(0.0f, 180.0f, 0.0f);
+    }
+
+    public void SetIsFlipped(bool boolean)
+    {
+        isFlipped=boolean;
     }
 
     private void Die()
