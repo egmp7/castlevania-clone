@@ -5,7 +5,7 @@ public class HealthBarController : MonoBehaviour
 {
     private Slider _slider;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _slider = GetComponent<Slider>();
     }
