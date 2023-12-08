@@ -3,8 +3,7 @@ using UnityEngine;
 public class IdleBehaviour : StateMachineBehaviour
 {
     [SerializeField] float speed;
-    [SerializeField][Range(0.2f, 2f)] float LookPointRange;
-    [SerializeField][Range(0.2f, 3f)] float PatrolRange;
+    [SerializeField][Range(0.2f, 4f)] float LookPointRange;
 
     private BanditController _banditController;
     private Transform _idleCastPoint;

@@ -54,8 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  LookPointRange: 2
-  PatrolRange: 2.807
+  LookPointRange: 3.37
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0

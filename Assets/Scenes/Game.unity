@@ -481,6 +481,7 @@ MonoBehaviour:
   yBoundary: -30
   movementReloadTime: 0.359
   enemyCollisionForce: 4
+  attackingSpeedRatio: 0.35
 --- !u!61 &241922040
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1159,7 +1160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -357, y: 256}
+  m_AnchoredPosition: {x: -381, y: 274.6}
   m_SizeDelta: {x: 289.089, y: 30.3028}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &694753316

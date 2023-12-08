@@ -15,6 +15,7 @@ public class PlayerController2D : MonoBehaviour
 
     [SerializeField][Range(0.02f, 2f)] float movementReloadTime;
     [SerializeField] float enemyCollisionForce;
+    [SerializeField] [Range(0f, 1f)] float attackingSpeedRatio = 0.2f;
 
     // animation
     private Animator _animator;
@@ -35,6 +36,8 @@ public class PlayerController2D : MonoBehaviour
     private bool _canMove = true;
     private float movementTime;
 
+    // stop moving when attacking
+    private bool _isAttacking = false;
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -64,7 +67,8 @@ public class PlayerController2D : MonoBehaviour
     private void FixedUpdate()
     {
         // move
-        if (_canMove) _rb.velocity = new Vector2(_inputX * speed, _rb.velocity.y);
+        if (_canMove && !_isAttacking) _rb.velocity = new Vector2(_inputX * speed, _rb.velocity.y);
+        if (_isAttacking) _rb.velocity = new Vector3(_inputX * speed * attackingSpeedRatio, _rb.velocity.y,0);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -148,5 +152,10 @@ public class PlayerController2D : MonoBehaviour
         if (input < 0 && _facingRight) Flip();
         if (input == 0) _animator.SetInteger("AnimState", _idleAnimState);
         if (input != 0) _animator.SetInteger("AnimState", _runningAnimState);
+    }
+
+    public void SetIsAttacking(bool boolean)
+    {
+        _isAttacking = boolean;
     }
 }

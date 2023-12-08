@@ -108,6 +108,9 @@ public class BanditController : MonoBehaviour
     private void StopAttacking()
     {
         _animator.SetInteger("AnimState", 1);
+        GetComponent<Collider2D>().enabled = false;
+        _rb.velocity = Vector3.zero;
+        _rb.isKinematic = true;
     }
 
     private void OnDrawGizmosSelected()
