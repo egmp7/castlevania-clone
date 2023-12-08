@@ -456,6 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 694753318}
   maxHealth: 100
+  noDamageRange: 0.5
 --- !u!114 &241922039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,7 +480,7 @@ MonoBehaviour:
   boxCastDistance: 1
   yBoundary: -30
   movementReloadTime: 0.359
-  enemyCollisionForce: 8
+  enemyCollisionForce: 4
 --- !u!61 &241922040
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -82,8 +82,13 @@ public class PlayerController2D : MonoBehaviour
             collision.gameObject.GetComponent<Animator>().SetInteger("AnimState", 2);
             // get direction between player and enemy
             Vector3 direction = (transform.position - collision.gameObject.transform.position).normalized; 
+            
             // impuse a force sp the player moves when touched
-            if (direction.y > 0.1 ) _rb.AddForce(direction * enemyCollisionForce * 3, ForceMode2D.Impulse);
+            if (direction.y > 0.1 ) _rb.AddForce(direction * enemyCollisionForce * 1.01f, ForceMode2D.Impulse);
+            if (direction.y > 0.3) _rb.AddForce(direction * enemyCollisionForce * 1.02f, ForceMode2D.Impulse);
+            if (direction.y > 0.5) _rb.AddForce(direction * enemyCollisionForce * 1.03f, ForceMode2D.Impulse);
+            if (direction.y > 0.7) _rb.AddForce(direction * enemyCollisionForce * 1.04f, ForceMode2D.Impulse);
+            if (direction.y > 0.9) _rb.AddForce(direction * enemyCollisionForce * 1.06f, ForceMode2D.Impulse);
             else _rb.AddForce(direction * enemyCollisionForce,ForceMode2D.Impulse);
         }
 
