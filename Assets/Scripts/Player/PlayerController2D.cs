@@ -7,7 +7,15 @@ public class PlayerController2D : MonoBehaviour
     [Header ("Jump")]
     [SerializeField] int jumpForce = 900;
     [SerializeField] LayerMask whatIsGround;
+    [SerializeField] LayerMask enemyLayer;
     [SerializeField] [Range(0f, 2f)] float boxCastDistance = 1f;
+
+    [Header("Boundary")]
+    [SerializeField] float yBoundary = -30f;
+
+    [SerializeField][Range(0.02f, 2f)] float movementReloadTime;
+    [SerializeField] float enemyCollisionForce;
+    [SerializeField] [Range(0f, 1f)] float attackingSpeedRatio = 0.2f;
 
     // animation
     private Animator _animator;
@@ -23,11 +31,19 @@ public class PlayerController2D : MonoBehaviour
     private bool _grounded;
     private Collider2D _collider;
 
+    // colliding with enemy
+    private PlayerHealth _playerHealth;
+    private bool _canMove = true;
+    private float movementTime;
+
+    // stop moving when attacking
+    private bool _isAttacking = false;
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
         _animator = GetComponent<Animator>();
+        _playerHealth = GetComponent<PlayerHealth>();
     }
 
     private void Update()
@@ -41,15 +57,51 @@ public class PlayerController2D : MonoBehaviour
         // jump
         if (Input.GetKeyDown("space") && _grounded) Jump();
         // running animation
-        AnimateRunning(_inputX);
+        if (_canMove) AnimateRunning(_inputX);
         //Set AirSpeed in animator
-        _animator.SetFloat("AirSpeedY", _rb.velocity.y);  
+        _animator.SetFloat("AirSpeedY", _rb.velocity.y); 
+        // Update _canMove
+        if (Time.time > movementTime) _canMove = true;
     }
 
     private void FixedUpdate()
     {
         // move
-        _rb.velocity = new Vector2(_inputX * speed, _rb.velocity.y);
+        if (_canMove && !_isAttacking) _rb.velocity = new Vector2(_inputX * speed, _rb.velocity.y);
+        if (_isAttacking) _rb.velocity = new Vector3(_inputX * speed * attackingSpeedRatio, _rb.velocity.y,0);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // collision with enemy
+        if ((enemyLayer.value & 1 << collision.gameObject.layer) != 0)
+        {
+            // take damage
+            _playerHealth.TakeDamage(30);
+            // stop moving
+            _canMove = false;
+            // update for next moving 
+            movementTime = Time.time + movementReloadTime;
+            // enemy Animation State set to run
+            collision.gameObject.GetComponent<Animator>().SetInteger("AnimState", 2);
+            // get direction between player and enemy
+            Vector3 direction = (transform.position - collision.gameObject.transform.position).normalized;
+            //reset velocity
+            _rb.velocity = Vector3.zero;
+            // impuse a force sp the player moves when touched
+            if (direction.y > 0.1 ) _rb.AddForce(direction * enemyCollisionForce * 1.01f, ForceMode2D.Impulse);
+            if (direction.y > 0.3) _rb.AddForce(direction * enemyCollisionForce * 1.02f, ForceMode2D.Impulse);
+            if (direction.y > 0.5) _rb.AddForce(direction * enemyCollisionForce * 1.03f, ForceMode2D.Impulse);
+            if (direction.y > 0.7) _rb.AddForce(direction * enemyCollisionForce * 1.04f, ForceMode2D.Impulse);
+            if (direction.y > 0.9) _rb.AddForce(direction * enemyCollisionForce * 1.06f, ForceMode2D.Impulse);
+            else _rb.AddForce(direction * enemyCollisionForce,ForceMode2D.Impulse);
+        }
+
+    }
+
+    public bool isOutOfBoundary()
+    {
+        return transform.position.y < yBoundary;
     }
 
     private bool GroundCheck(Bounds bounds,float distance)
@@ -100,5 +152,10 @@ public class PlayerController2D : MonoBehaviour
         if (input < 0 && _facingRight) Flip();
         if (input == 0) _animator.SetInteger("AnimState", _idleAnimState);
         if (input != 0) _animator.SetInteger("AnimState", _runningAnimState);
+    }
+
+    public void SetIsAttacking(bool boolean)
+    {
+        _isAttacking = boolean;
     }
 }
