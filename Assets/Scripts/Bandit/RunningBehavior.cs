@@ -5,39 +5,37 @@ public class RunningBehavior : StateMachineBehaviour
     [SerializeField] float speed = 2.5f;
     [SerializeField] float attackRange = 3.0f;
 
-    private Transform player;
-    private Rigidbody2D rb;
+    private Transform _player;
+    private Rigidbody2D _rb;
     private BanditController _banditController;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // instatiate
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        rb = animator.GetComponent<Rigidbody2D>();
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _rb = animator.GetComponent<Rigidbody2D>();
         _banditController = animator.GetComponent<BanditController>(); 
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateinfo, int layerindex)
     {
-        // Moving Enemy 
+        // Target direction
+        Vector3 target = (_player.position - animator.transform.position).normalized;
+        // new velocity
+        Vector3 velocity = new Vector3(target.x, _rb.velocity.normalized.y, target.z) * speed * Time.fixedDeltaTime;
+        // update velocity
+        _rb.velocity = velocity;
 
-        // enemy position
-        Vector2 target = new Vector2(player.position.x, rb.position.y);
-        // new enemy position 
-        Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-        // move to new position
-        rb.MovePosition(newPos);
-        // enemy flip if needs to
-        _banditController.LookAtPlayer();
-
-        // Attacking
-
-        // check if enemy is in player's range
-        if (Vector2.Distance(animator.transform.position, player.position) <= attackRange )
+        // Check if the enemy is in the player's attack range
+        if (Vector2.Distance(animator.transform.position, _player.position) <= attackRange)
         {
-            // trigger animation
+            // Trigger attack animation
             animator.SetTrigger("Attack");
         }
+        // Flip the enemy if needed
+        _banditController.LookAtPlayer();
+
+   
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

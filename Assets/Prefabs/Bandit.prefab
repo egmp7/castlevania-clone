@@ -155,10 +155,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1000
+  m_Mass: 1
   m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 8
   m_Material: {fileID: 6200000, guid: 92ea2dbf33ee31e47a720180cb824c16, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -227,8 +227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec8e036ab97a0e4b8fcd4c567d73b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   isFlipped: 1
+  maxHealth: 100
   attackPoint: {fileID: 5705932649132564506}
   attackOffset: {x: 0, y: 0, z: 0}
   attackRange: 1.18
