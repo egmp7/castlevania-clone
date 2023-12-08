@@ -7,10 +7,14 @@ public class PlayerController2D : MonoBehaviour
     [Header ("Jump")]
     [SerializeField] int jumpForce = 900;
     [SerializeField] LayerMask whatIsGround;
+    [SerializeField] LayerMask enemyLayer;
     [SerializeField] [Range(0f, 2f)] float boxCastDistance = 1f;
 
     [Header("Boundary")]
     [SerializeField] float yBoundary = -30f;
+
+    [SerializeField][Range(0.02f, 2f)] float movementReloadTime;
+    [SerializeField] float enemyCollisionForce;
 
     // animation
     private Animator _animator;
@@ -26,11 +30,17 @@ public class PlayerController2D : MonoBehaviour
     private bool _grounded;
     private Collider2D _collider;
 
+    // colliding with enemy
+    private PlayerHealth _playerHealth;
+    private bool _canMove = true;
+    private float movementTime;
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
         _animator = GetComponent<Animator>();
+        _playerHealth = GetComponent<PlayerHealth>();
     }
 
     private void Update()
@@ -44,15 +54,39 @@ public class PlayerController2D : MonoBehaviour
         // jump
         if (Input.GetKeyDown("space") && _grounded) Jump();
         // running animation
-        AnimateRunning(_inputX);
+        if (_canMove) AnimateRunning(_inputX);
         //Set AirSpeed in animator
-        _animator.SetFloat("AirSpeedY", _rb.velocity.y);  
+        _animator.SetFloat("AirSpeedY", _rb.velocity.y); 
+        // Update _canMove
+        if (Time.time > movementTime) _canMove = true;
     }
 
     private void FixedUpdate()
     {
         // move
-        _rb.velocity = new Vector2(_inputX * speed, _rb.velocity.y);
+        if (_canMove) _rb.velocity = new Vector2(_inputX * speed, _rb.velocity.y);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // collision with enemy
+        if ((enemyLayer.value & 1 << collision.gameObject.layer) != 0)
+        {
+            // take damage
+            _playerHealth.TakeDamage(30);
+            // stop moving
+            _canMove = false;
+            // update for next moving 
+            movementTime = Time.time + movementReloadTime;
+            // enemy Animation State set to run
+            collision.gameObject.GetComponent<Animator>().SetInteger("AnimState", 2);
+            // get direction between player and enemy
+            Vector3 direction = (transform.position - collision.gameObject.transform.position).normalized; 
+            // impuse a force sp the player moves when touched
+            if (direction.y > 0.1 ) _rb.AddForce(direction * enemyCollisionForce * 3, ForceMode2D.Impulse);
+            else _rb.AddForce(direction * enemyCollisionForce,ForceMode2D.Impulse);
+        }
+
     }
 
     public bool isOutOfBoundary()
