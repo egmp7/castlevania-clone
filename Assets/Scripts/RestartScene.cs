@@ -15,7 +15,6 @@ public class RestartScene : MonoBehaviour
     private void Restart()
     {
         Invoke("LoadScene", 2f);
-        
     }
 
     private void LoadScene()

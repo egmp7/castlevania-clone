@@ -44,7 +44,7 @@ public class BanditController : MonoBehaviour
         if (colInfo != null)
         {
             // produce player damage
-            colInfo.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
+            colInfo.GetComponent<PlayerController2D>().TakeDamage(attackDamage);
         }
     }
 

@@ -297,8 +297,6 @@ GameObject:
   - component: {fileID: 241922031}
   - component: {fileID: 241922029}
   - component: {fileID: 241922040}
-  - component: {fileID: 241922036}
-  - component: {fileID: 241922038}
   - component: {fileID: 241922039}
   m_Layer: 3
   m_Name: Player
@@ -423,40 +421,6 @@ Transform:
   - {fileID: 206775516}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &241922036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241922028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34bb289770ed64e4eb1916d29a70647e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackPoint: {fileID: 206775516}
-  attackRange: 1.01
-  enemyAttack: 30
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  attackRate: 1.2
---- !u!114 &241922038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241922028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 740d09f40d5361442934237d21723bed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 694753318}
-  maxHealth: 100
-  noDamageRange: 0.5
 --- !u!114 &241922039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,19 +433,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8cf1511a73ca1418e73449d2188683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpForce: 25
-  whatIsGround:
+  groundLayer:
     serializedVersion: 2
     m_Bits: 128
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  boxCastDistance: 1
+  speed: 10
+  collisionForceMagnitude: 4
+  movementDisableDuration: 0.395
   yBoundary: -30
-  movementReloadTime: 0.359
-  enemyCollisionForce: 4
-  attackingSpeedRatio: 0.35
+  jumpForce: 25
+  boxCastDistance: 1
+  attackPoint: {fileID: 206775516}
+  attackSpeedRatio: 0.2
+  attackRadius: 0.792
+  attackRate: 2
+  enemyDamage: 30
+  healthBar: {fileID: 694753318}
+  maxHealth: 100
+  invulnerabilityDuration: 1
 --- !u!61 &241922040
 BoxCollider2D:
   m_ObjectHideFlags: 0
