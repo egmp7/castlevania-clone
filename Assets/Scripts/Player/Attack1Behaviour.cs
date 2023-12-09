@@ -7,6 +7,7 @@ public class Attack1Behaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _playerController = animator.GetComponent<PlayerController2D>();
+        // controller needs to know when to reduce the speed
         _playerController.SetIsAttacking(true);
     }
 
@@ -16,6 +17,7 @@ public class Attack1Behaviour : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        // controller needs to know when to stop reducing the speed;
         _playerController.SetIsAttacking(false);
     }
 
