@@ -33,7 +33,7 @@
 
 **Challenges Faced:**
 1. **Implementing Enemy AI Patterns:**
-   - Challenge: Design and implement more complex enemy AI patterns, such as enemies that can patrol, chase the player intelligently, or perform varied attack patterns.
+   - Challenge: Design and implement more complex enemy AI patterns, such as enemies that can patrol, chase the player intelligently, or perform an attack pattern.
    - Goal: Enhance the gameplay by introducing challenging enemy behaviors that require strategic player movements.
 
 2. **Adding Environmental Hazards:**
