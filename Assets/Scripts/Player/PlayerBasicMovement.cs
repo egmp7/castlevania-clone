@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerBasicMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField][Range(1.0f, 10.0f)] float WalkSpeed = 2.0f;
