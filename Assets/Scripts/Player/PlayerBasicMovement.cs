@@ -14,16 +14,36 @@ public class PlayerBasicMovement : MonoBehaviour
     private bool isRunning;
     private float lastTapTime;
     private bool keyHeldDown;
+    private bool isInputActive;
+    private Vector3 originalScale; // Store the original scale
+
+    private void OnEnable()
+    {
+        PlayerLedgeClimb.OnLedge += TurnOffInput;
+        PlayerLedgeClimb.OffLedge += TurnOnInput;
+    }
+    private void OnDisable()
+    {
+        PlayerLedgeClimb.OnLedge -= TurnOffInput;
+        PlayerLedgeClimb.OffLedge -= TurnOnInput;
+    }
 
     private void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
         rb = GetComponent<Rigidbody2D>();
+        originalScale = transform.localScale; // Get the initial scale
+    }
+
+    private void Start()
+    {
+        isInputActive = true;
     }
 
     private void Update()
     {
         HandleInput();
+        FlipPlayerBasedOnDirection(); // Flip the player based on direction
     }
 
     private void FixedUpdate()
@@ -40,6 +60,11 @@ public class PlayerBasicMovement : MonoBehaviour
 
     private void HandleInput()
     {
+        if (!isInputActive)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
         moveInput = moveAction.ReadValue<Vector2>();
 
         if (moveInput.x != 0 && !keyHeldDown)
@@ -65,5 +90,31 @@ public class PlayerBasicMovement : MonoBehaviour
             // Key released, ready for the next tap
             keyHeldDown = false;
         }
+    }
+
+    private void FlipPlayerBasedOnDirection()
+    {
+        if (moveInput.x > 0)
+        {
+            // Moving right, ensure player is facing right
+            transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
+        }
+        else if (moveInput.x < 0)
+        {
+            // Moving left, flip the player's x scale to face left
+            transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
+        }
+    }
+
+    private void TurnOnInput()
+    {
+        isInputActive = true;
+        moveInput = Vector2.zero;
+    }
+
+    private void TurnOffInput()
+    {
+        isInputActive = false;
+        moveInput = Vector2.zero;
     }
 }

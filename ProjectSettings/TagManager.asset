@@ -15,7 +15,7 @@ TagManager:
   - UI
   - Enemy
   - Ground
-  - 
+  - Ledge
   - 
   - 
   - 
@@ -45,4 +45,13 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Layer 1
+    uniqueID: 3853084461
+    locked: 0
+  - name: Obstacles
+    uniqueID: 1140230651
+    locked: 0
+  - name: Player
+    uniqueID: 4072426957
     locked: 0

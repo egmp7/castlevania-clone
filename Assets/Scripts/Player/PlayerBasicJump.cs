@@ -12,7 +12,7 @@ public class PlayerBasicJump : MonoBehaviour
     [SerializeField][Range(0f, 2f)] float boxCastDistance = 1f;
 
     [Tooltip("Time between jumps (in seconds)")]
-    [SerializeField][Range (0f,3f)] float jumpCooldown = 0.5f; // Cooldown time in seconds
+    [SerializeField][Range (0f,3f)] float jumpCooldown = 0.8f; // Cooldown time in seconds
 
     [SerializeField] LayerMask GroundLayer;
     [SerializeField] bool DebugMode = true;
@@ -25,7 +25,6 @@ public class PlayerBasicJump : MonoBehaviour
     private Rigidbody2D rb;
     private float jumpTimer;
 
-
     private void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
@@ -33,8 +32,7 @@ public class PlayerBasicJump : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-
-    void Update()
+    private void Update()
     {
         HandleInput();
         GroundCheck();
@@ -95,7 +93,7 @@ public class PlayerBasicJump : MonoBehaviour
                 0f,
                 Vector2.down,
                 boxCastDistance,
-                hit.collider ? Color.yellow : Color.red
+                hit.collider ? Color.green : Color.red
             );
         }
 
