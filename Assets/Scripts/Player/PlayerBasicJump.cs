@@ -1,8 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerBasicJump : MonoBehaviour
 {
+    public static event Action OnPlayerJump;
+    public static event Action OnPlayerGrounded;
+
     [Header("Basic Jump")]
 
     [Tooltip("Jumping Strength")]
@@ -18,11 +22,12 @@ public class PlayerBasicJump : MonoBehaviour
     [SerializeField] bool DebugMode = true;
 
     private InputAction moveAction;
-    private Vector2 moveInput;
     private Collider2D playerCollider;
+    private Rigidbody2D rb;
+    private Vector2 moveInput;
     private bool keyHeldDown;
     private bool isGrounded;
-    private Rigidbody2D rb;
+    private bool isInvoked = false;
     private float jumpTimer;
 
     private void Awake()
@@ -37,6 +42,7 @@ public class PlayerBasicJump : MonoBehaviour
         HandleInput();
         GroundCheck();
         UpdateJumpTimer();
+        InvokePlayerGrounded();
     }
 
     private void FixedUpdate()
@@ -52,6 +58,7 @@ public class PlayerBasicJump : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, JumpForce);
             keyHeldDown = false; // Ensure single jump per press
             jumpTimer = jumpCooldown; // Reset the jump timer to cooldown value
+            OnPlayerJump?.Invoke();
         }
     }
 
@@ -68,6 +75,19 @@ public class PlayerBasicJump : MonoBehaviour
             keyHeldDown = false; // Key released
         }
             
+    }
+
+    private void InvokePlayerGrounded()
+    {
+        if (isGrounded && !isInvoked)
+        {
+            OnPlayerGrounded?.Invoke();
+            isInvoked = true;
+        }
+        else if (!isGrounded && isInvoked)
+        {
+            isInvoked = false;
+        }
     }
 
     private void GroundCheck()

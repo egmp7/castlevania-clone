@@ -1,21 +1,33 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerBasicMovement : MonoBehaviour
 {
+    public static event Action OnPlayerRun;
+    public static event Action OnPlayerWalk;
+    public static event Action OnPlayerIdle;
+
     [Header("Movement")]
     [SerializeField][Range(1.0f, 10.0f)] float WalkSpeed = 2.0f;
     [SerializeField][Range(1.0f, 10.0f)] float RunSpeed = 5.0f;
     [SerializeField][Range(0.05f, 1.0f)] float doubleTapThreshold = 0.3f;
 
+    private enum AnimationState
+    {
+        Idle,
+        Walk,
+        Run
+    }
+
     private InputAction moveAction;
     private Rigidbody2D rb;
-    private Vector2 moveInput;
-    private bool isRunning;
-    private float lastTapTime;
-    private bool keyHeldDown;
-    private bool isInputActive;
     private Vector3 originalScale; // Store the original scale
+    private Vector2 moveInput;
+    private float lastTapTime;
+    private bool isRunning;
+    private bool keyHeldDown;
+    private bool isInputActive = true;
 
     private void OnEnable()
     {
@@ -33,11 +45,6 @@ public class PlayerBasicMovement : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         rb = GetComponent<Rigidbody2D>();
         originalScale = transform.localScale; // Get the initial scale
-    }
-
-    private void Start()
-    {
-        isInputActive = true;
     }
 
     private void Update()
@@ -75,11 +82,13 @@ public class PlayerBasicMovement : MonoBehaviour
             {
                 // Double tap detected, start running
                 isRunning = true;
+                OnPlayerRun?.Invoke();
             }
             else
             {
                 // Single tap detected, walk
                 isRunning = false;
+                OnPlayerWalk?.Invoke();
             }
 
             // Update the last tap time
@@ -89,6 +98,8 @@ public class PlayerBasicMovement : MonoBehaviour
         {
             // Key released, ready for the next tap
             keyHeldDown = false;
+            OnPlayerIdle?.Invoke();
+
         }
     }
 
