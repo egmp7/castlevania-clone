@@ -2,10 +2,13 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBasicJump : MonoBehaviour
+public class PlayerMovementVertical : MonoBehaviour
 {
     public static event Action OnPlayerJump;
+    public static event Action OnPlayerFalling;
+    public static event Action OnPlayerAscending;
     public static event Action OnPlayerGrounded;
+    public static event Action OnPlayerAirborne;
 
     [Header("Basic Jump")]
 
@@ -19,7 +22,6 @@ public class PlayerBasicJump : MonoBehaviour
     [SerializeField][Range (0f,3f)] float jumpCooldown = 0.8f; // Cooldown time in seconds
 
     [SerializeField] LayerMask GroundLayer;
-    [SerializeField] bool DebugMode = true;
 
     private InputAction moveAction;
     private Collider2D playerCollider;
@@ -27,7 +29,6 @@ public class PlayerBasicJump : MonoBehaviour
     private Vector2 moveInput;
     private bool keyHeldDown;
     private bool isGrounded;
-    private bool isInvoked = false;
     private float jumpTimer;
 
     private void Awake()
@@ -39,10 +40,10 @@ public class PlayerBasicJump : MonoBehaviour
 
     private void Update()
     {
+        CheckGroundStatus();
+        CheckVelocityDirection();
         HandleInput();
-        GroundCheck();
         UpdateJumpTimer();
-        InvokePlayerGrounded();
     }
 
     private void FixedUpdate()
@@ -77,20 +78,7 @@ public class PlayerBasicJump : MonoBehaviour
             
     }
 
-    private void InvokePlayerGrounded()
-    {
-        if (isGrounded && !isInvoked)
-        {
-            OnPlayerGrounded?.Invoke();
-            isInvoked = true;
-        }
-        else if (!isGrounded && isInvoked)
-        {
-            isInvoked = false;
-        }
-    }
-
-    private void GroundCheck()
+    private void CheckGroundStatus()
     {
         Bounds bounds = playerCollider.bounds;
 
@@ -104,21 +92,30 @@ public class PlayerBasicJump : MonoBehaviour
             GroundLayer
         );
 
-        // Optional debug visualization
-        if (DebugMode)
+        if (hit.collider != null) // is grounded
         {
-            Utilities.DebugDrawBoxCast(
-                bounds.center,
-                bounds.size,
-                0f,
-                Vector2.down,
-                boxCastDistance,
-                hit.collider ? Color.green : Color.red
-            );
+            isGrounded = true;
+            OnPlayerGrounded?.Invoke();
+        }
+        else // is on air
+        {
+            OnPlayerAirborne?.Invoke();
         }
 
         // Set grounded state based on collision result
         isGrounded = hit.collider != null;
+    }
+
+    void CheckVelocityDirection()
+    {
+        if (rb.velocity.y > 0)
+        {
+            OnPlayerAscending?.Invoke();  // Player is moving upward
+        }
+        else if (rb.velocity.y < 0)
+        {
+            OnPlayerFalling?.Invoke();  // Player is falling
+        }
     }
 
     private void UpdateJumpTimer()
@@ -128,6 +125,25 @@ public class PlayerBasicJump : MonoBehaviour
         {
             jumpTimer -= Time.deltaTime;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // Ensure playerCollider is initialized
+        if (playerCollider == null)
+            return;
+
+        Bounds bounds = playerCollider.bounds;
+
+        // Draw the box representing the BoxCast
+        Utilities.DebugDrawBoxCast(
+            bounds.center,
+            bounds.size,
+            0f,
+            Vector2.down,
+            boxCastDistance,
+            isGrounded ? Color.green : Color.red
+        );
     }
 
 }

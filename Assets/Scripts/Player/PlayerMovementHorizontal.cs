@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBasicMovement : MonoBehaviour
+public class PlayerMovementHorizontal : MonoBehaviour
 {
     public static event Action OnPlayerRun;
     public static event Action OnPlayerWalk;
@@ -72,6 +72,8 @@ public class PlayerBasicMovement : MonoBehaviour
             rb.velocity = Vector2.zero;
             return;
         }
+
+        // Read Input
         moveInput = moveAction.ReadValue<Vector2>();
 
         if (moveInput.x != 0 && !keyHeldDown)
