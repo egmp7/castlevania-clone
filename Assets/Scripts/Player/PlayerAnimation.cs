@@ -9,6 +9,8 @@ public class PlayerAnimation : MonoBehaviour
         Run,
         Jump,
         Fall,
+        LedgeClimb,
+        LedgeHang,
     }
 
     private Animator animator;
@@ -17,12 +19,16 @@ public class PlayerAnimation : MonoBehaviour
     private bool isRunning;
     private bool isWalking;
     private bool isJumping;
+    private bool isHanging;
 
     private void OnEnable()
     {
         // Single Triggers
         PlayerMovementHorizontal.OnPlayerRun += OnPlayerRun;
         PlayerMovementHorizontal.OnPlayerWalk += OnPlayerWalk;
+        PlayerLedgeClimb.OnLedgeClimb += OnLedgeClimb;
+        PlayerLedgeClimb.OnLedgeHang += OnLedgeHang;
+        PlayerLedgeClimb.OffLedge += OffLedge;
 
         // Loop Triggers
         PlayerMovementHorizontal.OnPlayerIdle += OnPlayerIdle;
@@ -35,6 +41,9 @@ public class PlayerAnimation : MonoBehaviour
         // Single Triggers
         PlayerMovementHorizontal.OnPlayerRun -= OnPlayerRun;
         PlayerMovementHorizontal.OnPlayerWalk -= OnPlayerWalk;
+        PlayerLedgeClimb.OnLedgeClimb -= OnLedgeClimb;
+        PlayerLedgeClimb.OnLedgeHang -= OnLedgeHang;
+        PlayerLedgeClimb.OffLedge -= OffLedge;
 
         // Loop Triggers
         PlayerMovementHorizontal.OnPlayerIdle -= OnPlayerIdle;
@@ -55,6 +64,7 @@ public class PlayerAnimation : MonoBehaviour
         // Only play the animation if the state has changed
         if (currentAnimationState != newAnimationState)
         {
+            Debug.Log(newAnimationState);
             switch (newAnimationState)
             {
                 case AnimationState.Idle:
@@ -74,6 +84,12 @@ public class PlayerAnimation : MonoBehaviour
                 case AnimationState.Fall:
                     animator.Play("JumpFall");
                     break;
+                case AnimationState.LedgeClimb:
+                    animator.Play("LedgeClimb");
+                    break;
+                case AnimationState.LedgeHang:
+                    animator.Play("LedgeHang");
+                    break;
             }
             currentAnimationState = newAnimationState; // Update the current animation state
         }
@@ -81,7 +97,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void OnPlayerRun()
     {
-        if (!isJumping)
+        if (!isJumping && !isHanging)
         {
             isRunning = true;
             isWalking = false;
@@ -91,7 +107,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void OnPlayerWalk()
     {
-        if (!isJumping)
+        if (!isJumping && !isHanging)
         {
             isRunning = false;
             isWalking = true;
@@ -101,7 +117,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void OnPlayerIdle()
     {
-        if (!isJumping)
+        if (!isJumping && !isHanging)
         {
             isRunning = false;
             isWalking = false;
@@ -111,6 +127,8 @@ public class PlayerAnimation : MonoBehaviour
 
     private void OnPlayerGrounded()
     {
+        if (isHanging) return;
+
         isJumping = false;
 
         if (isRunning)
@@ -129,12 +147,32 @@ public class PlayerAnimation : MonoBehaviour
 
     private void OnPlayerFalling()
     {
-        newAnimationState = AnimationState.Fall;
+        if(!isHanging)
+        {
+            newAnimationState = AnimationState.Fall;
+        }
+        
     }
 
     private void OnPlayerAscending()
     {
         isJumping = true;
         newAnimationState = AnimationState.Jump;
+    }
+
+    private void OnLedgeClimb()
+    {
+        newAnimationState = AnimationState.LedgeClimb;
+    }
+
+    private void OnLedgeHang()
+    {
+        isHanging = true;
+        newAnimationState = AnimationState.LedgeHang;
+    }
+
+    private void OffLedge()
+    {
+        isHanging = false;
     }
 }

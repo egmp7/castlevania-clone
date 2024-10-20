@@ -122,12 +122,10 @@ public class PlayerMovementHorizontal : MonoBehaviour
     private void TurnOnInput()
     {
         isInputActive = true;
-        moveInput = Vector2.zero;
     }
 
     private void TurnOffInput()
     {
         isInputActive = false;
-        moveInput = Vector2.zero;
     }
 }

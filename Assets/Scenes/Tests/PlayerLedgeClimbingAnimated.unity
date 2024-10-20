@@ -427,7 +427,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   LedgeCheck: {fileID: 2109046903}
-  LedgeOffset: {x: -2, y: -0.73}
+  LedgeOffset: {x: -1.85, y: -1.73}
   ClimbTargetOffset: {x: 2.3, y: 2.3}
   DropTargetOffset: {x: -1, y: -2}
   ClimbSpeed: 5
@@ -450,7 +450,6 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 128
-  DebugMode: 1
 --- !u!95 &241922045
 Animator:
   serializedVersion: 5

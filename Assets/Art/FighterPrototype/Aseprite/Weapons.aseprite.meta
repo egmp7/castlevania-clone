@@ -130,7 +130,7 @@ ScriptedImporter:
       y: 27
       width: 23
       height: 5
-    spriteID: a807ae8bac5153246b0fc1476bd679bd
+    spriteID: b7d23eb16c7a6b34bb70ec8bc789ef57
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -150,7 +150,7 @@ ScriptedImporter:
       y: 4
       width: 26
       height: 15
-    spriteID: a6910fe8095fccf43a256a5a1b5fb09d
+    spriteID: 97a435dc37684c144ad3dfd22a51d97f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -170,7 +170,7 @@ ScriptedImporter:
       y: 177
       width: 15
       height: 27
-    spriteID: 2db2ae20da5974949bde6f6dec191143
+    spriteID: 43980c4a3968f194293503fe3ca30c9f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -190,7 +190,7 @@ ScriptedImporter:
       y: 115
       width: 8
       height: 29
-    spriteID: ada163fd9afadb946b0c6c1202181ff2
+    spriteID: ade823c64ad1c3a4e87ae6662d480033
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -210,7 +210,7 @@ ScriptedImporter:
       y: 212
       width: 13
       height: 29
-    spriteID: a6436cc1180808f4399c0053f68a55ff
+    spriteID: 4815367b7c7ac0c46b2064f442a124bd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -230,7 +230,7 @@ ScriptedImporter:
       y: 33
       width: 14
       height: 25
-    spriteID: c29298dfd0281904e8ded4aeac597501
+    spriteID: 5bab356e9f402a344a2419614dc7072f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -250,7 +250,7 @@ ScriptedImporter:
       y: 177
       width: 19
       height: 21
-    spriteID: aa2efaa6848ab9a4b8212e97734f0017
+    spriteID: a532e8a377dbecc4b98563e66a7ecb93
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -270,7 +270,7 @@ ScriptedImporter:
       y: 66
       width: 14
       height: 25
-    spriteID: 1baa59c1ba3f7c34a9fe82960e8e5ae5
+    spriteID: 5130b77d40fdb164994912587abde807
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -290,7 +290,7 @@ ScriptedImporter:
       y: 206
       width: 19
       height: 21
-    spriteID: e3f59491cadad7f4f86ca30dab3d710e
+    spriteID: d1c760d29cfcc2c4eb73ba3411a06196
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -310,7 +310,7 @@ ScriptedImporter:
       y: 99
       width: 14
       height: 25
-    spriteID: 7331d622fb525d84ea85c1b905672c9e
+    spriteID: c324f12f29fb3694eb64ff4954262fe1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -330,7 +330,7 @@ ScriptedImporter:
       y: 4
       width: 19
       height: 21
-    spriteID: f55f3541434bc8b458e2e0625e2c61d7
+    spriteID: 05c48b94878426e489a47237738ac217
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -350,7 +350,7 @@ ScriptedImporter:
       y: 152
       width: 26
       height: 17
-    spriteID: 456b83713a8a35d459fef374eaed4ab5
+    spriteID: 24aad1ab32378784fb54059728500789
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -370,7 +370,7 @@ ScriptedImporter:
       y: 115
       width: 25
       height: 29
-    spriteID: 727935b8cb769ba48a005581876dde40
+    spriteID: fafa8d711ef3fab4f9d4b1d4d2222e8b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -390,7 +390,7 @@ ScriptedImporter:
       y: 4
       width: 43
       height: 29
-    spriteID: a0d7af05de25e794cadc398143600e26
+    spriteID: 218ce4323530ba2499295bc063fe0477
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -410,7 +410,7 @@ ScriptedImporter:
       y: 41
       width: 40
       height: 29
-    spriteID: 0a27b245fa3e0344ba7a2680901ce201
+    spriteID: dad953bfea645254cacabe4af7ef317a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -430,7 +430,7 @@ ScriptedImporter:
       y: 78
       width: 40
       height: 29
-    spriteID: 86931dfec159f0148a834aa9ff03a103
+    spriteID: ada4a5fea937bb042a711878ff76e3d2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -450,7 +450,7 @@ ScriptedImporter:
       y: 4
       width: 8
       height: 2
-    spriteID: 939bf982c807a8b43b3f0a35e75c69c6
+    spriteID: 1f08c706c9cd8d24bba9a016c5dbd0f7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -470,7 +470,7 @@ ScriptedImporter:
       y: 249
       width: 9
       height: 2
-    spriteID: 588e4b597870a41429e1a6851c230b3c
+    spriteID: 491fe357ea096ca41b102977b5abc1e1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -495,7 +495,7 @@ ScriptedImporter:
         y: 37
         width: 23
         height: 5
-      spriteId: a807ae8bac5153246b0fc1476bd679bd
+      spriteId: b7d23eb16c7a6b34bb70ec8bc789ef57
     - name: Weapons_Frame_1
       frameIndex: 1
       cellRect:
@@ -503,7 +503,7 @@ ScriptedImporter:
         y: 22
         width: 26
         height: 15
-      spriteId: a6910fe8095fccf43a256a5a1b5fb09d
+      spriteId: 97a435dc37684c144ad3dfd22a51d97f
     - name: Weapons_Frame_2
       frameIndex: 2
       cellRect:
@@ -511,7 +511,7 @@ ScriptedImporter:
         y: 21
         width: 15
         height: 27
-      spriteId: 2db2ae20da5974949bde6f6dec191143
+      spriteId: 43980c4a3968f194293503fe3ca30c9f
     - name: Weapons_Frame_3
       frameIndex: 3
       cellRect:
@@ -519,7 +519,7 @@ ScriptedImporter:
         y: 26
         width: 8
         height: 29
-      spriteId: ada163fd9afadb946b0c6c1202181ff2
+      spriteId: ade823c64ad1c3a4e87ae6662d480033
     - name: Weapons_Frame_4
       frameIndex: 4
       cellRect:
@@ -527,7 +527,7 @@ ScriptedImporter:
         y: 25
         width: 13
         height: 29
-      spriteId: a6436cc1180808f4399c0053f68a55ff
+      spriteId: 4815367b7c7ac0c46b2064f442a124bd
     - name: Weapons_Frame_5
       frameIndex: 5
       cellRect:
@@ -535,7 +535,7 @@ ScriptedImporter:
         y: 27
         width: 14
         height: 25
-      spriteId: c29298dfd0281904e8ded4aeac597501
+      spriteId: 5bab356e9f402a344a2419614dc7072f
     - name: Weapons_Frame_6
       frameIndex: 6
       cellRect:
@@ -543,7 +543,7 @@ ScriptedImporter:
         y: 29
         width: 19
         height: 21
-      spriteId: aa2efaa6848ab9a4b8212e97734f0017
+      spriteId: a532e8a377dbecc4b98563e66a7ecb93
     - name: Weapons_Frame_7
       frameIndex: 7
       cellRect:
@@ -551,7 +551,7 @@ ScriptedImporter:
         y: 27
         width: 14
         height: 25
-      spriteId: 1baa59c1ba3f7c34a9fe82960e8e5ae5
+      spriteId: 5130b77d40fdb164994912587abde807
     - name: Weapons_Frame_8
       frameIndex: 8
       cellRect:
@@ -559,7 +559,7 @@ ScriptedImporter:
         y: 29
         width: 19
         height: 21
-      spriteId: e3f59491cadad7f4f86ca30dab3d710e
+      spriteId: d1c760d29cfcc2c4eb73ba3411a06196
     - name: Weapons_Frame_9
       frameIndex: 9
       cellRect:
@@ -567,7 +567,7 @@ ScriptedImporter:
         y: 27
         width: 14
         height: 25
-      spriteId: 7331d622fb525d84ea85c1b905672c9e
+      spriteId: c324f12f29fb3694eb64ff4954262fe1
     - name: Weapons_Frame_10
       frameIndex: 10
       cellRect:
@@ -575,7 +575,7 @@ ScriptedImporter:
         y: 29
         width: 19
         height: 21
-      spriteId: f55f3541434bc8b458e2e0625e2c61d7
+      spriteId: 05c48b94878426e489a47237738ac217
     - name: Weapons_Frame_11
       frameIndex: 11
       cellRect:
@@ -583,7 +583,7 @@ ScriptedImporter:
         y: 31
         width: 26
         height: 17
-      spriteId: 456b83713a8a35d459fef374eaed4ab5
+      spriteId: 24aad1ab32378784fb54059728500789
     - name: Weapons_Frame_12
       frameIndex: 12
       cellRect:
@@ -591,7 +591,7 @@ ScriptedImporter:
         y: 25
         width: 25
         height: 29
-      spriteId: 727935b8cb769ba48a005581876dde40
+      spriteId: fafa8d711ef3fab4f9d4b1d4d2222e8b
     - name: Weapons_Frame_13
       frameIndex: 13
       cellRect:
@@ -599,7 +599,7 @@ ScriptedImporter:
         y: 25
         width: 43
         height: 29
-      spriteId: a0d7af05de25e794cadc398143600e26
+      spriteId: 218ce4323530ba2499295bc063fe0477
     - name: Weapons_Frame_14
       frameIndex: 14
       cellRect:
@@ -607,7 +607,7 @@ ScriptedImporter:
         y: 25
         width: 40
         height: 29
-      spriteId: 0a27b245fa3e0344ba7a2680901ce201
+      spriteId: dad953bfea645254cacabe4af7ef317a
     - name: Weapons_Frame_15
       frameIndex: 15
       cellRect:
@@ -615,7 +615,7 @@ ScriptedImporter:
         y: 25
         width: 40
         height: 29
-      spriteId: 86931dfec159f0148a834aa9ff03a103
+      spriteId: ada4a5fea937bb042a711878ff76e3d2
     - name: Weapons_Frame_16
       frameIndex: 16
       cellRect:
@@ -623,7 +623,7 @@ ScriptedImporter:
         y: 38
         width: 8
         height: 2
-      spriteId: 939bf982c807a8b43b3f0a35e75c69c6
+      spriteId: 1f08c706c9cd8d24bba9a016c5dbd0f7
     - name: Weapons_Frame_17
       frameIndex: 17
       cellRect:
@@ -631,7 +631,7 @@ ScriptedImporter:
         y: 38
         width: 9
         height: 2
-      spriteId: 588e4b597870a41429e1a6851c230b3c
+      spriteId: 491fe357ea096ca41b102977b5abc1e1
     linkedCells: []
     parentIndex: -1
   platformSettings: []

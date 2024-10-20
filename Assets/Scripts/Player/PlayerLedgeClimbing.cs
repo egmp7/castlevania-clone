@@ -7,6 +7,8 @@ public class PlayerLedgeClimb : MonoBehaviour
 {
     public static event Action OnLedge;
     public static event Action OffLedge;
+    public static event Action OnLedgeClimb;
+    public static event Action OnLedgeHang;
 
     [Header("LedgeClimb")]
     [Tooltip("Layer to detect ledges")]
@@ -31,29 +33,30 @@ public class PlayerLedgeClimb : MonoBehaviour
     [SerializeField][Range(0f, 2f)] float RaycastDistance = 1f;
 
     private Rigidbody2D rb;
+    private Collider2D playerCollider2D;
     private InputAction moveAction;
+    private Coroutine activeCoroutine;
     private Vector2 moveInput;
-    //private Animator animator;
+    private Vector2 ledgeCenterTopPosition;
+    private float gravityScale;
     private bool isTouchingLedge;
-    private bool isHanging;
+    private bool ledgeTouchedPreviously;
+    private bool isHanging; // happens after player finishes moving to edge
     private bool upKeyHeldDown;
     private bool downKeyHeldDown;
-    private bool wasTouchingLedge = false;
     private bool isFacingRight;
-    private float gravityScale;
-    private Vector2 ledgeCenterTopPosition;
-    private Coroutine activeCoroutine;
 
     private void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
         rb = GetComponent<Rigidbody2D>();
+        playerCollider2D = GetComponent<Collider2D>();
         gravityScale = rb.gravityScale;
-        //animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
+        CheckFacingDirection();
         DetectLedge();
 
         if (isHanging)
@@ -62,38 +65,44 @@ public class PlayerLedgeClimb : MonoBehaviour
         }
     }
 
+    private void CheckFacingDirection() 
+    {
+        isFacingRight = (LedgeCheck.position - transform.position).x > 0;
+    }
+
     private void DetectLedge()
     {
-        isFacingRight = (LedgeCheck.position - transform.position).x > 0 ;
+        // Determine direction based on player facing
+        Vector2 rayDirection = isFacingRight ? Vector2.right : Vector2.left;
+        Vector2 rayOrigin = LedgeCheck.position;
 
-        // Perform BoxCast to check ground collision
-        RaycastHit2D hit = Physics2D.Raycast(
-            new Vector2(LedgeCheck.position.x,LedgeCheck.position.y),
-            isFacingRight ? Vector2.right : Vector2.left,
-            RaycastDistance,
-            LedgeLayer
-        );
+        // Perform the Raycast to detect ledge collision
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, rayDirection, RaycastDistance, LedgeLayer);
 
+        // Check if the ledge is being touched
         isTouchingLedge = hit.collider != null;
 
-        // Invoke OnLedge when ledge is first touched
-        if (isTouchingLedge && !wasTouchingLedge)
+        // If the ledge was touched for the first time
+        if (isTouchingLedge && !ledgeTouchedPreviously)
         {
-            // Get the bounds of the collider you hit
+            // Get the ledge's top center position
             Bounds colliderBounds = hit.collider.bounds;
-            // Center top position is the center of the collider's x-axis and the top of its y-axis
             ledgeCenterTopPosition = new Vector2(colliderBounds.center.x, colliderBounds.max.y);
-            OnLedge?.Invoke();  // Trigger the OnLedge event
-            wasTouchingLedge = true;
 
+            // Trigger the OnLedge event
+            OnLedge?.Invoke();
+            ledgeTouchedPreviously = true;
+
+            // Start ledge grab logic
             StartCoroutine(LedgeGrab());
         }
-        else if (!isTouchingLedge && wasTouchingLedge)
-        {
-            OffLedge?.Invoke();  // Trigger the OffLedge event
-            wasTouchingLedge = false;
+        // If the ledge was released
+        else if (!isTouchingLedge && ledgeTouchedPreviously)
+        {            
+            ledgeTouchedPreviously = false;
         }
     }
+
 
     private void HandleClimbingInput()
     {
@@ -121,23 +130,22 @@ public class PlayerLedgeClimb : MonoBehaviour
 
     private IEnumerator LedgeGrab()
     {
-
         rb.velocity = Vector2.zero;
         rb.gravityScale = 0;
         Vector2 flippedLedgeOffset = new (LedgeOffset.x * -1, LedgeOffset.y);
-        Vector2 ledgeTarget = ledgeCenterTopPosition + (isFacingRight ? LedgeOffset : flippedLedgeOffset)  ;
+        Vector2 ledgeTarget = ledgeCenterTopPosition + (isFacingRight ? LedgeOffset : flippedLedgeOffset);
 
         // move
         while (Vector2.Distance(transform.position, ledgeTarget) > 0.1f)
         {
+            playerCollider2D.enabled = false;
             transform.position = Vector2.MoveTowards(transform.position, ledgeTarget, ClimbSpeed * Time.deltaTime);
             yield return null;
         }
 
-        // Snap character to the ledge
+        OnLedgeHang?.Invoke();
+        playerCollider2D.enabled = true;
         isHanging = true;
-
-        //animator.SetBool("isHanging", true);
     }
 
     private IEnumerator ClimbLedge()
@@ -159,17 +167,24 @@ public class PlayerLedgeClimb : MonoBehaviour
             transform.position.x - ClimbTargetOffset.x,
             transform.position.y + ClimbTargetOffset.y);
         }
-            
+
+        OnLedgeClimb?.Invoke();
+
         while (Vector2.Distance(transform.position, climbTarget) > 0.1f)
         {
+            playerCollider2D.enabled = false;
             transform.position = Vector2.MoveTowards(transform.position, climbTarget, ClimbSpeed * Time.deltaTime);
             yield return null;
         }
 
+        playerCollider2D.enabled = true;
+
+        OffLedge?.Invoke();
+
         // Reset to normal movement after climbing
         //animator.SetBool("isHanging", false);
         //animator.SetBool("isClimbing", false);
-        
+
         // Reset to normal movement after climbing
         rb.velocity = Vector2.zero; // Ensure no lingering velocity after climbing
         rb.gravityScale = gravityScale;
@@ -182,6 +197,8 @@ public class PlayerLedgeClimb : MonoBehaviour
     {
         // Reset player to falling state
         //animator.SetBool("isHanging", false);
+
+        OffLedge?.Invoke();
 
         // Move the character up and over the ledge
         Vector2 dropTarget;

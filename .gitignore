@@ -73,3 +73,6 @@ crashlytics-build.properties
 
 # Virtual Studio
 .vsconfig
+
+# Packages
+DeadRevolver
