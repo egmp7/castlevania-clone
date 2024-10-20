@@ -31,13 +31,15 @@ public class PlayerMovementHorizontal : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerLedgeClimb.OnLedge += TurnOffInput;
-        PlayerLedgeClimb.OffLedge += TurnOnInput;
+        PlayerLedgeClimb.OnLedgeHangStart += TurnOffInput;
+        PlayerLedgeClimb.OnLedgeClimbEnd += TurnOnInput;
+        PlayerLedgeClimb.OnLedgeReleaseEnd += TurnOnInput;
     }
     private void OnDisable()
     {
-        PlayerLedgeClimb.OnLedge -= TurnOffInput;
-        PlayerLedgeClimb.OffLedge -= TurnOnInput;
+        PlayerLedgeClimb.OnLedgeHangStart -= TurnOffInput;
+        PlayerLedgeClimb.OnLedgeClimbEnd -= TurnOnInput;
+        PlayerLedgeClimb.OnLedgeReleaseEnd -= TurnOnInput;
     }
 
     private void Awake()
@@ -67,11 +69,7 @@ public class PlayerMovementHorizontal : MonoBehaviour
 
     private void HandleInput()
     {
-        if (!isInputActive)
-        {
-            rb.velocity = Vector2.zero;
-            return;
-        }
+        if (!isInputActive) return;
 
         // Read Input
         moveInput = moveAction.ReadValue<Vector2>();

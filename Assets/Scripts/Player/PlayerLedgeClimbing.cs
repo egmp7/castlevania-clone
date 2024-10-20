@@ -5,10 +5,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerLedgeClimb : MonoBehaviour
 {
-    public static event Action OnLedge;
-    public static event Action OffLedge;
-    public static event Action OnLedgeClimb;
-    public static event Action OnLedgeHang;
+    // Single triggers
+    public static event Action OnLedgeHangStart;
+    public static event Action OnLedgeHangEnd;
+    public static event Action OnLedgeClimbStart;
+    public static event Action OnLedgeClimbEnd;
+    public static event Action OnLedgeReleaseStart;
+    public static event Action OnLedgeReleaseEnd;
 
     [Header("LedgeClimb")]
     [Tooltip("Layer to detect ledges")]
@@ -88,13 +91,10 @@ public class PlayerLedgeClimb : MonoBehaviour
             // Get the ledge's top center position
             Bounds colliderBounds = hit.collider.bounds;
             ledgeCenterTopPosition = new Vector2(colliderBounds.center.x, colliderBounds.max.y);
-
-            // Trigger the OnLedge event
-            OnLedge?.Invoke();
             ledgeTouchedPreviously = true;
 
             // Start ledge grab logic
-            StartCoroutine(LedgeGrab());
+            StartCoroutine(LedgeHang());
         }
         // If the ledge was released
         else if (!isTouchingLedge && ledgeTouchedPreviously)
@@ -112,14 +112,14 @@ public class PlayerLedgeClimb : MonoBehaviour
         {
             upKeyHeldDown = true; // Key pressed
             if (activeCoroutine != null) StopCoroutine(activeCoroutine); // Stop active coroutine if running
-            activeCoroutine = StartCoroutine(ClimbLedge());
+            activeCoroutine = StartCoroutine(LedgeClimb());
         }
 
         if (moveInput.y < 0 && !downKeyHeldDown)
         {
             downKeyHeldDown = true; // Key pressed
             if (activeCoroutine != null) StopCoroutine(activeCoroutine); // Stop active coroutine if running
-            activeCoroutine = StartCoroutine(DropLedge());
+            activeCoroutine = StartCoroutine(LedgeRelease());
         }
         if (moveInput.y == 0)
         {
@@ -128,31 +128,32 @@ public class PlayerLedgeClimb : MonoBehaviour
         }
     }
 
-    private IEnumerator LedgeGrab()
+    private IEnumerator LedgeHang()
     {
+        OnLedgeHangStart();
+        playerCollider2D.enabled = false;
         rb.velocity = Vector2.zero;
         rb.gravityScale = 0;
         Vector2 flippedLedgeOffset = new (LedgeOffset.x * -1, LedgeOffset.y);
         Vector2 ledgeTarget = ledgeCenterTopPosition + (isFacingRight ? LedgeOffset : flippedLedgeOffset);
 
-        // move
+        // Move the character up and towards the ledge
         while (Vector2.Distance(transform.position, ledgeTarget) > 0.1f)
         {
-            playerCollider2D.enabled = false;
             transform.position = Vector2.MoveTowards(transform.position, ledgeTarget, ClimbSpeed * Time.deltaTime);
             yield return null;
         }
 
-        OnLedgeHang?.Invoke();
+        OnLedgeHangEnd?.Invoke();
         playerCollider2D.enabled = true;
         isHanging = true;
     }
 
-    private IEnumerator ClimbLedge()
+    private IEnumerator LedgeClimb()
     {
-        //animator.SetBool("isClimbing", true);
+        OnLedgeClimbStart?.Invoke();
+        playerCollider2D.enabled = false;
 
-        // Move the character up and over the ledge
         Vector2 climbTarget;
 
         if (isFacingRight)
@@ -168,39 +169,25 @@ public class PlayerLedgeClimb : MonoBehaviour
             transform.position.y + ClimbTargetOffset.y);
         }
 
-        OnLedgeClimb?.Invoke();
-
+        // Move the character up and over the ledge
         while (Vector2.Distance(transform.position, climbTarget) > 0.1f)
         {
-            playerCollider2D.enabled = false;
             transform.position = Vector2.MoveTowards(transform.position, climbTarget, ClimbSpeed * Time.deltaTime);
             yield return null;
         }
 
+        OnLedgeClimbEnd?.Invoke();
         playerCollider2D.enabled = true;
-
-        OffLedge?.Invoke();
-
-        // Reset to normal movement after climbing
-        //animator.SetBool("isHanging", false);
-        //animator.SetBool("isClimbing", false);
-
-        // Reset to normal movement after climbing
-        rb.velocity = Vector2.zero; // Ensure no lingering velocity after climbing
         rb.gravityScale = gravityScale;
         isHanging = false;
         upKeyHeldDown = false;
-        activeCoroutine = null; // Reset activeCoroutine reference after coroutine finishes
+        activeCoroutine = null; 
     }
 
-    private IEnumerator DropLedge()
+    private IEnumerator LedgeRelease()
     {
-        // Reset player to falling state
-        //animator.SetBool("isHanging", false);
+        OnLedgeReleaseStart?.Invoke();
 
-        OffLedge?.Invoke();
-
-        // Move the character up and over the ledge
         Vector2 dropTarget;
 
         if (isFacingRight)
@@ -216,20 +203,20 @@ public class PlayerLedgeClimb : MonoBehaviour
            transform.position.y + DropTargetOffset.y);
         }
 
+        // Move the character down the ledge
         while (Vector2.Distance(transform.position, dropTarget) > 0.1f)
         {
             transform.position = Vector2.MoveTowards(transform.position, dropTarget, ClimbSpeed * Time.deltaTime);
             yield return null;
         }
 
-        rb.velocity = Vector2.zero; // Ensure no lingering velocity after climbing
+        OnLedgeReleaseEnd?.Invoke();
         rb.gravityScale = gravityScale;
         isHanging = false;
         downKeyHeldDown = false;
-        activeCoroutine = null; // Reset activeCoroutine reference after coroutine finishes
+        activeCoroutine = null; 
     }
 
-    // Gizmos for debugging ledge detection
     private void OnDrawGizmosSelected()
     {
         if(isTouchingLedge) Gizmos.color = Color.green;
