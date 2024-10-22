@@ -35,6 +35,9 @@ public class PlayerLedgeClimb : MonoBehaviour
     [Tooltip("Distance that expands the jumping boxcast")]
     [SerializeField][Range(0f, 2f)] float RaycastDistance = 1f;
 
+    [Tooltip(" Time to wait before starting the climb")]
+    [SerializeField] private float WaitTime = 2f;
+
     private Rigidbody2D rb;
     private Collider2D playerCollider2D;
     private InputAction moveAction;
@@ -169,12 +172,12 @@ public class PlayerLedgeClimb : MonoBehaviour
             transform.position.y + ClimbTargetOffset.y);
         }
 
-        // Move the character up and over the ledge
-        while (Vector2.Distance(transform.position, climbTarget) > 0.1f)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, climbTarget, ClimbSpeed * Time.deltaTime);
-            yield return null;
-        }
+        yield return new WaitForSeconds(WaitTime);
+
+        transform.position = Vector2.MoveTowards(
+            transform.position, 
+            climbTarget, 
+            ClimbSpeed * Time.deltaTime);
 
         OnLedgeClimbEnd?.Invoke();
         playerCollider2D.enabled = true;
