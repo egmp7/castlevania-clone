@@ -19,31 +19,34 @@ public class PlayerLedgeClimb : MonoBehaviour
     
     [Tooltip("Empty GameObject used to detect ledge position")]
     [SerializeField] Transform LedgeCheck;
-    
-    [Tooltip("Offset to move character to after grabbing ledge")]
-    [SerializeField] Vector2 LedgeOffset = new Vector2(-3f,0f);
 
-    [Tooltip("Offset position for character to climb when holding ledge")]
-    [SerializeField] Vector2 ClimbTargetOffset = new Vector2(1f,2f); 
+    [Tooltip("Offset for the second check that avoid colliding with the wall")]
+    [SerializeField] Vector3 LedgeUpperCheck = new Vector2(0,1f);
 
-    [Tooltip("Offset position for character to when holding ledge")]
-    [SerializeField] Vector2 DropTargetOffset = new Vector2(-1f,-2f); 
+    [Tooltip("Radius of the Ledge Check")]
+    [SerializeField] float LedgeCheckRadius = 0.25f;
 
-    [Tooltip("Speed of climbing")]
-    [SerializeField][Range(1f, 10f)] float ClimbSpeed = 5f;
-    
-    [Tooltip("Distance that expands the jumping boxcast")]
-    [SerializeField][Range(0f, 2f)] float RaycastDistance = 1f;
+    [Tooltip("Offset after hanging on ledge")]
+    [SerializeField] Vector2 Offset0 = new Vector2(0f,0f);
 
-    [Tooltip(" Time to wait before starting the climb")]
-    [SerializeField] private float WaitTime = 2f;
+    [Tooltip("Offset position when climbing")]
+    [SerializeField] Vector2 Offset1 = new Vector2(1f,2f);
+
+    [Tooltip("Offset position when realising ledge")]
+    [SerializeField] Vector2 Offset2 = new Vector2(0f, 0f);
+
+    [Tooltip("Speed of ledge hang")]
+    [SerializeField][Range(1f, 10f)] float LedgeHangSpeed = 5f;
+
+    [Tooltip("Time to wait before starting the climb")]
+    [SerializeField][Range(0f, 2f)] private float WaitTime = 1f;
 
     private Rigidbody2D rb;
     private Collider2D playerCollider2D;
     private InputAction moveAction;
     private Coroutine activeCoroutine;
     private Vector2 moveInput;
-    private Vector2 ledgeCenterTopPosition;
+    private Vector2 ledgeCornerPosition;
     private float gravityScale;
     private bool isTouchingLedge;
     private bool ledgeTouchedPreviously;
@@ -67,6 +70,7 @@ public class PlayerLedgeClimb : MonoBehaviour
 
         if (isHanging)
         {
+            rb.velocity = Vector3.zero;
             HandleClimbingInput();
         }
     }
@@ -78,22 +82,32 @@ public class PlayerLedgeClimb : MonoBehaviour
 
     private void DetectLedge()
     {
-        // Determine direction based on player facing
-        Vector2 rayDirection = isFacingRight ? Vector2.right : Vector2.left;
-        Vector2 rayOrigin = LedgeCheck.position;
+        Collider2D hitCollider1 = null;
+        Collider2D hitCollider0 = Physics2D.OverlapCircle(
+            LedgeCheck.position + LedgeUpperCheck,
+            LedgeCheckRadius,
+            LedgeLayer);
 
-        // Perform the Raycast to detect ledge collision
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, rayDirection, RaycastDistance, LedgeLayer);
+        if (hitCollider0 == null)
+        {
+            hitCollider1 = Physics2D.OverlapCircle(
+            LedgeCheck.position,
+            LedgeCheckRadius,
+            LedgeLayer);
+        }
 
         // Check if the ledge is being touched
-        isTouchingLedge = hit.collider != null;
+        isTouchingLedge = hitCollider1 != null;
 
         // If the ledge was touched for the first time
         if (isTouchingLedge && !ledgeTouchedPreviously)
         {
-            // Get the ledge's top center position
-            Bounds colliderBounds = hit.collider.bounds;
-            ledgeCenterTopPosition = new Vector2(colliderBounds.center.x, colliderBounds.max.y);
+            // Get the ledge's corner position
+            Bounds colliderBounds = hitCollider1.bounds;
+            float cornerX = isFacingRight ? colliderBounds.min.x : colliderBounds.max.x;
+            float cornerY = colliderBounds.max.y;
+            ledgeCornerPosition = new Vector2(cornerX, cornerY);
+
             ledgeTouchedPreviously = true;
 
             // Start ledge grab logic
@@ -105,7 +119,6 @@ public class PlayerLedgeClimb : MonoBehaviour
             ledgeTouchedPreviously = false;
         }
     }
-
 
     private void HandleClimbingInput()
     {
@@ -122,7 +135,7 @@ public class PlayerLedgeClimb : MonoBehaviour
         {
             downKeyHeldDown = true; // Key pressed
             if (activeCoroutine != null) StopCoroutine(activeCoroutine); // Stop active coroutine if running
-            activeCoroutine = StartCoroutine(LedgeRelease());
+            LedgeRelease();
         }
         if (moveInput.y == 0)
         {
@@ -137,13 +150,13 @@ public class PlayerLedgeClimb : MonoBehaviour
         playerCollider2D.enabled = false;
         rb.velocity = Vector2.zero;
         rb.gravityScale = 0;
-        Vector2 flippedLedgeOffset = new (LedgeOffset.x * -1, LedgeOffset.y);
-        Vector2 ledgeTarget = ledgeCenterTopPosition + (isFacingRight ? LedgeOffset : flippedLedgeOffset);
+        Vector2 flippedOffset0 = new (Offset0.x * -1, Offset0.y);
+        Vector2 ledgeTarget = ledgeCornerPosition + (isFacingRight ? Offset0 : flippedOffset0);
 
         // Move the character up and towards the ledge
         while (Vector2.Distance(transform.position, ledgeTarget) > 0.1f)
         {
-            transform.position = Vector2.MoveTowards(transform.position, ledgeTarget, ClimbSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, ledgeTarget, LedgeHangSpeed * Time.deltaTime);
             yield return null;
         }
 
@@ -155,39 +168,34 @@ public class PlayerLedgeClimb : MonoBehaviour
     private IEnumerator LedgeClimb()
     {
         OnLedgeClimbStart?.Invoke();
-        playerCollider2D.enabled = false;
 
         Vector2 climbTarget;
 
         if (isFacingRight)
         {
             climbTarget = new(
-            transform.position.x + ClimbTargetOffset.x,
-            transform.position.y + ClimbTargetOffset.y);
+            ledgeCornerPosition.x + Offset1.x,
+            ledgeCornerPosition.y + Offset1.y);
         }
         else
         {
             climbTarget = new(
-            transform.position.x - ClimbTargetOffset.x,
-            transform.position.y + ClimbTargetOffset.y);
+            ledgeCornerPosition.x - Offset1.x,
+            ledgeCornerPosition.y + Offset1.y);
         }
 
         yield return new WaitForSeconds(WaitTime);
 
-        transform.position = Vector2.MoveTowards(
-            transform.position, 
-            climbTarget, 
-            ClimbSpeed * Time.deltaTime);
-
-        OnLedgeClimbEnd?.Invoke();
-        playerCollider2D.enabled = true;
+        transform.position = climbTarget;
+        OnLedgeClimbEnd?.Invoke(); 
         rb.gravityScale = gravityScale;
         isHanging = false;
         upKeyHeldDown = false;
         activeCoroutine = null; 
+
     }
 
-    private IEnumerator LedgeRelease()
+    private void LedgeRelease()
     {
         OnLedgeReleaseStart?.Invoke();
 
@@ -196,23 +204,17 @@ public class PlayerLedgeClimb : MonoBehaviour
         if (isFacingRight)
         {
             dropTarget  = new Vector2(
-            transform.position.x + DropTargetOffset.x,
-            transform.position.y + DropTargetOffset.y);
+            transform.position.x + Offset2.x,
+            transform.position.y + Offset2.y);
         }
         else
         {
             dropTarget = new Vector2(
-           transform.position.x - DropTargetOffset.x,
-           transform.position.y + DropTargetOffset.y);
+            transform.position.x - Offset2.x,
+            transform.position.y + Offset2.y);
         }
 
-        // Move the character down the ledge
-        while (Vector2.Distance(transform.position, dropTarget) > 0.1f)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, dropTarget, ClimbSpeed * Time.deltaTime);
-            yield return null;
-        }
-
+        transform.position = dropTarget;
         OnLedgeReleaseEnd?.Invoke();
         rb.gravityScale = gravityScale;
         isHanging = false;
@@ -220,11 +222,11 @@ public class PlayerLedgeClimb : MonoBehaviour
         activeCoroutine = null; 
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         if(isTouchingLedge) Gizmos.color = Color.green;
         else Gizmos.color = Color.red;
-        Vector3 direction = isFacingRight ? Vector2.right : Vector2.left;
-        Gizmos.DrawLine(LedgeCheck.position, LedgeCheck.position + direction * RaycastDistance);
+        Gizmos.DrawWireSphere(LedgeCheck.position, LedgeCheckRadius);
+        Gizmos.DrawWireSphere(LedgeCheck.position + LedgeUpperCheck, LedgeCheckRadius);
     }
 }
