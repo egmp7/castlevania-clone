@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
@@ -13,6 +14,17 @@ public class PlayerAnimation : MonoBehaviour
         LedgeHang,
     }
 
+    private Dictionary<AnimationState, string> animationClips = new Dictionary<AnimationState, string>()
+    {
+        { AnimationState.Idle, "Idle" },
+        { AnimationState.Walk, "Walk" },
+        { AnimationState.Run, "Run" },
+        { AnimationState.Jump, "Jump" },
+        { AnimationState.Fall, "JumpFall" },
+        { AnimationState.LedgeClimb, "LedgeClimb" },
+        { AnimationState.LedgeHang, "LedgeHang" }
+    };
+
     private Animator animator;
     private AnimationState currentAnimationState = AnimationState.Idle;
     private AnimationState newAnimationState;
@@ -20,6 +32,7 @@ public class PlayerAnimation : MonoBehaviour
     private bool isWalking;
     private bool isJumping;
     private bool isHanging;
+    private bool animationEnded;
 
     private void OnEnable()
     {
@@ -28,7 +41,6 @@ public class PlayerAnimation : MonoBehaviour
         PlayerMovementHorizontal.OnPlayerWalk += OnPlayerWalk;
         PlayerLedgeClimb.OnLedgeClimbStart += OnLedgeClimbStart;
         PlayerLedgeClimb.OnLedgeHangStart += OnLedgeHangStart;
-        PlayerLedgeClimb.OnLedgeClimbEnd += OnLedgeClimbEnd;
         PlayerLedgeClimb.OnLedgeReleaseEnd += OnLedgeReleaseEnd;
 
         // Loop Triggers
@@ -44,7 +56,6 @@ public class PlayerAnimation : MonoBehaviour
         PlayerMovementHorizontal.OnPlayerWalk -= OnPlayerWalk;
         PlayerLedgeClimb.OnLedgeClimbStart -= OnLedgeClimbStart;
         PlayerLedgeClimb.OnLedgeHangStart -= OnLedgeHangStart;
-        PlayerLedgeClimb.OnLedgeClimbEnd -= OnLedgeClimbEnd;
         PlayerLedgeClimb.OnLedgeReleaseEnd -= OnLedgeReleaseEnd;
 
         // Loop Triggers
@@ -60,40 +71,53 @@ public class PlayerAnimation : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    // Plays Animations depending on events, also checks when animations ends
+    private void Update()
     {
-        // Only play the animation if the state has changed
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        // Check if the animation has ended based on normalizedTime
+        if (stateInfo.normalizedTime >= 1.0f && !animationEnded)
+        {
+            OnAnimationEnd(stateInfo); // Trigger callback when animation ends
+            animationEnded = true;
+        }
+
+        // Reset the animationEnded flag when transitioning to a new animation
         if (currentAnimationState != newAnimationState)
         {
-            Debug.Log(newAnimationState);
-            switch (newAnimationState)
-            {
-                case AnimationState.Idle:
-                    animator.Play("Idle");
-                    break;
-                case AnimationState.Walk:
-                    animator.Play("Walk");
-                    isRunning = false;
-                    break;
-                case AnimationState.Run:
-                    animator.Play("Run");
-                    isRunning = true;
-                    break;
-                case AnimationState.Jump:
-                    animator.Play("Jump");
-                    break;
-                case AnimationState.Fall:
-                    animator.Play("JumpFall");
-                    break;
-                case AnimationState.LedgeClimb:
-                    animator.Play("LedgeClimb");
-                    break;
-                case AnimationState.LedgeHang:
-                    animator.Play("LedgeHang");
-                    break;
-            }
-            currentAnimationState = newAnimationState; // Update the current animation state
+            animationEnded = false;
+            currentAnimationState = newAnimationState; // Update current animation state
+            PlayAnimation(newAnimationState);
+        }
+    }
+
+    private void PlayAnimation(AnimationState state)
+    {
+        if (animationClips.TryGetValue(state, out string animationName))
+        {
+            animator.Play(animationName);
+        }
+
+        // Handle special cases
+        if (state == AnimationState.Run)
+        {
+            isRunning = true;
+        }
+        else if (state == AnimationState.Walk)
+        {
+            isRunning = false;
+        }
+    }
+
+    private void OnAnimationEnd(AnimatorStateInfo stateInfo)
+    {
+        string ledgeClimbAnimation = animationClips[AnimationState.LedgeClimb];
+
+        if (stateInfo.IsName(ledgeClimbAnimation))
+        {
+            isHanging = false;
         }
     }
 
@@ -173,11 +197,6 @@ public class PlayerAnimation : MonoBehaviour
     }
 
     private void OnLedgeReleaseEnd()
-    {
-        isHanging = false;
-    }
-
-    private void OnLedgeClimbEnd()
     {
         isHanging = false;
     }
