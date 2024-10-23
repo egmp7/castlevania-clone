@@ -37,14 +37,15 @@ public class PlayerAnimation : MonoBehaviour
     private void OnEnable()
     {
         // Single Triggers
-        PlayerMovementHorizontal.OnPlayerRun += OnPlayerRun;
-        PlayerMovementHorizontal.OnPlayerWalk += OnPlayerWalk;
+        PlayerMovementHorizontal.OnIdle += PlayIdleAnimation;
+        PlayerMovementHorizontal.OnRun += PlayRunAnimation;
+        PlayerMovementHorizontal.OnWalk += PlayWalkAnimation;
+        PlayerMovementHorizontal.OnWallTouch += PlayIdleAnimation;
         PlayerLedgeClimb.OnLedgeClimbStart += OnLedgeClimbStart;
         PlayerLedgeClimb.OnLedgeHangStart += OnLedgeHangStart;
         PlayerLedgeClimb.OnLedgeReleaseEnd += OnLedgeReleaseEnd;
 
         // Loop Triggers
-        PlayerMovementHorizontal.OnPlayerIdle += OnPlayerIdle;
         PlayerMovementVertical.OnPlayerFalling += OnPlayerFalling;
         PlayerMovementVertical.OnPlayerAscending += OnPlayerAscending;
         PlayerMovementVertical.OnPlayerGrounded += OnPlayerGrounded;
@@ -52,14 +53,15 @@ public class PlayerAnimation : MonoBehaviour
     private void OnDisable()
     {
         // Single Triggers
-        PlayerMovementHorizontal.OnPlayerRun -= OnPlayerRun;
-        PlayerMovementHorizontal.OnPlayerWalk -= OnPlayerWalk;
+        PlayerMovementHorizontal.OnIdle -= PlayIdleAnimation;
+        PlayerMovementHorizontal.OnRun -= PlayRunAnimation;
+        PlayerMovementHorizontal.OnWalk -= PlayWalkAnimation;
+        PlayerMovementHorizontal.OnWallTouch -= PlayIdleAnimation;
         PlayerLedgeClimb.OnLedgeClimbStart -= OnLedgeClimbStart;
         PlayerLedgeClimb.OnLedgeHangStart -= OnLedgeHangStart;
         PlayerLedgeClimb.OnLedgeReleaseEnd -= OnLedgeReleaseEnd;
 
         // Loop Triggers
-        PlayerMovementHorizontal.OnPlayerIdle -= OnPlayerIdle;
         PlayerMovementVertical.OnPlayerFalling -= OnPlayerFalling;
         PlayerMovementVertical.OnPlayerAscending -= OnPlayerAscending;
         PlayerMovementVertical.OnPlayerGrounded -= OnPlayerGrounded;
@@ -121,7 +123,7 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
-    private void OnPlayerRun()
+    private void PlayRunAnimation()
     {
         if (isJumping) return;
         if (isHanging) return;
@@ -131,7 +133,7 @@ public class PlayerAnimation : MonoBehaviour
         newAnimationState = AnimationState.Run;
     }
 
-    private void OnPlayerWalk()
+    private void PlayWalkAnimation()
     {
         if (isJumping) return;
         if (isHanging) return;
@@ -141,7 +143,7 @@ public class PlayerAnimation : MonoBehaviour
         newAnimationState = AnimationState.Walk;
     }
 
-    private void OnPlayerIdle()
+    private void PlayIdleAnimation()
     {
         if (isJumping) return;
         if (isHanging) return;

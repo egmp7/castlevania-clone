@@ -4,14 +4,25 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovementHorizontal : MonoBehaviour
 {
-    public static event Action OnPlayerRun;
-    public static event Action OnPlayerWalk;
-    public static event Action OnPlayerIdle;
+    public static event Action OnRun;
+    public static event Action OnWalk;
+    public static event Action OnIdle;
+    public static event Action OnWallTouch;
 
     [Header("Movement")]
-    [SerializeField][Range(1.0f, 10.0f)] float WalkSpeed = 2.0f;
-    [SerializeField][Range(1.0f, 10.0f)] float RunSpeed = 5.0f;
+    [SerializeField][Range(1.0f, 50.0f)] float WalkSpeed = 10.0f;
+    [SerializeField][Range(1.0f, 50.0f)] float RunSpeed = 20.0f;
+    [SerializeField][Range(0.1f, 5.0f)] float AccelerationRate = 1f;
     [SerializeField][Range(0.05f, 1.0f)] float doubleTapThreshold = 0.3f;
+
+    [Header("Wall Detector")]
+    [Tooltip("Layer to detect walls")]
+    [SerializeField] LayerMask WallLayer;
+    [Tooltip("Transform of the wall detector game object")]
+    [SerializeField] Transform WallDetector;
+    [Tooltip("Size of the Boxcast area")]
+    [SerializeField] Vector2 BoxcastSize = new(2f, 2f);
+    [Tooltip("Optional offset for raycast")]
 
     private enum AnimationState
     {
@@ -26,20 +37,25 @@ public class PlayerMovementHorizontal : MonoBehaviour
     private Vector2 moveInput;
     private float lastTapTime;
     private bool isRunning;
+    private bool isTouchingWall;
+    private bool isComponentActive;
+    
+    // event guards
     private bool keyHeldDown;
-    private bool isInputActive = true;
+    private bool isIdleActive;
+    private bool isWallTouchEventTriggered;
 
     private void OnEnable()
     {
-        PlayerLedgeClimb.OnLedgeHangStart += TurnOffInput;
-        PlayerLedgeClimb.OnLedgeClimbEnd += TurnOnInput;
-        PlayerLedgeClimb.OnLedgeReleaseEnd += TurnOnInput;
+        PlayerLedgeClimb.OnLedgeHangStart += DeactivateComponent;
+        PlayerLedgeClimb.OnLedgeClimbEnd += ActivateComponent;
+        PlayerLedgeClimb.OnLedgeReleaseEnd += ActivateComponent;
     }
     private void OnDisable()
     {
-        PlayerLedgeClimb.OnLedgeHangStart -= TurnOffInput;
-        PlayerLedgeClimb.OnLedgeClimbEnd -= TurnOnInput;
-        PlayerLedgeClimb.OnLedgeReleaseEnd -= TurnOnInput;
+        PlayerLedgeClimb.OnLedgeHangStart -= DeactivateComponent;
+        PlayerLedgeClimb.OnLedgeClimbEnd -= ActivateComponent;
+        PlayerLedgeClimb.OnLedgeReleaseEnd -= ActivateComponent;
     }
 
     private void Awake()
@@ -49,59 +65,81 @@ public class PlayerMovementHorizontal : MonoBehaviour
         originalScale = transform.localScale; // Get the initial scale
     }
 
+    private void Start()
+    {
+        isComponentActive = true;
+    }
+
     private void Update()
     {
+        if (!isComponentActive) return;
+
+        FlipPlayerBasedOnDirection();
         HandleInput();
-        FlipPlayerBasedOnDirection(); // Flip the player based on direction
+        DetectWall();
     }
 
     private void FixedUpdate()
     {
         HandleMovement();
+        // Debug.Log("Velocity: " + rb.velocity);
     }
 
     private void HandleMovement()
     {
         float targetSpeed = isRunning ? RunSpeed : WalkSpeed;
-        Vector2 movement = new Vector2(moveInput.x * targetSpeed, rb.velocity.y);
-        rb.velocity = movement;
+
+        if (keyHeldDown && !isTouchingWall)
+        {
+            // Lerp for smooth acceleration
+            float currentSpeed = Mathf.Lerp(rb.velocity.x, moveInput.x * targetSpeed, AccelerationRate * Time.fixedDeltaTime);
+            // Preserve the vertical velocity and update horizontal speed
+            rb.velocity = new Vector2(currentSpeed, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
     }
 
     private void HandleInput()
     {
-        if (!isInputActive) return;
-
-        // Read Input
+        // Read horizontal input
         moveInput = moveAction.ReadValue<Vector2>();
+        float moveInputHorizontal = moveInput.x;
 
-        if (moveInput.x != 0 && !keyHeldDown)
+        if (moveInputHorizontal != 0 && !keyHeldDown && !isTouchingWall)
         {
             keyHeldDown = true;
 
+            // Check for double tap
             if (Time.time - lastTapTime < doubleTapThreshold)
             {
                 // Double tap detected, start running
                 isRunning = true;
-                OnPlayerRun?.Invoke();
+                OnRun?.Invoke();
             }
             else
             {
                 // Single tap detected, walk
                 isRunning = false;
-                OnPlayerWalk?.Invoke();
+                OnWalk?.Invoke();
             }
 
             // Update the last tap time
             lastTapTime = Time.time;
+            // Reset idle event
+            isIdleActive = false;
         }
-        else if (moveInput.x == 0)
+        else if (moveInputHorizontal == 0 && !isIdleActive)
         {
-            // Key released, ready for the next tap
+            // Key released, trigger idle
             keyHeldDown = false;
-            OnPlayerIdle?.Invoke();
-
+            OnIdle?.Invoke();
+            isIdleActive = true;
         }
     }
+
 
     private void FlipPlayerBasedOnDirection()
     {
@@ -117,13 +155,43 @@ public class PlayerMovementHorizontal : MonoBehaviour
         }
     }
 
-    private void TurnOnInput()
+    void DetectWall()
     {
-        isInputActive = true;
+        RaycastHit2D hit = Physics2D.BoxCast(
+            WallDetector.position,
+            BoxcastSize,
+            0f,
+            Vector2.right,
+            0f,
+            WallLayer);
+
+        isTouchingWall = hit.collider != null;
+
+        // trigger touching the wall event
+        if ( (isTouchingWall && !isWallTouchEventTriggered))
+        {
+            isWallTouchEventTriggered = true;
+            OnWallTouch?.Invoke();
+        }
+        else if (!isTouchingWall)
+        {
+            isWallTouchEventTriggered = false;
+        }
     }
 
-    private void TurnOffInput()
+    private void ActivateComponent()
     {
-        isInputActive = false;
+        isComponentActive = true;
+    }
+
+    private void DeactivateComponent()
+    {
+        isComponentActive = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = isTouchingWall ? Color.red : Color.green;
+        Gizmos.DrawWireCube(WallDetector.position, BoxcastSize);
     }
 }

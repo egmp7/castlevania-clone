@@ -190,7 +190,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 8
-  m_Material: {fileID: 6200000, guid: c497734a8f8283e428573750d33c20c0, type: 2}
+  m_Material: {fileID: 6200000, guid: 92ea2dbf33ee31e47a720180cb824c16, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -262,7 +262,7 @@ Transform:
   m_GameObject: {fileID: 241922028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.35, y: -5.92, z: 0}
+  m_LocalPosition: {x: -6.32, y: -8.17, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 0.9487}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -326,8 +326,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eef016e3ea2c304bace3e074aaa08b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkSpeed: 2
-  RunSpeed: 5
+  WalkSpeed: 10
+  RunSpeed: 10
+  AccelerationRate: 1
   doubleTapThreshold: 0.3
 --- !u!1 &304287798
 GameObject:
@@ -625,7 +626,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.35, y: -4.3900003, z: -10}
+  m_LocalPosition: {x: -6.32, y: -6.6400003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -730,7 +731,7 @@ Transform:
   m_GameObject: {fileID: 953098222}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.35, y: -4.3900003, z: -10}
+  m_LocalPosition: {x: -6.32, y: -6.6400003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
