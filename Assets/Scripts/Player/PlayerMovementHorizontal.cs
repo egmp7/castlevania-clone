@@ -42,7 +42,7 @@ public class PlayerMovementHorizontal : MonoBehaviour
     
     // event guards
     private bool keyHeldDown;
-    private bool isIdleActive;
+    private bool isIdleEventTriggered;
     private bool isWallTouchEventTriggered;
 
     private void OnEnable()
@@ -117,26 +117,29 @@ public class PlayerMovementHorizontal : MonoBehaviour
             {
                 // Double tap detected, start running
                 isRunning = true;
+                Debug.Log("OnRun");
                 OnRun?.Invoke();
             }
             else
             {
                 // Single tap detected, walk
                 isRunning = false;
+                Debug.Log("OnWalk");
                 OnWalk?.Invoke();
             }
 
             // Update the last tap time
             lastTapTime = Time.time;
             // Reset idle event
-            isIdleActive = false;
+            isIdleEventTriggered = false;
         }
-        else if (moveInputHorizontal == 0 && !isIdleActive)
+        else if (moveInputHorizontal == 0 && !isIdleEventTriggered)
         {
             // Key released, trigger idle
             keyHeldDown = false;
+            Debug.Log("OnIdle");
             OnIdle?.Invoke();
-            isIdleActive = true;
+            isIdleEventTriggered = true;
         }
     }
 
@@ -171,6 +174,7 @@ public class PlayerMovementHorizontal : MonoBehaviour
         if ( (isTouchingWall && !isWallTouchEventTriggered))
         {
             isWallTouchEventTriggered = true;
+            Debug.Log("OnWallTouch");
             OnWallTouch?.Invoke();
         }
         else if (!isTouchingWall)

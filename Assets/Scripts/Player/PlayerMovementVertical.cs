@@ -65,6 +65,7 @@ public class PlayerMovementVertical : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, JumpForce);
             isOnJumpEventTriggered = false; // Ensure single jump per press
             jumpTimer = jumpCooldown; // Reset the jump timer to cooldown value
+            Debug.Log("OnJump");
             OnJump?.Invoke();
         }
     }
@@ -102,12 +103,14 @@ public class PlayerMovementVertical : MonoBehaviour
         {
             isOnGroundEventTriggered = true;
             isOnAirEventTriggered = false;
+            Debug.Log("OnGround");
             OnGround?.Invoke();
         }
         else if (!isGrounded && !isOnAirEventTriggered) // is on air
         {
             isOnGroundEventTriggered = false;
             isOnAirEventTriggered = true;
+            //Debug.Log("OnAir");
             OnAir?.Invoke();
         }
 
@@ -120,12 +123,14 @@ public class PlayerMovementVertical : MonoBehaviour
         {
             isOnAscendEventTriggered = true;
             isOnFallEventTriggered = false;
+            //Debug.Log("OnAscend");
             OnAscend?.Invoke();  // Player is moving upward
         }
         else if (rb.velocity.y < 0 && !isOnFallEventTriggered)
         {
             isOnAscendEventTriggered = false;
             isOnFallEventTriggered = true;
+            Debug.Log("OnFall");
             OnFall?.Invoke();  // Player is falling
         }
     }

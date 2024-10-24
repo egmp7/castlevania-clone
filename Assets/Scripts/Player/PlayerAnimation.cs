@@ -40,7 +40,7 @@ public class PlayerAnimation : MonoBehaviour
         PlayerMovementHorizontal.OnIdle += PlayIdleAnimation;
         PlayerMovementHorizontal.OnRun += PlayRunAnimation;
         PlayerMovementHorizontal.OnWalk += PlayWalkAnimation;
-        PlayerMovementHorizontal.OnWallTouch += PlayIdleAnimation;
+        PlayerMovementHorizontal.OnWallTouch += OnWallTouch;
 
         PlayerMovementVertical.OnGround += OnPlayerGrounded;
         PlayerMovementVertical.OnFall += PlayFallAnimation;
@@ -55,7 +55,7 @@ public class PlayerAnimation : MonoBehaviour
         PlayerMovementHorizontal.OnIdle -= PlayIdleAnimation;
         PlayerMovementHorizontal.OnRun -= PlayRunAnimation;
         PlayerMovementHorizontal.OnWalk -= PlayWalkAnimation;
-        PlayerMovementHorizontal.OnWallTouch -= PlayIdleAnimation;
+        PlayerMovementHorizontal.OnWallTouch -= OnWallTouch;
 
         PlayerMovementVertical.OnGround -= OnPlayerGrounded;
         PlayerMovementVertical.OnFall -= PlayFallAnimation;
@@ -114,33 +114,35 @@ public class PlayerAnimation : MonoBehaviour
 
     private void PlayRunAnimation()
     {
-        if (!isPlayerOnGround) return;
         isRunning = true;
         isWalking = false;
 
+        if (!isPlayerOnGround) return;
         newAnimationState = AnimationState.Run;
     }
 
     private void PlayWalkAnimation()
     {
-        if (!isPlayerOnGround) return;
         isRunning = false;
         isWalking = true;
 
+        if (!isPlayerOnGround) return;
         newAnimationState = AnimationState.Walk;
     }
 
     private void PlayIdleAnimation()
     {
-        if (!isPlayerOnGround) return;
         isRunning = false;
         isWalking = false;
 
+        if (!isPlayerOnGround) return;
         newAnimationState = AnimationState.Idle;
     }
 
     private void PlayFallAnimation()
     {
+        if (isPlayerJumping)  return;
+
         isPlayerOnGround = false;
         newAnimationState = AnimationState.Fall;
     }
@@ -165,14 +167,20 @@ public class PlayerAnimation : MonoBehaviour
         {
             newAnimationState = AnimationState.Idle;
         }
-
         isPlayerOnGround = true ;
-        isPlayerJumping = false ;
+        isPlayerJumping = false;
     }
 
     private void OnLedgeClimbStart()
     {
         newAnimationState = AnimationState.LedgeClimb;
+    }
+
+    private void OnWallTouch()
+    {
+        if (isPlayerJumping) return;
+
+        newAnimationState = AnimationState.Idle;
     }
 
     private void OnLedgeHangStart()
