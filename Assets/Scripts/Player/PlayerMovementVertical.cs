@@ -18,8 +18,8 @@ public class PlayerMovementVertical : MonoBehaviour
     [SerializeField] Transform GroundDetector;
     [SerializeField] Vector2 BoxcastSize = new(2f,2f);
 
-    [Tooltip("Time between jumps (in seconds)")]
-    [SerializeField][Range (0f,3f)] float jumpCooldown = 0.8f; // Cooldown time in seconds
+    [Tooltip("Cooldown time between jumps (in seconds)")]
+    [SerializeField][Range (0f,3f)] float jumpCooldown = 0.8f;
 
     [SerializeField] LayerMask GroundLayer;
 
@@ -27,6 +27,7 @@ public class PlayerMovementVertical : MonoBehaviour
     private Collider2D playerCollider;
     private Rigidbody2D rb;
     private Vector2 moveInput;
+    private bool isComponentActive;
     private bool isGrounded;
     private float jumpTimer;
 
@@ -37,6 +38,19 @@ public class PlayerMovementVertical : MonoBehaviour
     private bool isOnFallEventTriggered;
     private bool isOnAscendEventTriggered;
 
+    private void OnEnable()
+    {
+        PlayerLedgeClimb.OnLedgeHang += DeactivateComponent;
+        PlayerLedgeClimb.OnLedgeRelease += ActivateComponent;
+        PlayerAnimation.OnClimbAnimationEnded += ActivateComponent;
+    }
+    private void OnDisable()
+    {
+        PlayerLedgeClimb.OnLedgeHang -= DeactivateComponent;
+        PlayerLedgeClimb.OnLedgeRelease -= ActivateComponent;
+        PlayerAnimation.OnClimbAnimationEnded -= ActivateComponent;
+    }
+
     private void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
@@ -44,8 +58,15 @@ public class PlayerMovementVertical : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        isComponentActive = true;
+    }
+
     private void Update()
     {
+        if (!isComponentActive) return;
+
         CheckGroundStatus();
         CheckVelocityDirection();
         HandleInput();
@@ -119,19 +140,24 @@ public class PlayerMovementVertical : MonoBehaviour
 
     void CheckVelocityDirection()
     {
-        if (rb.velocity.y > 0 && !isOnAscendEventTriggered)
+        if (rb.velocity.y > 0 && !isOnAscendEventTriggered && !isGrounded)
         {
             isOnAscendEventTriggered = true;
             isOnFallEventTriggered = false;
             //Debug.Log("OnAscend");
             OnAscend?.Invoke();  // Player is moving upward
         }
-        else if (rb.velocity.y < 0 && !isOnFallEventTriggered)
+        else if (rb.velocity.y < 0 && !isOnFallEventTriggered && !isGrounded)
         {
             isOnAscendEventTriggered = false;
             isOnFallEventTriggered = true;
             Debug.Log("OnFall");
             OnFall?.Invoke();  // Player is falling
+        }
+        else if(rb.velocity.y == 0)
+        {
+            isOnAscendEventTriggered = false;
+            isOnFallEventTriggered = false;
         }
     }
 
@@ -142,6 +168,16 @@ public class PlayerMovementVertical : MonoBehaviour
         {
             jumpTimer -= Time.deltaTime;
         }
+    }
+
+    private void ActivateComponent()
+    {
+        isComponentActive = true;
+    }
+
+    private void DeactivateComponent()
+    {
+        isComponentActive = false;
     }
 
     private void OnDrawGizmos()

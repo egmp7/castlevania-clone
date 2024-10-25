@@ -1,30 +1,27 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerLedgeClimb : MonoBehaviour
 {
-    // Single triggers
-    public static event Action OnLedgeHangStart;
-    public static event Action OnLedgeHangEnd;
-    public static event Action OnLedgeClimbStart;
-    public static event Action OnLedgeClimbEnd;
-    public static event Action OnLedgeReleaseStart;
-    public static event Action OnLedgeReleaseEnd;
+    public static event Action OnLedgeHang;
+    public static event Action OnLedgeClimb;
+    public static event Action OnLedgeRelease;
 
     [Header("LedgeClimb")]
     [Tooltip("Layer to detect ledges")]
     [SerializeField] LayerMask LedgeLayer;
     
     [Tooltip("Empty GameObject used to detect ledge position")]
-    [SerializeField] Transform LedgeCheck;
+    [SerializeField] Transform LedgeDetector0;
 
-    [Tooltip("Offset for the second check that avoid colliding with the wall")]
-    [SerializeField] Vector3 LedgeUpperCheck = new Vector2(0,1f);
+    [Tooltip("Empty GameObject used to detect ledge position")]
+    [SerializeField] Transform LedgeDetector1;
 
     [Tooltip("Radius of the Ledge Check")]
-    [SerializeField] float LedgeCheckRadius = 0.25f;
+    [SerializeField][Range(0.01f,1f)] float LedgeDetectorRadius = 0.25f;
+
+    [SerializeField] Vector2 BoxcastSize = new(2f, 2f);
 
     [Tooltip("Offset after hanging on ledge")]
     [SerializeField] Vector2 Offset0 = new Vector2(0f,0f);
@@ -32,34 +29,39 @@ public class PlayerLedgeClimb : MonoBehaviour
     [Tooltip("Offset position when climbing")]
     [SerializeField] Vector2 Offset1 = new Vector2(1f,2f);
 
-    [Tooltip("Offset position when realising ledge")]
-    [SerializeField] Vector2 Offset2 = new Vector2(0f, 0f);
-
-    [Tooltip("Speed of ledge hang")]
-    [SerializeField][Range(1f, 10f)] float LedgeHangSpeed = 5f;
-
-    [Tooltip("Time to wait before starting the climb")]
-    [SerializeField][Range(0f, 2f)] private float WaitTime = 1f;
+    [Tooltip("Time before activating the Ledge Detector When releasing")]
+    [SerializeField][Range(0.01f, 1f)] float ReleaseThresholdTime = 0.25f;
 
     private Rigidbody2D rb;
-    private Collider2D playerCollider2D;
     private InputAction moveAction;
-    private Coroutine activeCoroutine;
     private Vector2 moveInput;
-    private Vector2 ledgeCornerPosition;
     private float gravityScale;
-    private bool isTouchingLedge;
-    private bool ledgeTouchedPreviously;
-    private bool isHanging; // happens after player finishes moving to edge
-    private bool upKeyHeldDown;
-    private bool downKeyHeldDown;
+    private bool isLedgeDetected;
     private bool isFacingRight;
+    private bool canGrabLedge = true;
+
+    private Vector2 initPosition;
+    private Vector2 endClimbPosition;
+
+    // event guards
+    private bool isOnClimbEventTriggered;
+    private bool isOnHangEventTriggered;
+    private bool isOnReleaseEventTriggered;
+
+
+    private void OnEnable()
+    {
+        PlayerAnimation.OnClimbAnimationEnded += OnClimbAnimationEnded;
+    }
+    private void OnDisable()
+    {
+        PlayerAnimation.OnClimbAnimationEnded -= OnClimbAnimationEnded;
+    }
 
     private void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
         rb = GetComponent<Rigidbody2D>();
-        playerCollider2D = GetComponent<Collider2D>();
         gravityScale = rb.gravityScale;
     }
 
@@ -68,165 +70,121 @@ public class PlayerLedgeClimb : MonoBehaviour
         CheckFacingDirection();
         DetectLedge();
 
-        if (isHanging)
+        if (isOnHangEventTriggered)
         {
-            rb.velocity = Vector3.zero;
             HandleClimbingInput();
         }
     }
 
     private void CheckFacingDirection() 
     {
-        isFacingRight = (LedgeCheck.position - transform.position).x > 0;
+        isFacingRight = (LedgeDetector0.position - transform.position).x > 0;
     }
 
     private void DetectLedge()
     {
         Collider2D hitCollider1 = null;
-        Collider2D hitCollider0 = Physics2D.OverlapCircle(
-            LedgeCheck.position + LedgeUpperCheck,
-            LedgeCheckRadius,
+        RaycastHit2D hitCollider0 = Physics2D.BoxCast(
+            new Vector2(LedgeDetector0.position.x,LedgeDetector0.position.y),
+            BoxcastSize,
+            0f,
+            Vector2.right,
+            0f,
             LedgeLayer);
 
-        if (hitCollider0 == null)
+        if (hitCollider0.collider == null) // can detect ledge
         {
             hitCollider1 = Physics2D.OverlapCircle(
-            LedgeCheck.position,
-            LedgeCheckRadius,
+            LedgeDetector1.position,
+            LedgeDetectorRadius,
             LedgeLayer);
         }
 
         // Check if the ledge is being touched
-        isTouchingLedge = hitCollider1 != null;
+        isLedgeDetected = hitCollider1 != null;
 
-        // If the ledge was touched for the first time
-        if (isTouchingLedge && !ledgeTouchedPreviously)
+        if (isLedgeDetected && !isOnHangEventTriggered && canGrabLedge)
         {
-            // Get the ledge's corner position
-            Bounds colliderBounds = hitCollider1.bounds;
-            float cornerX = isFacingRight ? colliderBounds.min.x : colliderBounds.max.x;
-            float cornerY = colliderBounds.max.y;
-            ledgeCornerPosition = new Vector2(cornerX, cornerY);
 
-            ledgeTouchedPreviously = true;
+            Debug.Log("OnLedgeHang");
+            OnLedgeHang?.Invoke();
+            isOnHangEventTriggered = true;
+            canGrabLedge = false;
 
-            // Start ledge grab logic
-            StartCoroutine(LedgeHang());
+            if (isFacingRight)
+            {
+                initPosition = new(
+                LedgeDetector1.position.x + Offset0.x,
+                LedgeDetector1.position.y + Offset0.y);
+
+                endClimbPosition = new(
+                LedgeDetector1.position.x + Offset1.x,
+                LedgeDetector1.position.y + Offset1.y);
+            }
+            else
+            {
+                initPosition = new(
+                LedgeDetector1.position.x - Offset0.x,
+                LedgeDetector1.position.y + Offset0.y);
+
+                endClimbPosition = new(
+                LedgeDetector1.position.x - Offset1.x,
+                LedgeDetector1.position.y + Offset1.y);
+            }
+
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = 0;
+            transform.position = initPosition;
         }
-        // If the ledge was released
-        else if (!isTouchingLedge && ledgeTouchedPreviously)
-        {            
-            ledgeTouchedPreviously = false;
-        }
+        
     }
 
     private void HandleClimbingInput()
     {
         moveInput = moveAction.ReadValue<Vector2>();
 
-        if (moveInput.y > 0 && !upKeyHeldDown)
+        if (moveInput.y > 0 && !isOnClimbEventTriggered)
         {
-            upKeyHeldDown = true; // Key pressed
-            if (activeCoroutine != null) StopCoroutine(activeCoroutine); // Stop active coroutine if running
-            activeCoroutine = StartCoroutine(LedgeClimb());
+            isOnClimbEventTriggered = true; 
+            Debug.Log("OnLedgeClimb");
+            OnLedgeClimb?.Invoke();
         }
 
-        if (moveInput.y < 0 && !downKeyHeldDown)
+        if (moveInput.y < 0 && !isOnReleaseEventTriggered)
         {
-            downKeyHeldDown = true; // Key pressed
-            if (activeCoroutine != null) StopCoroutine(activeCoroutine); // Stop active coroutine if running
-            LedgeRelease();
+            isOnReleaseEventTriggered = true;
+            Debug.Log("OnLedgeRelease");
+            OnLedgeRelease?.Invoke();
+            rb.gravityScale = gravityScale;
+            isOnClimbEventTriggered = false;
+            isOnHangEventTriggered = false;
+            Invoke(nameof(AllowLedgeGrab), ReleaseThresholdTime);
         }
         if (moveInput.y == 0)
         {
-            upKeyHeldDown = false; // Key released
-            downKeyHeldDown = false; // Key released
+            isOnClimbEventTriggered = false;
+            isOnReleaseEventTriggered = false;
         }
     }
 
-    private IEnumerator LedgeHang()
+    private void AllowLedgeGrab()  => canGrabLedge = true;
+
+    private void OnClimbAnimationEnded()
     {
-        OnLedgeHangStart();
-        playerCollider2D.enabled = false;
-        rb.velocity = Vector2.zero;
-        rb.gravityScale = 0;
-        Vector2 flippedOffset0 = new (Offset0.x * -1, Offset0.y);
-        Vector2 ledgeTarget = ledgeCornerPosition + (isFacingRight ? Offset0 : flippedOffset0);
-
-        // Move the character up and towards the ledge
-        while (Vector2.Distance(transform.position, ledgeTarget) > 0.1f)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, ledgeTarget, LedgeHangSpeed * Time.deltaTime);
-            yield return null;
-        }
-
-        OnLedgeHangEnd?.Invoke();
-        playerCollider2D.enabled = true;
-        isHanging = true;
-    }
-
-    private IEnumerator LedgeClimb()
-    {
-        OnLedgeClimbStart?.Invoke();
-
-        Vector2 climbTarget;
-
-        if (isFacingRight)
-        {
-            climbTarget = new(
-            ledgeCornerPosition.x + Offset1.x,
-            ledgeCornerPosition.y + Offset1.y);
-        }
-        else
-        {
-            climbTarget = new(
-            ledgeCornerPosition.x - Offset1.x,
-            ledgeCornerPosition.y + Offset1.y);
-        }
-
-        yield return new WaitForSeconds(WaitTime);
-
-        transform.position = climbTarget;
-        OnLedgeClimbEnd?.Invoke(); 
+        transform.position = endClimbPosition;
         rb.gravityScale = gravityScale;
-        isHanging = false;
-        upKeyHeldDown = false;
-        activeCoroutine = null; 
-
-    }
-
-    private void LedgeRelease()
-    {
-        OnLedgeReleaseStart?.Invoke();
-
-        Vector2 dropTarget;
-
-        if (isFacingRight)
-        {
-            dropTarget  = new Vector2(
-            transform.position.x + Offset2.x,
-            transform.position.y + Offset2.y);
-        }
-        else
-        {
-            dropTarget = new Vector2(
-            transform.position.x - Offset2.x,
-            transform.position.y + Offset2.y);
-        }
-
-        transform.position = dropTarget;
-        OnLedgeReleaseEnd?.Invoke();
-        rb.gravityScale = gravityScale;
-        isHanging = false;
-        downKeyHeldDown = false;
-        activeCoroutine = null; 
+        isOnClimbEventTriggered = false;
+        isOnHangEventTriggered = false;
+        canGrabLedge = true;
     }
 
     private void OnDrawGizmos()
     {
-        if(isTouchingLedge) Gizmos.color = Color.green;
+        if(isLedgeDetected) Gizmos.color = Color.green;
         else Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(LedgeCheck.position, LedgeCheckRadius);
-        Gizmos.DrawWireSphere(LedgeCheck.position + LedgeUpperCheck, LedgeCheckRadius);
+        Gizmos.DrawWireCube(
+            new Vector2(LedgeDetector0.position.x, LedgeDetector0.position.y), 
+            BoxcastSize);
+        Gizmos.DrawWireSphere(LedgeDetector1.position, LedgeDetectorRadius);
     }
 }

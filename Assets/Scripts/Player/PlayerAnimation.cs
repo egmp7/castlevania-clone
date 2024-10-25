@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
+    public static event Action OnClimbAnimationEnded;
+
     private enum AnimationState
     {
         Idle,
@@ -46,9 +49,9 @@ public class PlayerAnimation : MonoBehaviour
         PlayerMovementVertical.OnFall += PlayFallAnimation;
         PlayerMovementVertical.OnJump += PlayJumpAnimation;
 
-        PlayerLedgeClimb.OnLedgeClimbStart += OnLedgeClimbStart;
-        PlayerLedgeClimb.OnLedgeHangStart += OnLedgeHangStart;
-        PlayerLedgeClimb.OnLedgeReleaseEnd += OnLedgeReleaseEnd;
+        PlayerLedgeClimb.OnLedgeClimb += OnLedgeClimb;
+        PlayerLedgeClimb.OnLedgeHang += OnLedgeHang;
+        PlayerLedgeClimb.OnLedgeRelease += OnLedgeRelease;
     }
     private void OnDisable()
     {
@@ -61,9 +64,9 @@ public class PlayerAnimation : MonoBehaviour
         PlayerMovementVertical.OnFall -= PlayFallAnimation;
         PlayerMovementVertical.OnJump -= PlayJumpAnimation;
 
-        PlayerLedgeClimb.OnLedgeClimbStart -= OnLedgeClimbStart;
-        PlayerLedgeClimb.OnLedgeHangStart -= OnLedgeHangStart;
-        PlayerLedgeClimb.OnLedgeReleaseEnd -= OnLedgeReleaseEnd;
+        PlayerLedgeClimb.OnLedgeClimb -= OnLedgeClimb;
+        PlayerLedgeClimb.OnLedgeHang -= OnLedgeHang;
+        PlayerLedgeClimb.OnLedgeRelease -= OnLedgeRelease;
     }
 
     // Start is called before the first frame update
@@ -108,7 +111,23 @@ public class PlayerAnimation : MonoBehaviour
 
         if (stateInfo.IsName(ledgeClimbAnimation))
         {
-            newAnimationState = AnimationState.Idle;
+            Debug.Log("OnClimbAnimationEnded");
+            OnClimbAnimationEnded?.Invoke();
+
+            if (isRunning)
+            {
+                newAnimationState = AnimationState.Run;
+            }
+            else if (isWalking)
+            {
+                newAnimationState = AnimationState.Walk;
+            }
+            else
+            {
+                newAnimationState = AnimationState.Idle;
+            }
+            isPlayerOnGround = true;
+            isPlayerJumping = false;
         }
     }
 
@@ -141,8 +160,6 @@ public class PlayerAnimation : MonoBehaviour
 
     private void PlayFallAnimation()
     {
-        if (isPlayerJumping)  return;
-
         isPlayerOnGround = false;
         newAnimationState = AnimationState.Fall;
     }
@@ -171,7 +188,7 @@ public class PlayerAnimation : MonoBehaviour
         isPlayerJumping = false;
     }
 
-    private void OnLedgeClimbStart()
+    private void OnLedgeClimb()
     {
         newAnimationState = AnimationState.LedgeClimb;
     }
@@ -183,13 +200,13 @@ public class PlayerAnimation : MonoBehaviour
         newAnimationState = AnimationState.Idle;
     }
 
-    private void OnLedgeHangStart()
+    private void OnLedgeHang()
     {
         //isHanging = true;
         newAnimationState = AnimationState.LedgeHang;
     }
 
-    private void OnLedgeReleaseEnd()
+    private void OnLedgeRelease()
     {
         //isHanging = false;
     }

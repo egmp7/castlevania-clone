@@ -47,15 +47,17 @@ public class PlayerMovementHorizontal : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerLedgeClimb.OnLedgeHangStart += DeactivateComponent;
-        PlayerLedgeClimb.OnLedgeClimbEnd += ActivateComponent;
-        PlayerLedgeClimb.OnLedgeReleaseEnd += ActivateComponent;
+        PlayerLedgeClimb.OnLedgeHang += DeactivateComponent;
+        PlayerLedgeClimb.OnLedgeRelease += ActivateComponent;
+        
+        PlayerAnimation.OnClimbAnimationEnded += ActivateComponent;
     }
     private void OnDisable()
     {
-        PlayerLedgeClimb.OnLedgeHangStart -= DeactivateComponent;
-        PlayerLedgeClimb.OnLedgeClimbEnd -= ActivateComponent;
-        PlayerLedgeClimb.OnLedgeReleaseEnd -= ActivateComponent;
+        PlayerLedgeClimb.OnLedgeHang -= DeactivateComponent;
+        PlayerLedgeClimb.OnLedgeRelease -= ActivateComponent;
+
+        PlayerAnimation.OnClimbAnimationEnded -= ActivateComponent;
     }
 
     private void Awake()
