@@ -32,12 +32,12 @@ public class PlayerLedgeClimb : MonoBehaviour
     [Tooltip("Time before activating the Ledge Detector When releasing")]
     [SerializeField][Range(0.01f, 1f)] float ReleaseThresholdTime = 0.25f;
 
+    private PlayerState playerState;
     private Rigidbody2D rb;
     private InputAction moveAction;
     private Vector2 moveInput;
     private float gravityScale;
     private bool isLedgeDetected;
-    private bool isFacingRight;
     private bool canGrabLedge = true;
 
     private Vector2 initPosition;
@@ -61,24 +61,19 @@ public class PlayerLedgeClimb : MonoBehaviour
     private void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
+        playerState = GetComponent<PlayerState>();
         rb = GetComponent<Rigidbody2D>();
         gravityScale = rb.gravityScale;
     }
 
     private void Update()
     {
-        CheckFacingDirection();
         DetectLedge();
 
         if (isOnHangEventTriggered)
         {
             HandleClimbingInput();
         }
-    }
-
-    private void CheckFacingDirection() 
-    {
-        isFacingRight = (LedgeDetector0.position - transform.position).x > 0;
     }
 
     private void DetectLedge()
@@ -111,7 +106,7 @@ public class PlayerLedgeClimb : MonoBehaviour
             isOnHangEventTriggered = true;
             canGrabLedge = false;
 
-            if (isFacingRight)
+            if (playerState.IsFacingRight)
             {
                 initPosition = new(
                 LedgeDetector1.position.x + Offset0.x,

@@ -23,12 +23,12 @@ public class PlayerMovementVertical : MonoBehaviour
 
     [SerializeField] LayerMask GroundLayer;
 
+    private PlayerState playerState;
     private InputAction moveAction;
     private Collider2D playerCollider;
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private bool isComponentActive;
-    private bool isGrounded;
     private float jumpTimer;
 
     // event guards
@@ -54,6 +54,7 @@ public class PlayerMovementVertical : MonoBehaviour
     private void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
+        playerState = GetComponent<PlayerState>();
         playerCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -81,11 +82,12 @@ public class PlayerMovementVertical : MonoBehaviour
     private void HandleJump()
     {
         // Only jump if the key is held down, the player is grounded, and the jump cooldown has passed
-        if (isOnJumpEventTriggered && isGrounded && jumpTimer <= 0)
+        if (isOnJumpEventTriggered && playerState.IsOnGround && jumpTimer <= 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, JumpForce);
             isOnJumpEventTriggered = false; // Ensure single jump per press
             jumpTimer = jumpCooldown; // Reset the jump timer to cooldown value
+            playerState.IsJumping = true;
             Debug.Log("OnJump");
             OnJump?.Invoke();
         }
@@ -118,36 +120,34 @@ public class PlayerMovementVertical : MonoBehaviour
             0f,
             GroundLayer);
 
-        isGrounded = hit.collider != null;
+        playerState.IsOnGround = hit.collider != null;
 
-        if (isGrounded && !isOnGroundEventTriggered) // is grounded
+        if (playerState.IsOnGround && !isOnGroundEventTriggered) // is grounded
         {
             isOnGroundEventTriggered = true;
             isOnAirEventTriggered = false;
             Debug.Log("OnGround");
             OnGround?.Invoke();
         }
-        else if (!isGrounded && !isOnAirEventTriggered) // is on air
+        else if (!playerState.IsOnGround && !isOnAirEventTriggered) // is on air
         {
             isOnGroundEventTriggered = false;
             isOnAirEventTriggered = true;
             //Debug.Log("OnAir");
             OnAir?.Invoke();
         }
-
-        // Set grounded state based on collision result
     }
 
     void CheckVelocityDirection()
     {
-        if (rb.velocity.y > 0 && !isOnAscendEventTriggered && !isGrounded)
+        if (rb.velocity.y > 0 && !isOnAscendEventTriggered && !playerState.IsOnGround)
         {
             isOnAscendEventTriggered = true;
             isOnFallEventTriggered = false;
             //Debug.Log("OnAscend");
             OnAscend?.Invoke();  // Player is moving upward
         }
-        else if (rb.velocity.y < 0 && !isOnFallEventTriggered && !isGrounded)
+        else if (rb.velocity.y < 0 && !isOnFallEventTriggered && !playerState.IsOnGround)
         {
             isOnAscendEventTriggered = false;
             isOnFallEventTriggered = true;
@@ -182,7 +182,8 @@ public class PlayerMovementVertical : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = isGrounded ? Color.red : Color.green;
+        if (playerState == null) return;
+        Gizmos.color = playerState.IsOnGround ? Color.red : Color.green;
         Gizmos.DrawWireCube(GroundDetector.position, BoxcastSize);
     }
 

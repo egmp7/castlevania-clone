@@ -22,22 +22,13 @@ public class PlayerMovementHorizontal : MonoBehaviour
     [SerializeField] Transform WallDetector;
     [Tooltip("Size of the Boxcast area")]
     [SerializeField] Vector2 BoxcastSize = new(2f, 2f);
-    [Tooltip("Optional offset for raycast")]
 
-    private enum AnimationState
-    {
-        Idle,
-        Walk,
-        Run
-    }
-
+    private PlayerState playerState;
     private InputAction moveAction;
     private Rigidbody2D rb;
     private Vector3 originalScale; // Store the original scale
     private Vector2 moveInput;
     private float lastTapTime;
-    private bool isRunning;
-    private bool isTouchingWall;
     private bool isComponentActive;
     
     // event guards
@@ -62,8 +53,9 @@ public class PlayerMovementHorizontal : MonoBehaviour
 
     private void Awake()
     {
-        moveAction = InputSystem.actions.FindAction("Move");
+        playerState = GetComponent<PlayerState>();
         rb = GetComponent<Rigidbody2D>();
+        moveAction = InputSystem.actions.FindAction("Move");
         originalScale = transform.localScale; // Get the initial scale
     }
 
@@ -89,9 +81,9 @@ public class PlayerMovementHorizontal : MonoBehaviour
 
     private void HandleMovement()
     {
-        float targetSpeed = isRunning ? RunSpeed : WalkSpeed;
+        float targetSpeed = playerState.IsRunning ? RunSpeed : WalkSpeed;
 
-        if (keyHeldDown && !isTouchingWall)
+        if (keyHeldDown && !playerState.IsTouchingWall)
         {
             // Lerp for smooth acceleration
             float currentSpeed = Mathf.Lerp(rb.velocity.x, moveInput.x * targetSpeed, AccelerationRate * Time.fixedDeltaTime);
@@ -110,7 +102,7 @@ public class PlayerMovementHorizontal : MonoBehaviour
         moveInput = moveAction.ReadValue<Vector2>();
         float moveInputHorizontal = moveInput.x;
 
-        if (moveInputHorizontal != 0 && !keyHeldDown && !isTouchingWall)
+        if (moveInputHorizontal != 0 && !keyHeldDown && !playerState.IsTouchingWall)
         {
             keyHeldDown = true;
 
@@ -118,14 +110,14 @@ public class PlayerMovementHorizontal : MonoBehaviour
             if (Time.time - lastTapTime < doubleTapThreshold)
             {
                 // Double tap detected, start running
-                isRunning = true;
+                playerState.IsRunning = true;
                 Debug.Log("OnRun");
                 OnRun?.Invoke();
             }
             else
             {
                 // Single tap detected, walk
-                isRunning = false;
+                playerState.IsWalking = true;
                 Debug.Log("OnWalk");
                 OnWalk?.Invoke();
             }
@@ -138,8 +130,9 @@ public class PlayerMovementHorizontal : MonoBehaviour
         else if (moveInputHorizontal == 0 && !isIdleEventTriggered)
         {
             // Key released, trigger idle
-            keyHeldDown = false;
             Debug.Log("OnIdle");
+            keyHeldDown = false;
+            playerState.IsIdleing = true;
             OnIdle?.Invoke();
             isIdleEventTriggered = true;
         }
@@ -152,15 +145,17 @@ public class PlayerMovementHorizontal : MonoBehaviour
         {
             // Moving right, ensure player is facing right
             transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
+            playerState.IsFacingRight = true;
         }
         else if (moveInput.x < 0)
         {
             // Moving left, flip the player's x scale to face left
             transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
+            playerState.IsFacingRight = false;
         }
     }
 
-    void DetectWall()
+    private void DetectWall()
     {
         RaycastHit2D hit = Physics2D.BoxCast(
             WallDetector.position,
@@ -170,16 +165,16 @@ public class PlayerMovementHorizontal : MonoBehaviour
             0f,
             WallLayer);
 
-        isTouchingWall = hit.collider != null;
+        playerState.IsTouchingWall = hit.collider != null;
 
         // trigger touching the wall event
-        if ( (isTouchingWall && !isWallTouchEventTriggered))
+        if ( (playerState.IsTouchingWall && !isWallTouchEventTriggered))
         {
             isWallTouchEventTriggered = true;
             Debug.Log("OnWallTouch");
             OnWallTouch?.Invoke();
         }
-        else if (!isTouchingWall)
+        else if (!playerState.IsTouchingWall)
         {
             isWallTouchEventTriggered = false;
         }
@@ -197,7 +192,8 @@ public class PlayerMovementHorizontal : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = isTouchingWall ? Color.red : Color.green;
+        if (playerState == null) return;
+        Gizmos.color = playerState.IsTouchingWall ? Color.red : Color.green;
         Gizmos.DrawWireCube(WallDetector.position, BoxcastSize);
     }
 }
