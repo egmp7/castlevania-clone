@@ -75,7 +75,6 @@ public class PlayerAnimation : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-
     // Plays Animations depending on events, also checks when animations ends
     private void Update()
     {
