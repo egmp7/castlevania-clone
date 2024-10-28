@@ -138,7 +138,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void OnPlayerGrounded()
     {
-        if (playerState.IsIdleing)
+        if (playerState.IsIdling)
         {
             newAnimationState = AnimationState.Idle;
         }
@@ -159,7 +159,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void OnWallTouch()
     {
-        if (playerState.IsJumping) return;
+         
         newAnimationState = AnimationState.Idle;
     }
 

@@ -132,7 +132,7 @@ public class PlayerMovementHorizontal : MonoBehaviour
             // Key released, trigger idle
             Debug.Log("OnIdle");
             keyHeldDown = false;
-            playerState.IsIdleing = true;
+            playerState.IsIdling = true;
             OnIdle?.Invoke();
             isIdleEventTriggered = true;
         }
