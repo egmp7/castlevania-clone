@@ -1,24 +1,15 @@
-using UnityEngine;
-
 public abstract class State
 {
-    protected StateController sc;
-    protected Animator animator;
-    protected Rigidbody2D rb;
-    protected bool grounded;
-    protected float xInput;
-    protected float yInput;
+    protected StateController stateController;
 
     public void OnStateEnter(StateController stateController)
     {
-        Debug.Log("OnStateEnter State");
-        sc = stateController;
+        this.stateController = stateController;
         OnEnter();
     }
 
     protected virtual void OnEnter()
     {
-        Debug.Log("OnEnter State");
     }
 
     public void OnStateUpdate()
@@ -27,6 +18,15 @@ public abstract class State
     }
 
     protected virtual void OnUpdate()
+    {
+    }
+
+    public void OnStateFixedUpdate()
+    {
+        OnFixedUpdate();
+    }
+
+    protected virtual void OnFixedUpdate()
     {
     }
 

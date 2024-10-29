@@ -1,13 +1,15 @@
+
 using UnityEngine;
 
-public class IdleState : GroundState
+public class JumpState : AirState
 {
     protected override void OnEnter()
     {
         base.OnEnter();
+        // jump
         stateController.rigidBody.velocity =
             new Vector2(
-                0,
-                stateController.rigidBody.velocity.y);
+                stateController.rigidBody.velocity.x,
+                stateController.jumpForce);
     }
 }
