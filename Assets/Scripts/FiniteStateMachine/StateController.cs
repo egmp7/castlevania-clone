@@ -49,6 +49,7 @@ public class StateController : MonoBehaviour
     {
         CheckGroundStatus();
         CheckFacing();
+        SelectState();
         currentState?.OnStateUpdate();
     }
 
@@ -71,6 +72,47 @@ public class StateController : MonoBehaviour
         currentState = newState;
         currentState.OnStateEnter(this);
         Debug.Log(currentState);
+    }
+
+    private void SelectState()
+    {
+        InputSystemController.MoveState currentMoveState = inputSystemController.currentMoveState;
+
+        if (isOnGround)
+        {
+            if (
+                currentMoveState == InputSystemController.MoveState.Left ||
+                currentMoveState == InputSystemController.MoveState.Right)
+            {
+                if (inputSystemController.isDoubleTap)
+                {
+                    ChangeState(runState);
+                }
+                else
+                {
+                    ChangeState(walkState);
+                }
+            }
+
+            else if (
+                currentMoveState == InputSystemController.MoveState.Up ||
+                currentMoveState == InputSystemController.MoveState.UpLeft ||
+                currentMoveState == InputSystemController.MoveState.UpRight)
+            {
+                ChangeState(jumpState);
+            }
+            else
+            {
+                ChangeState(idleState);
+            }
+        }
+        else // on air
+        {
+            if (rigidBody.velocity.y < 0)
+            {
+                ChangeState(fallState);
+            }
+        }
     }
 
     private void CheckGroundStatus()
