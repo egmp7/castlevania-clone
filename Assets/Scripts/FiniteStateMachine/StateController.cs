@@ -6,6 +6,8 @@ public class StateController : MonoBehaviour
     [HideInInspector] public Rigidbody2D rigidBody;
     [HideInInspector] public InputSystemController inputSystemController;
     [HideInInspector] public bool isOnGround;
+    [HideInInspector] public int facing;
+    [HideInInspector] public Vector3 originalScale;
 
     // states
     [HideInInspector] public IdleState idleState = new();
@@ -30,6 +32,7 @@ public class StateController : MonoBehaviour
     public float jumpCooldown = 0.8f;
     public LayerMask groundLayer;
 
+
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -39,11 +42,13 @@ public class StateController : MonoBehaviour
     private void Start()
     {
         ChangeState(idleState);
+        originalScale = transform.localScale;
     }
 
     void Update()
     {
         CheckGroundStatus();
+        CheckFacing();
         currentState?.OnStateUpdate();
     }
 
@@ -79,6 +84,22 @@ public class StateController : MonoBehaviour
             groundLayer);
 
         isOnGround = hit.collider != null;
+    }
+
+    private void CheckFacing()
+    {
+        if (inputSystemController.currentMoveState == InputSystemController.MoveState.Right ||
+            inputSystemController.currentMoveState == InputSystemController.MoveState.UpRight ||
+            inputSystemController.currentMoveState == InputSystemController.MoveState.DownRight)
+        {
+            facing = 1;
+        }
+        if (inputSystemController.currentMoveState == InputSystemController.MoveState.Left ||
+            inputSystemController.currentMoveState == InputSystemController.MoveState.UpLeft ||
+            inputSystemController.currentMoveState == InputSystemController.MoveState.DownLeft)
+        {
+            facing = -1;
+        }
     }
 
     private void OnDrawGizmos()

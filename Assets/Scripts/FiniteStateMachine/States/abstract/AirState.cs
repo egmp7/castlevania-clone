@@ -4,7 +4,11 @@ public class AirState : State
     {
         base.OnUpdate();
         CheckVelocityDirection();
+        SelectState();
+    }
 
+    private void SelectState()
+    {
         InputSystemController.MoveState currentMoveState = input.inputSystemController.currentMoveState;
 
         if (input.isOnGround)
