@@ -4,7 +4,8 @@ public class StateController : MonoBehaviour
 {
     [HideInInspector] public State currentState;
     [HideInInspector] public Rigidbody2D rigidBody;
-    [HideInInspector] public InputController inputController;
+    [HideInInspector] public InputSystemController inputSystemController;
+    [HideInInspector] public bool isOnGround;
 
     // states
     [HideInInspector] public IdleState idleState = new();
@@ -29,11 +30,10 @@ public class StateController : MonoBehaviour
     public float jumpCooldown = 0.8f;
     public LayerMask groundLayer;
 
-
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        inputController = GetComponent<InputController>();
+        inputSystemController = GetComponent<InputSystemController>();
     }
 
     private void Start()
@@ -43,6 +43,7 @@ public class StateController : MonoBehaviour
 
     void Update()
     {
+        CheckGroundStatus();
         currentState?.OnStateUpdate();
     }
 
@@ -67,10 +68,22 @@ public class StateController : MonoBehaviour
         Debug.Log(currentState);
     }
 
+    private void CheckGroundStatus()
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(
+            groundDetector.position,
+            groundDetectorSize,
+            0f,
+            Vector2.right,
+            0f,
+            groundLayer);
+
+        isOnGround = hit.collider != null;
+    }
+
     private void OnDrawGizmos()
     {
-        if (idleState == null) return;
-        Gizmos.color = idleState.isOnGround ? Color.red : Color.green;
+        Gizmos.color = isOnGround ? Color.red : Color.green;
         Gizmos.DrawWireCube(groundDetector.position, groundDetectorSize);
     }
 }

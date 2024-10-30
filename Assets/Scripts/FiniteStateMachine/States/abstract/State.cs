@@ -1,10 +1,10 @@
 public abstract class State
 {
-    protected StateController stateController;
+    protected StateController input;
 
     public void OnStateEnter(StateController stateController)
     {
-        this.stateController = stateController;
+        input = stateController;
         OnEnter();
     }
 

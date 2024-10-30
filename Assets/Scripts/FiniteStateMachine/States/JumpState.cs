@@ -7,9 +7,9 @@ public class JumpState : AirState
     {
         base.OnEnter();
         // jump
-        stateController.rigidBody.velocity =
+        input.rigidBody.velocity =
             new Vector2(
-                stateController.rigidBody.velocity.x,
-                stateController.jumpForce);
+                input.rigidBody.velocity.x,
+                input.jumpForce);
     }
 }
