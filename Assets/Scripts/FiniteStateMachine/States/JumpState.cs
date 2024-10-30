@@ -11,5 +11,7 @@ public class JumpState : AirState
             new Vector2(
                 input.rigidBody.velocity.x,
                 input.jumpForce);
+
+        input.animationController.PlayJumpAnimation();
     }
 }

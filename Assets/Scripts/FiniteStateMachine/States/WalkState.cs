@@ -17,5 +17,7 @@ public class WalkState : GroundState
             new Vector2(
                 currentSpeed,
                 input.rigidBody.velocity.y);
+
+        input.animationController.PlayWalkAnimation();
     }
 }

@@ -48,16 +48,6 @@ public class PlayerLedgeClimb : MonoBehaviour
     private bool isOnHangEventTriggered;
     private bool isOnReleaseEventTriggered;
 
-
-    private void OnEnable()
-    {
-        PlayerAnimation.OnClimbAnimationEnded += OnClimbAnimationEnded;
-    }
-    private void OnDisable()
-    {
-        PlayerAnimation.OnClimbAnimationEnded -= OnClimbAnimationEnded;
-    }
-
     private void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");

@@ -1,10 +1,15 @@
 using UnityEngine;
 
+[RequireComponent(typeof(InputSystemController))]
+[RequireComponent(typeof(PlayerAnimationController))]
+[RequireComponent(typeof(Rigidbody2D))]
+
 public class StateController : MonoBehaviour
 {
     [HideInInspector] public State currentState;
     [HideInInspector] public Rigidbody2D rigidBody;
     [HideInInspector] public InputSystemController inputSystemController;
+    [HideInInspector] public PlayerAnimationController animationController;
     [HideInInspector] public bool isOnGround;
     [HideInInspector] public int facing;
     [HideInInspector] public Vector3 originalScale;
@@ -15,6 +20,7 @@ public class StateController : MonoBehaviour
     [HideInInspector] public JumpState jumpState = new();
     [HideInInspector] public WalkState walkState = new();
     [HideInInspector] public RunState runState = new();
+    [HideInInspector] public CrouchState crouchState = new();
 
     [Header("X Movement")]
     [Range(1.0f, 50.0f)] public float walkSpeed = 10.0f;
@@ -37,6 +43,7 @@ public class StateController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         inputSystemController = GetComponent<InputSystemController>();
+        animationController = GetComponent<PlayerAnimationController>();
     }
 
     private void Start()
@@ -100,6 +107,14 @@ public class StateController : MonoBehaviour
                 currentMoveState == InputSystemController.MoveState.UpRight)
             {
                 ChangeState(jumpState);
+            }
+            else if( 
+                currentMoveState == InputSystemController.MoveState.Down ||
+                 currentMoveState == InputSystemController.MoveState.DownLeft ||
+                  currentMoveState == InputSystemController.MoveState.DownRight 
+                )
+            {
+                ChangeState(crouchState);
             }
             else
             {

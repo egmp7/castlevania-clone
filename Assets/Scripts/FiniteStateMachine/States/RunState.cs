@@ -17,5 +17,7 @@ public class RunState : GroundState
             new Vector2(
                 currentSpeed,
                 input.rigidBody.velocity.y);
+
+        input.animationController.PlayRunAnimation();
     }
 }
