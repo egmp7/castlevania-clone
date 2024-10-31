@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    public static event Action OnClimbAnimationEnded;
+    public static event Action OnAnimationEnd;
 
     private enum AnimationState
     {
@@ -37,31 +37,17 @@ public class PlayerAnimationController : MonoBehaviour
     private Animator animator;
     private AnimationState currentAnimationState = AnimationState.Idle;
     private AnimationState newAnimationState;
-    private bool animationEnded;
 
-    // Start is called before the first frame update
     void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    // Plays Animations depending on events, also checks when animations ends
     private void Update()
     {
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
-        // Check if the animation has ended based on normalizedTime
-        if (stateInfo.normalizedTime >= 1.0f && !animationEnded)
-        {
-            OnAnimationEnd(stateInfo); // Trigger callback when animation ends
-            animationEnded = true;
-        }
-
-        // Reset the animationEnded flag when transitioning to a new animation
         if (currentAnimationState != newAnimationState)
         {
-            animationEnded = false;
-            currentAnimationState = newAnimationState; // Update current animation state
+            currentAnimationState = newAnimationState; 
             PlayAnimation(newAnimationState);
         }
     }
@@ -74,14 +60,9 @@ public class PlayerAnimationController : MonoBehaviour
         }
     }
 
-    private void OnAnimationEnd(AnimatorStateInfo stateInfo)
+    public void AnimationEnd()
     {
-        // ledge climb animation
-        if (stateInfo.IsName(animationClips[AnimationState.LedgeClimb]))
-        {
-            Debug.Log("OnClimbAnimationEnded");
-            OnClimbAnimationEnded?.Invoke();
-        }
+        OnAnimationEnd?.Invoke();
     }
 
     public void PlayIdleAnimation()

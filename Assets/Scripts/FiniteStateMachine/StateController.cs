@@ -39,13 +39,21 @@ public class StateController : MonoBehaviour
     public float jumpCooldown = 0.8f;
     public LayerMask groundLayer;
 
+    [Header("Attack")]
+    [SerializeField] LayerMask EnemyLayer;
+    [SerializeField] Transform EnemyDetectorPosition;
+    [Tooltip("Radius of the Overlap Circle Attack")]
+    [SerializeField][Range(0.01f, 1f)] float EnemyDetectorRadius = 0.25f;
+
     private void OnEnable()
     {
-        InputSystemController.OnAttack += OnAttack;
+        InputSystemController.OnAttack += OnAttackInputSystem;
+        PlayerAnimationController.OnAnimationEnd += OnAnimationEnd;
     }
     private void OnDisable()
     {
-        InputSystemController.OnAttack -= OnAttack;
+        InputSystemController.OnAttack -= OnAttackInputSystem;
+        PlayerAnimationController.OnAnimationEnd -= OnAnimationEnd;
     }
 
     private void Awake()
@@ -170,21 +178,35 @@ public class StateController : MonoBehaviour
         }
     }
 
-    private void OnAttack()
+    private void OnAttackInputSystem()
     {
         Debug.Log("Attack");
         ChangeState(attackState);
     }
 
-    public void OnAttackEnd()
+    private void OnAnimationEnd()
     {
-        Debug.Log("OnAttackEnd");
+        Debug.Log("OnAttackAnimationEnd");
         ChangeState(idleState);
+    }
+
+    public void OnAttackAnimation()
+    {
+        Collider2D hit = Physics2D.OverlapCircle(
+            EnemyDetectorPosition.position,
+            EnemyDetectorRadius,
+            EnemyLayer);
+
+        if (hit != null)
+        {
+            Debug.Log("Enemy Touched");
+        }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = isOnGround ? Color.red : Color.green;
         Gizmos.DrawWireCube(groundDetector.position, groundDetectorSize);
+        Gizmos.DrawWireSphere(EnemyDetectorPosition.position, EnemyDetectorRadius);
     }
 }
