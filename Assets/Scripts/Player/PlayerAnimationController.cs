@@ -18,6 +18,7 @@ public class PlayerAnimationController : MonoBehaviour
         LedgeClimb,
         LedgeHang,
         Crouch,
+        Attack,
     }
 
     private readonly Dictionary<AnimationState, string> animationClips = new()
@@ -29,7 +30,8 @@ public class PlayerAnimationController : MonoBehaviour
         { AnimationState.Fall, "Fall" },
         { AnimationState.LedgeClimb, "LedgeClimb" },
         { AnimationState.LedgeHang, "LedgeHang" },
-        { AnimationState.Crouch, "Crouch" }
+        { AnimationState.Crouch, "Crouch" },
+        { AnimationState.Attack, "Punch01" },
     };
 
     private Animator animator;
@@ -119,5 +121,10 @@ public class PlayerAnimationController : MonoBehaviour
     public void PlayCrouchAnimation()
     {
         newAnimationState = AnimationState.Crouch;
+    }
+
+    public void PlayAttackAnimation()
+    {
+        newAnimationState = AnimationState.Attack;
     }
 }

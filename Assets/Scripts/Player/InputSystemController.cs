@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputSystemController : MonoBehaviour
 {
+    public static event Action OnAttack;
+
     // states
     [HideInInspector]
     public enum MoveState
@@ -31,13 +34,17 @@ public class InputSystemController : MonoBehaviour
 
     private readonly Stack<MoveState> stateStack = new();
     private InputAction moveAction;
+    private InputAction attackAction;
     private Vector2 moveInput;
     private bool isTapCheck;
     private float lastTapTime;
 
+    private bool isAttackPressed;
+
     private void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
+        attackAction = InputSystem.actions.FindAction("Attack");
     }
 
     private void Start()
@@ -51,7 +58,22 @@ public class InputSystemController : MonoBehaviour
         HandleInput();
         CheckDoubleTap();
         UpdateState();
+        CheckAttackEvent();
     }
+
+    private void CheckAttackEvent()
+    {
+        if (attackAction.IsPressed() && !isAttackPressed)
+        {
+            isAttackPressed = true;
+            OnAttack?.Invoke();
+        }
+        else if (!attackAction.IsPressed())
+        {
+            isAttackPressed = false;
+        }
+    }
+
 
     public void ChangeState(MoveState newState)
     {

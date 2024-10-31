@@ -21,6 +21,7 @@ public class StateController : MonoBehaviour
     [HideInInspector] public WalkState walkState = new();
     [HideInInspector] public RunState runState = new();
     [HideInInspector] public CrouchState crouchState = new();
+    [HideInInspector] public AttackState attackState = new();
 
     [Header("X Movement")]
     [Range(1.0f, 50.0f)] public float walkSpeed = 10.0f;
@@ -38,6 +39,14 @@ public class StateController : MonoBehaviour
     public float jumpCooldown = 0.8f;
     public LayerMask groundLayer;
 
+    private void OnEnable()
+    {
+        InputSystemController.OnAttack += OnAttack;
+    }
+    private void OnDisable()
+    {
+        InputSystemController.OnAttack -= OnAttack;
+    }
 
     private void Awake()
     {
@@ -84,6 +93,8 @@ public class StateController : MonoBehaviour
     private void SelectState()
     {
         InputSystemController.MoveState currentMoveState = inputSystemController.currentMoveState;
+
+        if (currentState == attackState) return;
 
         if (isOnGround)
         {
@@ -157,6 +168,18 @@ public class StateController : MonoBehaviour
         {
             facing = -1;
         }
+    }
+
+    private void OnAttack()
+    {
+        Debug.Log("Attack");
+        ChangeState(attackState);
+    }
+
+    public void OnAttackEnd()
+    {
+        Debug.Log("OnAttackEnd");
+        ChangeState(idleState);
     }
 
     private void OnDrawGizmos()
