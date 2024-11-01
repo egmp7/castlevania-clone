@@ -12,6 +12,6 @@ public class JumpState : AirState
                 input.rigidBody.velocity.x,
                 input.jumpForce);
 
-        input.animationController.PlayJumpAnimation();
+        input.animator.Play("Jump");
     }
 }

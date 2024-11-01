@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-
-public class PlayerAnimationController : MonoBehaviour
+public class AnimationController : MonoBehaviour
 {
     public static event Action OnAnimationEnd;
 
-    private enum AnimationState
+    public enum AnimationState
     {
         Idle,
         Walk,
@@ -36,76 +35,27 @@ public class PlayerAnimationController : MonoBehaviour
 
     private Animator animator;
     private AnimationState currentAnimationState = AnimationState.Idle;
-    private AnimationState newAnimationState;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    public void PlayAnimation(AnimationState newState)
     {
-        if (currentAnimationState != newAnimationState)
-        {
-            currentAnimationState = newAnimationState; 
-            PlayAnimation(newAnimationState);
-        }
-    }
+        if (currentAnimationState == newState) return;
 
-    private void PlayAnimation(AnimationState state)
-    {
-        if (animationClips.TryGetValue(state, out string animationName))
+        currentAnimationState = newState;
+
+        if (animationClips.TryGetValue(newState, out string animationName))
         {
             animator.Play(animationName);
         }
     }
 
+    // Animation event method for marking the end of an animation
     public void AnimationEnd()
     {
         OnAnimationEnd?.Invoke();
-    }
-
-    public void PlayIdleAnimation()
-    {
-        newAnimationState = AnimationState.Idle;
-    }
-
-    public void PlayRunAnimation()
-    {
-        newAnimationState = AnimationState.Run;
-    }
-
-    public void PlayWalkAnimation()
-    {
-        newAnimationState = AnimationState.Walk;
-    }
-
-    public void PlayFallAnimation()
-    {
-        newAnimationState = AnimationState.Fall;
-    }
-
-    public void PlayJumpAnimation() {
-        newAnimationState |= AnimationState.Jump;
-    }
-
-    public void PlayLedgeClimbAnimation()
-    {
-        newAnimationState = AnimationState.LedgeClimb;
-    }
-
-    public void PlayLedgeHangAnimation()
-    {
-        newAnimationState = AnimationState.LedgeHang;
-    }
-
-    public void PlayCrouchAnimation()
-    {
-        newAnimationState = AnimationState.Crouch;
-    }
-
-    public void PlayAttackAnimation()
-    {
-        newAnimationState = AnimationState.Attack;
     }
 }

@@ -18,6 +18,6 @@ public class WalkState : GroundState
                 currentSpeed,
                 input.rigidBody.velocity.y);
 
-        input.animationController.PlayWalkAnimation();
+        input.animator.Play("Walk");
     }
 }

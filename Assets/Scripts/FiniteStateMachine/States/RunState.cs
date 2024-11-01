@@ -18,6 +18,6 @@ public class RunState : GroundState
                 currentSpeed,
                 input.rigidBody.velocity.y);
 
-        input.animationController.PlayRunAnimation();
+        input.animator.Play("Run");
     }
 }

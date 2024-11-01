@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(InputSystemController))]
-[RequireComponent(typeof(PlayerAnimationController))]
+[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
 
 public class StateController : MonoBehaviour
@@ -9,7 +9,7 @@ public class StateController : MonoBehaviour
     [HideInInspector] public State currentState;
     [HideInInspector] public Rigidbody2D rigidBody;
     [HideInInspector] public InputSystemController inputSystemController;
-    [HideInInspector] public PlayerAnimationController animationController;
+    [HideInInspector] public Animator animator;
     [HideInInspector] public bool isOnGround;
     [HideInInspector] public int facing;
     [HideInInspector] public Vector3 originalScale;
@@ -48,19 +48,19 @@ public class StateController : MonoBehaviour
     private void OnEnable()
     {
         InputSystemController.OnAttack += OnAttackInputSystem;
-        PlayerAnimationController.OnAnimationEnd += OnAnimationEnd;
+        AnimationController.OnAnimationEnd += OnAnimationEnd;
     }
     private void OnDisable()
     {
         InputSystemController.OnAttack -= OnAttackInputSystem;
-        PlayerAnimationController.OnAnimationEnd -= OnAnimationEnd;
+        AnimationController.OnAnimationEnd -= OnAnimationEnd;
     }
 
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         inputSystemController = GetComponent<InputSystemController>();
-        animationController = GetComponent<PlayerAnimationController>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()

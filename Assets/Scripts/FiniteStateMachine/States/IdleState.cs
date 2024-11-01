@@ -10,6 +10,6 @@ public class IdleState : GroundState
                 0,
                 input.rigidBody.velocity.y);
 
-        input.animationController.PlayIdleAnimation();
+        input.animator.Play("Idle");
     }
 }

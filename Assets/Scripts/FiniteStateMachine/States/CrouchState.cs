@@ -11,6 +11,6 @@ public class CrouchState : GroundState
                 0,
                 input.rigidBody.velocity.y);
 
-        input.animationController.PlayCrouchAnimation();
+        input.animator.Play("Crouch");
     }
 }
