@@ -90,6 +90,7 @@ public class PlayerState : MonoBehaviour
 
     private void OnGUI()
     {
+        GUI.color = Color.red;
         GUI.Label(new Rect(10, 10, 200, 20), "IsIdling: " + isIdling);
         GUI.Label(new Rect(10, 30, 200, 20), "IsWalking: " + isWalking);
         GUI.Label(new Rect(10, 50, 200, 20), "IsRunning: " + isRunning);

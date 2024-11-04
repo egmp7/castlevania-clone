@@ -54,12 +54,10 @@ public class StateController : MonoBehaviour
     private void OnEnable()
     {
         InputSystemController.OnAttack += OnAttackInputSystem;
-        AnimationController.OnAnimationEnd += OnAnimationEnd;
     }
     private void OnDisable()
     {
         InputSystemController.OnAttack -= OnAttackInputSystem;
-        AnimationController.OnAnimationEnd -= OnAnimationEnd;
     }
 
     private void Awake()

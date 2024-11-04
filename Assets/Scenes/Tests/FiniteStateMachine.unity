@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 241922029}
   - component: {fileID: 241922040}
   - component: {fileID: 241922044}
-  - component: {fileID: 241922043}
   - component: {fileID: 241922041}
   - component: {fileID: 241922042}
   m_Layer: 3
@@ -239,6 +238,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 808684930}
+  - {fileID: 1903370988}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &241922040
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 0}
   inputSystemController: {fileID: 0}
-  animationController: {fileID: 0}
+  animator: {fileID: 0}
   isOnGround: 0
   facing: 0
   originalScale: {x: 0, y: 0, z: 0}
@@ -314,6 +314,13 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  EnemyDetectorPosition: {fileID: 1903370988}
+  EnemyDetectorRadius: 0.25
+  comboResetTime: 1
+  maxCombo: 3
 --- !u!114 &241922042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,18 +337,6 @@ MonoBehaviour:
   isDoubleTap: 0
   IdleRatio: 0.33
   doubleTapThreshold: 0.3
---- !u!114 &241922043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241922028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 810fcef301af79841bef2533ebe4d00d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &241922044
 Animator:
   serializedVersion: 5
@@ -1050,6 +1045,37 @@ Transform:
   - {fileID: 501685906}
   - {fileID: 1911546549}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1903370987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1903370988}
+  m_Layer: 3
+  m_Name: EnemyDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1903370988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903370987}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0.87, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 241922033}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1911546548
 GameObject:
