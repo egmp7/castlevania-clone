@@ -45,6 +45,12 @@ public class StateController : MonoBehaviour
     [Tooltip("Radius of the Overlap Circle Attack")]
     [SerializeField][Range(0.01f, 1f)] float EnemyDetectorRadius = 0.25f;
 
+    [Header("Combo Settings")]
+    public float comboResetTime = 1.0f;  // Time to reset the combo if no new attack is made
+    public int maxCombo = 3;             // Number of attack stages in the combo
+    private int currentCombo = 0;
+    private float lastAttackTime;
+
     private void OnEnable()
     {
         InputSystemController.OnAttack += OnAttackInputSystem;
@@ -74,6 +80,14 @@ public class StateController : MonoBehaviour
         CheckGroundStatus();
         CheckFacing();
         SelectState();
+
+        // Check if combo should be reset
+        if (Time.time - lastAttackTime > comboResetTime)
+        {
+            currentCombo = 0;
+        }
+
+
         currentState?.OnStateUpdate();
     }
 
@@ -192,6 +206,22 @@ public class StateController : MonoBehaviour
 
     public void OnAttackAnimation()
     {
+
+        // Update the time of the last attack
+        lastAttackTime = Time.time;
+
+        // Cycle through the combo stages
+        currentCombo++;
+
+        if (currentCombo > maxCombo)
+        {
+            currentCombo = 1; // Start from the first attack after finishing the combo
+        }
+
+        Debug.Log("Current Combo: " + currentCombo);
+        
+        
+        
         Collider2D hit = Physics2D.OverlapCircle(
             EnemyDetectorPosition.position,
             EnemyDetectorRadius,
