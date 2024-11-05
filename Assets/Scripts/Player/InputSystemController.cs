@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class InputSystemController : MonoBehaviour
 {
     public static event Action OnAttack;
+    public static event Action OnKick;
 
     // states
     [HideInInspector]
@@ -35,16 +36,19 @@ public class InputSystemController : MonoBehaviour
     private readonly Stack<MoveState> stateStack = new();
     private InputAction moveAction;
     private InputAction attackAction;
+    private InputAction kickAction;
     private Vector2 moveInput;
     private bool isTapCheck;
     private float lastTapTime;
 
     private bool isAttackPressed;
+    private bool isKickPressed;
 
     private void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
         attackAction = InputSystem.actions.FindAction("Attack");
+        kickAction = InputSystem.actions.FindAction("Kick");
     }
 
     private void Start()
@@ -58,22 +62,22 @@ public class InputSystemController : MonoBehaviour
         HandleInput();
         CheckDoubleTap();
         UpdateState();
-        CheckAttackEvent();
+        CheckActionEvent(attackAction, ref isAttackPressed, OnAttack);
+        CheckActionEvent(kickAction, ref isKickPressed, OnKick);
     }
 
-    private void CheckAttackEvent()
+    private void CheckActionEvent(InputAction action, ref bool isPressed, Action onEvent)
     {
-        if (attackAction.IsPressed() && !isAttackPressed)
+        if (action.IsPressed() && !isPressed)
         {
-            isAttackPressed = true;
-            OnAttack?.Invoke();
+            isPressed = true;
+            onEvent?.Invoke();
         }
-        else if (!attackAction.IsPressed())
+        else if (!action.IsPressed())
         {
-            isAttackPressed = false;
+            isPressed = false;
         }
     }
-
 
     public void ChangeState(MoveState newState)
     {

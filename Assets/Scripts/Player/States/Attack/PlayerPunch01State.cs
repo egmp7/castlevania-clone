@@ -1,4 +1,4 @@
-public class AttackState : State
+public class PlayerPunch01State : AttackState
 {
     protected override void OnEnter()
     {

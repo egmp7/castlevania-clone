@@ -84,7 +84,7 @@ public class PlayerAnimation : MonoBehaviour
         // Check if the animation has ended based on normalizedTime
         if (stateInfo.normalizedTime >= 1.0f && !animationEnded)
         {
-            OnAnimationEnd(stateInfo); // Trigger callback when animation ends
+            OnAnimationEndLegacy(stateInfo); // Trigger callback when animation ends
             animationEnded = true;
         }
 
@@ -105,7 +105,7 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
-    private void OnAnimationEnd(AnimatorStateInfo stateInfo)
+    private void OnAnimationEndLegacy(AnimatorStateInfo stateInfo)
     {
         string ledgeClimbAnimation = animationClips[AnimationState.LedgeClimb];
 
