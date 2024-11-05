@@ -1,41 +1,44 @@
-public abstract class State
+namespace Player.StateManagement
 {
-    protected StateController input;
-
-    public void OnStateEnter(StateController stateController)
+    public abstract class State
     {
-        input = stateController;
-        OnEnter();
-    }
+        protected StateController input;
 
-    protected virtual void OnEnter()
-    {
-    }
+        public void OnStateEnter(StateController stateController)
+        {
+            input = stateController;
+            OnEnter();
+        }
 
-    public void OnStateUpdate()
-    {
-        OnUpdate();
-    }
+        protected virtual void OnEnter()
+        {
+        }
 
-    protected virtual void OnUpdate()
-    {
-    }
+        public void OnStateUpdate()
+        {
+            OnUpdate();
+        }
 
-    public void OnStateFixedUpdate()
-    {
-        OnFixedUpdate();
-    }
+        protected virtual void OnUpdate()
+        {
+        }
 
-    protected virtual void OnFixedUpdate()
-    {
-    }
+        public void OnStateFixedUpdate()
+        {
+            OnFixedUpdate();
+        }
 
-    public void OnStateExit()
-    {
-        OnExit();
-    }
+        protected virtual void OnFixedUpdate()
+        {
+        }
 
-    protected virtual void OnExit()
-    {
+        public void OnStateExit()
+        {
+            OnExit();
+        }
+
+        protected virtual void OnExit()
+        {
+        }
     }
 }

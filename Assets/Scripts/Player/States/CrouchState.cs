@@ -1,16 +1,22 @@
 using UnityEngine;
 
-public class CrouchState : GroundState
+namespace Player.StateManagement
 {
-    protected override void OnEnter()
+
+    public class CrouchState : GroundState
     {
-        base.OnEnter();
+        protected override void OnEnter()
+        {
+            base.OnEnter();
 
-        input.rigidBody.velocity =
-            new Vector2(
-                0,
-                input.rigidBody.velocity.y);
-
-        input.animator.Play("Crouch");
+            #region Stop Moving
+            input.rigidBody.velocity =
+                new Vector2(
+                    0,
+                    input.rigidBody.velocity.y);
+            #endregion
+            input.animator.Play("Crouch");
+        }
     }
 }
+

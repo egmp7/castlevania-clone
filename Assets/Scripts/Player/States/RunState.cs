@@ -1,23 +1,30 @@
 using UnityEngine;
 
-public class RunState : GroundState
+namespace Player.StateManagement
 {
-    protected override void OnFixedUpdate()
+
+    public class RunState : GroundState
     {
-        base.OnFixedUpdate();
+        protected override void OnFixedUpdate()
+        {
+            base.OnFixedUpdate();
 
-        // Lerp for smooth acceleration
-        float currentSpeed = Mathf.Lerp(
-            input.rigidBody.velocity.x,
-            input.facing * input.runSpeed,
-            input.accelerationRate * Time.fixedDeltaTime);
+            #region Move Player Logic
+            // Lerp for smooth acceleration
+            float currentSpeed = Mathf.Lerp(
+                input.rigidBody.velocity.x,
+                input.facing * input.runSpeed,
+                input.accelerationRate * Time.fixedDeltaTime);
 
-        // Preserve the vertical velocity and update horizontal speed
-        input.rigidBody.velocity =
-            new Vector2(
-                currentSpeed,
-                input.rigidBody.velocity.y);
+            // Preserve the vertical velocity and update horizontal speed
+            input.rigidBody.velocity =
+                new Vector2(
+                    currentSpeed,
+                    input.rigidBody.velocity.y);
+            #endregion
 
-        input.animator.Play("Run");
+            input.animator.Play("Run");
+        }
     }
+
 }

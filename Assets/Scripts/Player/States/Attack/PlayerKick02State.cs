@@ -1,8 +1,12 @@
-public class PlayerKick02State : AttackState
+namespace Player.StateManagement
 {
-    protected override void OnEnter()
+
+    public class PlayerKick02State : AttackState
     {
-        base.OnEnter();
-        input.animator.Play("Kick02");
+        protected override void OnEnter()
+        {
+            base.OnEnter();
+            input.animator.Play("Kick02");
+        }
     }
 }

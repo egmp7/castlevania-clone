@@ -1,8 +1,12 @@
-public class FallState : AirState
+namespace Player.StateManagement
 {
-    protected override void OnEnter()
+
+    public class FallState : AirState
     {
-        base.OnEnter();
-        input.animator.Play("Fall");
+        protected override void OnEnter()
+        {
+            base.OnEnter();
+            input.animator.Play("Fall");
+        }
     }
 }

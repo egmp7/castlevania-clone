@@ -1,17 +1,23 @@
 
 using UnityEngine;
 
-public class JumpState : AirState
+namespace Player.StateManagement
 {
-    protected override void OnEnter()
-    {
-        base.OnEnter();
-        // jump
-        input.rigidBody.velocity =
-            new Vector2(
-                input.rigidBody.velocity.x,
-                input.jumpForce);
 
-        input.animator.Play("Jump");
+    public class JumpState : AirState
+    {
+        protected override void OnEnter()
+        {
+            base.OnEnter();
+            #region Jump Logic
+            // jump
+            input.rigidBody.velocity =
+                new Vector2(
+                    input.rigidBody.velocity.x,
+                    input.jumpForce);
+
+            #endregion
+            input.animator.Play("Jump");
+        }
     }
 }

@@ -1,3 +1,7 @@
-public class AirState : State
+namespace Player.StateManagement
 {
+
+    public class AirState : State
+    {
+    }
 }
