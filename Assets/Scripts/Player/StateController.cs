@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(InputSystemController))]
@@ -270,7 +269,16 @@ public class StateController : MonoBehaviour
 
         if (hit != null)
         {
-            Debug.Log("Enemy Touched");
+            
+            if (hit.TryGetComponent<EnemyHP>(out var enemyHP))
+            {
+                enemyHP.TakeDamage(30f);
+                Debug.Log("Enemy Touched");
+            }
+            else
+            {
+                Debug.LogError("No EnemyHP component found on hit object!");
+            }
         }
     }
 
