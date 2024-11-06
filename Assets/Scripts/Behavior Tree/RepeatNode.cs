@@ -1,19 +1,23 @@
-public class RepeatNode : DecoratorNode
+namespace AI.BehaviorTree
 {
-    #region Overrides of Node
 
-    /// <inheritdoc />
-    protected override void OnStart() { }
-
-    /// <inheritdoc />
-    protected override void OnStop() { }
-
-    /// <inheritdoc />
-    protected override State OnUpdate()
+    public class RepeatNode : DecoratorNode
     {
-        child.Update();
-        return State.Running;
-    }
+        #region Overrides of Node
 
-    #endregion
+        /// <inheritdoc />
+        protected override void OnStart() { }
+
+        /// <inheritdoc />
+        protected override void OnStop() { }
+
+        /// <inheritdoc />
+        protected override State OnUpdate()
+        {
+            child.Update();
+            return State.Running;
+        }
+
+        #endregion
+    }
 }

@@ -1,43 +1,48 @@
 using UnityEngine;
 
-public class SequencerNode : CompositeNode
+namespace AI.BehaviorTree
 {
-    private int m_current;
 
-    #region Overrides of Node
-
-    /// <inheritdoc />
-    protected override void OnStart()
+    public class SequencerNode : CompositeNode
     {
-        m_current = 0;
-    }
+        private int m_current;
 
-    /// <inheritdoc />
-    protected override void OnStop() { }
+        #region Overrides of Node
 
-    /// <inheritdoc />
-    protected override State OnUpdate() {
-        if (children == null && children.Count < 1)
+        /// <inheritdoc />
+        protected override void OnStart()
         {
-            Debug.LogWarning("Sequencer Node has no children.");
-            return State.Failure;
+            m_current = 0;
         }
 
-        switch (children[m_current]!.Update())
+        /// <inheritdoc />
+        protected override void OnStop() { }
+
+        /// <inheritdoc />
+        protected override State OnUpdate()
         {
-            case State.Running:
-                return State.Running;
-            case State.Success:
-                m_current++;
-                break;
-            case State.Failure:
+            if (children == null && children.Count < 1)
+            {
+                Debug.LogWarning("Sequencer Node has no children.");
                 return State.Failure;
-            default:
-                return State.Failure;
+            }
+
+            switch (children[m_current]!.Update())
+            {
+                case State.Running:
+                    return State.Running;
+                case State.Success:
+                    m_current++;
+                    break;
+                case State.Failure:
+                    return State.Failure;
+                default:
+                    return State.Failure;
+            }
+
+            return m_current == children.Count ? State.Success : State.Running;
         }
 
-        return m_current == children.Count ? State.Success : State.Running;
+        #endregion
     }
-
-    #endregion
 }

@@ -1,40 +1,43 @@
-using UnityEngine;
-
-public abstract class Node : ScriptableObject
+namespace AI.BehaviorTree
 {
-    public enum State
+
+    public abstract class Node
     {
-        Running,
-        Success,
-        Failure
-    }
-
-    [SerializeField] State state = State.Running;
-    [SerializeField] private bool started;
-
-    protected abstract void OnStart();
-    protected abstract void OnStop();
-    protected abstract State OnUpdate();
-
-    public State Update()
-    {
-        // if the node has not started Start the Node.
-        if (!started)
+        public enum State
         {
-            OnStart();
-            started = true;
+            Running,
+            Success,
+            Failure
         }
 
-        // set the state and run the nodes child update logic
-        state = OnUpdate();
+        protected State state = State.Running;
 
-        if (state == State.Failure || state == State.Success)
+        protected abstract void OnStart();
+        protected abstract void OnStop();
+        protected abstract State OnUpdate();
+
+        private bool started;
+
+        public State Update()
         {
-            OnStop();
-            started = false;
+            // if the node has not started Start the Node.
+            if (!started)
+            {
+                OnStart();
+                started = true;
+            }
+
+            // set the state and run the nodes child update logic
+            state = OnUpdate();
+
+            if (state == State.Failure || state == State.Success)
+            {
+                OnStop();
+                started = false;
+            }
+
+            return state;
         }
 
-        return state;
     }
-
 }
