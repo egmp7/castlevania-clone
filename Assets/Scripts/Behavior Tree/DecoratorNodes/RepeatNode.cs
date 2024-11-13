@@ -1,6 +1,5 @@
-namespace AI.BehaviorTree
+namespace AI.BehaviorTree.Nodes
 {
-
     public class RepeatNode : DecoratorNode
     {
         #region Overrides of Node

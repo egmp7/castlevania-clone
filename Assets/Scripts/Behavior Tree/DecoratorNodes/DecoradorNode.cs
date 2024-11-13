@@ -1,4 +1,4 @@
-namespace AI.BehaviorTree
+namespace AI.BehaviorTree.Nodes
 {
     public abstract class DecoratorNode : Node
     {

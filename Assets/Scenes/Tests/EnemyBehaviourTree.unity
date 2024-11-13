@@ -549,7 +549,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 873025e73a0163149871c196b9fec5ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActiveZone: 0
 --- !u!1 &834240139
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,7 +693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366b508b7b140624cae9cb26902d7301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackZoneSensor: {fileID: 560954225}
+  ColliderSensor: {fileID: 560954225}
 --- !u!1 &953098222
 GameObject:
   m_ObjectHideFlags: 0

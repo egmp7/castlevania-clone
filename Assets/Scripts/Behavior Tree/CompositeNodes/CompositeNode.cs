@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace AI.BehaviorTree
+namespace AI.BehaviorTree.Nodes
 {
 
     public abstract class CompositeNode : Node

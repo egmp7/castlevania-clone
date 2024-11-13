@@ -1,11 +1,10 @@
 using UnityEngine;
 
-namespace AI.BehaviorTree
+namespace AI.BehaviorTree.Nodes
 {
 
     public class DebugLogNode : ActionNode
     {
-        public DebugLogNode(BehaviorTreeRunner input) : base(input) { }
         public string message;
 
         #region Overrides of Node

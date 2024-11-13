@@ -1,12 +1,10 @@
 using UnityEngine;
 
-namespace AI.BehaviorTree
+namespace AI.BehaviorTree.Nodes
 {
 
     public class IsPlayerInRange : ActionNode
     {
-
-        public IsPlayerInRange(BehaviorTreeRunner input) : base(input) { }
 
         protected override void OnStart()
         {
@@ -19,7 +17,7 @@ namespace AI.BehaviorTree
 
         protected override State OnUpdate()
         {
-            if (input.AttackZoneSensor.ActiveZone)
+            if (true)
             {
                 return State.Success;
 

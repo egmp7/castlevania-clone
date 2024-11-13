@@ -1,6 +1,7 @@
-namespace AI.BehaviorTree
-{
+using AI.BehaviorTree.Runners;
 
+namespace AI.BehaviorTree.Nodes
+{
     public abstract class Node
     {
         public enum State
@@ -11,12 +12,17 @@ namespace AI.BehaviorTree
         }
 
         protected State state = State.Running;
+        protected Runner runner;
+        private bool started;
 
         protected abstract void OnStart();
         protected abstract void OnStop();
         protected abstract State OnUpdate();
 
-        private bool started;
+        public void SetUp(Runner input)
+        {
+            runner = input;
+        }
 
         public State Update()
         {

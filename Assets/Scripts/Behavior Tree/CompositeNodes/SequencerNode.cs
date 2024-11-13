@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AI.BehaviorTree
+namespace AI.BehaviorTree.Nodes
 {
 
     public class SequencerNode : CompositeNode

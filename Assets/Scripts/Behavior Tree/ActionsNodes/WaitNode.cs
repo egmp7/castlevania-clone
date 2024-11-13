@@ -1,12 +1,10 @@
 using UnityEngine;
 
-namespace AI.BehaviorTree
+namespace AI.BehaviorTree.Nodes
 {
 
     public class WaitNode : ActionNode
     {
-        public WaitNode(BehaviorTreeRunner input): base(input) { }
-
         public float duration = 1f;
 
         private float m_startTime;
