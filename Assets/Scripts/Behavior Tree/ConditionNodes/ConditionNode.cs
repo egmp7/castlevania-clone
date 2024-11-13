@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace AI.BehaviorTree.Nodes
 {
@@ -20,7 +19,6 @@ namespace AI.BehaviorTree.Nodes
         protected override State OnUpdate()
         {
             // Check the condition
-            Debug.Log(_condition());
             return _condition() ? State.Success : State.Failure;
         }
     }
