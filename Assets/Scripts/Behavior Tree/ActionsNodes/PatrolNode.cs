@@ -15,7 +15,7 @@ namespace AI.BehaviorTree.Nodes
 
         protected override State OnUpdate()
         {
-            Debug.Log("Patrol Node");
+            runner.Animator.Play("Walk");
             return State.Success;
         }
         #endregion

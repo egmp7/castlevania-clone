@@ -1,7 +1,7 @@
 namespace AI.BehaviorTree.Nodes
 {
 
-    public class AttackNode : ActionNode
+    public class MoveNode : ActionNode
     {
         #region Overrides of Node
         protected override void OnStart()
@@ -14,7 +14,7 @@ namespace AI.BehaviorTree.Nodes
 
         protected override State OnUpdate()
         {
-            runner.Animator.Play("Punch01");
+            runner.Animator.Play("Run");
             return State.Success;
         }
         #endregion

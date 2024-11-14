@@ -7,29 +7,45 @@ namespace AI.BehaviorTree.Runners
 
     public class EnemyRunner : Runner
     {
-        [SerializeField] ColliderSensor ColliderSensor;
+        [SerializeField] ColliderSensor PursueSensor;
+        [SerializeField] ColliderSensor AttackSensor;
 
         private readonly BehaviorTree behaviorTree = new();
 
         private void Start()
         {
-            ConditionNode conditionNode = new(ColliderSensor.GetActiveZone);
+            ConditionNode isPlayerOnPursueZone = new(PursueSensor.GetActiveZone);
+            ConditionNode isPlayerOnAttackZone = new(AttackSensor.GetActiveZone);
             AttackNode attackNode = new();
             PatrolNode patrolNode = new();
+            MoveNode moveNode = new();
 
-            SequencerNode sequencerNode = new();
-            SelectorNode selectorNode = new();
+            SequencerNode sequencerNode00 = new();
+            SequencerNode sequencerNode01 = new();
+
+            SelectorNode selectorNode00 = new();
+            SelectorNode selectorNode01 = new();
             RepeatNode repeatNode = new();
 
-            sequencerNode.children.Add(conditionNode);
-            sequencerNode.children.Add(attackNode);
+            sequencerNode00.children.Add(isPlayerOnAttackZone);
+            sequencerNode00.children.Add(attackNode);
+            sequencerNode01.children.Add(isPlayerOnPursueZone);
+            sequencerNode01.children.Add(moveNode);
 
-            selectorNode.children.Add(sequencerNode);
-            selectorNode.children.Add(patrolNode);
+            selectorNode00.children.Add(selectorNode01);
+            selectorNode00.children.Add(patrolNode);
 
-            repeatNode.child = selectorNode;
+            selectorNode01.children.Add(sequencerNode00);
+            selectorNode01.children.Add(sequencerNode01);
+
+            repeatNode.child = selectorNode00;
 
             behaviorTree.rootNode = repeatNode;
+
+            // Set Up
+            patrolNode.SetUp(this);
+            attackNode.SetUp(this);
+            moveNode.SetUp(this);
         }
 
         void Update()
