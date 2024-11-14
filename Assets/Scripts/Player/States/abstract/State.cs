@@ -40,5 +40,14 @@ namespace Player.StateManagement
         protected virtual void OnExit()
         {
         }
+
+        public void OnStateAttack()
+        {
+            OnAttack();
+        }
+
+        protected virtual void OnAttack()
+        {
+        }
     }
 }

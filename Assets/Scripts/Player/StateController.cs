@@ -24,16 +24,8 @@ namespace Player.StateManagement
         private readonly WalkState walkState = new();
         private readonly RunState runState = new();
         private readonly CrouchState crouchState = new();
-        private readonly PlayerPunch01State playerPunch01State = new();
-        private readonly PlayerPunch02State playerPunch02State = new();
-        private readonly PlayerPunch03State playerPunch03State = new();
-        private readonly PlayerKick01State playerKick01State = new();
-        private readonly PlayerKick02State playerKick02State = new();
-        private readonly PlayerKick03State playerKick03State = new();
-
-        // decorators 
-        private readonly DelayComboDecorator delayPunchDecorator = new(new Punch(), 230);
-        private readonly DelayComboDecorator delayKickDecorator = new(new Kick(), 450);
+        private readonly PunchState punchState = new();
+        private readonly KickState kickState = new();
 
         private State currentState;
         private bool isOnGround;
@@ -59,6 +51,10 @@ namespace Player.StateManagement
         [SerializeField] Transform EnemyDetectorPosition;
         [Tooltip("Radius of the Overlap Circle Attack")]
         [SerializeField][Range(0.01f, 1f)] float EnemyDetectorRadius = 0.25f;
+        [Tooltip("Reset time of the punch combo")]
+        [Range(0.0f, 2f)] public float PunchComboResetTime = 1f;
+        [Tooltip("Reset time of the punch combo")]
+        [Range(0.0f, 2f)] public float KickComboResetTime = 0.8f;
 
         private void OnEnable()
         {
@@ -80,8 +76,6 @@ namespace Player.StateManagement
 
         private void Start()
         {
-            delayPunchDecorator.SetUp(3, 1f);
-            delayKickDecorator.SetUp(3, 0.8f);
             ChangeState(idleState);
             originalScale = transform.localScale;
         }
@@ -91,9 +85,6 @@ namespace Player.StateManagement
             CheckGroundStatus();
             CheckFacing();
             SelectState();
-
-            delayPunchDecorator.Update();
-            delayKickDecorator.Update();
 
             currentState?.OnStateUpdate();
         }
@@ -201,34 +192,14 @@ namespace Player.StateManagement
 
         public void OnPunch()
         {
-            if (!isOnGround) return;
-
-            delayKickDecorator.ResetComboState();
-
-            delayPunchDecorator.Use();
-
-            delayPunchDecorator.InvokeComboState(new Action[]
-            {
-                () => ChangeState(playerPunch01State),
-                () => ChangeState(playerPunch02State),
-                () => ChangeState(playerPunch03State),
-            });
+            ChangeState(punchState);
+            punchState.OnStateAttack();
         }
 
         public void OnKick()
         {
-            if (!isOnGround) return;
-
-            delayPunchDecorator.ResetComboState();
-
-            delayKickDecorator.Use();
-
-            delayKickDecorator.InvokeComboState(new Action[]
-            {
-                () => ChangeState(playerKick01State),
-                () => ChangeState(playerKick02State),
-                () => ChangeState(playerKick03State),
-            });
+            ChangeState(kickState);
+            kickState.OnStateAttack();
         }
 
         public void OnAnimationEnd()

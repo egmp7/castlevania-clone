@@ -5,6 +5,7 @@ namespace Player.StateManagement
 
     public abstract class AttackState : State
     {
+
         protected override void OnEnter()
         {
             base.OnEnter();
