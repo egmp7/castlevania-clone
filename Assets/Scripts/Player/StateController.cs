@@ -9,28 +9,26 @@ namespace Player.StateManagement
 
     public class StateController : MonoBehaviour
     {
-        [HideInInspector] public State currentState;
         [HideInInspector] public Rigidbody2D rigidBody;
         [HideInInspector] public InputSystemController inputSystemController;
         [HideInInspector] public Animator animator;
-        [HideInInspector] public bool isOnGround;
+
+        // Ground Class 
         [HideInInspector] public int facing;
         [HideInInspector] public Vector3 originalScale;
 
         // states
-        [HideInInspector] public IdleState idleState = new();
-        [HideInInspector] public FallState fallState = new();
-        [HideInInspector] public JumpState jumpState = new();
-        [HideInInspector] public WalkState walkState = new();
-        [HideInInspector] public RunState runState = new();
-        [HideInInspector] public CrouchState crouchState = new();
-        [HideInInspector] public PlayerPunch01State playerPunch01State = new();
-        [HideInInspector] public PlayerPunch02State playerPunch02State = new();
-        [HideInInspector] public PlayerPunch03State playerPunch03State = new();
-        [HideInInspector] public PlayerKick01State playerKick01State = new();
-        [HideInInspector] public PlayerKick02State playerKick02State = new();
-        [HideInInspector] public PlayerKick03State playerKick03State = new();
+        private readonly IdleState idleState = new();
+        private readonly FallState fallState = new();
+        private readonly JumpState jumpState = new();
+        private readonly WalkState walkState = new();
+        private readonly RunState runState = new();
+        private readonly CrouchState crouchState = new();
+        private readonly PunchState punchState = new();
+        private readonly KickState kickState = new();
 
+        private State currentState;
+        private bool isOnGround;
 
         [Header("X Movement")]
         [Range(1.0f, 50.0f)] public float walkSpeed = 10.0f;
@@ -53,25 +51,20 @@ namespace Player.StateManagement
         [SerializeField] Transform EnemyDetectorPosition;
         [Tooltip("Radius of the Overlap Circle Attack")]
         [SerializeField][Range(0.01f, 1f)] float EnemyDetectorRadius = 0.25f;
-
-        [Header("Combo Settings")]
-        public float comboResetTime = 1.0f;  // Time to reset the combo if no new attack is made
-        private int maxPunchCombo = 3;             // Number of attack stages in the combo
-        private int punchCurrentCombo = 0;
-        private int maxKickCombo = 3;             // Number of attack stages in the combo
-        private int kickCurrentCombo = 0;
-        private float lastPunchAttackTime;
-        private float lastKickAttackTime;
+        [Tooltip("Reset time of the punch combo")]
+        [Range(0.0f, 2f)] public float PunchComboResetTime = 1f;
+        [Tooltip("Reset time of the punch combo")]
+        [Range(0.0f, 2f)] public float KickComboResetTime = 0.8f;
 
         private void OnEnable()
         {
-            InputSystemController.OnAttack += OnAttack1InputSystem;
-            InputSystemController.OnKick += OnAttack2InputSystem;
+            InputSystemController.OnAttack += OnPunch;
+            InputSystemController.OnKick += OnKick;
         }
         private void OnDisable()
         {
-            InputSystemController.OnAttack -= OnAttack1InputSystem;
-            InputSystemController.OnKick -= OnAttack2InputSystem;
+            InputSystemController.OnAttack -= OnPunch;
+            InputSystemController.OnKick -= OnKick;
         }
 
         private void Awake()
@@ -92,7 +85,6 @@ namespace Player.StateManagement
             CheckGroundStatus();
             CheckFacing();
             SelectState();
-            ResetComboValues();
 
             currentState?.OnStateUpdate();
         }
@@ -198,62 +190,16 @@ namespace Player.StateManagement
             }
         }
 
-        public void OnAttack1InputSystem()
+        public void OnPunch()
         {
-            if (!isOnGround) return;
-
-            kickCurrentCombo = 0;
-
-            ExecuteCombo(ref punchCurrentCombo, ref lastPunchAttackTime, maxPunchCombo, new Action[]
-            {
-        () => ChangeState(playerPunch01State),
-        () => ChangeState(playerPunch02State),
-        () => ChangeState(playerPunch03State),
-            });
+            ChangeState(punchState);
+            punchState.OnStateAttack();
         }
 
-        public void OnAttack2InputSystem()
+        public void OnKick()
         {
-            if (!isOnGround) return;
-
-            punchCurrentCombo = 0;
-
-            ExecuteCombo(ref kickCurrentCombo, ref lastKickAttackTime, maxKickCombo, new Action[]
-            {
-        () => ChangeState(playerKick01State),
-        () => ChangeState(playerKick02State),
-        () => ChangeState(playerKick03State),
-            });
-        }
-
-        private void ExecuteCombo(ref int currentCombo, ref float lastAttackTime, int maxPunchCombo, Action[] comboStates)
-        {
-            lastAttackTime = Time.time;
-
-            // Cycle through combo stages
-            currentCombo = (currentCombo % maxPunchCombo) + 1;
-
-            Debug.Log("Current Combo: " + currentCombo);
-
-            // Invoke the corresponding action for the current combo stage
-            if (currentCombo - 1 < comboStates.Length)
-            {
-                comboStates[currentCombo - 1].Invoke();
-            }
-        }
-
-        private void ResetComboValues()
-        {
-            // Check if combo should be reset
-            if (Time.time - lastPunchAttackTime > comboResetTime)
-            {
-                punchCurrentCombo = 0;
-            }
-
-            if (Time.time - lastKickAttackTime > comboResetTime)
-            {
-                kickCurrentCombo = 0;
-            }
+            ChangeState(kickState);
+            kickState.OnStateAttack();
         }
 
         public void OnAnimationEnd()
