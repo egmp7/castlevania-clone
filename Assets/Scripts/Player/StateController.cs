@@ -58,13 +58,13 @@ namespace Player.StateManagement
 
         private void OnEnable()
         {
-            InputSystemController.OnAttack += OnPunch;
-            InputSystemController.OnKick += OnKick;
+            //InputSystemController.OnAttack += OnPunch;
+            //InputSystemController.OnKick += OnKick;
         }
         private void OnDisable()
         {
-            InputSystemController.OnAttack -= OnPunch;
-            InputSystemController.OnKick -= OnKick;
+            //InputSystemController.OnAttack -= OnPunch;
+            //InputSystemController.OnKick -= OnKick;
         }
 
         private void Awake()
@@ -83,8 +83,8 @@ namespace Player.StateManagement
         void Update()
         {
             CheckGroundStatus();
-            CheckFacing();
-            SelectState();
+            //CheckFacing();
+            //SelectState();
 
             currentState?.OnStateUpdate();
         }
@@ -188,6 +188,49 @@ namespace Player.StateManagement
             {
                 facing = -1;
             }
+        }
+
+        public void Idle()
+        {
+            if (currentState is AttackState) return;
+            if (isOnGround) ChangeState(idleState);
+        }
+
+        public void Walk()
+        {
+            if (currentState is AttackState) return;
+            if (isOnGround) ChangeState (walkState);
+        }
+
+        public void Run()
+        {
+            if (currentState is AttackState) return;
+            if (isOnGround) ChangeState(runState);
+        }
+
+        public void Jump()
+        {
+            if (currentState is AttackState) return;
+            if (isOnGround) ChangeState(jumpState);
+        }
+
+        public void Crouch()
+        {
+            if (currentState is AttackState) return;
+            if (isOnGround) ChangeState(crouchState);
+        }
+
+
+        public void Punch()
+        {
+            ChangeState(punchState);
+            punchState.OnStateAttack();
+        }
+
+        public void Kick()
+        {
+            ChangeState(kickState);
+            kickState.OnStateAttack();
         }
 
         public void OnPunch()
