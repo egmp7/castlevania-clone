@@ -77,10 +77,10 @@ GameObject:
   - component: {fileID: 1785315661700040195}
   - component: {fileID: 5825634204490853735}
   - component: {fileID: 3159315971329301701}
-  - component: {fileID: 790658239687052951}
   - component: {fileID: 4644106432573471071}
   - component: {fileID: 2349106075103472806}
   - component: {fileID: 420662565828384351}
+  - component: {fileID: 7744158228921205127}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -275,9 +275,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 0}
-  inputSystemController: {fileID: 0}
   animator: {fileID: 0}
-  facing: 0
+  directionMapper: {fileID: 0}
   originalScale: {x: 0, y: 0, z: 0}
   walkSpeed: 10
   runSpeed: 20
@@ -296,22 +295,6 @@ MonoBehaviour:
   EnemyDetectorRadius: 0.38
   PunchComboResetTime: 1
   KickComboResetTime: 0.8
---- !u!114 &790658239687052951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8824323790894388638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8ba64a1c7b273845b94e28323594f87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentMoveState: 0
-  isDoubleTap: 0
-  IdleRatio: 0.33
-  doubleTapThreshold: 0.3
 --- !u!114 &4644106432573471071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,3 +331,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f188d0042aad843e3b27e4d992bc9a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7744158228921205127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824323790894388638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87902ce989ecba440b165d357a2c4cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleRatio: 0.33

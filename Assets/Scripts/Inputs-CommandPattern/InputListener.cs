@@ -4,28 +4,26 @@ using InputCommands.Move;
 
 namespace InputCommands
 {
+    [RequireComponent(typeof(DirectionMapper))]
     public class InputListener : MonoBehaviour
     {
         private CoupledCommand punch, kick;
         private ReusableCommand idle, walk, run, jump, crouch;
 
-        private InputAction moveAction, actionA, actionB;
+        private InputAction actionA, actionB;
 
         private DirectionMapper directionMapper;
-        private DirectionDetector directionDetector;
         private DoubleTapDetector doubleTapDetector;
 
         private void Awake()
         {
-            moveAction = InputSystem.actions.FindAction("Move");
             actionA = InputSystem.actions.FindAction("ActionA");
             actionB = InputSystem.actions.FindAction("ActionB");
         }
 
         void Start()
         {
-            directionMapper = new DirectionMapper();
-            directionDetector = new DirectionDetector();
+            directionMapper = GetComponent<DirectionMapper>();
             doubleTapDetector = new DoubleTapDetector();
 
             idle = new IdleCommand();
@@ -40,14 +38,11 @@ namespace InputCommands
 
         public ReusableCommand GetReusableCommands()
         {
-            Vector2 moveInput;
             DirectionMapper.State currentDMState;
             bool isDoubleTap;
 
-            moveInput = moveAction.ReadValue<Vector2>();
-            currentDMState = directionMapper.Update(moveInput);
+            currentDMState = directionMapper.GetState();
             isDoubleTap = doubleTapDetector.Update(currentDMState);
-            directionDetector.Update(currentDMState);
 
             if (currentDMState == DirectionMapper.State.Left ||
                 currentDMState == DirectionMapper.State.Right)
