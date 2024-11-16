@@ -1,20 +1,20 @@
+using InputCommands.Move;
 using System;
 using UnityEngine;
 
 namespace Player.StateManagement
 {
-    [RequireComponent(typeof(InputSystemController))]
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(DirectionMapper))]
 
     public class StateController : MonoBehaviour
     {
         [HideInInspector] public Rigidbody2D rigidBody;
-        [HideInInspector] public InputSystemController inputSystemController;
         [HideInInspector] public Animator animator;
 
         // Ground Class 
-        [HideInInspector] public int facing;
+        [HideInInspector] public DirectionMapper directionMapper;
         [HideInInspector] public Vector3 originalScale;
 
         // states
@@ -56,22 +56,11 @@ namespace Player.StateManagement
         [Tooltip("Reset time of the punch combo")]
         [Range(0.0f, 2f)] public float KickComboResetTime = 0.8f;
 
-        private void OnEnable()
-        {
-            InputSystemController.OnAttack += OnPunch;
-            InputSystemController.OnKick += OnKick;
-        }
-        private void OnDisable()
-        {
-            InputSystemController.OnAttack -= OnPunch;
-            InputSystemController.OnKick -= OnKick;
-        }
-
         private void Awake()
         {
             rigidBody = GetComponent<Rigidbody2D>();
-            inputSystemController = GetComponent<InputSystemController>();
             animator = GetComponent<Animator>();
+            directionMapper = GetComponent<DirectionMapper>();
         }
 
         private void Start()
@@ -83,9 +72,6 @@ namespace Player.StateManagement
         void Update()
         {
             CheckGroundStatus();
-            CheckFacing();
-            SelectState();
-
             currentState?.OnStateUpdate();
         }
 
@@ -110,57 +96,6 @@ namespace Player.StateManagement
             Debug.Log(currentState);
         }
 
-        private void SelectState()
-        {
-            InputSystemController.MoveState currentMoveState = inputSystemController.currentMoveState;
-
-            if (currentState is AttackState) return;
-
-            if (isOnGround)
-            {
-                if (
-                    currentMoveState == InputSystemController.MoveState.Left ||
-                    currentMoveState == InputSystemController.MoveState.Right)
-                {
-                    if (inputSystemController.isDoubleTap)
-                    {
-                        ChangeState(runState);
-                    }
-                    else
-                    {
-                        ChangeState(walkState);
-                    }
-                }
-
-                else if (
-                    currentMoveState == InputSystemController.MoveState.Up ||
-                    currentMoveState == InputSystemController.MoveState.UpLeft ||
-                    currentMoveState == InputSystemController.MoveState.UpRight)
-                {
-                    ChangeState(jumpState);
-                }
-                else if (
-                    currentMoveState == InputSystemController.MoveState.Down ||
-                     currentMoveState == InputSystemController.MoveState.DownLeft ||
-                      currentMoveState == InputSystemController.MoveState.DownRight
-                    )
-                {
-                    ChangeState(crouchState);
-                }
-                else
-                {
-                    ChangeState(idleState);
-                }
-            }
-            else // on air
-            {
-                if (rigidBody.velocity.y < 0)
-                {
-                    ChangeState(fallState);
-                }
-            }
-        }
-
         private void CheckGroundStatus()
         {
             RaycastHit2D hit = Physics2D.BoxCast(
@@ -174,33 +109,49 @@ namespace Player.StateManagement
             isOnGround = hit.collider != null;
         }
 
-        private void CheckFacing()
+        public void Idle()
         {
-            if (inputSystemController.currentMoveState == InputSystemController.MoveState.Right ||
-                inputSystemController.currentMoveState == InputSystemController.MoveState.UpRight ||
-                inputSystemController.currentMoveState == InputSystemController.MoveState.DownRight)
-            {
-                facing = 1;
-            }
-            if (inputSystemController.currentMoveState == InputSystemController.MoveState.Left ||
-                inputSystemController.currentMoveState == InputSystemController.MoveState.UpLeft ||
-                inputSystemController.currentMoveState == InputSystemController.MoveState.DownLeft)
-            {
-                facing = -1;
-            }
+            if (currentState is AttackState) return;
+            if (isOnGround) ChangeState(idleState);
         }
 
-        public void OnPunch()
+        public void Walk()
+        {
+            if (currentState is AttackState) return;
+            if (isOnGround) ChangeState (walkState);
+        }
+
+        public void Run()
+        {
+            if (currentState is AttackState) return;
+            if (isOnGround) ChangeState(runState);
+        }
+
+        public void Jump()
+        {
+            if (currentState is AttackState) return;
+            if (isOnGround) ChangeState(jumpState);
+        }
+
+        public void Crouch()
+        {
+            if (currentState is AttackState) return;
+            if (isOnGround) ChangeState(crouchState);
+        }
+
+
+        public void Punch()
         {
             ChangeState(punchState);
             punchState.OnStateAttack();
         }
 
-        public void OnKick()
+        public void Kick()
         {
             ChangeState(kickState);
             kickState.OnStateAttack();
         }
+
 
         public void OnAnimationEnd()
         {

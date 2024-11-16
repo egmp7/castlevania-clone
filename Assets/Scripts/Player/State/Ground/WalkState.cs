@@ -11,10 +11,12 @@ namespace Player.StateManagement
 
             #region Move Player Logic
             // Lerp for smooth acceleration
-            float currentSpeed = Mathf.Lerp(
+            float currentSpeed = Utilities.CalculateCurrentSpeed(
                 input.rigidBody.velocity.x,
-                input.facing * input.walkSpeed,
-                input.accelerationRate * Time.fixedDeltaTime);
+                input.directionMapper.GetDirection(),
+                input.walkSpeed,
+                input.accelerationRate
+                );
 
             // Preserve the vertical velocity and update horizontal speed
             input.rigidBody.velocity =

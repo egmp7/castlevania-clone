@@ -47,8 +47,8 @@ public class InputSystemController : MonoBehaviour
     private void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
-        attackAction = InputSystem.actions.FindAction("Attack");
-        kickAction = InputSystem.actions.FindAction("Kick");
+        attackAction = InputSystem.actions.FindAction("ActionA");
+        kickAction = InputSystem.actions.FindAction("ActionB");
     }
 
     private void Start()
