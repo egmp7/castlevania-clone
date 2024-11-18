@@ -10,9 +10,11 @@ namespace InputCommands
     public class InputListener : MonoBehaviour
     {
         [SerializeField] GroundSensor GroundSensor;
+        [SerializeField] FallSensor FallSensor;
 
-        private CoupledCommand punch, kick;
-        private ReusableCommand idle, walk, run, jump, crouch;
+        private ButtonCommand punch, kick;
+        private MoveCommand idle, walk, run, jump, crouch;
+        private SensorCommand fall;
 
         private InputAction actionA, actionB;
 
@@ -38,9 +40,11 @@ namespace InputCommands
 
             punch = new PunchCommand();
             kick = new KickCommand();
+
+            fall = new FallCommand();
         }
 
-        public ReusableCommand GetReusableCommands()
+        public MoveCommand GetMoveCommands()
         {
             if (!GroundSensor.GetState()) return null;
 
@@ -80,7 +84,7 @@ namespace InputCommands
                 return idle;
         }
 
-        public CoupledCommand GetCoupledCommands()
+        public ButtonCommand GetButtonCommands()
         {
             if (actionA.IsPressed())
             {
@@ -91,6 +95,13 @@ namespace InputCommands
             {
                 return kick;
             }
+
+            return null;
+        }
+
+        public SensorCommand GetSensorCommands()
+        {
+            if (FallSensor.GetState()) return fall;
 
             return null;
         }

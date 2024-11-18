@@ -8,12 +8,17 @@ namespace InputCommands
     public class Invoker : MonoBehaviour
     {
 
-        public void Execute(ReusableCommand command, StateMachine receiver)
+        public void Execute(MoveCommand command, StateMachine receiver)
         {
             command.Execute(receiver);
         }
 
-        public void Execute(CoupledCommand command, StateMachine receiver)
+        public void Execute(ButtonCommand command, StateMachine receiver)
+        {
+            command.Execute(receiver);
+        }
+
+        public void Execute(SensorCommand command, StateMachine receiver)
         {
             command.Execute(receiver);
         }

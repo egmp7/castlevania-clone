@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Sensors
 {
-    public class PlayerSensor : ColliderSensor
+    public class PlayerSensor : GameSensor
     {
         private void OnTriggerEnter2D(Collider2D collision)
         {

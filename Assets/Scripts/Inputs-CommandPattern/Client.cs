@@ -7,6 +7,7 @@ namespace InputCommands
     [RequireComponent(typeof(Invoker))]
     [RequireComponent(typeof(StateMachine))]
     public class Client : MonoBehaviour
+
     {
         private InputListener _inputListener;
         private Invoker _invoker;
@@ -21,18 +22,24 @@ namespace InputCommands
 
         void Update()
         {
-            var reusableCommand = _inputListener.GetReusableCommands();
+            var moveCommand = _inputListener.GetMoveCommands();
 
-            if (reusableCommand != null)
+            if (moveCommand != null)
             {
-                _invoker.Execute(reusableCommand, _stateMachine);
+                _invoker.Execute(moveCommand, _stateMachine);
             }
 
-            var coupledCommand = _inputListener.GetCoupledCommands();
+            var buttonCommand = _inputListener.GetButtonCommands();
 
-            if (coupledCommand != null)
+            if (buttonCommand != null)
             {
-                _invoker.Execute(coupledCommand, _stateMachine);
+                _invoker.Execute(buttonCommand, _stateMachine);
+            }
+
+            var sensorCommand = _inputListener.GetSensorCommands();
+            if (sensorCommand != null)
+            {
+                _invoker.Execute(sensorCommand, _stateMachine);
             }
         }
     }

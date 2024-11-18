@@ -3,12 +3,12 @@ using Player.StateManagement;
 namespace InputCommands
 {
 
-    public abstract class ReusableCommand
+    public abstract class MoveCommand
     {
         public abstract void Execute(StateMachine receiver);
     }
 
-    public class IdleCommand : ReusableCommand
+    public class IdleCommand : MoveCommand
     {
         public override void Execute(StateMachine receiver)
         {
@@ -16,7 +16,7 @@ namespace InputCommands
         }
     }
 
-    public class WalkCommand : ReusableCommand
+    public class WalkCommand : MoveCommand
     {
         public override void Execute(StateMachine receiver)
         {
@@ -24,7 +24,7 @@ namespace InputCommands
         }
     }
 
-    public class RunCommand : ReusableCommand
+    public class RunCommand : MoveCommand
     {
         public override void Execute(StateMachine receiver)
         {
@@ -32,7 +32,7 @@ namespace InputCommands
         }
     }
 
-    public class JumpCommand : ReusableCommand
+    public class JumpCommand : MoveCommand
     {
         public override void Execute(StateMachine receiver)
         {
@@ -40,7 +40,7 @@ namespace InputCommands
         }
     }
 
-    public class CrouchCommand : ReusableCommand
+    public class CrouchCommand : MoveCommand
     {
         public override void Execute(StateMachine receiver)
         {

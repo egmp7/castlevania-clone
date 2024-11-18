@@ -3,12 +3,12 @@ using Player.StateManagement;
 namespace InputCommands
 {
 
-    public abstract class CoupledCommand
+    public abstract class ButtonCommand
     {
         public abstract void Execute(StateMachine receiver);
     }
 
-    public class PunchCommand : CoupledCommand
+    public class PunchCommand : ButtonCommand
     {
         public override void Execute(StateMachine receiver)
         {
@@ -16,7 +16,7 @@ namespace InputCommands
         }
     }
 
-    public class KickCommand : CoupledCommand
+    public class KickCommand : ButtonCommand
     {
         public override void Execute(StateMachine receiver)
         {

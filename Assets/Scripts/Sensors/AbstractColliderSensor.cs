@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Sensors
 {
-    public abstract class ColliderSensor : MonoBehaviour
+    public abstract class GameSensor : MonoBehaviour
     {
         protected bool sensorState;
 

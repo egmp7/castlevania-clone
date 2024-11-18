@@ -144,7 +144,6 @@ namespace Player.StateManagement
 
         public void OnAnimationEnd()
         {
-            Debug.Log("OnAttackAnimationEnd");
             ChangeState(idleState);
         }
 
