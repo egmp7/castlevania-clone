@@ -1,7 +1,7 @@
-using UnityEngine;
-using UnityEngine.InputSystem;
-using InputCommands.Move;
 using Game.Sensors;
+using InputCommands.Buttons;
+using InputCommands.Move;
+using UnityEngine;
 
 namespace InputCommands
 {
@@ -16,32 +16,34 @@ namespace InputCommands
         private MoveCommand idle, walk, run, jump, crouch;
         private SensorCommand fall;
 
-        private InputAction actionA, actionB;
+        private Button buttonA, buttonB, buttonC;
 
         private DirectionMapper directionMapper;
         private DoubleTapDetector doubleTapDetector;
-
-        private void Awake()
-        {
-            actionA = InputSystem.actions.FindAction("ActionA");
-            actionB = InputSystem.actions.FindAction("ActionB");
-        }
 
         void Start()
         {
             directionMapper = GetComponent<DirectionMapper>();
             doubleTapDetector = new DoubleTapDetector();
 
+            // move commands
             idle = new IdleCommand();
             walk = new WalkCommand();
             run = new RunCommand();
             jump = new JumpCommand();
             crouch = new CrouchCommand();
 
+            // action commands
             punch = new PunchCommand();
             kick = new KickCommand();
 
+            // sensor commands
             fall = new FallCommand();
+
+            // buttons
+            buttonA = new ButtonA();
+            buttonB = new ButtonB();
+            buttonC = new ButtonC();
         }
 
         public MoveCommand GetMoveCommands()
@@ -86,14 +88,19 @@ namespace InputCommands
 
         public ButtonCommand GetButtonCommands()
         {
-            if (actionA.IsPressed())
+            if (buttonA.IsPressed())
             {
                 return punch;
             }
 
-            if (actionB.IsPressed())
+            if (buttonB.IsPressed())
             {
                 return kick;
+            }
+
+            if (buttonC.IsPressed())
+            {
+                return null;
             }
 
             return null;
