@@ -47,4 +47,12 @@ namespace InputCommands
             receiver.Crouch();
         }
     }
+
+    public class FlipDirectionCommand : MoveCommand
+    {
+        public override void Execute(StateMachine receiver)
+        {
+            receiver.FlipDirection();
+        }
+    }
 }

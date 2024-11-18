@@ -1,12 +1,9 @@
-using InputCommands.Move;
-using System;
 using UnityEngine;
 
 namespace Player.StateManagement
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(DirectionMapper))]
 
     public class StateMachine : MonoBehaviour
     {
@@ -22,11 +19,11 @@ namespace Player.StateManagement
         private readonly PunchState punchState = new();
         private readonly KickState kickState = new();
 
-        // Iputs
+        // Inputs
         [HideInInspector] public Rigidbody2D rigidBody;
         [HideInInspector] public Animator animator;
-        [HideInInspector] public DirectionMapper directionMapper;
         [HideInInspector] public Vector3 originalScale;
+        [HideInInspector] public int direction;
 
         [Header("X Movement")]
         [Range(1.0f, 50.0f)] public float walkSpeed = 10.0f;
@@ -58,11 +55,11 @@ namespace Player.StateManagement
         {
             rigidBody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
-            directionMapper = GetComponent<DirectionMapper>();
         }
 
         private void Start()
         {
+            direction = 1;
             ChangeState(idleState);
             originalScale = transform.localScale;
         }
@@ -140,6 +137,11 @@ namespace Player.StateManagement
         public void Fall()
         {
             ChangeState(fallState);
+        }
+
+        public void FlipDirection()
+        {
+            direction = -direction;
         }
 
         public void OnAnimationEnd()

@@ -13,7 +13,7 @@ namespace Player.StateManagement
 
             float currentSpeed = Utilities.CalculateCurrentSpeed(
                input.rigidBody.velocity.x,
-               input.directionMapper.GetDirection(),
+               input.direction,
                input.runSpeed,
                input.accelerationRate
                );

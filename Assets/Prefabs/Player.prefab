@@ -178,12 +178,10 @@ GameObject:
   - component: {fileID: 8477552267749551476}
   - component: {fileID: 2385294150529529009}
   - component: {fileID: 1785315661700040195}
-  - component: {fileID: 5825634204490853735}
   - component: {fileID: 3159315971329301701}
   - component: {fileID: 4644106432573471071}
   - component: {fileID: 2349106075103472806}
   - component: {fileID: 420662565828384351}
-  - component: {fileID: 7744158228921205127}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -354,18 +352,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5825634204490853735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8824323790894388638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 810fcef301af79841bef2533ebe4d00d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3159315971329301701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,8 +366,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 0}
   animator: {fileID: 0}
-  directionMapper: {fileID: 0}
   originalScale: {x: 0, y: 0, z: 0}
+  direction: 0
   walkSpeed: 10
   runSpeed: 20
   accelerationRate: 5
@@ -437,16 +423,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f188d0042aad843e3b27e4d992bc9a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7744158228921205127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8824323790894388638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87902ce989ecba440b165d357a2c4cee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  idleRatio: 0.33

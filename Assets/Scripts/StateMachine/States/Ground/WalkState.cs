@@ -13,7 +13,7 @@ namespace Player.StateManagement
             // Lerp for smooth acceleration
             float currentSpeed = Utilities.CalculateCurrentSpeed(
                 input.rigidBody.velocity.x,
-                input.directionMapper.GetDirection(),
+                input.direction,
                 input.walkSpeed,
                 input.accelerationRate
                 );
