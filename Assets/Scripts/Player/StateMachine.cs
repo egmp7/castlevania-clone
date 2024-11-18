@@ -8,16 +8,11 @@ namespace Player.StateManagement
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(DirectionMapper))]
 
-    public class StateController : MonoBehaviour
+    public class StateMachine : MonoBehaviour
     {
-        [HideInInspector] public Rigidbody2D rigidBody;
-        [HideInInspector] public Animator animator;
+        private State currentState;
 
-        // Ground Class 
-        [HideInInspector] public DirectionMapper directionMapper;
-        [HideInInspector] public Vector3 originalScale;
-
-        // states
+        // States
         private readonly IdleState idleState = new();
         private readonly FallState fallState = new();
         private readonly JumpState jumpState = new();
@@ -27,8 +22,11 @@ namespace Player.StateManagement
         private readonly PunchState punchState = new();
         private readonly KickState kickState = new();
 
-        private State currentState;
-        private bool isOnGround;
+        // Iputs
+        [HideInInspector] public Rigidbody2D rigidBody;
+        [HideInInspector] public Animator animator;
+        [HideInInspector] public DirectionMapper directionMapper;
+        [HideInInspector] public Vector3 originalScale;
 
         [Header("X Movement")]
         [Range(1.0f, 50.0f)] public float walkSpeed = 10.0f;
@@ -69,9 +67,8 @@ namespace Player.StateManagement
             originalScale = transform.localScale;
         }
 
-        void Update()
+        private void Update()
         {
-            CheckGroundStatus();
             currentState?.OnStateUpdate();
         }
 
@@ -82,6 +79,7 @@ namespace Player.StateManagement
 
         public void ChangeState(State newState)
         {
+            #region Change State Algo
             if (newState == null)
             {
                 Debug.LogError("New state cannot be null");
@@ -93,52 +91,39 @@ namespace Player.StateManagement
             currentState?.OnStateExit();
             currentState = newState;
             currentState.OnStateEnter(this);
+            #endregion
             Debug.Log(currentState);
-        }
-
-        private void CheckGroundStatus()
-        {
-            RaycastHit2D hit = Physics2D.BoxCast(
-                groundDetector.position,
-                groundDetectorSize,
-                0f,
-                Vector2.right,
-                0f,
-                groundLayer);
-
-            isOnGround = hit.collider != null;
         }
 
         public void Idle()
         {
             if (currentState is AttackState) return;
-            if (isOnGround) ChangeState(idleState);
+            ChangeState(idleState);
         }
 
         public void Walk()
         {
             if (currentState is AttackState) return;
-            if (isOnGround) ChangeState (walkState);
+            ChangeState (walkState);
         }
 
         public void Run()
         {
             if (currentState is AttackState) return;
-            if (isOnGround) ChangeState(runState);
+            ChangeState(runState);
         }
 
         public void Jump()
         {
             if (currentState is AttackState) return;
-            if (isOnGround) ChangeState(jumpState);
+            ChangeState(jumpState);
         }
 
         public void Crouch()
         {
             if (currentState is AttackState) return;
-            if (isOnGround) ChangeState(crouchState);
+            ChangeState(crouchState);
         }
-
 
         public void Punch()
         {
@@ -152,6 +137,10 @@ namespace Player.StateManagement
             kickState.OnStateAttack();
         }
 
+        public void Fall()
+        {
+            ChangeState(fallState);
+        }
 
         public void OnAnimationEnd()
         {
@@ -183,8 +172,6 @@ namespace Player.StateManagement
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = isOnGround ? Color.red : Color.green;
-            Gizmos.DrawWireCube(groundDetector.position, groundDetectorSize);
             Gizmos.DrawWireSphere(EnemyDetectorPosition.position, EnemyDetectorRadius);
         }
     }

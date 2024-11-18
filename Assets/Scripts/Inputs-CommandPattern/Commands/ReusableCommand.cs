@@ -5,12 +5,12 @@ namespace InputCommands
 
     public abstract class ReusableCommand
     {
-        public abstract void Execute(StateController receiver);
+        public abstract void Execute(StateMachine receiver);
     }
 
     public class IdleCommand : ReusableCommand
     {
-        public override void Execute(StateController receiver)
+        public override void Execute(StateMachine receiver)
         {
             receiver.Idle();
         }
@@ -18,7 +18,7 @@ namespace InputCommands
 
     public class WalkCommand : ReusableCommand
     {
-        public override void Execute(StateController receiver)
+        public override void Execute(StateMachine receiver)
         {
             receiver.Walk();
         }
@@ -26,7 +26,7 @@ namespace InputCommands
 
     public class RunCommand : ReusableCommand
     {
-        public override void Execute(StateController receiver)
+        public override void Execute(StateMachine receiver)
         {
             receiver.Run();
         }
@@ -34,7 +34,7 @@ namespace InputCommands
 
     public class JumpCommand : ReusableCommand
     {
-        public override void Execute(StateController receiver)
+        public override void Execute(StateMachine receiver)
         {
             receiver.Jump();
         }
@@ -42,7 +42,7 @@ namespace InputCommands
 
     public class CrouchCommand : ReusableCommand
     {
-        public override void Execute(StateController receiver)
+        public override void Execute(StateMachine receiver)
         {
             receiver.Crouch();
         }

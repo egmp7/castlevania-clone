@@ -2,17 +2,13 @@ using UnityEngine;
 
 namespace Game.Sensors
 {
-    public class ColliderSensor : MonoBehaviour
+    public class PlayerSensor : ColliderSensor
     {
-        private bool activeZone;
-
-        public bool GetActiveZone() {  return activeZone; }
-
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Player"))
             {
-                activeZone = true;
+                sensorState = true;
             }
         }
 
@@ -20,7 +16,7 @@ namespace Game.Sensors
         {
             if (collision.CompareTag("Player"))
             {
-                activeZone = false;
+                sensorState = false;
             }
         }
     }

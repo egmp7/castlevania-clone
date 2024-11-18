@@ -2,11 +2,11 @@ namespace Player.StateManagement
 {
     public abstract class State
     {
-        protected StateController input;
+        protected StateMachine input;
 
-        public void OnStateEnter(StateController stateController)
+        public void OnStateEnter(StateMachine stateMachine)
         {
-            input = stateController;
+            input = stateMachine;
             OnEnter();
         }
 

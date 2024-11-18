@@ -1,12 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using InputCommands.Move;
+using Game.Sensors;
 
 namespace InputCommands
 {
+
     [RequireComponent(typeof(DirectionMapper))]
     public class InputListener : MonoBehaviour
     {
+        [SerializeField] GroundSensor GroundSensor;
+
         private CoupledCommand punch, kick;
         private ReusableCommand idle, walk, run, jump, crouch;
 
@@ -38,6 +42,8 @@ namespace InputCommands
 
         public ReusableCommand GetReusableCommands()
         {
+            if (!GroundSensor.GetState()) return null;
+
             DirectionMapper.State currentDMState;
             bool isDoubleTap;
 
