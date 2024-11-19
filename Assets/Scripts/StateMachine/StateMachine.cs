@@ -7,71 +7,68 @@ namespace Player.StateManagement
 
     public class StateMachine : MonoBehaviour
     {
-        private State currentState;
+        private State _currentState;
 
         // States
-        private readonly IdleState idleState = new();
-        private readonly FallState fallState = new();
-        private readonly JumpState jumpState = new();
-        private readonly WalkState walkState = new();
-        private readonly RunState runState = new();
-        private readonly CrouchState crouchState = new();
-        private readonly PunchState punchState = new();
-        private readonly KickState kickState = new();
+        private readonly IdleState _stateIdle = new();
+        private readonly FallState _stateFall = new();
+        private readonly JumpState _stateJump = new();
+        private readonly WalkState _stateWalk = new();
+        private readonly RunState _stateRun = new();
+        private readonly CrouchState _stateCrouch = new();
+        private readonly PunchState _statePunch = new();
+        private readonly KickState _stateKick = new();
 
         // Inputs
-        [HideInInspector] public Rigidbody2D rigidBody;
-        [HideInInspector] public Animator animator;
+        [HideInInspector] public Rigidbody2D RigidBody;
+        [HideInInspector] public Animator Animator;
         [HideInInspector] public Vector3 originalScale;
         [HideInInspector] public int direction;
+        [HideInInspector] public bool debugDraw;
 
         [Header("X Movement")]
         [Range(1.0f, 50.0f)] public float walkSpeed = 10.0f;
         [Range(1.0f, 50.0f)] public float runSpeed = 20.0f;
         [Range(0.1f, 10.0f)] public float accelerationRate = 5f;
 
-        [Header("Basic Jump")]
+        [Header("Jump")]
         [Tooltip("Jumping Strength")]
         public int jumpForce = 25;
-        public Transform groundDetector;
-        [Tooltip("Size of the GroundDetector")]
-        public Vector2 groundDetectorSize = new(2f, 2f);
-        [Tooltip("Cooldown time between jumps")]
-        [Range(0f, 3f)]
-        public float jumpCooldown = 0.8f;
-        public LayerMask groundLayer;
 
         [Header("Attack")]
-        [SerializeField] LayerMask EnemyLayer;
-        [SerializeField] Transform EnemyDetectorPosition;
-        [Tooltip("Radius of the Overlap Circle Attack")]
-        [SerializeField][Range(0.01f, 1f)] float EnemyDetectorRadius = 0.25f;
+        public LayerMask EnemyLayer;
+        public Transform EnemyDetectorPosition;
         [Tooltip("Reset time of the punch combo")]
-        [Range(0.0f, 2f)] public float PunchComboResetTime = 1f;
+        [Range(0.0f, 2f)] public float punchComboResetTime = 1f;
         [Tooltip("Reset time of the punch combo")]
-        [Range(0.0f, 2f)] public float KickComboResetTime = 0.8f;
+        [Range(0.0f, 2f)] public float kickComboResetTime = 0.8f;
+        [Tooltip("Reset time of the punch combo")]
+        public Vector2 attackOffset;
+
 
         private void Awake()
         {
-            rigidBody = GetComponent<Rigidbody2D>();
-            animator = GetComponent<Animator>();
+            RigidBody = GetComponent<Rigidbody2D>();
+            Animator = GetComponent<Animator>();
         }
 
         private void Start()
         {
+            // set up TODO GEt rid of this
             direction = 1;
-            ChangeState(idleState);
             originalScale = transform.localScale;
+
+            ChangeState(_stateIdle);
         }
 
         private void Update()
         {
-            currentState?.OnStateUpdate();
+            _currentState?.OnStateUpdate();
         }
 
         private void FixedUpdate()
         {
-            currentState?.OnStateFixedUpdate();
+            _currentState?.OnStateFixedUpdate();
         }
 
         public void ChangeState(State newState)
@@ -83,60 +80,60 @@ namespace Player.StateManagement
                 return;
             }
 
-            if (currentState == newState) return;
+            if (_currentState == newState) return;
 
-            currentState?.OnStateExit();
-            currentState = newState;
-            currentState.OnStateEnter(this);
+            _currentState?.OnStateExit();
+            _currentState = newState;
+            _currentState.OnStateEnter(this);
             #endregion
-            Debug.Log(currentState);
+            Debug.Log(_currentState);
         }
 
         public void Idle()
         {
-            if (currentState is AttackState) return;
-            ChangeState(idleState);
+            if (_currentState is AttackState) return;
+            ChangeState(_stateIdle);
         }
 
         public void Walk()
         {
-            if (currentState is AttackState) return;
-            ChangeState (walkState);
+            if (_currentState is AttackState) return;
+            ChangeState (_stateWalk);
         }
 
         public void Run()
         {
-            if (currentState is AttackState) return;
-            ChangeState(runState);
+            if (_currentState is AttackState) return;
+            ChangeState(_stateRun);
         }
 
         public void Jump()
         {
-            if (currentState is AttackState) return;
-            ChangeState(jumpState);
+            if (_currentState is AttackState) return;
+            ChangeState(_stateJump);
         }
 
         public void Crouch()
         {
-            if (currentState is AttackState) return;
-            ChangeState(crouchState);
+            if (_currentState is AttackState) return;
+            ChangeState(_stateCrouch);
         }
 
         public void Punch()
         {
-            ChangeState(punchState);
-            punchState.OnStateAttack();
+            ChangeState(_statePunch);
+            _statePunch.OnStateAttack();
         }
 
         public void Kick()
         {
-            ChangeState(kickState);
-            kickState.OnStateAttack();
+            ChangeState(_stateKick);
+            _stateKick.OnStateAttack();
         }
 
         public void Fall()
         {
-            ChangeState(fallState);
+            ChangeState(_stateFall);
         }
 
         public void FlipDirection()
@@ -146,34 +143,23 @@ namespace Player.StateManagement
 
         public void OnAnimationEnd()
         {
-            ChangeState(idleState);
+            ChangeState(_stateIdle);
         }
 
         public void OnAttackAnimation()
         {
-            Collider2D hit = Physics2D.OverlapCircle(
-                EnemyDetectorPosition.position,
-                EnemyDetectorRadius,
-                EnemyLayer);
-
-            if (hit != null)
+            if (_currentState is AttackState attackState)
             {
-
-                if (hit.TryGetComponent<EnemyHP>(out var enemyHP))
-                {
-                    enemyHP.TakeDamage(30f);
-                    Debug.Log("Enemy Touched");
-                }
-                else
-                {
-                    Debug.LogError("No EnemyHP component found on hit object!");
-                }
+                attackState.AnimationAttack();
             }
         }
 
         private void OnDrawGizmos()
         {
-            Gizmos.DrawWireSphere(EnemyDetectorPosition.position, EnemyDetectorRadius);
+            if (!debugDraw)
+            {
+                debugDraw = true;
+            }
         }
     }
 }

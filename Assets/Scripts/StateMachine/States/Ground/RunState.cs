@@ -12,20 +12,20 @@ namespace Player.StateManagement
             #region Move Player Logic
 
             float currentSpeed = Utilities.CalculateCurrentSpeed(
-               input.rigidBody.velocity.x,
+               input.RigidBody.velocity.x,
                input.direction,
                input.runSpeed,
                input.accelerationRate
                );
 
             // Preserve the vertical velocity and update horizontal speed
-            input.rigidBody.velocity =
+            input.RigidBody.velocity =
                 new Vector2(
                     currentSpeed,
-                    input.rigidBody.velocity.y);
+                    input.RigidBody.velocity.y);
             #endregion
 
-            input.animator.Play("Run");
+            input.Animator.Play("Run");
         }
     }
 

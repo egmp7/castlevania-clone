@@ -6,7 +6,7 @@ namespace Player.StateManagement
         protected override void OnEnter()
         {
             base.OnEnter();
-            input.animator.Play("Fall");
+            input.Animator.Play("Fall");
         }
     }
 }

@@ -11,13 +11,13 @@ namespace Player.StateManagement
             base.OnEnter();
             #region Jump Logic
             // jump
-            input.rigidBody.velocity =
+            input.RigidBody.velocity =
                 new Vector2(
-                    input.rigidBody.velocity.x,
+                    input.RigidBody.velocity.x,
                     input.jumpForce);
 
             #endregion
-            input.animator.Play("Jump");
+            input.Animator.Play("Jump");
         }
     }
 }

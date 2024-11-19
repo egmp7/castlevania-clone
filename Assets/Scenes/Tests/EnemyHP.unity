@@ -607,7 +607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5962072a42be7045a4e7130abd55750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  healthBarPosition: {x: 10, y: 10}
+  healthBarSize: {x: 200, y: 20}
 --- !u!1 &953098222
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,7 +695,7 @@ GameObject:
   - component: {fileID: 1247880669}
   m_Layer: 7
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

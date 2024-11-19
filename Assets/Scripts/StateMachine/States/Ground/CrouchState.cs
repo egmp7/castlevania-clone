@@ -10,12 +10,12 @@ namespace Player.StateManagement
             base.OnEnter();
 
             #region Stop Moving
-            input.rigidBody.velocity =
+            input.RigidBody.velocity =
                 new Vector2(
                     0,
-                    input.rigidBody.velocity.y);
+                    input.RigidBody.velocity.y);
             #endregion
-            input.animator.Play("Crouch");
+            input.Animator.Play("Crouch");
         }
     }
 }
