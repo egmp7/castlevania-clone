@@ -4,19 +4,25 @@ namespace Game.Sensors
 {
     public class GroundSensor : GameSensor
     {
+
+        private void Awake()
+        {
+            _sensorTag = "Ground";
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("Ground"))
+            if (collision.CompareTag(_sensorTag))
             {
-                sensorState = true;
+                _sensorState = true;
             }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.CompareTag("Ground"))
+            if (collision.CompareTag(_sensorTag))
             {
-                sensorState = false;
+                _sensorState = false;
             }
         }
     }

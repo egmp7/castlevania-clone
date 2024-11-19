@@ -11,7 +11,8 @@ namespace Game.Sensors
         // Start is called before the first frame update
         void Start()
         {
-            GameObject player = GameObject.FindWithTag("Player");
+            _sensorTag = "Player";
+            GameObject player = GameObject.FindWithTag(_sensorTag);
 
             if (player == null)
             {
@@ -33,11 +34,11 @@ namespace Game.Sensors
             {
                 if (playerRigidBody.velocity.y < 0)
                 {
-                    sensorState = true;
+                    _sensorState = true;
                 }
                 else
                 {
-                    sensorState = false;
+                    _sensorState = false;
                 }
             }
         }
