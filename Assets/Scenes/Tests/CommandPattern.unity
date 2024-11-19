@@ -419,7 +419,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5394173, y: -7.45588, z: -10}
+  m_LocalPosition: {x: -8.02, y: -7.4300003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1359151896}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 6.05
@@ -524,7 +524,7 @@ Transform:
   m_GameObject: {fileID: 953098222}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5394173, y: -7.45588, z: -10}
+  m_LocalPosition: {x: -8.02, y: -7.4300003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -543,9 +543,9 @@ GameObject:
   - component: {fileID: 1247880671}
   - component: {fileID: 1247880670}
   - component: {fileID: 1247880669}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -662,6 +662,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1770641577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1359151896 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6144268658522476791, guid: 5ca6057419b904e48ac3945b525e7f99, type: 3}
+  m_PrefabInstance: {fileID: 1512712667}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1512712667
 PrefabInstance:
   m_ObjectHideFlags: 0

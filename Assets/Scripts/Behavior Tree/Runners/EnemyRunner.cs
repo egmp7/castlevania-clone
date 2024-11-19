@@ -7,15 +7,16 @@ namespace AI.BehaviorTree.Runners
 
     public class EnemyRunner : Runner
     {
-        [SerializeField] ColliderSensor PursueSensor;
-        [SerializeField] ColliderSensor AttackSensor;
+        [SerializeField] PlayerSensor PursueSensor;
+        [SerializeField] PlayerSensor AttackSensor;
 
         private readonly BehaviorTree behaviorTree = new();
 
         private void Start()
         {
-            ConditionNode isPlayerOnPursueZone = new(PursueSensor.GetActiveZone);
-            ConditionNode isPlayerOnAttackZone = new(AttackSensor.GetActiveZone);
+            ConditionNode isPlayerOnPursueZone = new(PursueSensor.GetState);
+            ConditionNode isPlayerOnAttackZone = new(AttackSensor.GetState);
+
             AttackNode attackNode = new();
             PatrolNode patrolNode = new();
             MoveNode moveNode = new();
