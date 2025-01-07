@@ -14,6 +14,7 @@ namespace Game.Sensors
             if (collision.CompareTag(_sensorTag))
             {
                 _sensorState = true;
+                Debug.Log("player");
             }
         }
 
