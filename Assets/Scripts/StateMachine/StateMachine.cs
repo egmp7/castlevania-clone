@@ -10,7 +10,7 @@ namespace Player.StateManagement
         private State _currentState;
 
         // States
-        private readonly IdleState _stateIdle = new();
+        public readonly IdleState IdleState = new();
         private readonly FallState _stateFall = new();
         private readonly JumpState _stateJump = new();
         private readonly WalkState _stateWalk = new();
@@ -58,7 +58,7 @@ namespace Player.StateManagement
             direction = 1;
             originalScale = transform.localScale;
 
-            ChangeState(_stateIdle);
+            ChangeState(IdleState);
         }
 
         private void Update()
@@ -69,6 +69,11 @@ namespace Player.StateManagement
         private void FixedUpdate()
         {
             _currentState?.OnStateFixedUpdate();
+        }
+
+        public State GetCurrentState() 
+        { 
+            return _currentState; 
         }
 
         public void ChangeState(State newState)
@@ -86,13 +91,13 @@ namespace Player.StateManagement
             _currentState = newState;
             _currentState.OnStateEnter(this);
             #endregion
-            Debug.Log(_currentState);
+            // Debug.Log(_currentState);
         }
 
         public void Idle()
         {
             if (_currentState is AttackState) return;
-            ChangeState(_stateIdle);
+            ChangeState(IdleState);
         }
 
         public void Walk()
@@ -139,19 +144,6 @@ namespace Player.StateManagement
         public void FlipDirection()
         {
             direction = -direction;
-        }
-
-        public void OnAnimationEnd()
-        {
-            ChangeState(_stateIdle);
-        }
-
-        public void OnAttackAnimation()
-        {
-            if (_currentState is AttackState attackState)
-            {
-                attackState.AnimationAttack();
-            }
         }
 
         private void OnDrawGizmos()

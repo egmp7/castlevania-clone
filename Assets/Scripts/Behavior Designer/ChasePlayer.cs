@@ -5,15 +5,27 @@ namespace Enemy.AI
 {
     public class ChasePlayer : EnemyAction
     {
-        public override void OnAwake()
-        {
-            base.OnAwake();
-        }
+        public float moveSpeed = 5f; 
 
         public override TaskStatus OnUpdate()
         {
-            rb.AddForce(new Vector2(0,5));
+            // Ensure playerTransform is set
+            if (playerTransform == null)
+            {
+                Debug.LogError("PlayerTransform is not assigned.");
+                return TaskStatus.Failure;
+            }
+
+            // Calculate direction to player, ignoring vertical movement
+            Vector2 targetPosition = new Vector2(playerTransform.position.x, rb.position.y);
+            Vector2 direction = (targetPosition - rb.position).normalized;
+
+            // Move the Rigidbody2D horizontally towards the player
+            rb.velocity = new Vector2(direction.x * moveSpeed, rb.velocity.y);
+
+            // Play the "Run" animation
             animator.Play("Run");
+
             return TaskStatus.Success;
         }
     }

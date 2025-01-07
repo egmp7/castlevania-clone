@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 4644106432573471071}
   - component: {fileID: 2349106075103472806}
   - component: {fileID: 420662565828384351}
+  - component: {fileID: 6499751948821512638}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -368,6 +369,7 @@ MonoBehaviour:
   Animator: {fileID: 0}
   originalScale: {x: 0, y: 0, z: 0}
   direction: 0
+  debugDraw: 1
   walkSpeed: 10
   runSpeed: 20
   accelerationRate: 5
@@ -376,7 +378,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   EnemyDetectorPosition: {fileID: 117711112901181515}
-  enemyDetectorRadius: 0.25
   punchComboResetTime: 1
   kickComboResetTime: 0.8
   attackOffset: {x: 0.84, y: 1.1}
@@ -416,5 +417,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f188d0042aad843e3b27e4d992bc9a47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6499751948821512638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824323790894388638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e42855a260794940a0b51cea1826f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

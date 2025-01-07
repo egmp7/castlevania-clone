@@ -26,7 +26,7 @@ namespace Player.StateManagement
             {
                 cooldownTimer = new CooldownTimer(300);
                 _damageValue = 70;
-                _localOfsset = new Vector2(0.3f, 0.4f);
+                _localOffset = new Vector2(0.3f, 0.4f);
                 input.Animator.Play("Kick01");
             }
 
@@ -34,14 +34,14 @@ namespace Player.StateManagement
             {
                 cooldownTimer = new CooldownTimer(280);
                 _damageValue = 40;
-                _localOfsset = new Vector2(0.3f, -0.3f);
+                _localOffset = new Vector2(0.3f, -0.3f);
                 input.Animator.Play("Kick02");
             }
             if (CurrentCombo == 3)
             {
                 cooldownTimer = new CooldownTimer(600);
                 _damageValue = 100;
-                _localOfsset = new Vector2(0.3f, 0.1f);
+                _localOffset = new Vector2(0.3f, 0.1f);
                 input.Animator.Play("Kick03");
             }
         }

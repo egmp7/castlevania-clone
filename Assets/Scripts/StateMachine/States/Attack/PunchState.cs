@@ -26,7 +26,7 @@ namespace Player.StateManagement
             {
                 cooldownTimer = new CooldownTimer(300);
                 _damageValue = 20;
-                _localOfsset = new Vector2(0.3f, -0.3f);
+                _localOffset = new Vector2(0.3f, -0.3f);
                 input.Animator.Play("Punch01");
             }
 
@@ -34,7 +34,7 @@ namespace Player.StateManagement
             {
                 cooldownTimer = new CooldownTimer(150);
                 _damageValue = 10;
-                _localOfsset = new Vector2(0.3f, 0.5f);
+                _localOffset = new Vector2(0.3f, 0.5f);
                 input.Animator.Play("Punch02");
             }
 
@@ -42,7 +42,7 @@ namespace Player.StateManagement
             {
                 cooldownTimer = new CooldownTimer(220);
                 _damageValue = 33;
-                _localOfsset = new Vector2(0.1f, 1f);
+                _localOffset = new Vector2(0.1f, 1f);
                 input.Animator.Play("Punch03");
             }
         }
