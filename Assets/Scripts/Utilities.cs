@@ -76,4 +76,18 @@ public class Utilities : MonoBehaviour
         // Draw the direction line
         Debug.DrawRay(origin, direction * distance, color);
     }
+
+    public static void DrawCircle(Vector3 position, float radius, int segments = 32)
+    {
+        float angleStep = 360f / segments;
+        Vector3 lastPoint = position + new Vector3(radius, 0, 0);
+
+        for (int i = 1; i <= segments; i++)
+        {
+            float angle = i * angleStep * Mathf.Deg2Rad;
+            Vector3 newPoint = position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+            Debug.DrawLine(lastPoint, newPoint, Color.red); // Draws in the Scene view during Play mode
+            lastPoint = newPoint;
+        }
+    }
 }

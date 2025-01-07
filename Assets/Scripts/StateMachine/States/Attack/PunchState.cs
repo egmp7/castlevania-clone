@@ -13,7 +13,7 @@ namespace Player.StateManagement
             base.OnEnter();
             MaxCombo = 3;
             ComboResetTime = input.punchComboResetTime;
-            _attackRadius = 0.25f;
+            input.damageProcessor.attackRadius = 0.25f;
         }
 
         protected override void OnAttack()
@@ -25,24 +25,24 @@ namespace Player.StateManagement
             if (CurrentCombo == 1 )
             {
                 cooldownTimer = new CooldownTimer(300);
-                _damageValue = 20;
-                _localOffset = new Vector2(0.3f, -0.3f);
+                input.damageProcessor.currentDamage = 20;
+                input.damageProcessor.offset = new Vector2(0.3f, -0.3f);
                 input.Animator.Play("Punch01");
             }
 
             if (CurrentCombo == 2)
             {
                 cooldownTimer = new CooldownTimer(150);
-                _damageValue = 10;
-                _localOffset = new Vector2(0.3f, 0.5f);
+                input.damageProcessor.currentDamage = 10;
+                input.damageProcessor.offset = new Vector2(0.3f, 0.5f);
                 input.Animator.Play("Punch02");
             }
 
             if (CurrentCombo == 3)
             {
                 cooldownTimer = new CooldownTimer(220);
-                _damageValue = 33;
-                _localOffset = new Vector2(0.1f, 1f);
+                input.damageProcessor.currentDamage = 33;
+                input.damageProcessor.offset = new Vector2(0.1f, 1f);
                 input.Animator.Play("Punch03");
             }
         }

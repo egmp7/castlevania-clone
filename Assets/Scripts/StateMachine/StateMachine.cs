@@ -1,3 +1,4 @@
+using Game.AnimationEvent.Source;
 using UnityEngine;
 
 namespace Player.StateManagement
@@ -23,6 +24,7 @@ namespace Player.StateManagement
         [HideInInspector] public Rigidbody2D RigidBody;
         [HideInInspector] public Animator Animator;
         [HideInInspector] public Vector3 originalScale;
+        [HideInInspector] public DamageProcessor damageProcessor;
         [HideInInspector] public int direction;
         [HideInInspector] public bool debugDraw;
 
@@ -49,7 +51,22 @@ namespace Player.StateManagement
         private void Awake()
         {
             RigidBody = GetComponent<Rigidbody2D>();
+            if (RigidBody == null)
+            {
+                Debug.LogError("RigidBody component is missing on this GameObject.");
+            }
+
             Animator = GetComponent<Animator>();
+            if (Animator == null)
+            {
+                Debug.LogError("Animator component is missing on this GameObject.");
+            }
+
+            damageProcessor = GetComponent<DamageProcessor>();
+            if (damageProcessor == null)
+            {
+                Debug.LogError("DamageProcessor component is missing on this GameObject.");
+            }
         }
 
         private void Start()

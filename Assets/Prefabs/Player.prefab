@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 604046240917216182}
   - component: {fileID: 605186781573959003}
   - component: {fileID: 7320640224717593431}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: GroundSensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 117711112901181515}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: AttackDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,6 +121,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6144268658522476791}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5523530442046371936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8804363904089868769}
+  m_Layer: 0
+  m_Name: AttackOffset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8804363904089868769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5523530442046371936}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.58, y: 0.68, z: 0}
+  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 1.054074}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6144268658522476791}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6652725039611175841
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,7 +162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1966166731734940712}
   - component: {fileID: 3459393644707455484}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: FallSensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,6 +214,8 @@ GameObject:
   - component: {fileID: 2349106075103472806}
   - component: {fileID: 420662565828384351}
   - component: {fileID: 6499751948821512638}
+  - component: {fileID: 297189210860119370}
+  - component: {fileID: 6376605948937905412}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -206,6 +239,7 @@ Transform:
   - {fileID: 604046240917216182}
   - {fileID: 1966166731734940712}
   - {fileID: 117711112901181515}
+  - {fileID: 8804363904089868769}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4877329786588830039
@@ -368,6 +402,7 @@ MonoBehaviour:
   RigidBody: {fileID: 0}
   Animator: {fileID: 0}
   originalScale: {x: 0, y: 0, z: 0}
+  damageProcessor: {fileID: 0}
   direction: 0
   debugDraw: 1
   walkSpeed: 10
@@ -429,5 +464,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e42855a260794940a0b51cea1826f8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &297189210860119370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824323790894388638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89e160b6a61611e47bc3a1890b19e92a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  attackTransform: {fileID: 8804363904089868769}
+  offset: {x: 0, y: 0}
+  attackRadius: 0
+  currentDamage: 0
+--- !u!114 &6376605948937905412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824323790894388638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf849fc55d52caf428646d3264646269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

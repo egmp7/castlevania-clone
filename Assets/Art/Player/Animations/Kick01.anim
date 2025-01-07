@@ -95,14 +95,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.125
-    functionName: OnAttackAnimation
+    functionName: HandleAnimationAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5625
-    functionName: OnAnimationEnd
+    functionName: HandleAnimationEnd
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
