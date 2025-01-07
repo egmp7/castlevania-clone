@@ -393,8 +393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d225b957363544fdfb3c1b8a6cf31358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GroundSensor: {fileID: 7320640224717593431}
-  FallSensor: {fileID: 3459393644707455484}
+  groundSensor: {fileID: 7320640224717593431}
+  fallSensor: {fileID: 3459393644707455484}
 --- !u!114 &2349106075103472806
 MonoBehaviour:
   m_ObjectHideFlags: 0

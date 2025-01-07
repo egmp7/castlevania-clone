@@ -1,122 +1,173 @@
 using Game.Sensors;
 using InputCommands.Buttons;
 using InputCommands.Move;
+using Player.StateManagement;
 using UnityEngine;
 
 namespace InputCommands
 {
-
+    [RequireComponent (typeof (StateMachine))]
     public class InputListener : MonoBehaviour
     {
-        [SerializeField] GroundSensor GroundSensor;
-        [SerializeField] FallSensor FallSensor;
+        [SerializeField] private GroundSensor groundSensor;
+        [SerializeField] private FallSensor fallSensor;
 
-        private ButtonCommand _punch, _kick;
-        private MoveCommand _idle, _walk, _run, _jump, _crouch, _flipDirection;
-        private SensorCommand _fall;
+        private ButtonCommand punchCommand, kickCommand;
+        private MoveCommand idleCommand, walkCommand, runCommand, jumpCommand, crouchCommand, flipDirectionCommand;
+        private SensorCommand fallCommand;
 
-        private Button _buttonA, _buttonB, _buttonC;
+        private Button buttonA, buttonB, buttonC;
 
-        private DirectionMapper _MFdirectionMapper;
-        private DoubleTapDetector _MFdoubleTapDetector;
-        private DirectionSwitch _MFdirectionSwitch;
+        private DirectionMapper directionMapper;
+        private DoubleTapDetector doubleTapDetector;
+        private DirectionSwitch directionSwitch;
 
-        void Start()
+        private StateMachine stateMachine;
+
+        private void Awake()
         {
-
-            // move commands
-            _idle = new IdleCommand();
-            _walk = new WalkCommand();
-            _run = new RunCommand();
-            _jump = new JumpCommand();
-            _crouch = new CrouchCommand();
-            _flipDirection = new FlipDirectionCommand(); 
-
-            // action commands
-            _punch = new PunchCommand();
-            _kick = new KickCommand();
-
-            // sensor commands
-            _fall = new FallCommand();
-            
-            // move features
-            _MFdirectionMapper = new DirectionMapper();
-            _MFdoubleTapDetector = new DoubleTapDetector();
-            _MFdirectionSwitch = new DirectionSwitch();
-
-            // buttons
-            _buttonA = new ButtonA();
-            _buttonB = new ButtonB();
-            _buttonC = new ButtonC();
+            ValidateComponents();
         }
 
-        public MoveCommand GetMoveCommands()
+        private void Start()
         {
-            if (!GroundSensor.GetState()) return null;
-
-            DirectionMapper.State currentDMState;
-            bool isDoubleTap;
-
-            currentDMState = _MFdirectionMapper.GetState();
-            isDoubleTap = _MFdoubleTapDetector.Update(currentDMState);
-            
-            if(_MFdirectionSwitch.Update(currentDMState)) return _flipDirection; 
-
-            if (currentDMState == DirectionMapper.State.Left ||
-                currentDMState == DirectionMapper.State.Right)
+            try
             {
-                if (isDoubleTap)
-                {
-                    return _run;
-                }
-                else
-                {
-                    return _walk;
-                }
+                InitializeCommands();
+                InitializeMoveFeatures();
+                InitializeButtons();
+                InitializeStateMachine();
             }
-
-            if (currentDMState == DirectionMapper.State.Up ||
-                currentDMState == DirectionMapper.State.UpLeft ||
-                currentDMState == DirectionMapper.State.UpRight)
+            catch (System.Exception ex)
             {
-                return _jump;
+                Debug.LogError($"{nameof(InputListener)}: Initialization failed - {ex.Message}");
+                enabled = false; // Disable the script to avoid further issues.
             }
-
-            if (currentDMState == DirectionMapper.State.Down ||
-                currentDMState == DirectionMapper.State.DownLeft ||
-                currentDMState == DirectionMapper.State.DownRight)
-            {
-                return _crouch;
-            }
-
-                return _idle;
         }
 
-        public ButtonCommand GetButtonCommands()
+        private void ValidateComponents()
         {
-            if (_buttonA.IsPressed())
+            Debug.Assert(groundSensor != null, $"{nameof(InputListener)}: GroundSensor is not assigned!");
+            Debug.Assert(fallSensor != null, $"{nameof(InputListener)}: FallSensor is not assigned!");
+        }
+
+        private void InitializeCommands()
+        {
+            // Move commands
+            idleCommand = new IdleCommand();
+            walkCommand = new WalkCommand();
+            runCommand = new RunCommand();
+            jumpCommand = new JumpCommand();
+            crouchCommand = new CrouchCommand();
+            flipDirectionCommand = new FlipDirectionCommand();
+
+            // Action commands
+            punchCommand = new PunchCommand();
+            kickCommand = new KickCommand();
+
+            // Sensor commands
+            fallCommand = new FallCommand();
+
+            if (idleCommand == null || punchCommand == null)
             {
-                return _punch;
+                throw new System.Exception("Command initialization failed. Ensure all commands are properly instantiated.");
+            }
+        }
+
+        private void InitializeMoveFeatures()
+        {
+            directionMapper = new DirectionMapper() ?? throw new MissingComponentException("DirectionMapper is not initialized!");
+            doubleTapDetector = new DoubleTapDetector() ?? throw new MissingComponentException("DoubleTapDetector is not initialized!");
+            directionSwitch = new DirectionSwitch() ?? throw new MissingComponentException("DirectionSwitch is not initialized!");
+        }
+
+        private void InitializeButtons()
+        {
+            buttonA = new ButtonA();
+            buttonB = new ButtonB();
+            buttonC = new ButtonC();
+
+            if (buttonA == null || buttonB == null || buttonC == null)
+            {
+                throw new System.Exception("Button initialization failed. Ensure all buttons are properly instantiated.");
+            }
+        }
+
+        private void InitializeStateMachine()
+        {
+            stateMachine = GetComponent<StateMachine>();
+
+            if (stateMachine == null)
+            {
+                throw new System.Exception("StateMachine component is not available. This should not happen due to RequireComponent.");
+            }
+        }
+
+        public MoveCommand GetMoveCommand()
+        {
+            if (groundSensor == null || directionMapper == null || directionSwitch == null)
+            {
+                Debug.LogWarning($"{nameof(InputListener)}: Missing components in GetMoveCommand.");
+                return null;
             }
 
-            if (_buttonB.IsPressed())
+            if (!groundSensor.GetState()) return null;
+            
+            State currentPlayerState = stateMachine.GetCurrentState();
+
+            if (currentPlayerState is AttackState) return null;
+
+            var currentDirectionState = directionMapper.GetState();
+            var isDoubleTap = doubleTapDetector?.Update(currentDirectionState) ?? false;
+
+            if (directionSwitch.Update(currentDirectionState))
+                return flipDirectionCommand;
+
+            return currentDirectionState switch
             {
-                return _kick;
+                DirectionMapper.State.Left or DirectionMapper.State.Right =>
+                    isDoubleTap ? runCommand : walkCommand,
+
+                DirectionMapper.State.Up or DirectionMapper.State.UpLeft or DirectionMapper.State.UpRight =>
+                    jumpCommand,
+
+                DirectionMapper.State.Down or DirectionMapper.State.DownLeft or DirectionMapper.State.DownRight =>
+                    crouchCommand,
+
+                _ => idleCommand
+            };
+        }
+
+        public ButtonCommand GetButtonCommand()
+        {
+            if (buttonA == null || buttonB == null || buttonC == null)
+            {
+                Debug.LogWarning($"{nameof(InputListener)}: Buttons are not initialized.");
+                return null;
             }
 
-            if (_buttonC.IsPressed())
+            if (buttonA.IsPressed()) return punchCommand;
+            if (buttonB.IsPressed()) return kickCommand;
+
+            // Explicitly handle ButtonC
+            if (buttonC.IsPressed())
             {
+                Debug.Log($"{nameof(InputListener)}: ButtonC pressed, but no action assigned.");
                 return null;
             }
 
             return null;
         }
 
-        public SensorCommand GetSensorCommands()
+        public SensorCommand GetSensorCommand()
         {
-            if (FallSensor.GetState()) return _fall;
+            if (fallSensor == null)
+            {
+                Debug.LogWarning($"{nameof(InputListener)}: FallSensor is not assigned.");
+                return null;
+            }
 
-            return null;
+            return fallSensor.GetState() ? fallCommand : null;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Player.StateManagement
         private State _currentState;
 
         // States
-        public readonly IdleState IdleState = new();
+        private readonly IdleState _stateIdle = new();
         private readonly FallState _stateFall = new();
         private readonly JumpState _stateJump = new();
         private readonly WalkState _stateWalk = new();
@@ -58,7 +58,7 @@ namespace Player.StateManagement
             direction = 1;
             originalScale = transform.localScale;
 
-            ChangeState(IdleState);
+            ChangeState(_stateIdle);
         }
 
         private void Update()
@@ -76,7 +76,7 @@ namespace Player.StateManagement
             return _currentState; 
         }
 
-        public void ChangeState(State newState)
+        private void ChangeState(State newState)
         {
             #region Change State Algo
             if (newState == null)
@@ -96,31 +96,26 @@ namespace Player.StateManagement
 
         public void Idle()
         {
-            if (_currentState is AttackState) return;
-            ChangeState(IdleState);
+            ChangeState(_stateIdle);
         }
 
         public void Walk()
         {
-            if (_currentState is AttackState) return;
             ChangeState (_stateWalk);
         }
 
         public void Run()
         {
-            if (_currentState is AttackState) return;
             ChangeState(_stateRun);
         }
 
         public void Jump()
         {
-            if (_currentState is AttackState) return;
             ChangeState(_stateJump);
         }
 
         public void Crouch()
         {
-            if (_currentState is AttackState) return;
             ChangeState(_stateCrouch);
         }
 

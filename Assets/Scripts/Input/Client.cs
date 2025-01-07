@@ -22,21 +22,21 @@ namespace InputCommands
 
         void Update()
         {
-            var moveCommand = _inputListener.GetMoveCommands();
+            var moveCommand = _inputListener.GetMoveCommand();
 
             if (moveCommand != null)
             {
                 _invoker.Execute(moveCommand, _stateMachine);
             }
 
-            var buttonCommand = _inputListener.GetButtonCommands();
+            var buttonCommand = _inputListener.GetButtonCommand();
 
             if (buttonCommand != null)
             {
                 _invoker.Execute(buttonCommand, _stateMachine);
             }
 
-            var sensorCommand = _inputListener.GetSensorCommands();
+            var sensorCommand = _inputListener.GetSensorCommand();
             if (sensorCommand != null)
             {
                 _invoker.Execute(sensorCommand, _stateMachine);

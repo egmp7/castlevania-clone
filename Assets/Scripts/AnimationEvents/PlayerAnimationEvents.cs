@@ -14,7 +14,7 @@ namespace AnimationEvents
 
         public void OnAnimationEnd()
         {
-            stateMachine.ChangeState(stateMachine.IdleState);
+            stateMachine.Idle();
         }
 
         public void OnAttackAnimation()
