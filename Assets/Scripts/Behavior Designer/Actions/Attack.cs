@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Enemy.AI
 {
-    public class AttackPlayer : EnemyAction
+    public class AttackAction : EnemyAction
     {
-        public float attackChance = 0.1f;
-        public float minimumWaitTime = 1.5f;
+        public float attackChance = 0.01f;
+        public float minimumWaitTime = 1f;
         public Transform attackOffset;
         public LayerMask playerLayer;
 
@@ -26,9 +26,10 @@ namespace Enemy.AI
 
         public override TaskStatus OnUpdate()
         {
-
-            // Generate a random value between 0 and 1
-            if (Random.value < attackChance &&
+            if (
+                // Generate a random value between 0 and 1
+                Random.value < attackChance &&
+                // Cooldown time
                 Time.time > (_lastTimeUsed + minimumWaitTime))
             {
                 Attack();

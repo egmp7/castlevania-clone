@@ -19,6 +19,7 @@ namespace Player.StateManagement
         private readonly CrouchState _stateCrouch = new();
         private readonly PunchState _statePunch = new();
         private readonly KickState _stateKick = new();
+        private readonly HurtState _stateHurt = new();
 
         // Inputs
         [HideInInspector] public Rigidbody2D RigidBody;
@@ -151,6 +152,11 @@ namespace Player.StateManagement
         public void Fall()
         {
             ChangeState(_stateFall);
+        }
+
+        public void Hurt()
+        {
+            ChangeState(_stateHurt);
         }
 
         public void FlipDirection()

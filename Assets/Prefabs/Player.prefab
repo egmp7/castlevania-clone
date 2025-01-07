@@ -497,3 +497,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf849fc55d52caf428646d3264646269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UnityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3159315971329301701}
+        m_TargetAssemblyTypeName: Player.StateManagement.StateMachine, Assembly-CSharp
+        m_MethodName: Hurt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

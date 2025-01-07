@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Enemy.AI
 {
-    public class FacePlayer : EnemyAction
+    public class FaceTarget : EnemyAction
     {
         private float baseScaleX;
 

@@ -112,10 +112,8 @@ namespace InputCommands
             }
 
             if (!groundSensor.GetState()) return null;
-            
-            State currentPlayerState = stateMachine.GetCurrentState();
-
-            if (currentPlayerState is AttackState) return null;
+            if (stateMachine.GetCurrentState() is AttackState) return null;
+            if (stateMachine.GetCurrentState() is HealthState) return null;
 
             var currentDirectionState = directionMapper.GetState();
             var isDoubleTap = doubleTapDetector?.Update(currentDirectionState) ?? false;
@@ -140,6 +138,8 @@ namespace InputCommands
 
         public ButtonCommand GetButtonCommand()
         {
+            if (stateMachine.GetCurrentState() is HealthState) return null;
+
             if (buttonA == null || buttonB == null || buttonC == null)
             {
                 Debug.LogWarning($"{nameof(InputListener)}: Buttons are not initialized.");
@@ -161,6 +161,8 @@ namespace InputCommands
 
         public SensorCommand GetSensorCommand()
         {
+            if (stateMachine.GetCurrentState() is HealthState) return null;
+
             if (fallSensor == null)
             {
                 Debug.LogWarning($"{nameof(InputListener)}: FallSensor is not assigned.");

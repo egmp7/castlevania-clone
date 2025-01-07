@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 namespace Game.AnimationEvent.Receiver
 {
     public class DamageListener : MonoBehaviour
     {
+        [SerializeField] private UnityEvent UnityEvent;
+
         public void TakeDamage(float damage, LayerMask layerMask)
         {
             // Get the name of the layer(s) from the layer mask
@@ -11,8 +14,7 @@ namespace Game.AnimationEvent.Receiver
             // Log the layer names and damage received
             Debug.Log($"Damage received: {damage}, Layer(s): {layerNames}");
 
-            // Apply the damage logic here
-            // e.g., health -= damage;
+            UnityEvent.Invoke();
         }
 
         private string GetLayerNames(LayerMask layerMask)
