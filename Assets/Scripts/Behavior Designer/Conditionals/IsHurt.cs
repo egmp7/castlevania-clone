@@ -8,33 +8,16 @@ namespace Enemy.AI
     {
         public override TaskStatus OnUpdate()
         {
-            Debug.Log(GetCurrentAnimationName());
-            return TaskStatus.Success;
-        }
+            // Get the current state information from layer 0 (default layer)
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-        /// <summary>
-        /// Gets the name of the current animation playing on the specified Animator layer.
-        /// </summary>
-        /// <param name="layerIndex">The Animator layer index. Defaults to 0 (Base Layer).</param>
-        /// <returns>The name of the current animation, or an empty string if no animation is playing.</returns>
-        private string GetCurrentAnimationName(int layerIndex = 0)
-        {
-            if (animator == null)
+            // Check if the current state's name is "Idle"
+            if (stateInfo.IsName("Hurt"))
             {
-                Debug.LogWarning("Animator is not assigned.");
-                return string.Empty;
+                return TaskStatus.Success;
             }
 
-            // Get the current AnimatorStateInfo for the specified layer
-            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(layerIndex);
-
-            // Check if the layer is playing any animation
-            if (stateInfo.length > 0)
-            {
-                return stateInfo.IsName("") ? "No Animation" : stateInfo.shortNameHash.ToString();
-            }
-
-            return "No animation found";
+            return TaskStatus.Failure;
         }
     }
 }

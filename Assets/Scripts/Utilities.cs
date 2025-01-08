@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Utilities : MonoBehaviour
+public class Utilities
 {
 
     /// <summary>
@@ -89,5 +89,27 @@ public class Utilities : MonoBehaviour
             Debug.DrawLine(lastPoint, newPoint, Color.red); // Draws in the Scene view during Play mode
             lastPoint = newPoint;
         }
+    }
+
+    /// <summary>
+    /// // Get the name of the layer(s) from the layer mask
+    /// </summary>
+    /// <param name="layerMask"></param>
+    /// <returns></returns>
+    public static string GetLayerNames(LayerMask layerMask)
+    {
+        string names = "";
+
+        // Loop through all layers to find the active ones in the layer mask
+        for (int i = 0; i < 32; i++)
+        {
+            // Check if the layer is included in the layer mask
+            if ((layerMask & (1 << i)) != 0)
+            {
+                names += LayerMask.LayerToName(i) + " "; // Get the layer name
+            }
+        }
+
+        return names.Trim(); // Trim any extra spaces
     }
 }

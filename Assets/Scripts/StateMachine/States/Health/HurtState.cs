@@ -8,7 +8,7 @@ namespace Player.StateManagement
         {
             base.OnEnter();
             input.RigidBody.velocity = Vector2.zero;
-
+            //input.healthManager.TakeDamage(input.damageListener.GetCurrentDamage());
             input.Animator.Play("Hurt");
         }
     }

@@ -1,4 +1,6 @@
+using Game.AnimationEvent.Receiver;
 using Game.AnimationEvent.Source;
+using Game.Managers;
 using UnityEngine;
 
 namespace Player.StateManagement
@@ -26,6 +28,9 @@ namespace Player.StateManagement
         [HideInInspector] public Animator Animator;
         [HideInInspector] public Vector3 originalScale;
         [HideInInspector] public DamageProcessor damageProcessor;
+        [HideInInspector] public DamageListener damageListener;
+        [HideInInspector] public HealthManager healthManager;
+
         [HideInInspector] public int direction;
         [HideInInspector] public bool debugDraw;
 
@@ -67,6 +72,18 @@ namespace Player.StateManagement
             if (damageProcessor == null)
             {
                 Debug.LogError("DamageProcessor component is missing on this GameObject.");
+            }
+
+            damageListener = GetComponent<DamageListener>();
+            if (damageListener == null)
+            {
+                Debug.LogError("DamageListener component is missing on this GameObject.");
+            }
+
+            healthManager = GetComponent<HealthManager>();
+            if (healthManager == null)
+            {
+                Debug.LogError("HealthManager component is missing on this GameObject.");
             }
         }
 

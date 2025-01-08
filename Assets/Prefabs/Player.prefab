@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 6499751948821512638}
   - component: {fileID: 297189210860119370}
   - component: {fileID: 6376605948937905412}
+  - component: {fileID: 8767976458618293535}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -403,6 +404,8 @@ MonoBehaviour:
   Animator: {fileID: 0}
   originalScale: {x: 0, y: 0, z: 0}
   damageProcessor: {fileID: 0}
+  damageListener: {fileID: 0}
+  healthManager: {fileID: 0}
   direction: 0
   debugDraw: 1
   walkSpeed: 10
@@ -512,3 +515,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8767976458618293535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824323790894388638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c04ef9d6f685c56429d1f160fbb319fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarPosition: {x: 10, y: 10}
+  healthBarSize: {x: 200, y: 20}
