@@ -36,6 +36,13 @@ namespace InputCommands
                 _invoker.Execute(buttonCommand, _stateMachine);
             }
 
+            var releaseCommand = _inputListener.GetReleaseCommand();
+
+            if (releaseCommand != null)
+            {
+                _invoker.Execute(releaseCommand, _stateMachine);
+            }
+
             var sensorCommand = _inputListener.GetSensorCommand();
             if (sensorCommand != null)
             {

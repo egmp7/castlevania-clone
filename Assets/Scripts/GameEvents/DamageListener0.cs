@@ -14,12 +14,13 @@ namespace Game.AnimationEvent.Receiver
         private HealthManager _healthManager;
         private float _currentDamage;
 
+
         private void Awake()
         {
             _healthManager = GetComponent<HealthManager>();
             if (_healthManager != null )
             {
-                Debug.LogError("Missing HealthManager Component");
+                Debug.LogError("Missing HealthManager Component ::"+ name);
             }
         }
 

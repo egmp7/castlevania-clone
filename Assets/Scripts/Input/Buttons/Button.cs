@@ -7,19 +7,37 @@ namespace InputCommands.Buttons
     public abstract class Button
     {
         protected InputAction inputAction;
-        private bool state;
+        private bool _stateIn = false;
+        private bool _stateOut = true;
 
         public bool IsPressed()
         {
             #region Button Algorithm
-            if (inputAction.IsPressed() && !state)
+            if (inputAction.IsPressed() && !_stateIn)
             {
-                state = true;
+                _stateIn = true;
                 return true;
             }
             else if (!inputAction.IsPressed())
             {
-                state = false;
+                _stateIn = false;
+            }
+            return false;
+            #endregion
+        }
+
+        public bool IsReleased()
+        {
+
+            #region Button Algorithm
+            if (!inputAction.IsPressed() && _stateOut)
+            {
+                _stateOut = false;
+                return true;
+            }
+            else if (inputAction.IsPressed())
+            {
+                _stateOut = true;
             }
             return false;
             #endregion

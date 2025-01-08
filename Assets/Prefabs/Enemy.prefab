@@ -106,8 +106,9 @@ GameObject:
   - component: {fileID: 308924284507444834}
   - component: {fileID: 7882149382045609931}
   - component: {fileID: 1739512300444082922}
-  - component: {fileID: 8783943276354531123}
-  - component: {fileID: 5382913170841901610}
+  - component: {fileID: 4198635844888042417}
+  - component: {fileID: 2311839242005536649}
+  - component: {fileID: 6007821269945838344}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -361,7 +362,24 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   attackRadius: 0
   currentDamage: 0
---- !u!114 &8783943276354531123
+--- !u!114 &4198635844888042417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063072558586803956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c04ef9d6f685c56429d1f160fbb319fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initValue: 500
+  healthBarPosition: {x: 10, y: 10}
+  healthBarSize: {x: 200, y: 20}
+  blockDamageReducer: 0.1
+  currentHealth: 0
+--- !u!114 &2311839242005536649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -388,7 +406,7 @@ MonoBehaviour:
           m_StringArgument: Hurt
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5382913170841901610
+--- !u!114 &6007821269945838344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -397,13 +415,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2063072558586803956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c04ef9d6f685c56429d1f160fbb319fe, type: 3}
+  m_Script: {fileID: 11500000, guid: d4d4044d60372ae48b80fb862906ad5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initValue: 500
-  healthBarPosition: {x: 10, y: 40}
-  healthBarSize: {x: 200, y: 20}
-  currentHealth: 0
 --- !u!1 &2665201356118784936
 GameObject:
   m_ObjectHideFlags: 0

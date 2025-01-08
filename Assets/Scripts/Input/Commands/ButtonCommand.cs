@@ -23,4 +23,12 @@ namespace InputCommands
             receiver.Kick();
         }
     }
+
+    public class BlockCommand : ButtonCommand
+    {
+        public override void Execute(StateMachine receiver)
+        {
+            receiver.Block();
+        }
+    }
 }

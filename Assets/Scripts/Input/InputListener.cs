@@ -12,17 +12,21 @@ namespace InputCommands
         [SerializeField] private GroundSensor groundSensor;
         [SerializeField] private FallSensor fallSensor;
 
-        private ButtonCommand punchCommand, kickCommand;
-        private MoveCommand idleCommand, walkCommand, runCommand, jumpCommand, crouchCommand, flipDirectionCommand;
-        private SensorCommand fallCommand;
+        // commands
+        private ButtonCommand _punchCommand, _kickCommand, _blockCommand;
+        private MoveCommand _idleCommand, _walkCommand, _runCommand, _jumpCommand, _crouchCommand, _flipDirectionCommand;
+        private SensorCommand _fallCommand;
 
-        private Button buttonA, buttonB, buttonC;
+        // buttons
+        private Button _buttonA, _buttonB, _buttonC;
 
-        private DirectionMapper directionMapper;
-        private DoubleTapDetector doubleTapDetector;
-        private DirectionSwitch directionSwitch;
+        // utilities
+        private DirectionMapper _directionMapper;
+        private DoubleTapDetector _doubleTapDetector;
+        private DirectionSwitch _directionSwitch;
 
-        private StateMachine stateMachine;
+        // state machine
+        private StateMachine _stateMachine;
 
         private void Awake()
         {
@@ -54,21 +58,22 @@ namespace InputCommands
         private void InitializeCommands()
         {
             // Move commands
-            idleCommand = new IdleCommand();
-            walkCommand = new WalkCommand();
-            runCommand = new RunCommand();
-            jumpCommand = new JumpCommand();
-            crouchCommand = new CrouchCommand();
-            flipDirectionCommand = new FlipDirectionCommand();
+            _idleCommand = new IdleCommand();
+            _walkCommand = new WalkCommand();
+            _runCommand = new RunCommand();
+            _jumpCommand = new JumpCommand();
+            _crouchCommand = new CrouchCommand();
+            _flipDirectionCommand = new FlipDirectionCommand();
 
             // Action commands
-            punchCommand = new PunchCommand();
-            kickCommand = new KickCommand();
+            _punchCommand = new PunchCommand();
+            _kickCommand = new KickCommand();
+            _blockCommand = new BlockCommand();
 
             // Sensor commands
-            fallCommand = new FallCommand();
+            _fallCommand = new FallCommand();
 
-            if (idleCommand == null || punchCommand == null)
+            if (_idleCommand == null || _punchCommand == null)
             {
                 throw new System.Exception("Command initialization failed. Ensure all commands are properly instantiated.");
             }
@@ -76,18 +81,18 @@ namespace InputCommands
 
         private void InitializeMoveFeatures()
         {
-            directionMapper = new DirectionMapper() ?? throw new MissingComponentException("DirectionMapper is not initialized!");
-            doubleTapDetector = new DoubleTapDetector() ?? throw new MissingComponentException("DoubleTapDetector is not initialized!");
-            directionSwitch = new DirectionSwitch() ?? throw new MissingComponentException("DirectionSwitch is not initialized!");
+            _directionMapper = new DirectionMapper() ?? throw new MissingComponentException("DirectionMapper is not initialized!");
+            _doubleTapDetector = new DoubleTapDetector() ?? throw new MissingComponentException("DoubleTapDetector is not initialized!");
+            _directionSwitch = new DirectionSwitch() ?? throw new MissingComponentException("DirectionSwitch is not initialized!");
         }
 
         private void InitializeButtons()
         {
-            buttonA = new ButtonA();
-            buttonB = new ButtonB();
-            buttonC = new ButtonC();
+            _buttonA = new ButtonA();
+            _buttonB = new ButtonB();
+            _buttonC = new ButtonC();
 
-            if (buttonA == null || buttonB == null || buttonC == null)
+            if (_buttonA == null || _buttonB == null || _buttonC == null)
             {
                 throw new System.Exception("Button initialization failed. Ensure all buttons are properly instantiated.");
             }
@@ -95,9 +100,9 @@ namespace InputCommands
 
         private void InitializeStateMachine()
         {
-            stateMachine = GetComponent<StateMachine>();
+            _stateMachine = GetComponent<StateMachine>();
 
-            if (stateMachine == null)
+            if (_stateMachine == null)
             {
                 throw new System.Exception("StateMachine component is not available. This should not happen due to RequireComponent.");
             }
@@ -105,63 +110,70 @@ namespace InputCommands
 
         public MoveCommand GetMoveCommand()
         {
-            if (groundSensor == null || directionMapper == null || directionSwitch == null)
+            // 
+            if (groundSensor == null || _directionMapper == null || _directionSwitch == null)
             {
                 Debug.LogWarning($"{nameof(InputListener)}: Missing components in GetMoveCommand.");
                 return null;
             }
 
-            if (!groundSensor.GetState()) return null;
-            if (stateMachine.GetCurrentState() is AttackState) return null;
-            if (stateMachine.GetCurrentState() is HealthState) return null;
+            // BLOCKS
+            var currentState = _stateMachine.GetCurrentState();
+            var airState = !groundSensor.GetState();
+            if (airState) return null;
+            if (currentState is AttackState) return null;
+            if (currentState is HealthState) return null;
+            if (currentState is BlockState) return null;
 
-            var currentDirectionState = directionMapper.GetState();
-            var isDoubleTap = doubleTapDetector?.Update(currentDirectionState) ?? false;
 
-            if (directionSwitch.Update(currentDirectionState))
-                return flipDirectionCommand;
+            var currentDirectionState = _directionMapper.GetState();
+            var isDoubleTap = _doubleTapDetector?.Update(currentDirectionState) ?? false;
+
+            if (_directionSwitch.Update(currentDirectionState))
+                return _flipDirectionCommand;
 
             return currentDirectionState switch
             {
                 DirectionMapper.State.Left or DirectionMapper.State.Right =>
-                    isDoubleTap ? runCommand : walkCommand,
+                    isDoubleTap ? _runCommand : _walkCommand,
 
                 DirectionMapper.State.Up or DirectionMapper.State.UpLeft or DirectionMapper.State.UpRight =>
-                    jumpCommand,
+                    _jumpCommand,
 
                 DirectionMapper.State.Down or DirectionMapper.State.DownLeft or DirectionMapper.State.DownRight =>
-                    crouchCommand,
+                    _crouchCommand,
 
-                _ => idleCommand
+                _ => _idleCommand
             };
         }
 
         public ButtonCommand GetButtonCommand()
         {
-            if (stateMachine.GetCurrentState() is HealthState) return null;
+            if (_stateMachine.GetCurrentState() is HealthState) return null;
 
-            if (buttonA == null || buttonB == null || buttonC == null)
+            if (_buttonA == null || _buttonB == null || _buttonC == null)
             {
                 Debug.LogWarning($"{nameof(InputListener)}: Buttons are not initialized.");
                 return null;
             }
 
-            if (buttonA.IsPressed()) return punchCommand;
-            if (buttonB.IsPressed()) return kickCommand;
+            if (_buttonA.IsPressed()) return _punchCommand;
+            if (_buttonB.IsPressed()) return _kickCommand;
+            if (_buttonC.IsPressed()) return _blockCommand;
 
-            // Explicitly handle ButtonC
-            if (buttonC.IsPressed())
-            {
-                Debug.Log($"{nameof(InputListener)}: ButtonC pressed, but no action assigned.");
-                return null;
-            }
+            return null;
+        }
 
+        public MoveCommand GetReleaseCommand()
+        {
+            if (_buttonC.IsReleased()) return _idleCommand;
+                
             return null;
         }
 
         public SensorCommand GetSensorCommand()
         {
-            if (stateMachine.GetCurrentState() is HealthState) return null;
+            if (_stateMachine.GetCurrentState() is HealthState) return null;
 
             if (fallSensor == null)
             {
@@ -169,7 +181,7 @@ namespace InputCommands
                 return null;
             }
 
-            return fallSensor.GetState() ? fallCommand : null;
+            return fallSensor.GetState() ? _fallCommand : null;
         }
     }
 }

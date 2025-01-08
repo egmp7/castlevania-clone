@@ -1,7 +1,9 @@
+using Game.Trackers;
 using UnityEngine;
 
 namespace Game.Managers
 {
+    [RequireComponent(typeof(StateTracker))]
 
     public class HealthManager : MonoBehaviour
     {
@@ -11,18 +13,30 @@ namespace Game.Managers
         [SerializeField] Vector2 healthBarPosition = new (10, 10);
         [Tooltip("Width and height of the health bar")]
         [SerializeField] Vector2 healthBarSize = new (200, 20);
+        [SerializeField] float blockDamageReducer = 0.1f;
 
         [HideInInspector] public float currentHealth;
+
+        private StateTracker _tracker;
         private float _initHealth;
 
         public void DecreaseHealth(float damage)
         {
+            if (_tracker.IsBlockState()) damage *= blockDamageReducer;
             currentHealth -= damage;
 
             if (currentHealth < 0)
             {
                 currentHealth = _initHealth;
                 // Destroy(gameObject);
+            }
+        }
+
+        private void Awake()
+        {
+            if (TryGetComponent(out _tracker))
+            {
+                Debug.LogError("BehaviorTree not initialized");
             }
         }
 

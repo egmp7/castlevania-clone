@@ -419,7 +419,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.02, y: -7.4300003, z: -10}
+  m_LocalPosition: {x: -8.03, y: -7.42, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -473,11 +473,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6144268658522476791, guid: 5ca6057419b904e48ac3945b525e7f99, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.02
+      value: -8.03
       objectReference: {fileID: 0}
     - target: {fileID: 6144268658522476791, guid: 5ca6057419b904e48ac3945b525e7f99, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.96
+      value: -8.95
       objectReference: {fileID: 0}
     - target: {fileID: 6144268658522476791, guid: 5ca6057419b904e48ac3945b525e7f99, type: 3}
       propertyPath: m_LocalPosition.z
@@ -585,7 +585,7 @@ Transform:
   m_GameObject: {fileID: 953098222}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.02, y: -7.4300003, z: -10}
+  m_LocalPosition: {x: -8.03, y: -7.42, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1039,6 +1039,14 @@ PrefabInstance:
     - target: {fileID: 2063072558586803956, guid: 1e118bb70a5bb584dab70d3c9f0649e0, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2311839242005536649, guid: 1e118bb70a5bb584dab70d3c9f0649e0, type: 3}
+      propertyPath: UnityEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2311839242005536649, guid: 1e118bb70a5bb584dab70d3c9f0649e0, type: 3}
+      propertyPath: UnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8728339286157445243, guid: 1e118bb70a5bb584dab70d3c9f0649e0, type: 3}
       propertyPath: m_Constraints

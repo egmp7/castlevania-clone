@@ -22,6 +22,7 @@ namespace Player.StateManagement
         private readonly PunchState _statePunch = new();
         private readonly KickState _stateKick = new();
         private readonly HurtState _stateHurt = new();
+        private readonly BlockState _stateBlock = new();
 
         // Inputs
         [HideInInspector] public Rigidbody2D RigidBody;
@@ -173,7 +174,17 @@ namespace Player.StateManagement
 
         public void Hurt()
         {
+            if (_currentState is BlockState blockState)
+            {
+                blockState.PlayBlockAnimation();
+                return;
+            }
             ChangeState(_stateHurt);
+        }
+
+        public void Block()
+        {
+            ChangeState(_stateBlock);
         }
 
         public void FlipDirection()

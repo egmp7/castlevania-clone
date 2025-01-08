@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 297189210860119370}
   - component: {fileID: 6376605948937905412}
   - component: {fileID: 8767976458618293535}
+  - component: {fileID: 297034486995623821}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -284,7 +285,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 66c32ec536cce5d4d89bd64a0e6be3c7, type: 3}
+  m_Sprite: {fileID: 21300092, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
   m_Color: {r: 0, g: 0.042579256, b: 0.9716981, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -358,7 +359,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 3, y: 2.625}
+    oldSize: {x: 3.125, y: 1.71875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -527,5 +528,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04ef9d6f685c56429d1f160fbb319fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initValue: 500
   healthBarPosition: {x: 10, y: 10}
   healthBarSize: {x: 200, y: 20}
+  blockDamageReducer: 0.1
+  currentHealth: 0
+--- !u!114 &297034486995623821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824323790894388638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 792e41e96646f684d8434014321ebf64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
