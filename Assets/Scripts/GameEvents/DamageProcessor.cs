@@ -1,6 +1,7 @@
-using Game.AnimationEvent.Receiver;
+using egmp7.Game.Combat;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.AnimationEvent.Source
 {
@@ -13,10 +14,11 @@ namespace Game.AnimationEvent.Source
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private Transform attackTransform;
 
-        [Header("Attack Parameters")]
-        [HideInInspector] public Vector2 offset;
-        [HideInInspector] public float attackRadius;
-        [HideInInspector] public float currentDamage;
+        [Header("Attacked received event")]
+        [SerializeField] private UnityEvent UnityEvent;
+
+        private Attack _fromAttack;
+        private Attack _toAttack;
 
         private void Awake()
         {
@@ -30,58 +32,60 @@ namespace Game.AnimationEvent.Source
 
         public void PerformAttackDetection()
         {
-            if (!enabled)
-            {
-                Debug.LogWarning("Cannot perform attack detection; script is disabled.");
-                return;
-            }
-
-            if (attackRadius <= 0)
-            {
-                Debug.LogWarning($"Attack radius is not set or is invalid (value: {attackRadius}). Defaulting to 1.");
-                attackRadius = 1f;
-            }
-
-            if (currentDamage <= 0)
-            {
-                Debug.LogWarning($"Current damage is not set or is invalid (value: {currentDamage}). Defaulting to 10.");
-                currentDamage = 10f;
-            }
+            var direction = (int)Mathf.Sign(transform.localScale.x);
+            var attackInitPosition = attackTransform.position;
 
             // Calculate attack position
             Vector2 attackPosition = FindAttackPosition(
-                attackTransform.position,
-                offset,
-                (int)Mathf.Sign(transform.localScale.x));
+                attackInitPosition,
+                _fromAttack.offset,
+                direction);
 
             // Draw debug circle
             Utilities.DrawCircleBounds(
                 attackPosition,
-                attackRadius,
+                _fromAttack.radius,
                 Color.cyan);
 
             // Detect hit
             Collider2D hit = Physics2D.OverlapCircle(
                 attackPosition,
-                attackRadius,
+                _fromAttack.radius,
                 layerMask);
 
             // Handle hit detection
             if (hit != null)
             {
-                if (hit.TryGetComponent<DamageListener>(out var damageListener))
+                if (hit.TryGetComponent<DamageProcessor>(out var processor))
                 {
-                    damageListener.TakeDamage(currentDamage, layerMask);
+                    processor.SendAttack(_fromAttack);
                 }
                 else
                 {
-                    Debug.LogWarning($"Hit object does not have a {nameof(DamageListener)} component. Object: {hit.name}");
+                    ErrorManager.LogMissingComponent<DamageProcessor>(hit);
                 }
             }
             else
             {
-                Debug.Log("No hit during attack detection.");
+                //Debug.Log("No hit during attack detection.");
             }
+        }
+
+        public void SetFromAttack(Attack attack)
+        {
+            _fromAttack = attack;
+        }
+
+        public void SendAttack(Attack attack)
+        {
+            Debug.Log($"Attacked received: {attack.amount}, From: {attack.from} To: {attack.to}");
+            _toAttack = attack;
+            UnityEvent.Invoke();
+        }
+
+        public Attack GetToAttack()
+        {
+            return _toAttack;
         }
 
         /// <summary>
@@ -93,8 +97,9 @@ namespace Game.AnimationEvent.Source
         /// <returns>A Vector2 representing the calculated attack position.</returns>
         /// <exception cref="ArgumentNullException">Thrown if position or offset is null.</exception>
         /// <exception cref="ArgumentException">Thrown if the direction is not -1 or 1.</exception>
-        private Vector2 FindAttackPosition(Vector2? position, Vector2? offset, int direction)
+        private static Vector2 FindAttackPosition(Vector2? position, Vector2? offset, int direction)
         {
+            #region Find Attack Position
             // Validate position
             if (position == null)
             {
@@ -118,6 +123,7 @@ namespace Game.AnimationEvent.Source
                 position.Value.x + (offset.Value.x * direction),
                 position.Value.y + offset.Value.y
             );
+            #endregion
         }
     }
 }

@@ -1,13 +1,11 @@
-using Game.Trackers;
+using Game.AnimationEvent.Source;
+using Player.StateManagement;
 using UnityEngine;
 
 namespace Game.Managers
 {
-    [RequireComponent(typeof(StateTracker))]
-
     public class HealthManager : MonoBehaviour
     {
-
         [SerializeField] float initValue = 500;
         [Tooltip("Position of the health bar on the screen (X, Y)")] 
         [SerializeField] Vector2 healthBarPosition = new (10, 10);
@@ -17,26 +15,20 @@ namespace Game.Managers
 
         [HideInInspector] public float currentHealth;
 
-        private StateTracker _tracker;
         private float _initHealth;
-
-        public void DecreaseHealth(float damage)
-        {
-            if (_tracker.IsBlockState()) damage *= blockDamageReducer;
-            currentHealth -= damage;
-
-            if (currentHealth < 0)
-            {
-                currentHealth = _initHealth;
-                // Destroy(gameObject);
-            }
-        }
+        private StateMachine _stateMachine;
+        private DamageProcessor _processor;
 
         private void Awake()
         {
-            if (TryGetComponent(out _tracker))
+            if (!TryGetComponent(out _stateMachine))
             {
-                Debug.LogError("BehaviorTree not initialized");
+                ErrorManager.LogMissingComponent<StateMachine>(gameObject);
+            }
+
+            if (!TryGetComponent(out _processor))
+            {
+                ErrorManager.LogMissingComponent<DamageProcessor>(gameObject);
             }
         }
 
@@ -60,6 +52,29 @@ namespace Game.Managers
             GUI.color = Color.red;  // Change the color of the health bar to red
             GUI.DrawTexture(new Rect(healthBarPosition.x, healthBarPosition.y, healthBarSize.x * healthPercentage, healthBarSize.y), Texture2D.whiteTexture);
             GUI.color = Color.white;  // Reset color after drawing
+        }
+
+        public void DecreaseHealth()
+        {
+            float damage = _processor.GetToAttack().amount;
+
+            if (_stateMachine.GetCurrentState() is BlockState blockState)
+            {
+                blockState.PlayBlockAnimation();
+                damage *= blockDamageReducer;
+            }
+            else
+            {
+                _stateMachine.Hurt();
+            }
+
+            currentHealth -= damage;
+
+            if (currentHealth < 0)
+            {
+                currentHealth = _initHealth;
+                // Destroy(gameObject);
+            }
         }
     }
 }

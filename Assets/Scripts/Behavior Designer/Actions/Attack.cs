@@ -1,4 +1,5 @@
 using BehaviorDesigner.Runtime.Tasks;
+using egmp7.Game.Combat;
 using GameProject.Utilities;
 using UnityEngine;
 
@@ -15,13 +16,19 @@ namespace Enemy.AI
         private float _lastTimeUsed;
         private int _maxCombo;
 
+        private float _attackRadius;
+        private float _attackAmount;
+        private Vector2 _attackOffset;
+        private string _attackFrom = "Enemy";
+        private string _attackTo = "Player";
+
         private static CooldownTimer cooldownTimer = new(0);
 
         public override void OnStart()
         {
             base.OnStart();
             _maxCombo = 3;
-            processor.attackRadius = 0.5f;
+            _attackRadius = 0.5f;
         }
 
         public override TaskStatus OnUpdate()
@@ -51,26 +58,34 @@ namespace Enemy.AI
             if (_currentCombo == 1)
             {
                 cooldownTimer = new CooldownTimer(300);
-                processor.currentDamage = 20;
-                processor.offset = new Vector2(0.3f, -0.3f);
-                animator.Play("Punch01");
+                _attackAmount = 20;
+                _attackOffset = new Vector2(0.3f, -0.3f);
+                animator.Play("Punch01",-1,0f);
             }
 
             if (_currentCombo == 2)
             {
                 cooldownTimer = new CooldownTimer(150);
-                processor.currentDamage = 10;
-                processor.offset = new Vector2(0.3f, 0.5f);
-                animator.Play("Punch02");
+                _attackAmount = 10;
+                _attackOffset = new Vector2(0.3f, 0.5f);
+                animator.Play("Punch02",-1,0f);
             }
 
             if (_currentCombo == 3)
             {
                 cooldownTimer = new CooldownTimer(220);
-                processor.currentDamage = 33;
-                processor.offset = new Vector2(0.1f, 1f);
-                animator.Play("Punch03");
+                _attackAmount = 33;
+                _attackOffset = new Vector2(0.1f, 1f);
+                animator.Play("Punch03",-1,0f);
             }
+
+            Attack attack = new (
+                _attackOffset,
+                _attackRadius,
+                _attackAmount,
+                _attackFrom,
+                _attackTo);
+            processor.SetFromAttack(attack);
 
         }
     }

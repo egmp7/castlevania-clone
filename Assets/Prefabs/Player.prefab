@@ -215,9 +215,7 @@ GameObject:
   - component: {fileID: 420662565828384351}
   - component: {fileID: 6499751948821512638}
   - component: {fileID: 297189210860119370}
-  - component: {fileID: 6376605948937905412}
-  - component: {fileID: 8767976458618293535}
-  - component: {fileID: 297034486995623821}
+  - component: {fileID: 225014747949427861}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -405,7 +403,6 @@ MonoBehaviour:
   Animator: {fileID: 0}
   originalScale: {x: 0, y: 0, z: 0}
   damageProcessor: {fileID: 0}
-  damageListener: {fileID: 0}
   healthManager: {fileID: 0}
   direction: 0
   debugDraw: 1
@@ -486,27 +483,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   attackTransform: {fileID: 8804363904089868769}
-  offset: {x: 0, y: 0}
-  attackRadius: 0
-  currentDamage: 0
---- !u!114 &6376605948937905412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8824323790894388638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf849fc55d52caf428646d3264646269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   UnityEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3159315971329301701}
-        m_TargetAssemblyTypeName: Player.StateManagement.StateMachine, Assembly-CSharp
-        m_MethodName: Hurt
+      - m_Target: {fileID: 225014747949427861}
+        m_TargetAssemblyTypeName: Game.Managers.HealthManager, Assembly-CSharp
+        m_MethodName: DecreaseHealth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -516,7 +498,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8767976458618293535
+--- !u!114 &225014747949427861
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -533,15 +515,3 @@ MonoBehaviour:
   healthBarSize: {x: 200, y: 20}
   blockDamageReducer: 0.1
   currentHealth: 0
---- !u!114 &297034486995623821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8824323790894388638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 792e41e96646f684d8434014321ebf64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

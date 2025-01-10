@@ -1,24 +1,25 @@
 using BehaviorDesigner.Runtime;
 using UnityEngine;
 
-namespace Game.Trackers
+namespace egmp7.AI.EventHandlers
 {
-    public class BehaviorTreeTracker : StateTracker
+    public class BehaviorTreeEventHandler : MonoBehaviour
     {
+
         private BehaviorTree _behaviorTree;
-        private readonly string _blockTaskName = "Block";
+
 
         private void Awake()
         {
             if (TryGetComponent(out _behaviorTree))
             {
-                Debug.LogError("BehaviorTree not initialized");
+                //Debug.LogError("BehaviorTree not initialized");
             }
         }
 
-        public override bool IsBlockState()
+        public  void TriggerHurtEvent()
         {
-            return _behaviorTree.FindTaskWithName(_blockTaskName) != null;
+            _behaviorTree.SendEvent("HurtEvent");
         }
     }
 }

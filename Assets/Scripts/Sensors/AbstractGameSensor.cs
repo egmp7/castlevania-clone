@@ -13,7 +13,7 @@ namespace Game.Sensors
             GameObject foundObject = GameObject.FindGameObjectWithTag(_sensorTag);
             if (foundObject == null)
             {
-                Debug.LogWarning($"No GameObject found with tag: {_sensorTag}");
+                ErrorManager.LogMissingGameObjectWithTag(_sensorTag);
             }
             
         }

@@ -1,3 +1,4 @@
+using egmp7.Game.Combat;
 using GameProject.Utilities;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace Player.StateManagement
             base.OnEnter();
             MaxCombo = 3;
             ComboResetTime = input.kickComboResetTime;
-            input.damageProcessor.attackRadius = 0.35f;
+            _attackRadius = 0.35f;
         }
 
         protected override void OnAttack()
@@ -25,25 +26,35 @@ namespace Player.StateManagement
             if (CurrentCombo == 1)
             {
                 cooldownTimer = new CooldownTimer(300);
-                input.damageProcessor.currentDamage = 70;
-                input.damageProcessor.offset = new Vector2(0.3f, 0.4f);
+                _attackAmount = 70;
+                _attackOffset = new Vector2(0.3f, 0.4f);
                 input.Animator.Play("Kick01");
             }
 
             if (CurrentCombo == 2)
             {
                 cooldownTimer = new CooldownTimer(280);
-                input.damageProcessor.currentDamage = 40;
-                input.damageProcessor.offset = new Vector2(0.3f, -0.3f);
+                _attackAmount = 40;
+                _attackOffset = new Vector2(0.3f, -0.3f);
                 input.Animator.Play("Kick02");
             }
             if (CurrentCombo == 3)
             {
                 cooldownTimer = new CooldownTimer(600);
-                input.damageProcessor.currentDamage = 100;
-                input.damageProcessor.offset = new Vector2(0.3f, 0.1f);
+                _attackAmount = 100;
+                _attackOffset = new Vector2(0.3f, 0.1f);
                 input.Animator.Play("Kick03");
             }
+
+            // set Attack
+            Attack attack = new(
+                _attackOffset,
+                _attackRadius,
+                _attackAmount,
+                _attackFrom,
+                _attackTo);
+
+            input.damageProcessor.SetFromAttack(attack);
         }
     }
 }

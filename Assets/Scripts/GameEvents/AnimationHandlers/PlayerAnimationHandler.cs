@@ -1,10 +1,8 @@
 using Game.AnimationEvent.Source;
 using Player.StateManagement;
-using UnityEngine;
 
 namespace Game.AnimationEvent
 {
-    [RequireComponent(typeof(StateMachine))]
 
     public class PlayerAnimationHandler : AnimationHandler
     {
@@ -13,16 +11,14 @@ namespace Game.AnimationEvent
 
         private void Awake()
         {
-            _stateMachine = GetComponent<StateMachine>();
-            if (_stateMachine == null)
+            if (!TryGetComponent(out _stateMachine))
             {
-                Debug.LogError("StateMachine component is missing on this GameObject.");
+                ErrorManager.LogMissingComponent<StateMachine>(gameObject);
             }
 
-            _damageProcessor = GetComponent<DamageProcessor>();
-            if (_damageProcessor == null)
+            if (!TryGetComponent(out _damageProcessor))
             {
-                Debug.LogError("DamageProcessor component is missing on this GameObject.");
+                ErrorManager.LogMissingComponent<DamageProcessor>(gameObject);
             }
         }
 

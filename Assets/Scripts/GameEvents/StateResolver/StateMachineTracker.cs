@@ -11,13 +11,17 @@ namespace Game.Trackers
         {
             if (TryGetComponent(out _stateMachine))
             {
-                Debug.LogError("StateMachine not initialized");
+                //Debug.LogError("StateMachine not initialized");
             }
         }
 
         public override bool IsBlockState()
         {
             return _stateMachine.GetCurrentState() is BlockState;
+        }
+
+        public override void TriggerHurtEvent()
+        {
         }
     }
 }
