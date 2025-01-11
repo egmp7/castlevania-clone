@@ -3,14 +3,15 @@ using UnityEngine;
 
 namespace Enemy.AI
 {
-    public class Idle : EnemyAction
+    public class Die : EnemyAction
     {
         public override TaskStatus OnUpdate()
         {
             _rb.velocity = Vector2.zero;
-            _animator.Play("Idle");
+            _animator.Play("Die");
             return TaskStatus.Success;
         }
     }
 }
+
 

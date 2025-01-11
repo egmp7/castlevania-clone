@@ -28,6 +28,21 @@ public static class ErrorManager
         Debug.LogWarning($"Collider2D object '{collider.name}' does not have a {typeof(T).Name} component.");
     }
 
+    /// <summary>
+    /// Logs a warning when a Collider2D is missing an expected component
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="collider"></param>
+    public static void LogMissingProperty<T>(GameObject gameObject) where T : Component
+    {
+        if (gameObject == null)
+        {
+            Debug.LogWarning($"The provided gameObject is null. Cannot check for missing components.");
+            return;
+        }
+
+        Debug.LogWarning($"Game Object '{gameObject.name}' is missing a {typeof(T).Name} property.");
+    }
 
     /// <summary>
     /// Logs a warning when no GameObject is found with the specified tag.

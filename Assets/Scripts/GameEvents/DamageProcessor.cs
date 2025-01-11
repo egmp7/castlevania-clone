@@ -78,7 +78,7 @@ namespace Game.AnimationEvent.Source
 
         public void SendAttack(Attack attack)
         {
-            Debug.Log($"Attacked received: {attack.amount}, From: {attack.from} To: {attack.to}");
+            //Debug.Log($"Attacked received: {attack.amount}, From: {attack.from} To: {attack.to}");
             _toAttack = attack;
             UnityEvent.Invoke();
         }

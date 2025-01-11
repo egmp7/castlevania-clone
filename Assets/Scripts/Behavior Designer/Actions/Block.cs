@@ -12,7 +12,7 @@ namespace Enemy.AI
         {
             if (Random.value <= blockChance)
             {
-                animator.Play("Block", -1, 0f);
+                _animator.Play("Block", -1, 0f);
                 return TaskStatus.Success;
             }
 

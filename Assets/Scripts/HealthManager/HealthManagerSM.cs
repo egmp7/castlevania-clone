@@ -4,18 +4,13 @@ using UnityEngine;
 
 namespace Game.Managers
 {
-    public class HealthManager : MonoBehaviour
+    public class HealthManagerSM : HealthManager
     {
-        [SerializeField] float initValue = 500;
-        [Tooltip("Position of the health bar on the screen (X, Y)")] 
-        [SerializeField] Vector2 healthBarPosition = new (10, 10);
+        [Tooltip("Position of the health bar on the screen (X, Y)")]
+        [SerializeField] Vector2 healthBarPosition = new(10, 10);
         [Tooltip("Width and height of the health bar")]
-        [SerializeField] Vector2 healthBarSize = new (200, 20);
-        [SerializeField] float blockDamageReducer = 0.1f;
+        [SerializeField] Vector2 healthBarSize = new(200, 20);
 
-        [HideInInspector] public float currentHealth;
-
-        private float _initHealth;
         private StateMachine _stateMachine;
         private DamageProcessor _processor;
 
@@ -32,18 +27,12 @@ namespace Game.Managers
             }
         }
 
-        private void Start()
-        {
-            currentHealth = initValue;
-            _initHealth = initValue;
-        }
-
         /// <summary>
         /// Draw the health bar on the screen using OnGUI
         /// </summary>
         private void OnGUI()
         {
-            float healthPercentage = currentHealth / _initHealth;
+            float healthPercentage = _currentHealth / _initHealth;
 
             // Draw background bar (empty state)
             GUI.Box(new Rect(healthBarPosition.x, healthBarPosition.y, healthBarSize.x, healthBarSize.y), "");
@@ -68,11 +57,11 @@ namespace Game.Managers
                 _stateMachine.Hurt();
             }
 
-            currentHealth -= damage;
+            _currentHealth -= damage;
 
-            if (currentHealth < 0)
+            if (_currentHealth < 0)
             {
-                currentHealth = _initHealth;
+                _currentHealth = _initHealth;
                 // Destroy(gameObject);
             }
         }

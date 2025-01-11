@@ -1,40 +1,50 @@
 using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 using Game.AnimationEvent.Source;
+using Game.Managers;
 
 namespace Enemy.AI
 {
     public abstract class EnemyAction : Action
     {
-        protected Rigidbody2D rb;
-        protected Animator animator;
-        protected Transform playerTransform;
-        protected DamageProcessor processor;
+        protected Rigidbody2D _rb;
+        protected Animator _animator;
+        protected Transform _playerTransform;
+        protected DamageProcessor _processor;
+        protected HealthManagerBT _healthManager;
+
+        private readonly string _playerTag = "Player";
 
         public override void OnAwake()
         {
-            rb = GetComponent<Rigidbody2D>();
-            if (rb == null)
+            _rb = GetComponent<Rigidbody2D>();
+            if (_rb == null)
             {
-                Debug.LogError("Rigidbody2D is not assigned.");
+                ErrorManager.LogMissingComponent<Rigidbody2D>(gameObject);
             }
 
-            animator = GetComponent<Animator>();
-            if (animator == null)
+            _animator = GetComponent<Animator>();
+            if (_animator == null)
             {
-                Debug.LogError("Animator is not assigned.");
+                ErrorManager.LogMissingComponent<Animator>(gameObject);
             }
 
-            processor = GetComponent<DamageProcessor>();
-            if (processor == null)
+            _processor = GetComponent<DamageProcessor>();
+            if (_processor == null)
             {
-                Debug.LogError("DamageProcessor is not assigned.");
+                ErrorManager.LogMissingComponent<DamageProcessor>(gameObject);
             }
 
-            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-            if (playerTransform == null)
+            _healthManager = GetComponent<HealthManagerBT>();
+            if (_healthManager == null)
             {
-                Debug.LogError("PlayerTransform is not assigned.");
+                ErrorManager.LogMissingComponent<HealthManagerBT>(gameObject);
+            }
+
+            _playerTransform = GameObject.FindGameObjectWithTag(_playerTag).transform;
+            if (_playerTransform == null)
+            {
+                ErrorManager.LogMissingGameObjectWithTag(_playerTag);
             }
         }
     }

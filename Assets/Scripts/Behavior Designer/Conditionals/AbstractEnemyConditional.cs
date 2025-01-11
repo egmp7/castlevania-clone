@@ -1,18 +1,18 @@
 using BehaviorDesigner.Runtime.Tasks;
-using UnityEngine;
+using Game.Managers;
 
 namespace Enemy.AI
 {
     public abstract class EnemyConditional : Conditional
     {
-        protected Animator animator;
+        protected HealthManagerBT _healthManager;
 
         public override void OnAwake()
         {
-            animator = GetComponent<Animator>();
-            if (animator == null)
+            _healthManager = GetComponent<HealthManagerBT>();
+            if (_healthManager == null)
             {
-                Debug.LogError("Animator is not assigned.");
+                ErrorManager.LogMissingComponent<HealthManagerBT>(gameObject);
             }
         }
     }

@@ -18,7 +18,7 @@ namespace Enemy.AI
             Vector3 scale = transform.localScale; // Get the current local scale
 
             // Determine the desired direction based on player's position
-            float desiredScaleX = transform.position.x > playerTransform.position.x ? -baseScaleX : baseScaleX;
+            float desiredScaleX = transform.position.x > _playerTransform.position.x ? -baseScaleX : baseScaleX;
 
             // Update only if the scale.x is different from desiredScaleX
             if (Mathf.Abs(scale.x - desiredScaleX) > Mathf.Epsilon)

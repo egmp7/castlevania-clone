@@ -107,8 +107,10 @@ GameObject:
   - component: {fileID: 7882149382045609931}
   - component: {fileID: 1739512300444082922}
   - component: {fileID: 6007821269945838344}
+  - component: {fileID: 908448910100716561}
+  - component: {fileID: 5193533598684975249}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: Chuck
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,8 +125,8 @@ Transform:
   m_GameObject: {fileID: 2063072558586803956}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.65, y: -8.96, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.04, y: -8.52, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8420210728036826164}
@@ -255,7 +257,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &2297837645302665813
 Animator:
   serializedVersion: 5
@@ -305,25 +307,30 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(577,270.916656)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-4.18716526,124.4892)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-3,117.280273)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-608.9826,231.429352)"},"ID":3,"Name":"Hurt
-        Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.HasReceivedEvent","NodeData":{"Offset":"(-129.658081,204.05983)"},"ID":4,"Name":"Hurt
-        Event","Instant":true,"SharedStringeventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"HurtEvent"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(57.00055,205.916626)"},"ID":5,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.Block","NodeData":{"Offset":"(-73.3334656,150.000092)"},"ID":6,"Name":"Block","Instant":true,"SingleblockChance":0.8},{"Type":"Enemy.AI.Hurt","NodeData":{"Offset":"(79.99994,150.000092)"},"ID":7,"Name":"Hurt","Instant":true}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-58.3333359,314.16687)"},"ID":8,"Name":"Attack
-        Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.WithinSight","NodeData":{"Offset":"(-131.428589,170)"},"ID":9,"Name":"In
-        Attack Zone?","Instant":true,"PlayerSensorplayerSensor":0},{"Type":"Enemy.AI.AttackAction","NodeData":{"Offset":"(7.55575562,180.915771)"},"ID":10,"Name":"Attack
-        Action","Instant":true,"SingleattackChance":0.01,"SingleminimumWaitTime":1,"TransformattackOffset":1,"LayerMaskplayerLayer":0}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(243.888885,305.5556)"},"ID":11,"Name":"Chase
-        Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.WithinSight","NodeData":{"Offset":"(-152.732025,190.952469)"},"ID":12,"Name":"In
-        Chase Zone?","Instant":true,"PlayerSensorplayerSensor":2},{"Type":"Enemy.AI.FaceTarget","NodeData":{"Offset":"(-0.4746952,189.653183)"},"ID":13,"Name":"Face
-        Target","Instant":true},{"Type":"Enemy.AI.ChaseAction","NodeData":{"Offset":"(134.6259,189.653366)"},"ID":14,"Name":"Chase
-        Action","Instant":true,"SinglemoveSpeed":3}]},{"Type":"Enemy.AI.Idle","NodeData":{"Offset":"(448.3334,316.389069)"},"ID":15,"Name":"Idle","Instant":true}]}]}}'
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(577,270.916656)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-4.18716526,124.4892)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-3,167.280243)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-806.666443,353.333374)"},"ID":3,"Name":"Death
+        Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.IsDead","NodeData":{"Offset":"(-226.543213,224.047363)"},"ID":4,"Name":"Is
+        Dead","Instant":true},{"Type":"Enemy.AI.Die","NodeData":{"Offset":"(-98.33826,224.047318)"},"ID":5,"Name":"Die","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityGameObject.Destroy","NodeData":{"Offset":"(29.866806,211.2269)"},"ID":6,"Name":"Destroy","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":0},"Singletime":3}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-454.437378,361.7323)"},"ID":7,"Name":"Hurt
+        Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.HasReceivedEvent","NodeData":{"Offset":"(-129.658081,204.05983)"},"ID":8,"Name":"Hurt
+        Event","Instant":true,"SharedStringeventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"HurtEvent"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(57.00055,205.916626)"},"ID":9,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.Block","NodeData":{"Offset":"(-73.3334656,150.000092)"},"ID":10,"Name":"Block","Instant":true,"SingleblockChance":0.4},{"Type":"Enemy.AI.Hurt","NodeData":{"Offset":"(79.99994,150.000092)"},"ID":11,"Name":"Hurt","Instant":true}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-28.0303154,357.024)"},"ID":12,"Name":"Attack
+        Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.WithinSight","NodeData":{"Offset":"(-131.428589,200.303009)"},"ID":13,"Name":"In
+        Attack Zone?","Instant":true,"PlayerSensorplayerSensor":1},{"Type":"Enemy.AI.AttackAction","NodeData":{"Offset":"(53.01028,196.067276)"},"ID":14,"Name":"Attack
+        Action","Instant":true,"SingleattackChance":0.01,"SingleminimumWaitTime":1,"TransformattackOffset":2,"LayerMaskplayerLayer":0}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(333.9322,376.984131)"},"ID":15,"Name":"Chase
+        Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.WithinSight","NodeData":{"Offset":"(-122.429016,190.952469)"},"ID":16,"Name":"In
+        Chase Zone?","Instant":true,"Disabled":true,"PlayerSensorplayerSensor":3},{"Type":"Enemy.AI.ResizeCollider","NodeData":{"Offset":"(42.43363,189.519409)"},"ID":17,"Name":"Resize
+        Collider","Instant":true,"BoxCollider2Dcollider2D":4,"Vector2newSize":"(15,4)"},{"Type":"Enemy.AI.FaceTarget","NodeData":{"Offset":"(188.589874,185.371246)"},"ID":18,"Name":"Face
+        Target","Instant":true},{"Type":"Enemy.AI.ChaseAction","NodeData":{"Offset":"(332.2544,193.9353)"},"ID":19,"Name":"Chase
+        Action","Instant":true,"SinglemoveSpeed":3}]},{"Type":"Enemy.AI.Idle","NodeData":{"Offset":"(774.4204,338.1282)"},"ID":20,"Name":"Idle","Instant":true,"Disabled":true}]}]}}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
         startIndex: 
         dataPosition: 
         unityObjects:
+        - {fileID: 2063072558586803956}
         - {fileID: 1839135851409988271}
         - {fileID: 5249120770215836370}
         - {fileID: 4238971746644554218}
+        - {fileID: 4424017629038054094}
         byteData: 
         byteDataArray: 
       Version: 1.7.11
@@ -383,6 +390,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4d4044d60372ae48b80fb862906ad5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &908448910100716561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063072558586803956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fad45114535af9146bcd0b35e707114a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initValue: 20
+  blockDamageReducer: 0.1
+  healthBarSize: {x: 50, y: 5}
+  healthBarOffset: {x: 0, y: 2}
+--- !u!114 &5193533598684975249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063072558586803956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cbe3851c203c254cae57c1081b39787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2665201356118784936

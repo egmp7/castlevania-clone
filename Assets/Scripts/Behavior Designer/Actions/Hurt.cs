@@ -7,8 +7,9 @@ namespace Enemy.AI
     {
         public override TaskStatus OnUpdate()
         {
-            rb.velocity = Vector2.zero;
-            animator.Play("Hurt", -1, 0f);
+            _rb.velocity = Vector2.zero;
+            _animator.Play("Hurt", -1, 0f);
+            _healthManager.DecreaseHealth(_processor.GetToAttack().amount);
             return TaskStatus.Success;
         }
     }

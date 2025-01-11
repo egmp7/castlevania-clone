@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 420662565828384351}
   - component: {fileID: 6499751948821512638}
   - component: {fileID: 297189210860119370}
-  - component: {fileID: 225014747949427861}
+  - component: {fileID: 1779489026499512079}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -486,8 +486,8 @@ MonoBehaviour:
   UnityEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 225014747949427861}
-        m_TargetAssemblyTypeName: Game.Managers.HealthManager, Assembly-CSharp
+      - m_Target: {fileID: 1779489026499512079}
+        m_TargetAssemblyTypeName: Game.Managers.HealthManagerSM, Assembly-CSharp
         m_MethodName: DecreaseHealth
         m_Mode: 1
         m_Arguments:
@@ -498,7 +498,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &225014747949427861
+--- !u!114 &1779489026499512079
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -507,11 +507,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8824323790894388638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c04ef9d6f685c56429d1f160fbb319fe, type: 3}
+  m_Script: {fileID: 11500000, guid: e337d733af18c794db79b23d4cc49913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   initValue: 500
+  blockDamageReducer: 0.1
   healthBarPosition: {x: 10, y: 10}
   healthBarSize: {x: 200, y: 20}
-  blockDamageReducer: 0.1
-  currentHealth: 0

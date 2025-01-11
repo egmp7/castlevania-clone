@@ -11,15 +11,15 @@ namespace Enemy.AI
         {
             #region Move Logic
             // Calculate direction to player, ignoring vertical movement
-            Vector2 targetPosition = new Vector2(playerTransform.position.x, rb.position.y);
-            Vector2 direction = (targetPosition - rb.position).normalized;
+            Vector2 targetPosition = new Vector2(_playerTransform.position.x, _rb.position.y);
+            Vector2 direction = (targetPosition - _rb.position).normalized;
 
             // Move the Rigidbody2D horizontally towards the player
-            rb.velocity = new Vector2(direction.x * moveSpeed, rb.velocity.y);
+            _rb.velocity = new Vector2(direction.x * moveSpeed, _rb.velocity.y);
             #endregion
 
             // Play the "Run" animation
-            animator.Play("Run");
+            _animator.Play("Run");
 
             return TaskStatus.Success;
         }

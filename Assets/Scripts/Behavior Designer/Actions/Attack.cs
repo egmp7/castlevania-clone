@@ -19,8 +19,8 @@ namespace Enemy.AI
         private float _attackRadius;
         private float _attackAmount;
         private Vector2 _attackOffset;
-        private string _attackFrom = "Enemy";
-        private string _attackTo = "Player";
+        private readonly string _attackFrom = "Enemy";
+        private readonly string _attackTo = "Player";
 
         private static CooldownTimer cooldownTimer = new(0);
 
@@ -60,7 +60,7 @@ namespace Enemy.AI
                 cooldownTimer = new CooldownTimer(300);
                 _attackAmount = 20;
                 _attackOffset = new Vector2(0.3f, -0.3f);
-                animator.Play("Punch01",-1,0f);
+                _animator.Play("Punch01",-1,0f);
             }
 
             if (_currentCombo == 2)
@@ -68,7 +68,7 @@ namespace Enemy.AI
                 cooldownTimer = new CooldownTimer(150);
                 _attackAmount = 10;
                 _attackOffset = new Vector2(0.3f, 0.5f);
-                animator.Play("Punch02",-1,0f);
+                _animator.Play("Punch02",-1,0f);
             }
 
             if (_currentCombo == 3)
@@ -76,7 +76,7 @@ namespace Enemy.AI
                 cooldownTimer = new CooldownTimer(220);
                 _attackAmount = 33;
                 _attackOffset = new Vector2(0.1f, 1f);
-                animator.Play("Punch03",-1,0f);
+                _animator.Play("Punch03",-1,0f);
             }
 
             Attack attack = new (
@@ -85,7 +85,7 @@ namespace Enemy.AI
                 _attackAmount,
                 _attackFrom,
                 _attackTo);
-            processor.SetFromAttack(attack);
+            _processor.SetFromAttack(attack);
 
         }
     }
