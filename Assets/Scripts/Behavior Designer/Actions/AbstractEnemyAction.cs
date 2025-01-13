@@ -23,7 +23,7 @@ namespace Enemy.AI
                 ErrorManager.LogMissingComponent<Rigidbody2D>(gameObject);
             }
 
-            _animator = GetComponent<Animator>();
+            _animator = gameObject.GetComponentInChildren<Animator>();
             if (_animator == null)
             {
                 ErrorManager.LogMissingComponent<Animator>(gameObject);

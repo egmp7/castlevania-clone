@@ -4,10 +4,7 @@ namespace Game.Sensors
 {
     public class PlayerSensor : GameSensor
     {
-        private void Awake()
-        {
-            _sensorTag = "Player";
-        }
+        private readonly string _sensorTag = "Player";
 
         private void OnTriggerEnter2D(Collider2D collision)
         {

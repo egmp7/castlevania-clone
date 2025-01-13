@@ -16,8 +16,8 @@ TagManager:
   - Enemy
   - Ground
   - Platform
-  - 
-  - 
+  - Body
+  - HurtBox
   - 
   - 
   - 
@@ -51,6 +51,9 @@ TagManager:
     locked: 0
   - name: Obstacles
     uniqueID: 1140230651
+    locked: 0
+  - name: Enemies
+    uniqueID: 1277601557
     locked: 0
   - name: Player
     uniqueID: 4072426957

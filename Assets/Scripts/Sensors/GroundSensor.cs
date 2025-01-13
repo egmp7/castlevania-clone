@@ -4,11 +4,7 @@ namespace Game.Sensors
 {
     public class GroundSensor : GameSensor
     {
-
-        private void Awake()
-        {
-            _sensorTag = "Ground";
-        }
+        private readonly string _sensorTag = "Ground";
 
         private void OnTriggerEnter2D(Collider2D collision)
         {

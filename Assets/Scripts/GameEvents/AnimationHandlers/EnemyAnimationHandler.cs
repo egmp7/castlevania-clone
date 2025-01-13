@@ -2,9 +2,7 @@ using Game.AnimationEvent.Source;
 using UnityEngine;
 
 namespace Game.AnimationEvent
-{
-    [RequireComponent(typeof(Animator))]
-    
+{   
     public class EnemyAnimationHandler : AnimationHandler
     {
         private Animator _animator;
@@ -16,16 +14,15 @@ namespace Game.AnimationEvent
         private void Awake()
         {
             // Cache references to required components
-            _animator = GetComponent<Animator>();
-            if (_animator == null)
+            if (!TryGetComponent(out _animator))
             {
-                Debug.LogError("Animator component is missing on this GameObject.");
+                ErrorManager.LogMissingComponent<Animator>(gameObject);
             }
 
-            _damageProcessor = GetComponent<DamageProcessor>();
+            _damageProcessor = GetComponentInParent<DamageProcessor>();
             if (_damageProcessor == null)
             {
-                Debug.LogError("DamageProcessor component is missing on this GameObject.");
+                ErrorManager.LogMissingComponent<DamageProcessor>(gameObject);
             }
         }
 

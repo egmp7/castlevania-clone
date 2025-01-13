@@ -1,9 +1,8 @@
-using Game.AnimationEvent.Source;
 using UnityEngine;
 
 namespace Game.AnimationEvent
 {
-    [RequireComponent(typeof(DamageProcessor))]
+    [RequireComponent(typeof(Animator))]
 
     public abstract class AnimationHandler : MonoBehaviour
     {
