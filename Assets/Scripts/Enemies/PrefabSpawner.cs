@@ -24,11 +24,11 @@ public class PrefabSpawner : MonoBehaviour
     {
         while (spawning)
         {
-            if (GameObject.FindGameObjectsWithTag("Enemy").Length < 5)
+            if (GameObject.FindGameObjectsWithTag("Enemy").Length < 7)
             {
                 foreach (Transform spawnLocation in spawnsLocations)
                 {
-                    Debug.Log($"Spawn location: {spawnLocation.position}");
+                    //Debug.Log($"Spawn location: {spawnLocation.position}");
                     Chuck.Copy(spawnLocation);
                 }
             }

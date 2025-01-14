@@ -33,6 +33,10 @@ namespace Enemy.AI
 
         public override TaskStatus OnUpdate()
         {
+            _rb.velocity = Vector2.zero;
+            //_animator.Play("Combat Idle");
+
+            // Attack
             if (
                 // Generate a random value between 0 and 1
                 Random.value < attackChance &&

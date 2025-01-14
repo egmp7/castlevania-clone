@@ -1,3 +1,4 @@
+using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
 public static class ErrorManager
@@ -42,6 +43,11 @@ public static class ErrorManager
         }
 
         Debug.LogWarning($"Game Object '{gameObject.name}' is missing a {typeof(T).Name} property.");
+    }
+
+    public static void LogMissingComponent<T>(Conditional conditional) where T : Component
+    {
+        Debug.LogWarning($"{conditional.FriendlyName} conditional does not have a {typeof(T).Name} component.");
     }
 
     /// <summary>

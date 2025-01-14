@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8420210728036826164}
   - component: {fileID: 4424017629038054094}
-  - component: {fileID: 4238971746644554218}
+  - component: {fileID: 8787792959007371689}
   m_Layer: 0
-  m_Name: ChaseZone
+  m_Name: ChaseSensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,12 +26,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222800216174324240}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.34, y: 0.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 160966353060829273}
+  m_Father: {fileID: 941048403923439905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4424017629038054094
 BoxCollider2D:
@@ -78,7 +78,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.473007, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4238971746644554218
+--- !u!114 &8787792959007371689
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,9 +87,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 222800216174324240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48a18a65ef5a1f946ba70ad79adb93c1, type: 3}
+  m_Script: {fileID: 11500000, guid: ed823e7afa8eb8646b6cfd5095208a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  tagName: 
 --- !u!1 &245398230239729143
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,7 +105,7 @@ GameObject:
   - component: {fileID: 593924123835192421}
   - component: {fileID: 7166768427905199807}
   - component: {fileID: 4736000092479414321}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: EnemySensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,12 +120,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245398230239729143}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.62, y: 0.89, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.62, y: 0.89000005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 160966353060829273}
+  m_Father: {fileID: 941048403923439905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &7166768427905199807
 BoxCollider2D:
@@ -183,6 +187,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+  tagName: 
 --- !u!1 &2063072558586803956
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,10 +225,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8115020961822414460}
-  - {fileID: 8420210728036826164}
-  - {fileID: 1368080682805981365}
   - {fileID: 5249120770215836370}
-  - {fileID: 593924123835192421}
+  - {fileID: 941048403923439905}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &196704857519412406
@@ -328,17 +331,21 @@ MonoBehaviour:
       variableStartIndex: 
       JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(577,270.916656)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-4.18716526,124.4892)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-3,167.280243)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-806.666443,353.333374)"},"ID":3,"Name":"Death
         Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.IsDead","NodeData":{"Offset":"(-226.543213,224.047363)"},"ID":4,"Name":"Is
-        Dead","Instant":true},{"Type":"Enemy.AI.Die","NodeData":{"Offset":"(-98.33826,224.047318)"},"ID":5,"Name":"Die","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityGameObject.Destroy","NodeData":{"Offset":"(29.866806,211.2269)"},"ID":6,"Name":"Destroy","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":0},"Singletime":3}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-454.437378,361.7323)"},"ID":7,"Name":"Hurt
+        Dead","Instant":true},{"Type":"Enemy.AI.Die","NodeData":{"Offset":"(-98.33826,224.047318)"},"ID":5,"Name":"Die","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityGameObject.Destroy","NodeData":{"Offset":"(47.723938,211.2269)"},"ID":6,"Name":"Destroy","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":0},"Singletime":3}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-454.437378,361.7323)"},"ID":7,"Name":"Hurt
         Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.HasReceivedEvent","NodeData":{"Offset":"(-129.658081,204.05983)"},"ID":8,"Name":"Hurt
-        Event","Instant":true,"SharedStringeventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"HurtEvent"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(57.00055,205.916626)"},"ID":9,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.Block","NodeData":{"Offset":"(-73.3334656,150.000092)"},"ID":10,"Name":"Block","Instant":true,"SingleblockChance":0.4},{"Type":"Enemy.AI.Hurt","NodeData":{"Offset":"(79.99994,150.000092)"},"ID":11,"Name":"Hurt","Instant":true}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-28.0303154,357.024)"},"ID":12,"Name":"Attack
-        Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.WithinSight","NodeData":{"Offset":"(-131.428589,200.303009)"},"ID":13,"Name":"In
-        Attack Zone?","Instant":true,"PlayerSensorplayerSensor":1},{"Type":"Enemy.AI.AttackAction","NodeData":{"Offset":"(53.01028,196.067276)"},"ID":14,"Name":"Attack
-        Action","Instant":true,"SingleattackChance":0.01,"SingleminimumWaitTime":1,"TransformattackOffset":2,"LayerMaskplayerLayer":0}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(333.9322,376.984131)"},"ID":15,"Name":"Chase
-        Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.WithinSight","NodeData":{"Offset":"(-122.429016,190.952469)"},"ID":16,"Name":"In
-        Chase Zone?","Instant":true,"PlayerSensorplayerSensor":3},{"Type":"Enemy.AI.ResizeCollider","NodeData":{"Offset":"(42.43363,189.519409)"},"ID":17,"Name":"Resize
-        Collider","Instant":true,"BoxCollider2Dcollider2D":4,"Vector2newSize":"(15,4)"},{"Type":"Enemy.AI.FaceTarget","NodeData":{"Offset":"(188.589874,185.371246)"},"ID":18,"Name":"Face
-        Target","Instant":true},{"Type":"Enemy.AI.ChaseAction","NodeData":{"Offset":"(332.2544,193.9353)"},"ID":19,"Name":"Chase
-        Action","Instant":true,"SinglemoveSpeed":3}]},{"Type":"Enemy.AI.Idle","NodeData":{"Offset":"(774.4204,338.1282)"},"ID":20,"Name":"Idle","Instant":true}]}]}}'
+        Event","Instant":true,"SharedStringeventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"HurtEvent"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(57.00055,205.916626)"},"ID":9,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.Block","NodeData":{"Offset":"(-73.3334656,150.000092)"},"ID":10,"Name":"Block","Instant":true,"SingleblockChance":0.4},{"Type":"Enemy.AI.Hurt","NodeData":{"Offset":"(79.99994,150.000092)"},"ID":11,"Name":"Hurt","Instant":true}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-94.53273,303.452637)"},"ID":12,"Name":"Attack
+        Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.WithinSight","NodeData":{"Offset":"(-154.155853,257.1212)"},"ID":13,"Name":"In
+        Attack Zone?","Instant":true,"CollisionLayerSensorsensor":1},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(70.1818848,281.5984)"},"ID":14,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.CombatIdle","NodeData":{"Offset":"(-62.2279663,155.722443)"},"ID":15,"Name":"Combat
+        Idle","Instant":true,"SharedBoolisCombatIdle":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isCombatIdle","IsShared":true,"BooleanmValue":false}},{"Type":"Enemy.AI.AttackAction","NodeData":{"Offset":"(88.90064,162.195114)"},"ID":16,"Name":"Attack
+        Action","Instant":true,"SingleattackChance":0.01,"SingleminimumWaitTime":1,"TransformattackOffset":2,"LayerMaskplayerLayer":8}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(471.370819,332.341248)"},"ID":17,"Name":"Chase
+        Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.WithinSight","NodeData":{"Offset":"(-372.429016,200.952469)"},"ID":18,"Name":"In
+        Chase Zone?","Instant":true,"Disabled":true,"CollisionLayerSensorsensor":3},{"Type":"Enemy.AI.ResizeCollider","NodeData":{"Offset":"(-240.2066,199.519409)"},"ID":19,"Name":"Resize
+        Collider","Instant":true,"BoxCollider2Dcollider2D":4,"Vector2newSize":"(15,4)"},{"Type":"Enemy.AI.FaceTarget","NodeData":{"Offset":"(-111.102768,195.371246)"},"ID":20,"Name":"Face
+        Target","Instant":true},{"Type":"Enemy.AI.SetCombatIdle","NodeData":{"Offset":"(11.6561432,196.3042)"},"ID":21,"Name":"Set
+        Combat Idle","Instant":true,"SharedBoolisCombatIdle":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isCombatIdle","IsShared":true,"BooleanmValue":false}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(158.957031,197.75061)"},"ID":22,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-69.30054,145.4878)"},"ID":23,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.WithinSight","NodeData":{"Offset":"(-119.300537,185.4878)"},"ID":24,"Name":"Within
+        Sight","Instant":true,"CollisionLayerSensorsensor":5},{"Type":"Enemy.AI.CombatIdle","NodeData":{"Offset":"(41.4289474,195.7168)"},"ID":25,"Name":"Combat
+        Idle","Instant":true,"SharedBoolisCombatIdle":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isCombatIdle","IsShared":true,"BooleanmValue":false}}]},{"Type":"Enemy.AI.ChaseAction","NodeData":{"Offset":"(250,160)"},"ID":26,"Name":"Chase
+        Action","Instant":true,"SinglemoveSpeed":5}]}]},{"Type":"Enemy.AI.Idle","NodeData":{"Offset":"(774.4204,338.1282)"},"ID":27,"Name":"Idle","Instant":true,"Disabled":true}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isCombatIdle","IsShared":true,"BooleanmValue":false}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -346,10 +353,11 @@ MonoBehaviour:
         dataPosition: 
         unityObjects:
         - {fileID: 2063072558586803956}
-        - {fileID: 1839135851409988271}
+        - {fileID: 7593297504980856559}
         - {fileID: 5249120770215836370}
-        - {fileID: 4238971746644554218}
+        - {fileID: 8787792959007371689}
         - {fileID: 4424017629038054094}
+        - {fileID: 4736000092479414321}
         byteData: 
         byteDataArray: 
       Version: 1.7.11
@@ -436,9 +444,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1368080682805981365}
   - component: {fileID: 3679630886903027002}
-  - component: {fileID: 1839135851409988271}
+  - component: {fileID: 7593297504980856559}
   m_Layer: 0
-  m_Name: AttackZone
+  m_Name: AttackSensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -452,12 +460,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2665201356118784936}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.34, y: 0.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 160966353060829273}
+  m_Father: {fileID: 941048403923439905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3679630886903027002
 BoxCollider2D:
@@ -491,7 +499,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.75, y: 0}
+  m_Offset: {x: -2.0493703, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -502,9 +510,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.09, y: 1}
+  m_Size: {x: 0.17193127, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1839135851409988271
+--- !u!114 &7593297504980856559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -513,9 +521,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2665201356118784936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48a18a65ef5a1f946ba70ad79adb93c1, type: 3}
+  m_Script: {fileID: 11500000, guid: ed823e7afa8eb8646b6cfd5095208a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  tagName: 
 --- !u!1 &5069049217655825605
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,9 +540,9 @@ GameObject:
   - component: {fileID: 1165450225092296420}
   - component: {fileID: 1485815021604229126}
   - component: {fileID: 1545454217697321553}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Animation
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -635,7 +647,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b5d85c824fd7c40a635bd0a6125c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleStateName: Idle
+  idleStateName: Combat Idle
+--- !u!1 &6528552459190003751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 941048403923439905}
+  m_Layer: 0
+  m_Name: Sensors
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &941048403923439905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6528552459190003751}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8420210728036826164}
+  - {fileID: 1368080682805981365}
+  - {fileID: 593924123835192421}
+  m_Father: {fileID: 160966353060829273}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8586263862119405959
 GameObject:
   m_ObjectHideFlags: 0

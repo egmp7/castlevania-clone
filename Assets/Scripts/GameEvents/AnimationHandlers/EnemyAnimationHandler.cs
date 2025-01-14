@@ -9,7 +9,7 @@ namespace Game.AnimationEvent
         private DamageProcessor _damageProcessor;
 
         [SerializeField, Tooltip("Name of the idle animation state.")]
-        private string idleStateName = "Idle";
+        private string idleStateName = "Combat Idle";
 
         private void Awake()
         {

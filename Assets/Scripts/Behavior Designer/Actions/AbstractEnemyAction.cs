@@ -8,6 +8,7 @@ namespace Enemy.AI
     public abstract class EnemyAction : Action
     {
         protected Rigidbody2D _rb;
+        protected Collider2D _collider;
         protected Animator _animator;
         protected Transform _playerTransform;
         protected DamageProcessor _processor;
@@ -17,10 +18,21 @@ namespace Enemy.AI
 
         public override void OnAwake()
         {
+            ValidateFields();
+        }
+
+        private void ValidateFields()
+        {
             _rb = GetComponent<Rigidbody2D>();
             if (_rb == null)
             {
                 ErrorManager.LogMissingComponent<Rigidbody2D>(gameObject);
+            }
+
+            _collider = GetComponent<Collider2D>();
+            if (_rb == null)
+            {
+                ErrorManager.LogMissingComponent<Collider2D>(gameObject);
             }
 
             _animator = gameObject.GetComponentInChildren<Animator>();
