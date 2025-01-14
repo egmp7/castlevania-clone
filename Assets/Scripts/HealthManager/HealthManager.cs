@@ -20,6 +20,11 @@ namespace Game.Managers
         {
             return _currentHealth;
         }
+
+        public float GetHealthPercentage()
+        {
+            return _currentHealth / _initHealth;
+        }
     }
 }
 

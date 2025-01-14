@@ -22,7 +22,7 @@ namespace egmp7.Game.Sensors
         {
             if (IsCollisionValid(other))
             {
-                Debug.Log($"SENSOR On {other.gameObject.name}");
+                //Debug.Log($"SENSOR On {other.gameObject.name}");
                 _sensorState = true;
             }
         }
@@ -31,7 +31,7 @@ namespace egmp7.Game.Sensors
         {
             if (IsCollisionValid(other))
             {
-                Debug.Log($"SENSOR Off {other.gameObject.name}");
+                //Debug.Log($"SENSOR Off {other.gameObject.name}");
                 _sensorState = false;
             }
         }

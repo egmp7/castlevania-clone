@@ -1,4 +1,5 @@
 using BehaviorDesigner.Runtime.Tasks;
+using egmp7.Game.Manager;
 using UnityEngine;
 
 namespace Enemy.AI

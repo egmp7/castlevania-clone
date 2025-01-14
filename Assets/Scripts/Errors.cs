@@ -1,3 +1,4 @@
+using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
@@ -48,6 +49,11 @@ public static class ErrorManager
     public static void LogMissingComponent<T>(Conditional conditional) where T : Component
     {
         Debug.LogWarning($"{conditional.FriendlyName} conditional does not have a {typeof(T).Name} component.");
+    }
+
+    public static void LogMissingSharedVariable<T>(GameObject gameObject) where T : SharedVariable
+    {
+        Debug.LogWarning($"{gameObject.name} game object does not have a {typeof(T).Name} shared variable.");
     }
 
     /// <summary>
