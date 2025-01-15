@@ -7,8 +7,8 @@ namespace Enemy.AI
     public class RandomWait : EnemyAction
     {
         public SharedBool sharedBool;
-        public float randomWaitMin = 1;
-        public float randomWaitMax = 1;
+        public SharedFloat randomWaitMin = 1;
+        public SharedFloat randomWaitMax = 1;
 
         // The time to wait
         private float _waitDuration;
@@ -18,7 +18,7 @@ namespace Enemy.AI
 
         public override void OnAwake()
         {
-            _waitDuration = Random.Range(randomWaitMin, randomWaitMax);
+            _waitDuration = Random.Range(randomWaitMin.Value, randomWaitMax.Value);
         }
 
         public override TaskStatus OnUpdate()

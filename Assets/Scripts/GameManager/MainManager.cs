@@ -6,9 +6,18 @@ namespace egmp7.Game.Manager
     {
         public static MainManager Instance;
 
+        // Score
         public int score = 0; // Tracks the player's score
+        
+        // Timer
         public float timer = 120f; // Timer starts at 120 seconds (2 minutes)
-        public bool isTimerRunning = true; // Controls whether the timer is active
+        private bool _isTimerRunning = true; // Controls whether the timer is active
+
+        // Difficulty
+        public float difficulty = 0f; // Current difficulty level
+        [SerializeField] float IncrementInterval = 10f; // Interval to increase difficulty
+        [SerializeField] float GameDuration;
+        private float _elapsedTime = 0f; // Time elapsed since the game started
 
         void Awake()
         {
@@ -25,10 +34,16 @@ namespace egmp7.Game.Manager
             }
         }
 
+        private void Start()
+        {
+            GameDuration = timer;
+            StartDifficultyIncrement(0.5f);
+        }
+
         void Update()
         {
             // Countdown logic for the timer
-            if (isTimerRunning && timer > 0)
+            if (_isTimerRunning && timer > 0)
             {
                 timer -= Time.deltaTime;
 
@@ -36,7 +51,7 @@ namespace egmp7.Game.Manager
                 if (timer <= 0)
                 {
                     timer = 0;
-                    isTimerRunning = false; // Stop the timer when it reaches 0
+                    _isTimerRunning = false; // Stop the timer when it reaches 0
                     OnTimerEnd(); // Trigger an event when the timer ends
                 }
             }
@@ -46,6 +61,24 @@ namespace egmp7.Game.Manager
         {
             Debug.Log("Timer has ended!");
             // Add additional logic here, such as ending the game or triggering an event
+        }
+
+        // Method to calculate difficulty increment
+        public void StartDifficultyIncrement(float incrementPerInterval)
+        {
+            StartCoroutine(IncrementDifficulty(incrementPerInterval));
+        }
+
+        private System.Collections.IEnumerator IncrementDifficulty(float incrementPerInterval)
+        {
+            while (_elapsedTime < GameDuration)
+            {
+                yield return new WaitForSeconds(IncrementInterval);
+                _elapsedTime += IncrementInterval;
+                difficulty += incrementPerInterval;
+                Debug.Log($"Difficulty Increased: {difficulty}");
+            }
+            Debug.Log("Game Over");
         }
     }
 }

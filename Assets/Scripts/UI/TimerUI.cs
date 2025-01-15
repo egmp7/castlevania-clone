@@ -4,7 +4,7 @@ using UnityEngine;
 public class TimerUI : MonoBehaviour
 {
     [Header("Timer UI Settings")]
-    public Vector2 timerPosition = new Vector2(10, 50); // Position on the screen
+    public Vector2 timerPosition = new (10, 50); // Position on the screen
     public int fontSize = 24; // Font size for the timer display
 
     private GUIStyle timerStyle;

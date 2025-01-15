@@ -5,7 +5,7 @@ using UnityEngine;
 namespace egmp7.Game.Sensors
 {
     [RequireComponent(typeof(Collider2D))]
-    public class CollisionLayerSensor : GameSensor
+    public class CollisionSensor : GameSensor
     {
         [Tooltip("The LayerMask to compare collisions against.")]
         [SerializeField] private LayerMask layerMask;
@@ -74,12 +74,12 @@ namespace egmp7.Game.Sensors
         {
             if (layerMask == 0)
             {
-                Debug.LogWarning($"{nameof(CollisionLayerSensor)}: LayerMask is not set. This sensor will not detect any collisions.");
+                Debug.LogWarning($"{nameof(CollisionSensor)}: LayerMask is not set. This sensor will not detect any collisions.");
             }
 
             if (!string.IsNullOrEmpty(tagName) && !IsTagDefined(tagName))
             {
-                Debug.LogError($"{nameof(CollisionLayerSensor)}: Tag '{tagName}' does not exist in the project. Please check your input.");
+                Debug.LogError($"{nameof(CollisionSensor)}: Tag '{tagName}' does not exist in the project. Please check your input.");
             }
         }
 
@@ -96,7 +96,7 @@ namespace egmp7.Game.Sensors
             }
             catch
             {
-                Debug.LogError($"{nameof(CollisionLayerSensor)}: Unable to validate the tag. This check may fail in builds.");
+                Debug.LogError($"{nameof(CollisionSensor)}: Unable to validate the tag. This check may fail in builds.");
                 return false;
             }
         }

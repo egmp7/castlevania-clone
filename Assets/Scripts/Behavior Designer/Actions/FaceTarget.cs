@@ -30,7 +30,5 @@ namespace Enemy.AI
             return TaskStatus.Success;
         }
     }
-
-
 }
 
