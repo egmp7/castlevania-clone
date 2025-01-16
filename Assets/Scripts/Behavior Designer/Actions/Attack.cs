@@ -1,3 +1,4 @@
+using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using egmp7.Game.Combat;
 using GameProject.Utilities;
@@ -7,8 +8,8 @@ namespace Enemy.AI
 {
     public class AttackAction : EnemyAction
     {
-        public float attackChance = 0.01f;
-        public float minimumWaitTime = 1f;
+        public SharedFloat attackChance = 0.01f;
+        public SharedFloat minimumWaitTime = 1f;
         public Transform attackOffset;
         public LayerMask playerLayer;
 
@@ -39,9 +40,9 @@ namespace Enemy.AI
             // Attack
             if (
                 // Generate a random value between 0 and 1
-                Random.value < attackChance &&
+                Random.value < attackChance.Value &&
                 // Cooldown time
-                Time.time > (_lastTimeUsed + minimumWaitTime))
+                Time.time > (_lastTimeUsed + minimumWaitTime.Value))
             {
                 Attack();
             }

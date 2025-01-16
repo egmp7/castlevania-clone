@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
+  m_Name: AttackBT
+  m_EditorClassIdentifier: 
+  mBehaviorSource:
+    behaviorName: Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(577,270.916656)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-4.18716526,124.4892)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-3,167.280243)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-893.623,353.333374)","Collapsed":true},"ID":3,"Name":"Death
+        Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.IsDead","NodeData":{"Offset":"(-226.543213,224.047363)"},"ID":4,"Name":"Is
+        Dead","Instant":true},{"Type":"Enemy.AI.Die","NodeData":{"Offset":"(-118.338257,224.047318)"},"ID":5,"Name":"Die","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityGameObject.Destroy","NodeData":{"Offset":"(-12.276062,221.2269)"},"ID":6,"Name":"Destroy","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":0},"Singletime":3},{"Type":"Enemy.AI.AddScore","NodeData":{"Offset":"(100,220.916626)"},"ID":7,"Name":"Add
+        Score","Instant":true,"Int32score":100}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-671.8287,361.7323)","Collapsed":true},"ID":8,"Name":"Hurt
+        Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.HasReceivedEvent","NodeData":{"Offset":"(-129.658081,204.05983)"},"ID":9,"Name":"Hurt
+        Event","Instant":true,"SharedStringeventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"HurtEvent"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(57.00055,205.916626)"},"ID":10,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.Block","NodeData":{"Offset":"(-73.3334656,150.000092)"},"ID":11,"Name":"Block","Instant":true,"SingleblockChance":0.4},{"Type":"Enemy.AI.Hurt","NodeData":{"Offset":"(79.99994,150.000092)"},"ID":12,"Name":"Hurt","Instant":true}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-203.228256,520.8437)"},"ID":13,"Name":"Attack
+        Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.WithinSight","NodeData":{"Offset":"(-154.155853,257.1212)"},"ID":14,"Name":"In
+        Attack Zone?","Instant":true,"SharedCollisionSensorsharedCollider":{"Type":"egmp7.BehaviorDesigner.CustomVariables+SharedCollisionSensor","Name":null,"CollisionSensormValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(70.1818848,281.5984)"},"ID":15,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.CombatIdle","NodeData":{"Offset":"(-62.2279663,155.722443)"},"ID":16,"Name":"Combat
+        Idle","Instant":true,"SharedBoolisCombatIdle":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isCombatIdle","IsShared":true,"BooleanmValue":false}},{"Type":"Enemy.AI.AttackAction","NodeData":{"Offset":"(88.90064,162.195114)"},"ID":17,"Name":"Attack
+        Action","Instant":true,"SharedFloatattackChance":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.01},"SharedFloatminimumWaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"TransformattackOffset":2,"LayerMaskplayerLayer":8}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(508.9736,563.833252)"},"ID":18,"Name":"Chase
+        Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Enemy.AI.WithinSight","NodeData":{"Offset":"(-122.429016,216.577469)"},"ID":19,"Name":"In
+        Chase Zone?","Instant":true,"Disabled":true,"SharedCollisionSensorsharedCollider":{"Type":"egmp7.BehaviorDesigner.CustomVariables+SharedCollisionSensor","Name":null}},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(143.125031,215)"},"ID":20,"Name":"Chase
+        BT","Instant":true,"ExternalBehavior[]externalBehaviors":[3],"SharedNamedVariable[]variables":[{"Type":"BehaviorDesigner.Runtime.SharedNamedVariable","Name":null,"NamedVariablemValue":{"Stringname":"EnemyCollisionSensor","Stringtype":"SharedCollisionSensor","SharedVariablevalue":{"Type":"egmp7.BehaviorDesigner.CustomVariables+SharedCollisionSensor","Name":null,"CollisionSensormValue":4}}}],"Booleancollapsed":false}]},{"Type":"Enemy.AI.Idle","NodeData":{"Offset":"(774.4204,338.1282)"},"ID":21,"Name":"Idle","Instant":true,"Disabled":true}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isCombatIdle","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isRandomWait","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ChaseSpeed","IsShared":true,"SinglemValue":5},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MinEnemyDetectedWait","IsShared":true,"SinglemValue":1},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MaxEnemyDetectedWait","IsShared":true,"SinglemValue":3}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects:
+        - {fileID: 2063072558586803956, guid: 1e118bb70a5bb584dab70d3c9f0649e0, type: 3}
+        - {fileID: 7593297504980856559, guid: 1e118bb70a5bb584dab70d3c9f0649e0, type: 3}
+        - {fileID: 5249120770215836370, guid: 1e118bb70a5bb584dab70d3c9f0649e0, type: 3}
+        - {fileID: 11400000, guid: c2e3c408006252d4395fb736b697b794, type: 2}
+        - {fileID: 4736000092479414321, guid: 1e118bb70a5bb584dab70d3c9f0649e0, type: 3}
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.11
