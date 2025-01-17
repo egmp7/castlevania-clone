@@ -112,4 +112,21 @@ public class Utilities
 
         return names.Trim(); // Trim any extra spaces
     }
+
+    /// <summary>
+    /// Destroys all game objects with the specified tag.
+    /// </summary>
+    /// <param name="tag">The tag of the game objects to destroy.</param>
+    public static void DestroyAllWithTag(string tag)
+    {
+        // Find all game objects with the specified tag
+        GameObject[] objectsToDestroy = GameObject.FindGameObjectsWithTag(tag);
+
+        // Destroy each game object
+        foreach (GameObject obj in objectsToDestroy)
+        {
+            UnityEngine.Object.Destroy(obj);
+        }
+    }
+
 }

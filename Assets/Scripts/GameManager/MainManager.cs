@@ -1,10 +1,15 @@
+using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace egmp7.Game.Manager
 {
     public class MainManager : MonoBehaviour
     {
         public static MainManager Instance;
+
+        public Action OnRestart;
 
         // Score
         public int score = 0; // Tracks the player's score
@@ -42,6 +47,12 @@ namespace egmp7.Game.Manager
 
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                OnRestart?.Invoke();
+                Restart();
+            }
+
             // Countdown logic for the timer
             if (_isTimerRunning && timer > 0)
             {
@@ -69,7 +80,7 @@ namespace egmp7.Game.Manager
             StartCoroutine(IncrementDifficulty(incrementPerInterval));
         }
 
-        private System.Collections.IEnumerator IncrementDifficulty(float incrementPerInterval)
+        private IEnumerator IncrementDifficulty(float incrementPerInterval)
         {
             while (_elapsedTime < GameDuration)
             {
@@ -79,6 +90,18 @@ namespace egmp7.Game.Manager
                 Debug.Log($"Difficulty Increased: {difficulty}");
             }
             Debug.Log("Game Over");
+        }
+
+        public void Restart()
+        {
+            _elapsedTime = 0;
+            difficulty = 0;
+            timer = 120;
+            score = 0;
+            Utilities.DestroyAllWithTag("Enemy");
+            // Reload the current active scene
+            Scene currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.name);
         }
     }
 }
