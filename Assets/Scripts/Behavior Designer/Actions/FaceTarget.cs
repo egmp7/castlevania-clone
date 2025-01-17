@@ -6,6 +6,7 @@ namespace Enemy.AI
     public class FaceTarget : EnemyAction
     {
         private float baseScaleX;
+        public bool success = false;
 
         public override void OnAwake()
         {
@@ -27,7 +28,12 @@ namespace Enemy.AI
                 transform.localScale = scale; // Assign the modified scale back
             }
 
-            return TaskStatus.Success;
+            if (success)
+            {
+                return TaskStatus.Success;
+            }
+
+            return TaskStatus.Running;
         }
     }
 }

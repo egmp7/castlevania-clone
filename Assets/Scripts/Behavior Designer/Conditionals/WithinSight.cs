@@ -1,15 +1,27 @@
+using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
-using static egmp7.BehaviorDesigner.CustomVariables;
+using egmp7.Game.Sensors;
+using System;
 
 namespace Enemy.AI
 {
     public class WithinSight : Conditional
     {
-        public SharedCollisionSensor sharedCollider;
+        public SharedGameObject target; 
+
+        private CollisionSensor _collisionSensor;
+
+        public override void OnAwake()
+        {
+            if (!target.Value.TryGetComponent(out _collisionSensor))
+            {
+                throw new Exception($"_collisionSensor not initialized for {target.Name}");
+            }
+        }
 
         public override TaskStatus OnUpdate()
         {
-            if(sharedCollider.Value.GetState())
+            if(_collisionSensor.GetState())
             {
                 return TaskStatus.Success;
             }

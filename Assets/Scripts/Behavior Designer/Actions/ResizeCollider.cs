@@ -1,3 +1,4 @@
+using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
@@ -5,23 +6,29 @@ namespace Enemy.AI
 {
     public class ResizeCollider : EnemyAction
     {
-        // Direct reference to the collider
-        public BoxCollider2D collider2D;
+        // Reference to the Game Object
+        public SharedGameObject target;
 
         // New size for the collider
-        public Vector2 newSize;
+        public SharedVector2 newSize;
+
+        private BoxCollider2D _collider2D;
+
+        public override void OnAwake()
+        {
+            _collider2D = target.Value.GetComponent<BoxCollider2D>();
+        }
 
         public override TaskStatus OnUpdate()
         {
-            if (collider2D == null)
+            if (_collider2D == null)
             {
-                ErrorManager.LogMissingComponent<BoxCollider2D>(gameObject);
+                ErrorManager.LogMissingComponent<BoxCollider2D>(target.Value);
                 return TaskStatus.Failure;
             }
 
             // Resize the collider
-            collider2D.size = newSize;
-
+            _collider2D.size = newSize.Value;
             return TaskStatus.Success;
         }
     }

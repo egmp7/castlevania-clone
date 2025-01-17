@@ -1,19 +1,15 @@
-using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
-using UnityEngine;
-
 
 namespace Enemy.AI
 {
-    public class Block : EnemyAction
+    public class TestConditional : Conditional
     {
-        public SharedFloat blockChance;
+        public bool Test;
 
         public override TaskStatus OnUpdate()
         {
-            if (Random.value <= blockChance.Value)
+            if ( Test)
             {
-                _animator.Play("Block", -1, 0f);
                 return TaskStatus.Success;
             }
             return TaskStatus.Failure;

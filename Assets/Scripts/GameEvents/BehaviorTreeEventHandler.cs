@@ -19,7 +19,12 @@ namespace egmp7.AI.EventHandlers
 
         public  void TriggerHurtEvent()
         {
-            _behaviorTree.SendEvent("HurtEvent");
+            _behaviorTree.SendEvent("OnHurt");
+        }
+
+        public void TriggerAttackEnd()
+        {
+            _behaviorTree.SendEvent("AttackEnd");
         }
     }
 }

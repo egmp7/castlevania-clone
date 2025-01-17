@@ -1,3 +1,4 @@
+using egmp7.AI.EventHandlers;
 using Game.AnimationEvent.Source;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Game.AnimationEvent
     {
         private Animator _animator;
         private DamageProcessor _damageProcessor;
+        private BehaviorTreeEventHandler _BTEventHandler;
 
         [SerializeField, Tooltip("Name of the idle animation state.")]
         private string idleStateName = "Combat Idle";
@@ -23,6 +25,12 @@ namespace Game.AnimationEvent
             if (_damageProcessor == null)
             {
                 ErrorManager.LogMissingComponent<DamageProcessor>(gameObject);
+            }
+
+            _BTEventHandler = GetComponentInParent<BehaviorTreeEventHandler>();
+            if (_damageProcessor == null)
+            {
+                ErrorManager.LogMissingComponent<BehaviorTreeEventHandler>(gameObject);
             }
         }
 
@@ -45,6 +53,14 @@ namespace Game.AnimationEvent
             if (_damageProcessor != null)
             {
                 _damageProcessor.PerformAttackDetection();
+            }
+        }
+
+        public void HandleAnimationAttackEnd() 
+        {
+            if (_BTEventHandler != null)
+            {
+                _BTEventHandler.TriggerAttackEnd();
             }
         }
     }
