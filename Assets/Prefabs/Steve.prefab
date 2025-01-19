@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 908448910100716561}
   - component: {fileID: 5193533598684975249}
   m_Layer: 6
-  m_Name: Chuck
+  m_Name: Steve
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,10 +145,10 @@ MonoBehaviour:
         BTR","Instant":true,"ExternalBehavior[]externalBehaviors":[0],"SharedNamedVariable[]variables":[],"Booleancollapsed":false},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(-251.3645,220.095139)"},"ID":4,"Name":"Hurt
         BTR","Instant":true,"ExternalBehavior[]externalBehaviors":[1],"SharedNamedVariable[]variables":[],"Booleancollapsed":false},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(155.9852,218.961014)"},"ID":5,"Name":"Attack
         BTR","Instant":true,"ExternalBehavior[]externalBehaviors":[2],"SharedNamedVariable[]variables":[],"Booleancollapsed":false},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(581.1261,217.429932)"},"ID":6,"Name":"Chase
-        BT","Instant":true,"ExternalBehavior[]externalBehaviors":[3],"SharedNamedVariable[]variables":[],"Booleancollapsed":false},{"Type":"Enemy.AI.Idle","NodeData":{"Offset":"(1112.75037,195.151291)"},"ID":7,"Name":"Idle","Instant":true}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"Score","IsShared":true,"Tooltip":"How
-        much adds to GameScore","Int32mValue":100},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ChaseSpeed","IsShared":true,"SinglemValue":5},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ChaseSlope","IsShared":true,"SinglemValue":1},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"EnemyMinWait","IsShared":true,"Tooltip":"Enemy
-        whitin sight minimum wait time","SinglemValue":0.7},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"EnemyMaxWait","IsShared":true,"Tooltip":"Enemy
-        whitin sight maximum wait time","SinglemValue":2.5},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"AttackMinWait","IsShared":true,"SinglemValue":0.8},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"AttackMaxWait","IsShared":true,"SinglemValue":1.5},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"AttackDamage","IsShared":true,"SinglemValue":20},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"AttackSlope","IsShared":true,"SinglemValue":0.04},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"AttackWaitSlope","IsShared":true,"SinglemValue":0.02},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"BlockChance","IsShared":true,"SinglemValue":0.3},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"AttackSensor","IsShared":true,"GameObjectmValue":4},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"EnemySensor","IsShared":true,"GameObjectmValue":5}]}'
+        BT","Instant":true,"ExternalBehavior[]externalBehaviors":[3],"SharedNamedVariable[]variables":[],"Booleancollapsed":false},{"Type":"Enemy.AI.Idle","NodeData":{"Offset":"(1112.75037,195.151291)"},"ID":7,"Name":"Idle","Instant":true}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ChaseSpeed","IsShared":true,"SinglemValue":4},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"ChaseSlope","IsShared":true,"SinglemValue":1},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"EnemyMinWait","IsShared":true,"Tooltip":"Enemy
+        whitin sight minimum wait time","SinglemValue":0.8},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"EnemyMaxWait","IsShared":true,"Tooltip":"Enemy
+        whitin sight maximum wait time","SinglemValue":2},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"AttackMinWait","IsShared":true,"SinglemValue":0.5},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"AttackMaxWait","IsShared":true,"SinglemValue":1.5},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"Score","IsShared":true,"Tooltip":"How
+        much adds to GameScore","Int32mValue":300},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"BlockChance","IsShared":true,"SinglemValue":0.2},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"AttackSensor","IsShared":true,"GameObjectmValue":4},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"EnemySensor","IsShared":true,"GameObjectmValue":5},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"AttackDamage","IsShared":true,"SinglemValue":30},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"AttackSlope","IsShared":true,"SinglemValue":0.01},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"AttackWaitSlope","IsShared":true,"SinglemValue":0.01}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad45114535af9146bcd0b35e707114a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initValue: 20
+  initValue: 100
   blockDamageReducer: 0.1
   healthBarSize: {x: 50, y: 5}
   healthBarOffset: {x: 0, y: 2}
@@ -313,7 +313,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 66c32ec536cce5d4d89bd64a0e6be3c7, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.13646793, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

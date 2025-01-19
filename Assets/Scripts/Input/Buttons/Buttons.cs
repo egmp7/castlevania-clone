@@ -24,4 +24,20 @@ namespace InputCommands.Buttons
             inputAction = FindInputAction("ActionC");
         }
     }
+
+    public class ButtonPause : Button
+    {
+        public ButtonPause()
+        {
+            inputAction = FindInputAction("Pause");
+        }
+    }
+
+    public class ButtonRestart : Button
+    {
+        public ButtonRestart()
+        {
+            inputAction = FindInputAction("Restart");
+        }
+    }
 }

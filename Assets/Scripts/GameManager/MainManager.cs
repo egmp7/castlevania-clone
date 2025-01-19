@@ -1,3 +1,4 @@
+using InputCommands.Buttons;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -9,7 +10,8 @@ namespace egmp7.Game.Manager
     {
         public static MainManager Instance;
 
-        public Action OnRestart;
+        public static Action OnRestart;
+        public static Action OnGameOver;
 
         // Score
         public int score = 0; // Tracks the player's score
@@ -24,6 +26,8 @@ namespace egmp7.Game.Manager
         [SerializeField] float GameDuration;
         private float _elapsedTime = 0f; // Time elapsed since the game started
 
+        private ButtonRestart _buttonRestart;
+
         void Awake()
         {
             if (Instance == null)
@@ -37,6 +41,8 @@ namespace egmp7.Game.Manager
                 Destroy(gameObject);
                 Debug.Log("Duplicate instance found and deleted...");
             }
+
+            _buttonRestart = new ButtonRestart();
         }
 
         private void Start()
@@ -47,7 +53,7 @@ namespace egmp7.Game.Manager
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (_buttonRestart.IsPressed())
             {
                 OnRestart?.Invoke();
                 Restart();
@@ -71,6 +77,7 @@ namespace egmp7.Game.Manager
         private void OnTimerEnd()
         {
             Debug.Log("Timer has ended!");
+            OnGameOver?.Invoke();
             // Add additional logic here, such as ending the game or triggering an event
         }
 

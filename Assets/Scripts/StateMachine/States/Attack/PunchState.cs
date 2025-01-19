@@ -27,7 +27,7 @@ namespace Player.StateManagement
             {
                 cooldownTimer = new CooldownTimer(300);
                 _attackAmount = 20;
-                _attackOffset = new Vector2(0.3f, -0.3f);
+                _attackOffset = new Vector2(0.25f, -0.2f);
                 input.Animator.Play("Punch01");
             }
 
@@ -35,7 +35,7 @@ namespace Player.StateManagement
             {
                 cooldownTimer = new CooldownTimer(150);
                 _attackAmount = 10;
-                _attackOffset = new Vector2(0.3f, 0.5f);
+                _attackOffset = new Vector2(0.25f, 0.2f);
                 input.Animator.Play("Punch02");
             }
 

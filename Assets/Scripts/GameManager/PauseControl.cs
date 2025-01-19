@@ -1,13 +1,20 @@
+using InputCommands.Buttons;
 using UnityEngine;
 
 public class PauseControl : MonoBehaviour
 {
     public static bool isPaused;
     private float previousTimeScale = 1;
+    private ButtonPause _buttonPause;
+
+    private void Awake()
+    {
+        _buttonPause = new ButtonPause();
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (_buttonPause.IsPressed())
         {
             TogglePause();
         }
