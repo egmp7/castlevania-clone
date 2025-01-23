@@ -46,7 +46,9 @@ namespace BehaviorDesigner.Runtime.Tasks
             var minWait = randomWaitMin.Value - (MainManager.Instance.difficulty * waitSlope.Value);
             var maxWait = randomWaitMax.Value - (MainManager.Instance.difficulty * waitSlope.Value);
 
+            // generate wait
             _waitDuration = Random.Range(minWait, maxWait);
+            // stop moving
             _rb.velocity = Vector2.zero;
 
             // The task is done waiting if the time waitDuration has elapsed since the task was started.

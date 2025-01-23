@@ -90,6 +90,7 @@ namespace egmp7.Game.Sensors
         /// <returns>True if the tag is defined, otherwise false.</returns>
         private bool IsTagDefined(string tag)
         {
+        #if UNITY_EDITOR
             try
             {
                 return !string.IsNullOrEmpty(tag) && !string.IsNullOrWhiteSpace(tag) && UnityEditorInternal.InternalEditorUtility.tags.Contains(tag);
@@ -99,6 +100,11 @@ namespace egmp7.Game.Sensors
                 Debug.LogError($"{nameof(CollisionSensor)}: Unable to validate the tag. This check may fail in builds.");
                 return false;
             }
+        #else
+            Debug.LogWarning($"{nameof(CollisionSensor)}: Tag validation is not supported outside the Unity Editor.");
+            return false;
+        #endif
         }
+
     }
 }
