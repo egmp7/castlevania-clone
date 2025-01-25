@@ -22,6 +22,8 @@ namespace Enemy.AI
 
         public override TaskStatus OnUpdate()
         {
+            if (_playerTransform == null) return TaskStatus.Failure;
+
             #region Move Logic
             // Calculate direction to player, ignoring vertical movement
             Vector2 targetPosition = new (_playerTransform.position.x, _rb.position.y);

@@ -16,6 +16,8 @@ namespace Enemy.AI
 
         public override TaskStatus OnUpdate()
         {
+            if (_playerTransform == null) return TaskStatus.Failure;
+
             Vector3 scale = transform.localScale; // Get the current local scale
 
             // Determine the desired direction based on player's position

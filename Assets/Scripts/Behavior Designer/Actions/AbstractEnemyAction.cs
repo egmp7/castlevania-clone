@@ -53,10 +53,14 @@ namespace Enemy.AI
                 ErrorManager.LogMissingComponent<HealthManagerBT>(gameObject);
             }
 
-            _playerTransform = GameObject.FindGameObjectWithTag(_playerTag).transform;
-            if (_playerTransform == null)
+            var playerGO = GameObject.FindGameObjectWithTag(_playerTag);
+            if (playerGO == null)
             {
                 ErrorManager.LogMissingGameObjectWithTag(_playerTag);
+            }
+            else
+            {
+                _playerTransform = playerGO.transform;
             }
         }
     }

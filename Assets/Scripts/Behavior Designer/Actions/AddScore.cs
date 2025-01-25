@@ -13,6 +13,7 @@ namespace Enemy.AI
         public override TaskStatus OnUpdate()
         {
             if (!_completed) { 
+                if (MainManager.Instance == null) return TaskStatus.Failure;
                 MainManager.Instance.score += score.Value;
                 _completed = true;
             }
