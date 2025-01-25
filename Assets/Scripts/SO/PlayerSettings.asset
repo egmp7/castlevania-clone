@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
   maxHealth: 500
-  jumpForce: 20
-  walkSpeed: 10
+  walkSpeed: 4.84
   runSpeed: 20
+  punchForce: 320000003c00000046000000
+  jumpForce: 20
+  direction: 0
   accelerationRate: 5
   blockDamageReducer: 0.1
-  EnemyLayer:
+  enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   EnemyDetectorPosition: {fileID: 0}

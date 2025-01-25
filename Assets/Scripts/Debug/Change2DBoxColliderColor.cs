@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace egmp7.Debug.Collider
+namespace egmp7.DebugTools
 {
 
     //[ExecuteAlways]
