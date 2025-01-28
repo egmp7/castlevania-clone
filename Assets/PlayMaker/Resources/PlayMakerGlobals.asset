@@ -13,27 +13,9 @@ MonoBehaviour:
   m_Name: PlayMakerGlobals
   m_EditorClassIdentifier: 
   variables:
-    floatVariables:
-    - useVariable: 1
-      name: Direction
-      tooltip: 
-      showInInspector: 0
-      networkSync: 0
-      value: 0
-    intVariables:
-    - useVariable: 1
-      name: Damage
-      tooltip: 
-      showInInspector: 0
-      networkSync: 0
-      value: 0
-    boolVariables:
-    - useVariable: 1
-      name: IsAttacking
-      tooltip: 
-      showInInspector: 0
-      networkSync: 0
-      value: 0
+    floatVariables: []
+    intVariables: []
+    boolVariables: []
     stringVariables: []
     vector2Variables: []
     vector3Variables: []
@@ -50,5 +32,5 @@ MonoBehaviour:
     - 
     variableCategoryIDs: 00000000000000000000000000000000
   events:
-  - Damage
   - OnDamage
+  - StartFSM

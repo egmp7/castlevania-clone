@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
+  m_Name: IsPlayerFacingRight
+  m_EditorClassIdentifier: 
+  mBehaviorSource:
+    behaviorName: Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(431,364.916656)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0.6828499,134.817322)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityTransform.GetLocalScale","NodeData":{"Offset":"(-116.8949,214.803345)"},"ID":2,"Name":"Get
+        Local Scale","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null},"SharedVector3storeValue":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"localScale","IsShared":true,"Vector3mValue":"(0,0,0)"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityVector3.GetXYZ","NodeData":{"Offset":"(4.86119175,300.0797)","WatchedFields":["storeX","vector3Variable"]},"ID":3,"Name":"Get
+        XYZ","Instant":true,"SharedVector3vector3Variable":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"localScale","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedFloatstoreX":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"localScaleX","IsShared":true,"SinglemValue":0},"SharedFloatstoreY":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"IsShared":true,"IsDynamic":true,"SinglemValue":0},"SharedFloatstoreZ":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"IsShared":true,"IsDynamic":true,"SinglemValue":0}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.Math.IsFloatPositive","NodeData":{"Offset":"(167.712357,403.618347)"},"ID":4,"Name":"Is
+        Float Positive","Instant":true,"SharedFloatfloatVariable":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"localScaleX","IsShared":true,"SinglemValue":0}}]},"DetachedTasks":[{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.Math.FloatOperator","NodeData":{"Offset":"(573.5697,1545.95239)"},"ID":5,"Name":"Float
+        Operator","Instant":true,"Operationoperation":"Add","SharedFloatfloat1":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedFloatfloat2":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedFloatstoreResult":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.Math.FloatComparison","NodeData":{"Offset":"(375.427124,1445.33252)"},"ID":6,"Name":"Float
+        Comparison","Instant":true,"Operationoperation":"LessThan","SharedFloatfloat1":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"localScaleX","IsShared":true,"SinglemValue":0},"SharedFloatfloat2":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0}}],"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"localScale","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"localScaleX","IsShared":true,"SinglemValue":0}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.11
