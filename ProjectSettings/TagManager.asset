@@ -17,8 +17,8 @@ TagManager:
   - Ground
   - Weapon
   - Body
-  - HurtBox
-  - Dead
+  - Hurt
+  - Hit
   - 
   - 
   - 
