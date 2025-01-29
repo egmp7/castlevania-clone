@@ -1,9 +1,10 @@
-namespace egmp7.Game.Combat
+namespace egmp7.Types
 {
-    public enum AttackType
+    public enum Attack
     {
         Punch,
         Kick,
+        Dash,
     }
 }
 

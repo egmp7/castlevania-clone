@@ -1,6 +1,6 @@
 using UnityEngine;
 using HutongGames.PlayMaker;
-using egmp7.Game.Settings;
+using egmp7.SO;
 
 namespace egmp7.Playmaker.Actions
 {
