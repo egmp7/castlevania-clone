@@ -420,7 +420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2848152713156045401, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
       propertyPath: m_Name
-      value: InputFMS's
+      value: Input
       objectReference: {fileID: 0}
     - target: {fileID: 6677321390832984904, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
       propertyPath: fsm.variables.gameObjectVariables.Array.data[2].value
@@ -471,6 +471,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8824323790894388638}
     - target: {fileID: 7869968571361742072, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.stringVariables.Array.data[17].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869968571361742072, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
       propertyPath: fsm.variables.gameObjectVariables.Array.data[5].value
       value: 
       objectReference: {fileID: 8824323790894388638}
@@ -482,6 +486,14 @@ PrefabInstance:
       propertyPath: fsm.variables.gameObjectVariables.Array.data[10].value
       value: 
       objectReference: {fileID: 7388791510238110654}
+    - target: {fileID: 7869968571361742072, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.gameObjectVariables.Array.data[15].value
+      value: 
+      objectReference: {fileID: 7388791510238110654}
+    - target: {fileID: 7869968571361742072, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.gameObjectVariables.Array.data[16].value
+      value: 
+      objectReference: {fileID: 2334243574897315092}
     - target: {fileID: 9071436825229023858, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
       propertyPath: fsm.variables.gameObjectVariables.Array.data[1].value
       value: 

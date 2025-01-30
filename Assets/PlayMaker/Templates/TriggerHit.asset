@@ -21,7 +21,7 @@ MonoBehaviour:
     states:
     - name: Hit Enemy
       description: 
-      colorIndex: 0
+      colorIndex: 5
       position:
         serializedVersion: 2
         x: 55.5
@@ -75,7 +75,7 @@ MonoBehaviour:
         layoutOptionParams: []
         fsmStringParams:
         - useVariable: 1
-          name: collideTag
+          name: TargetTag
           tooltip: Collision tag
           showInInspector: 1
           networkSync: 0
@@ -110,11 +110,11 @@ MonoBehaviour:
         paramByteDataSize: 0000000004000000000000000000000000000000
     - name: Send Hit
       description: 
-      colorIndex: 0
+      colorIndex: 3
       position:
         serializedVersion: 2
-        x: 259.5
-        y: 103
+        x: 281.5
+        y: 101
         width: 100
         height: 32
       isBreakpoint: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
         - 
         - 
         actionEnabled: 01010101
-        actionIsOpen: 01000000
+        actionIsOpen: 00000000
         actionStartIndex: 00000000020000000300000007000000
         actionHashCodes: 5ac85204dcbe48045e69bb0448c01101
         unityObjectParams: []
@@ -187,13 +187,13 @@ MonoBehaviour:
         fsmPropertyParams:
         - TargetObject:
             useVariable: 1
-            name: Attack
+            name: AttackSO
             tooltip: 
             showInInspector: 0
             networkSync: 0
-            typeName: egmp7.SO.PunchAttack
+            typeName: egmp7.SO.AttackSO
             value: {fileID: 0}
-          TargetTypeName: egmp7.SO.PunchAttack
+          TargetTypeName: egmp7.SO.AttackSO
           PropertyName: damage
           BoolParameter:
             useVariable: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
             value: 0
           IntParameter:
             useVariable: 1
-            name: currentDamage
+            name: _currentDamage
             tooltip: 
             showInInspector: 0
             networkSync: 0
@@ -300,7 +300,7 @@ MonoBehaviour:
             tooltip: 
             showInInspector: 0
             networkSync: 0
-            enumName: HutongGames.PlayMaker.None
+            enumName: 
             intValue: 0
           ArrayParameter:
             useVariable: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
             showInInspector: 0
             networkSync: 0
             type: -1
-            objectTypeName: UnityEngine.Object
+            objectTypeName: 
             floatValues: []
             intValues: 
             boolValues: 
@@ -331,14 +331,14 @@ MonoBehaviour:
           networkSync: 0
           value: 0
         - useVariable: 1
-          name: cooldownWait
+          name: CooldownWait
           tooltip: Cooldown wait before sending an event
           showInInspector: 1
           networkSync: 0
           value: 0.3
         fsmIntParams:
         - useVariable: 1
-          name: currentDamage
+          name: _currentDamage
           tooltip: 
           showInInspector: 0
           networkSync: 0
@@ -382,14 +382,14 @@ MonoBehaviour:
     variables:
       floatVariables:
       - useVariable: 1
-        name: cooldownWait
+        name: CooldownWait
         tooltip: Cooldown wait before sending an event
         showInInspector: 1
         networkSync: 0
         value: 0.3
       intVariables:
       - useVariable: 1
-        name: currentDamage
+        name: _currentDamage
         tooltip: 
         showInInspector: 0
         networkSync: 0
@@ -397,7 +397,7 @@ MonoBehaviour:
       boolVariables: []
       stringVariables:
       - useVariable: 1
-        name: collideTag
+        name: TargetTag
         tooltip: Collision tag
         showInInspector: 1
         networkSync: 0
@@ -416,11 +416,11 @@ MonoBehaviour:
         value: {fileID: 0}
       objectVariables:
       - useVariable: 1
-        name: Attack
+        name: AttackSO
         tooltip: 
         showInInspector: 0
         networkSync: 0
-        typeName: egmp7.SO.PunchAttack
+        typeName: egmp7.SO.AttackSO
         value: {fileID: 0}
       materialVariables: []
       textureVariables: []
@@ -437,7 +437,7 @@ MonoBehaviour:
     password: 
     locked: 0
     manualUpdate: 0
-    outVariableIndices: 0300000004000000
+    outVariableIndices: 0300000001000000
     keepDelayedEventsOnStateExit: 0
     preprocessed: 0
     ExposedEvents: []

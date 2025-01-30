@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 223288787442711260}
   - component: {fileID: 2545218388615934900}
   - component: {fileID: 6677321390832984904}
-  - component: {fileID: 5858744846216567843}
   - component: {fileID: 7869968571361742072}
   - component: {fileID: 9071436825229023858}
   - component: {fileID: 4698541630283166605}
+  - component: {fileID: 5858744846216567843}
   m_Layer: 9
-  m_Name: InputFMS's
+  m_Name: Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -459,13 +459,13 @@ MonoBehaviour:
           networkSync: 0
           value: 0
         - useVariable: 1
-          name: targetSpeed
+          name: _targetSpeed
           tooltip: 
           showInInspector: 0
           networkSync: 0
           value: 0
         - useVariable: 1
-          name: targetSpeed
+          name: _targetSpeed
           tooltip: 
           showInInspector: 0
           networkSync: 0
@@ -673,13 +673,13 @@ MonoBehaviour:
           networkSync: 0
           value: 0
         - useVariable: 1
-          name: targetSpeed
+          name: _targetSpeed
           tooltip: 
           showInInspector: 0
           networkSync: 0
           value: 0
         - useVariable: 1
-          name: targetSpeed
+          name: _targetSpeed
           tooltip: 
           showInInspector: 0
           networkSync: 0
@@ -970,13 +970,13 @@ MonoBehaviour:
           networkSync: 0
           value: 0
         - useVariable: 1
-          name: targetSpeed
+          name: _targetSpeed
           tooltip: 
           showInInspector: 0
           networkSync: 0
           value: 0
         - useVariable: 1
-          name: targetSpeed
+          name: _targetSpeed
           tooltip: 
           showInInspector: 0
           networkSync: 0
@@ -1184,13 +1184,13 @@ MonoBehaviour:
           networkSync: 0
           value: 0
         - useVariable: 1
-          name: targetSpeed
+          name: _targetSpeed
           tooltip: 
           showInInspector: 0
           networkSync: 0
           value: 0
         - useVariable: 1
-          name: targetSpeed
+          name: _targetSpeed
           tooltip: 
           showInInspector: 0
           networkSync: 0
@@ -1486,13 +1486,13 @@ MonoBehaviour:
         networkSync: 0
         value: 0
       - useVariable: 1
-        name: inputX
+        name: _targetSpeed
         tooltip: 
         showInInspector: 0
         networkSync: 0
         value: 0
       - useVariable: 1
-        name: targetSpeed
+        name: inputX
         tooltip: 
         showInInspector: 0
         networkSync: 0
@@ -1606,7 +1606,7 @@ MonoBehaviour:
     password: 
     locked: 0
     manualUpdate: 0
-    outVariableIndices: 0200000004000000
+    outVariableIndices: 0200000003000000
     keepDelayedEventsOnStateExit: 0
     preprocessed: 0
     ExposedEvents: []
@@ -1615,7 +1615,7 @@ MonoBehaviour:
     ResetVariablesOnEnable: 0
     EnableDebugFlow: 0
     EnableBreakpoints: 1
-    editorFlags: 225
+    editorFlags: 224
     activeStateName: 
     mouseEvents: 0
     handleLevelLoaded: 0
@@ -1645,314 +1645,6 @@ MonoBehaviour:
     handleAnimatorIK: 0
   fsmTemplate: {fileID: 0}
   eventHandlerComponentsAdded: 0
---- !u!114 &5858744846216567843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2848152713156045401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1384774831, guid: e743331561ef77147ae48cda9bcb8209, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fsm:
-    dataVersion: 2
-    usedInTemplate: {fileID: 0}
-    name: DuoTap (AB)
-    startState: State 1
-    states:
-    - name: State 1
-      description: 
-      colorIndex: 0
-      position:
-        serializedVersion: 2
-        x: 50
-        y: 100
-        width: 100
-        height: 16
-      isBreakpoint: 0
-      isSequence: 0
-      hideUnused: 0
-      transitions: []
-      actionData:
-        actionNames: []
-        customNames: []
-        actionEnabled: 
-        actionIsOpen: 
-        actionStartIndex: 
-        actionHashCodes: 
-        unityObjectParams: []
-        fsmGameObjectParams: []
-        fsmOwnerDefaultParams: []
-        animationCurveParams: []
-        functionCallParams: []
-        fsmTemplateControlParams: []
-        fsmEventTargetParams: []
-        fsmPropertyParams: []
-        layoutOptionParams: []
-        fsmStringParams: []
-        fsmObjectParams: []
-        fsmVarParams: []
-        fsmArrayParams: []
-        fsmEnumParams: []
-        fsmFloatParams: []
-        fsmIntParams: []
-        fsmBoolParams: []
-        fsmVector2Params: []
-        fsmVector3Params: []
-        fsmColorParams: []
-        fsmRectParams: []
-        fsmQuaternionParams: []
-        stringParams: []
-        byteData: 
-        arrayParamSizes: 
-        arrayParamTypes: []
-        customTypeSizes: 
-        customTypeNames: []
-        paramDataType: 
-        paramName: []
-        paramDataPos: 
-        paramByteDataSize: 
-    events: []
-    globalTransitions: []
-    variables:
-      floatVariables:
-      - useVariable: 1
-        name: Wait Time
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: 0.3
-      - useVariable: 1
-        name: Wait Lock
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: 2
-      - useVariable: 1
-        name: Lock / Setup / WaitTime
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: 3
-      intVariables: []
-      boolVariables:
-      - useVariable: 1
-        name: 
-        tooltip: 
-        showInInspector: 0
-        networkSync: 0
-        value: 0
-      - useVariable: 1
-        name: 
-        tooltip: 
-        showInInspector: 0
-        networkSync: 0
-        value: 0
-      - useVariable: 1
-        name: 
-        tooltip: 
-        showInInspector: 0
-        networkSync: 0
-        value: 0
-      stringVariables:
-      - useVariable: 1
-        name: Lock / FSM Name
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: Lock
-      - useVariable: 1
-        name: Lock / VN / FSMsArrayName
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: Event / FSMsToLock
-      - useVariable: 1
-        name: Lock / VN / IsLock
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: Event / IsLock
-      - useVariable: 1
-        name: Lock / VN / WaitTime
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: Event / LockWaitTime
-      vector2Variables: []
-      vector3Variables: []
-      colorVariables: []
-      rectVariables: []
-      quaternionVariables: []
-      gameObjectVariables:
-      - useVariable: 1
-        name: 
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: {fileID: 0}
-      - useVariable: 1
-        name: 
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: {fileID: 0}
-      - useVariable: 1
-        name: 
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: {fileID: 2848152713156045401}
-      - useVariable: 1
-        name: Lock / ~ GO
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: {fileID: 2848152713156045401}
-      objectVariables:
-      - useVariable: 1
-        name: 
-        tooltip: 
-        showInInspector: 0
-        networkSync: 0
-        typeName: 
-        value: {fileID: 0}
-      - useVariable: 1
-        name: InputAction1
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        typeName: UnityEngine.InputSystem.InputActionReference
-        value: {fileID: 1120369429361536294, guid: 039c714f355531545bfb57135231a45e, type: 3}
-      - useVariable: 1
-        name: InputAction2
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        typeName: UnityEngine.InputSystem.InputActionReference
-        value: {fileID: 1781555164194001046, guid: 039c714f355531545bfb57135231a45e, type: 3}
-      materialVariables: []
-      textureVariables: []
-      arrayVariables:
-      - useVariable: 1
-        name: 
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        type: 0
-        objectTypeName: UnityEngine.Object
-        floatValues: []
-        intValues: 
-        boolValues: 
-        stringValues: []
-        vector4Values: []
-        objectReferences: []
-      - useVariable: 1
-        name: 
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        type: 14
-        objectTypeName: HutongGames.PlayMaker.None
-        floatValues: []
-        intValues: 
-        boolValues: 
-        stringValues: []
-        vector4Values: []
-        objectReferences: []
-      - useVariable: 1
-        name: FMS's To Lock
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        type: 4
-        objectTypeName: UnityEngine.Object
-        floatValues: []
-        intValues: 
-        boolValues: 
-        stringValues:
-        - Movement
-        - Single Button A
-        - Flip Player
-        vector4Values: []
-        objectReferences: []
-      - useVariable: 1
-        name: Lock / FSMs
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        type: 4
-        objectTypeName: UnityEngine.Object
-        floatValues: []
-        intValues: 
-        boolValues: 
-        stringValues:
-        - Movement
-        - Flip Player
-        - Single Button A
-        vector4Values: []
-        objectReferences: []
-      enumVariables:
-      - useVariable: 1
-        name: 
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        enumName: egmp7.Types.Button
-        intValue: 0
-      categories:
-      - 
-      variableCategoryIDs: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-    description: 
-    docUrl: 
-    showStateLabel: 0
-    maxLoopCount: 0
-    watermark: 
-    password: 
-    locked: 0
-    manualUpdate: 0
-    outVariableIndices: 
-    keepDelayedEventsOnStateExit: 0
-    preprocessed: 0
-    ExposedEvents: []
-    OutputEvents: []
-    RestartOnEnable: 1
-    ResetVariablesOnEnable: 0
-    EnableDebugFlow: 0
-    EnableBreakpoints: 1
-    editorFlags: 193
-    activeStateName: 
-    mouseEvents: 0
-    handleLevelLoaded: 0
-    handleTriggerEnter2D: 0
-    handleTriggerExit2D: 0
-    handleTriggerStay2D: 0
-    handleCollisionEnter2D: 0
-    handleCollisionExit2D: 0
-    handleCollisionStay2D: 0
-    handleTriggerEnter: 0
-    handleTriggerExit: 0
-    handleTriggerStay: 0
-    handleCollisionEnter: 0
-    handleCollisionExit: 0
-    handleCollisionStay: 0
-    handleParticleCollision: 0
-    handleControllerColliderHit: 0
-    handleJointBreak: 0
-    handleJointBreak2D: 0
-    handleOnGUI: 0
-    handleFixedUpdate: 0
-    handleLateUpdate: 0
-    handleApplicationEvents: 0
-    handleUiEvents: 0
-    handleLegacyNetworking: 0
-    handleAnimatorMove: 0
-    handleAnimatorIK: 0
-  fsmTemplate: {fileID: 11400000, guid: ff0c4901bf885ad4a81b46ea0b1198bc, type: 2}
-  eventHandlerComponentsAdded: 1
 --- !u!114 &7869968571361742072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2130,43 +1822,43 @@ MonoBehaviour:
         networkSync: 0
         value: 0
       - useVariable: 1
-        name: currentTapTime
+        name: 
         tooltip: 
         showInInspector: 0
         networkSync: 0
         value: 0
       - useVariable: 1
-        name: lastTapTime
+        name: 
         tooltip: 
         showInInspector: 0
         networkSync: 0
         value: 0
       - useVariable: 1
-        name: tapMaxGap
+        name: 
         tooltip: 
         showInInspector: 0
         networkSync: 0
         value: 0
       - useVariable: 1
-        name: tapMaxTime
+        name: 
         tooltip: 
         showInInspector: 0
         networkSync: 0
         value: 0
       - useVariable: 1
-        name: tapMinGap
+        name: 
         tooltip: 
         showInInspector: 0
         networkSync: 0
         value: 0
       - useVariable: 1
-        name: tapMinTime
+        name: 
         tooltip: 
         showInInspector: 0
         networkSync: 0
         value: 0
       - useVariable: 1
-        name: Lock / Wait Time
+        name: 
         tooltip: 
         showInInspector: 0
         networkSync: 0
@@ -2178,27 +1870,75 @@ MonoBehaviour:
         networkSync: 0
         value: 0
       - useVariable: 1
-        name: Lock / Setup / WaitTime
+        name: 
         tooltip: 
         showInInspector: 1
         networkSync: 0
-        value: 0.5
-      intVariables:
+        value: 0
       - useVariable: 1
-        name: currentIndexTap
+        name: _lastTapTime
         tooltip: 
         showInInspector: 0
         networkSync: 0
         value: 0
       - useVariable: 1
-        name: tapArrayLength
+        name: Lock / WaitTime
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 0.4
+      - useVariable: 1
+        name: _tapMaxGap
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
+      - useVariable: 1
+        name: _tapMaxTime
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
+      - useVariable: 1
+        name: _tapMinGap
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
+      - useVariable: 1
+        name: _tapMinTime
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
+      intVariables:
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
+      - useVariable: 1
+        name: _tapCurrentIndex
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
+      - useVariable: 1
+        name: _tapArrayLength
         tooltip: 
         showInInspector: 0
         networkSync: 0
         value: 0
       boolVariables:
       - useVariable: 1
-        name: Lock / Enabled
+        name: 
         tooltip: 
         showInInspector: 0
         networkSync: 0
@@ -2217,7 +1957,7 @@ MonoBehaviour:
         networkSync: 0
         value: 
       - useVariable: 1
-        name: currentAnimation
+        name: 
         tooltip: 
         showInInspector: 0
         networkSync: 0
@@ -2235,17 +1975,29 @@ MonoBehaviour:
         networkSync: 0
         value: 
       - useVariable: 1
-        name: ~/GO/HitBox/FSM-Name
+        name: 
         tooltip: 
         showInInspector: 1
         networkSync: 0
-        value: TriggerHit
+        value: 
       - useVariable: 1
-        name: ~/GO/Input/FSM-Name
+        name: 
         tooltip: 
         showInInspector: 1
         networkSync: 0
-        value: Movement
+        value: 
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 
       - useVariable: 1
         name: 
         tooltip: 
@@ -2270,6 +2022,42 @@ MonoBehaviour:
         showInInspector: 1
         networkSync: 0
         value: 
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 
+      - useVariable: 1
+        name: Attack / VN / AttackSO
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: AttackSO
       - useVariable: 1
         name: Lock / FSM Name
         tooltip: 
@@ -2277,41 +2065,23 @@ MonoBehaviour:
         networkSync: 0
         value: Lock
       - useVariable: 1
-        name: 
+        name: Lock / VN / Array
         tooltip: 
         showInInspector: 1
         networkSync: 0
-        value: 
+        value: Lock / ~FSMs
       - useVariable: 1
-        name: 
+        name: Lock / VN / Float
         tooltip: 
         showInInspector: 1
         networkSync: 0
-        value: 
+        value: Lock / WaitTime
       - useVariable: 1
-        name: 
+        name: Attack / FSMName
         tooltip: 
         showInInspector: 1
         networkSync: 0
-        value: 
-      - useVariable: 1
-        name: Lock / VN / FSMsArrayName
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: Event / FSMsToLock
-      - useVariable: 1
-        name: Lock / VN / IsLock
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: Event / IsLock
-      - useVariable: 1
-        name: Lock / VN / WaitTime
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: Event / LockWaitTime
+        value: TriggerHit
       vector2Variables: []
       vector3Variables: []
       colorVariables: []
@@ -2361,7 +2131,7 @@ MonoBehaviour:
         networkSync: 0
         value: {fileID: 0}
       - useVariable: 1
-        name: '~/GO/Animation '
+        name: 
         tooltip: 
         showInInspector: 1
         networkSync: 0
@@ -2373,35 +2143,53 @@ MonoBehaviour:
         networkSync: 0
         value: {fileID: 0}
       - useVariable: 1
-        name: ~/GO/Input
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: {fileID: 0}
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: {fileID: 0}
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: {fileID: 0}
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: {fileID: 0}
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: {fileID: 0}
+      - useVariable: 1
+        name: Lock / ~Listener
         tooltip: 
         showInInspector: 1
         networkSync: 0
         value: {fileID: 2848152713156045401}
       - useVariable: 1
-        name: ~/GO/HitBox
+        name: Attack / HitBox
         tooltip: 
         showInInspector: 1
         networkSync: 0
         value: {fileID: 0}
       - useVariable: 1
-        name: 
+        name: '~ / GO / Animation '
         tooltip: 
         showInInspector: 1
         networkSync: 0
         value: {fileID: 0}
-      - useVariable: 1
-        name: 
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: {fileID: 0}
-      - useVariable: 1
-        name: Lock / ~ GO
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: {fileID: 2848152713156045401}
       objectVariables:
       - useVariable: 1
         name: 
@@ -2432,11 +2220,11 @@ MonoBehaviour:
         typeName: UnityEngine.InputSystem.InputActionReference
         value: {fileID: 1120369429361536294, guid: 039c714f355531545bfb57135231a45e, type: 3}
       - useVariable: 1
-        name: SOpunchAttack
+        name: 
         tooltip: 
         showInInspector: 0
         networkSync: 0
-        typeName: egmp7.SO.PunchAttack
+        typeName: 
         value: {fileID: 0}
       materialVariables: []
       textureVariables: []
@@ -2520,21 +2308,18 @@ MonoBehaviour:
         vector4Values: []
         objectReferences: []
       - useVariable: 1
-        name: ~/PunchAttacks
+        name: 
         tooltip: 
         showInInspector: 1
         networkSync: 0
         type: 12
-        objectTypeName: egmp7.SO.PunchAttack
+        objectTypeName: UnityEngine.Object
         floatValues: []
         intValues: 
         boolValues: 
         stringValues: []
         vector4Values: []
-        objectReferences:
-        - {fileID: 11400000, guid: ea5801731408d9d48859018b09d836ad, type: 2}
-        - {fileID: 11400000, guid: 69e343fd9a1d7024d91daf13235d96b9, type: 2}
-        - {fileID: 11400000, guid: 7c27339e49c6f4845a564588cb64e380, type: 2}
+        objectReferences: []
       - useVariable: 1
         name: 
         tooltip: 
@@ -2549,7 +2334,33 @@ MonoBehaviour:
         vector4Values: []
         objectReferences: []
       - useVariable: 1
-        name: Lock / FSMs
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        type: 4
+        objectTypeName: UnityEngine.Object
+        floatValues: []
+        intValues: 
+        boolValues: 
+        stringValues: []
+        vector4Values: []
+        objectReferences: []
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        type: 12
+        objectTypeName: UnityEngine.Object
+        floatValues: []
+        intValues: 
+        boolValues: 
+        stringValues: []
+        vector4Values: []
+        objectReferences: []
+      - useVariable: 1
+        name: Lock / ~FSMs
         tooltip: 
         showInInspector: 1
         networkSync: 0
@@ -2560,9 +2371,24 @@ MonoBehaviour:
         boolValues: 
         stringValues:
         - Movement
-        - Flip Player
         vector4Values: []
         objectReferences: []
+      - useVariable: 1
+        name: Attack / SO
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        type: 12
+        objectTypeName: egmp7.SO.AttackSO
+        floatValues: []
+        intValues: 
+        boolValues: 
+        stringValues: []
+        vector4Values: []
+        objectReferences:
+        - {fileID: 11400000, guid: ea5801731408d9d48859018b09d836ad, type: 2}
+        - {fileID: 11400000, guid: 69e343fd9a1d7024d91daf13235d96b9, type: 2}
+        - {fileID: 11400000, guid: 7c27339e49c6f4845a564588cb64e380, type: 2}
       enumVariables:
       - useVariable: 1
         name: 
@@ -2580,7 +2406,7 @@ MonoBehaviour:
         intValue: 0
       categories:
       - 
-      variableCategoryIDs: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+      variableCategoryIDs: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     description: 
     docUrl: 
     showStateLabel: 0
@@ -2589,7 +2415,7 @@ MonoBehaviour:
     password: 
     locked: 0
     manualUpdate: 0
-    outVariableIndices: 0c000000090000000100000002000000190000000a000000030000000400000005000000060000000b00000007000000
+    outVariableIndices: 01000000070000000800000003000000040000000500000006000000
     keepDelayedEventsOnStateExit: 0
     preprocessed: 0
     ExposedEvents: []
@@ -2598,7 +2424,7 @@ MonoBehaviour:
     ResetVariablesOnEnable: 0
     EnableDebugFlow: 0
     EnableBreakpoints: 1
-    editorFlags: 160
+    editorFlags: 225
     activeStateName: 
     mouseEvents: 0
     handleLevelLoaded: 0
@@ -3797,7 +3623,7 @@ MonoBehaviour:
     ResetVariablesOnEnable: 0
     EnableDebugFlow: 0
     EnableBreakpoints: 1
-    editorFlags: 225
+    editorFlags: 224
     activeStateName: 
     mouseEvents: 0
     handleLevelLoaded: 0
@@ -3826,4 +3652,312 @@ MonoBehaviour:
     handleAnimatorMove: 0
     handleAnimatorIK: 0
   fsmTemplate: {fileID: 11400000, guid: 982cb90c798dd9b4b8d42c19d4617f50, type: 2}
+  eventHandlerComponentsAdded: 1
+--- !u!114 &5858744846216567843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2848152713156045401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1384774831, guid: e743331561ef77147ae48cda9bcb8209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fsm:
+    dataVersion: 2
+    usedInTemplate: {fileID: 0}
+    name: DuoTap (AB)
+    startState: State 1
+    states:
+    - name: State 1
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 50
+        y: 100
+        width: 100
+        height: 16
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions: []
+      actionData:
+        actionNames: []
+        customNames: []
+        actionEnabled: 
+        actionIsOpen: 
+        actionStartIndex: 
+        actionHashCodes: 
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 
+        paramName: []
+        paramDataPos: 
+        paramByteDataSize: 
+    events: []
+    globalTransitions: []
+    variables:
+      floatVariables:
+      - useVariable: 1
+        name: Wait Time
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 0.3
+      - useVariable: 1
+        name: Wait Lock
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 2
+      - useVariable: 1
+        name: Lock / Setup / WaitTime
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 3
+      intVariables: []
+      boolVariables:
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
+      stringVariables:
+      - useVariable: 1
+        name: Lock / FSM Name
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: Lock
+      - useVariable: 1
+        name: Lock / VN / FSMsArrayName
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: Event / FSMsToLock
+      - useVariable: 1
+        name: Lock / VN / IsLock
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: Event / IsLock
+      - useVariable: 1
+        name: Lock / VN / WaitTime
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: Event / LockWaitTime
+      vector2Variables: []
+      vector3Variables: []
+      colorVariables: []
+      rectVariables: []
+      quaternionVariables: []
+      gameObjectVariables:
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: {fileID: 0}
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: {fileID: 0}
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: {fileID: 2848152713156045401}
+      - useVariable: 1
+        name: Lock / ~ GO
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: {fileID: 2848152713156045401}
+      objectVariables:
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        typeName: 
+        value: {fileID: 0}
+      - useVariable: 1
+        name: InputAction1
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        typeName: UnityEngine.InputSystem.InputActionReference
+        value: {fileID: 1120369429361536294, guid: 039c714f355531545bfb57135231a45e, type: 3}
+      - useVariable: 1
+        name: InputAction2
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        typeName: UnityEngine.InputSystem.InputActionReference
+        value: {fileID: 1781555164194001046, guid: 039c714f355531545bfb57135231a45e, type: 3}
+      materialVariables: []
+      textureVariables: []
+      arrayVariables:
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        type: 0
+        objectTypeName: UnityEngine.Object
+        floatValues: []
+        intValues: 
+        boolValues: 
+        stringValues: []
+        vector4Values: []
+        objectReferences: []
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        type: 14
+        objectTypeName: HutongGames.PlayMaker.None
+        floatValues: []
+        intValues: 
+        boolValues: 
+        stringValues: []
+        vector4Values: []
+        objectReferences: []
+      - useVariable: 1
+        name: FMS's To Lock
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        type: 4
+        objectTypeName: UnityEngine.Object
+        floatValues: []
+        intValues: 
+        boolValues: 
+        stringValues:
+        - Movement
+        - Single Button A
+        - Flip Player
+        vector4Values: []
+        objectReferences: []
+      - useVariable: 1
+        name: Lock / FSMs
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        type: 4
+        objectTypeName: UnityEngine.Object
+        floatValues: []
+        intValues: 
+        boolValues: 
+        stringValues:
+        - Movement
+        - Flip Player
+        - Single Button A
+        vector4Values: []
+        objectReferences: []
+      enumVariables:
+      - useVariable: 1
+        name: 
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        enumName: egmp7.Types.Button
+        intValue: 0
+      categories:
+      - 
+      variableCategoryIDs: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    description: 
+    docUrl: 
+    showStateLabel: 0
+    maxLoopCount: 0
+    watermark: 
+    password: 
+    locked: 0
+    manualUpdate: 0
+    outVariableIndices: 
+    keepDelayedEventsOnStateExit: 0
+    preprocessed: 0
+    ExposedEvents: []
+    OutputEvents: []
+    RestartOnEnable: 1
+    ResetVariablesOnEnable: 0
+    EnableDebugFlow: 0
+    EnableBreakpoints: 1
+    editorFlags: 193
+    activeStateName: 
+    mouseEvents: 0
+    handleLevelLoaded: 0
+    handleTriggerEnter2D: 0
+    handleTriggerExit2D: 0
+    handleTriggerStay2D: 0
+    handleCollisionEnter2D: 0
+    handleCollisionExit2D: 0
+    handleCollisionStay2D: 0
+    handleTriggerEnter: 0
+    handleTriggerExit: 0
+    handleTriggerStay: 0
+    handleCollisionEnter: 0
+    handleCollisionExit: 0
+    handleCollisionStay: 0
+    handleParticleCollision: 0
+    handleControllerColliderHit: 0
+    handleJointBreak: 0
+    handleJointBreak2D: 0
+    handleOnGUI: 0
+    handleFixedUpdate: 0
+    handleLateUpdate: 0
+    handleApplicationEvents: 0
+    handleUiEvents: 0
+    handleLegacyNetworking: 0
+    handleAnimatorMove: 0
+    handleAnimatorIK: 0
+  fsmTemplate: {fileID: 11400000, guid: ff0c4901bf885ad4a81b46ea0b1198bc, type: 2}
   eventHandlerComponentsAdded: 1
