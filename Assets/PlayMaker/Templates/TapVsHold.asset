@@ -24,8 +24,8 @@ MonoBehaviour:
       colorIndex: 5
       position:
         serializedVersion: 2
-        x: 177.66406
-        y: 201.10156
+        x: 209.66406
+        y: 121.10156
         width: 110
         height: 32
       isBreakpoint: 0
@@ -118,8 +118,8 @@ MonoBehaviour:
       colorIndex: 5
       position:
         serializedVersion: 2
-        x: 352.0547
-        y: 200.76562
+        x: 384.0547
+        y: 120.765625
         width: 105
         height: 48
       isBreakpoint: 0
@@ -233,8 +233,8 @@ MonoBehaviour:
       colorIndex: 2
       position:
         serializedVersion: 2
-        x: 520.9219
-        y: 171.63281
+        x: 570.6172
+        y: 91.60156
         width: 100
         height: 16
       isBreakpoint: 0
@@ -273,7 +273,7 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams:
-        - restart
+        - idle
         byteData: 
         arrayParamSizes: 
         arrayParamTypes: []
@@ -289,8 +289,8 @@ MonoBehaviour:
       colorIndex: 2
       position:
         serializedVersion: 2
-        x: 523.28125
-        y: 279.3672
+        x: 555.28125
+        y: 199.36719
         width: 120
         height: 48
       isBreakpoint: 0
@@ -394,7 +394,7 @@ MonoBehaviour:
         fsmQuaternionParams: []
         stringParams:
         - resetAttack
-        - restart
+        - idle
         - 
         - continueAttack
         - continueAttack
@@ -425,121 +425,13 @@ MonoBehaviour:
         - everyFrame
         paramDataPos: 0000000000000000040000000100000002000000030000000000000001000000020000000500000004000000050000000600000003000000040000000500000006000000
         paramByteDataSize: 0400000000000000010000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000001000000
-    - name: Lock
-      description: 
-      colorIndex: 6
-      position:
-        serializedVersion: 2
-        x: 311.03125
-        y: 107.17969
-        width: 100
-        height: 16
-      isBreakpoint: 0
-      isSequence: 0
-      hideUnused: 0
-      transitions: []
-      actionData:
-        actionNames: []
-        customNames: []
-        actionEnabled: 
-        actionIsOpen: 
-        actionStartIndex: 
-        actionHashCodes: 
-        unityObjectParams: []
-        fsmGameObjectParams: []
-        fsmOwnerDefaultParams: []
-        animationCurveParams: []
-        functionCallParams: []
-        fsmTemplateControlParams: []
-        fsmEventTargetParams: []
-        fsmPropertyParams: []
-        layoutOptionParams: []
-        fsmStringParams: []
-        fsmObjectParams: []
-        fsmVarParams: []
-        fsmArrayParams: []
-        fsmEnumParams: []
-        fsmFloatParams: []
-        fsmIntParams: []
-        fsmBoolParams: []
-        fsmVector2Params: []
-        fsmVector3Params: []
-        fsmColorParams: []
-        fsmRectParams: []
-        fsmQuaternionParams: []
-        stringParams: []
-        byteData: 
-        arrayParamSizes: 
-        arrayParamTypes: []
-        customTypeSizes: 
-        customTypeNames: []
-        paramDataType: 
-        paramName: []
-        paramDataPos: 
-        paramByteDataSize: 
-    - name: Unlock
-      description: 
-      colorIndex: 3
-      position:
-        serializedVersion: 2
-        x: 62.773438
-        y: 111.03125
-        width: 100
-        height: 16
-      isBreakpoint: 0
-      isSequence: 0
-      hideUnused: 0
-      transitions: []
-      actionData:
-        actionNames:
-        - HutongGames.PlayMaker.Actions.NextFrameEvent
-        customNames:
-        - 
-        actionEnabled: 01
-        actionIsOpen: 01
-        actionStartIndex: 00000000
-        actionHashCodes: 88611604
-        unityObjectParams: []
-        fsmGameObjectParams: []
-        fsmOwnerDefaultParams: []
-        animationCurveParams: []
-        functionCallParams: []
-        fsmTemplateControlParams: []
-        fsmEventTargetParams: []
-        fsmPropertyParams: []
-        layoutOptionParams: []
-        fsmStringParams: []
-        fsmObjectParams: []
-        fsmVarParams: []
-        fsmArrayParams: []
-        fsmEnumParams: []
-        fsmFloatParams: []
-        fsmIntParams: []
-        fsmBoolParams: []
-        fsmVector2Params: []
-        fsmVector3Params: []
-        fsmColorParams: []
-        fsmRectParams: []
-        fsmQuaternionParams: []
-        stringParams:
-        - restart
-        byteData: 
-        arrayParamSizes: 
-        arrayParamTypes: []
-        customTypeSizes: 
-        customTypeNames: []
-        paramDataType: 17000000
-        paramName:
-        - sendEvent
-        paramDataPos: 00000000
-        paramByteDataSize: 00000000
     - name: Game Action
       description: 
       colorIndex: 1
       position:
         serializedVersion: 2
-        x: 713.53906
-        y: 333.2422
+        x: 746.9219
+        y: 281.76562
         width: 105
         height: 32
       isBreakpoint: 0
@@ -550,7 +442,7 @@ MonoBehaviour:
           name: next
           isSystemEvent: 0
           isGlobal: 0
-        toState: Next Hit
+        toState: AutoUnlock
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -574,8 +466,8 @@ MonoBehaviour:
         - 
         - 
         - 
-        actionEnabled: 0101010101010101
-        actionIsOpen: 0000000000000101
+        actionEnabled: 0101010000000101
+        actionIsOpen: 0000000100000001
         actionStartIndex: 0000000005000000070000000c00000012000000170000001b00000020000000
         actionHashCodes: 6ba593015ac85204c34b410568fde30468fece055e69bb0474cb920288611604
         unityObjectParams: []
@@ -972,8 +864,8 @@ MonoBehaviour:
       colorIndex: 5
       position:
         serializedVersion: 2
-        x: 711.1406
-        y: 275.08594
+        x: 743.1406
+        y: 195.08594
         width: 107
         height: 32
       isBreakpoint: 0
@@ -1050,8 +942,8 @@ MonoBehaviour:
       colorIndex: 5
       position:
         serializedVersion: 2
-        x: 715.28906
-        y: 395.1875
+        x: 747.2578
+        y: 376.1328
         width: 100
         height: 32
       isBreakpoint: 0
@@ -1091,7 +983,7 @@ MonoBehaviour:
         - 
         - 
         actionEnabled: 01010101010101010101
-        actionIsOpen: 00000000000000000000
+        actionIsOpen: 00000000000000000001
         actionStartIndex: 000000000300000006000000090000000c0000000e00000010000000150000001a0000001d000000
         actionHashCodes: 603dd905575875019845b3059845b3055ac852045ac852048dc45b028dc45b02fb25880109faa102
         unityObjectParams: []
@@ -1494,7 +1386,7 @@ MonoBehaviour:
         fsmQuaternionParams: []
         stringParams:
         - next
-        - restart
+        - idle
         - 
         byteData: 0004000000000000000000000000
         arrayParamSizes: 0200000002000000
@@ -1547,8 +1439,8 @@ MonoBehaviour:
       colorIndex: 4
       position:
         serializedVersion: 2
-        x: 568.6406
-        y: 409.21094
+        x: 560.375
+        y: 376.7578
         width: 100
         height: 16
       isBreakpoint: 0
@@ -1601,7 +1493,7 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams:
-        - restart
+        - idle
         byteData: 00
         arrayParamSizes: 
         arrayParamTypes: []
@@ -1615,6 +1507,475 @@ MonoBehaviour:
         - sendEvent
         paramDataPos: 00000000010000000000000000000000
         paramByteDataSize: 00000000000000000100000000000000
+    - name: Lock
+      description: 
+      colorIndex: 6
+      position:
+        serializedVersion: 2
+        x: 55.125
+        y: 120.10156
+        width: 100
+        height: 16
+      isBreakpoint: 1
+      isSequence: 0
+      hideUnused: 0
+      transitions: []
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.GetProperty
+        - HutongGames.PlayMaker.Actions.Wait
+        customNames:
+        - 
+        - 
+        actionEnabled: 0101
+        actionIsOpen: 0000
+        actionStartIndex: 0000000002000000
+        actionHashCodes: 5ac8520448c01101
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams:
+        - TargetObject:
+            useVariable: 1
+            name: LockFSM
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            typeName: egmp7.SO.LockFSM
+            value: {fileID: 0}
+          TargetTypeName: egmp7.SO.LockFSM
+          PropertyName: LockTime
+          BoolParameter:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: 0
+          FloatParameter:
+            useVariable: 1
+            name: _lockTime
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: 0
+          IntParameter:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: 0
+          GameObjectParameter:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+          StringParameter:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: 
+          Vector2Parameter:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {x: 0, y: 0}
+          Vector3Parameter:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {x: 0, y: 0, z: 0}
+          RectParamater:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value:
+              serializedVersion: 2
+              x: 0
+              y: 0
+              width: 0
+              height: 0
+          QuaternionParameter:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {x: 0, y: 0, z: 0, w: 0}
+          ObjectParameter:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            typeName: System.Single
+            value: {fileID: 0}
+          MaterialParameter:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            typeName: 
+            value: {fileID: 0}
+          TextureParameter:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            typeName: 
+            value: {fileID: 0}
+          ColorParameter:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {r: 0, g: 0, b: 0, a: 1}
+          EnumParameter:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            enumName: HutongGames.PlayMaker.None
+            intValue: 0
+          ArrayParameter:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            type: -1
+            objectTypeName: UnityEngine.Object
+            floatValues: []
+            intValues: 
+            boolValues: 
+            stringValues: []
+            vector4Values: []
+            objectReferences: []
+          setProperty: 0
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams:
+        - useVariable: 1
+          name: _lockTime
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams:
+        - idle
+        byteData: 0000
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 24000000010000000f0000001700000001000000
+        paramName:
+        - targetProperty
+        - everyFrame
+        - time
+        - finishEvent
+        - realTime
+        paramDataPos: 0000000000000000000000000000000001000000
+        paramByteDataSize: 0000000001000000000000000000000001000000
+    - name: Timed Unlock
+      description: 
+      colorIndex: 1
+      position:
+        serializedVersion: 2
+        x: 50.65625
+        y: 171.10938
+        width: 110
+        height: 16
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions: []
+      actionData:
+        actionNames: []
+        customNames: []
+        actionEnabled: 
+        actionIsOpen: 
+        actionStartIndex: 
+        actionHashCodes: 
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 
+        paramName: []
+        paramDataPos: 
+        paramByteDataSize: 
+    - name: AutoUnlock
+      description: 
+      colorIndex: 7
+      position:
+        serializedVersion: 2
+        x: 897.6406
+        y: 328.47656
+        width: 100
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Next Hit
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.SetFsmBool
+        - HutongGames.PlayMaker.Actions.SetFsmFloat
+        - HutongGames.PlayMaker.Actions.SetFsmArray
+        - HutongGames.PlayMaker.Actions.SendEvent
+        customNames:
+        - 
+        - 
+        - 
+        - 
+        actionEnabled: 00000000
+        actionIsOpen: 00000000
+        actionStartIndex: 00000000050000000a00000011000000
+        actionHashCodes: 68fece0587604502ad7b8c045e69bb04
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 1
+          gameObject:
+            useVariable: 1
+            name: Lock / ~ GO
+            tooltip: 
+            showInInspector: 1
+            networkSync: 0
+            value: {fileID: 0}
+        - ownerOption: 1
+          gameObject:
+            useVariable: 1
+            name: Lock / ~ GO
+            tooltip: 
+            showInInspector: 1
+            networkSync: 0
+            value: {fileID: 0}
+        - ownerOption: 1
+          gameObject:
+            useVariable: 1
+            name: Lock / ~ GO
+            tooltip: 
+            showInInspector: 1
+            networkSync: 0
+            value: {fileID: 0}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams:
+        - target: 2
+          excludeSelf:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: 0
+          gameObject:
+            ownerOption: 1
+            gameObject:
+              useVariable: 1
+              name: Lock / ~ GO
+              tooltip: 
+              showInInspector: 1
+              networkSync: 0
+              value: {fileID: 0}
+          fsmName:
+            useVariable: 1
+            name: Lock / FSM Name
+            tooltip: 
+            showInInspector: 1
+            networkSync: 0
+            value: Lock
+          sendToChildren:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: 0
+          fsmComponent: {fileID: 0}
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 1
+          name: Lock / FSM Name
+          tooltip: 
+          showInInspector: 1
+          networkSync: 0
+          value: Lock
+        - useVariable: 1
+          name: Lock / VN / IsLock
+          tooltip: 
+          showInInspector: 1
+          networkSync: 0
+          value: Event / IsLock
+        - useVariable: 1
+          name: Lock / FSM Name
+          tooltip: 
+          showInInspector: 1
+          networkSync: 0
+          value: Lock
+        - useVariable: 1
+          name: Lock / VN / WaitTime
+          tooltip: 
+          showInInspector: 1
+          networkSync: 0
+          value: Event / LockWaitTime
+        - useVariable: 1
+          name: Lock / FSM Name
+          tooltip: 
+          showInInspector: 1
+          networkSync: 0
+          value: Lock
+        - useVariable: 1
+          name: Lock / VN / FSMsArrayName
+          tooltip: 
+          showInInspector: 1
+          networkSync: 0
+          value: Event / FSMsToLock
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams:
+        - useVariable: 1
+          name: Lock / FSMs
+          tooltip: 
+          showInInspector: 1
+          networkSync: 0
+          type: 4
+          objectTypeName: UnityEngine.Object
+          floatValues: []
+          intValues: 
+          boolValues: 
+          stringValues:
+          - Movement
+          vector4Values: []
+          objectReferences: []
+        fsmEnumParams: []
+        fsmFloatParams:
+        - useVariable: 1
+          name: Lock / Setup / WaitTime
+          tooltip: 
+          showInInspector: 1
+          networkSync: 0
+          value: 2
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        fsmIntParams: []
+        fsmBoolParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams:
+        - 
+        - 
+        - Lock
+        byteData: 00000100
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 14000000120000001200000011000000010000001400000012000000120000000f00000001000000140000001200000012000000290000000100000017000000170000001f000000170000000f00000001000000
+        paramName:
+        - gameObject
+        - fsmName
+        - variableName
+        - setValue
+        - everyFrame
+        - gameObject
+        - fsmName
+        - variableName
+        - setValue
+        - everyFrame
+        - gameObject
+        - fsmName
+        - variableName
+        - setValue
+        - copyValues
+        - fsmNotFound
+        - variableNotFound
+        - eventTarget
+        - sendEvent
+        - delay
+        - everyFrame
+        paramDataPos: 000000000000000001000000000000000000000001000000020000000300000000000000010000000200000004000000050000000000000002000000000000000100000000000000020000000100000003000000
+        paramByteDataSize: 000000000000000000000000000000000100000000000000000000000000000000000000010000000000000000000000000000000000000001000000000000000000000000000000000000000000000001000000
     events:
     - name: next
       isSystemEvent: 0
@@ -1625,13 +1986,7 @@ MonoBehaviour:
     - name: hold
       isSystemEvent: 0
       isGlobal: 0
-    - name: restart
-      isSystemEvent: 0
-      isGlobal: 0
     - name: Lock
-      isSystemEvent: 0
-      isGlobal: 1
-    - name: Unlock
       isSystemEvent: 0
       isGlobal: 1
     - name: FINISHED
@@ -1643,19 +1998,10 @@ MonoBehaviour:
     - name: continueAttack
       isSystemEvent: 0
       isGlobal: 0
-    - name: OnDamage
+    - name: idle
       isSystemEvent: 0
-      isGlobal: 1
+      isGlobal: 0
     globalTransitions:
-    - fsmEvent:
-        name: restart
-        isSystemEvent: 0
-        isGlobal: 0
-      toState: Wait for Input
-      linkStyle: 0
-      linkConstraint: 0
-      linkTarget: 0
-      colorIndex: 0
     - fsmEvent:
         name: Lock
         isSystemEvent: 0
@@ -1666,10 +2012,10 @@ MonoBehaviour:
       linkTarget: 0
       colorIndex: 0
     - fsmEvent:
-        name: Unlock
+        name: idle
         isSystemEvent: 0
-        isGlobal: 1
-      toState: Unlock
+        isGlobal: 0
+      toState: Wait for Input
       linkStyle: 0
       linkConstraint: 0
       linkTarget: 0
@@ -1718,6 +2064,24 @@ MonoBehaviour:
         showInInspector: 0
         networkSync: 0
         value: 0
+      - useVariable: 1
+        name: Lock / Wait Time
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
+      - useVariable: 1
+        name: Lock / Setup / WaitTime
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 2
+      - useVariable: 1
+        name: _lockTime
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
       intVariables:
       - useVariable: 1
         name: currentIndexTap
@@ -1731,7 +2095,13 @@ MonoBehaviour:
         showInInspector: 0
         networkSync: 0
         value: 0
-      boolVariables: []
+      boolVariables:
+      - useVariable: 1
+        name: Lock / Enabled
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
       stringVariables:
       - useVariable: 1
         name: currentAnimation
@@ -1751,6 +2121,30 @@ MonoBehaviour:
         showInInspector: 1
         networkSync: 0
         value: 
+      - useVariable: 1
+        name: Lock / FSM Name
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: Lock
+      - useVariable: 1
+        name: Lock / VN / FSMsArrayName
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: Event / FSMsToLock
+      - useVariable: 1
+        name: Lock / VN / IsLock
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: Event / IsLock
+      - useVariable: 1
+        name: Lock / VN / WaitTime
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: Event / LockWaitTime
       vector2Variables: []
       vector3Variables: []
       colorVariables: []
@@ -1781,6 +2175,12 @@ MonoBehaviour:
         showInInspector: 1
         networkSync: 0
         value: {fileID: 0}
+      - useVariable: 1
+        name: Lock / ~ GO
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: {fileID: 0}
       objectVariables:
       - useVariable: 1
         name: Input / Reference
@@ -1795,6 +2195,13 @@ MonoBehaviour:
         showInInspector: 0
         networkSync: 0
         typeName: egmp7.SO.PunchAttack
+        value: {fileID: 0}
+      - useVariable: 1
+        name: LockFSM
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        typeName: egmp7.SO.LockFSM
         value: {fileID: 0}
       materialVariables: []
       textureVariables: []
@@ -1815,10 +2222,24 @@ MonoBehaviour:
         - {fileID: 0}
         - {fileID: 0}
         - {fileID: 0}
+      - useVariable: 1
+        name: Lock / FSMs
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        type: 4
+        objectTypeName: UnityEngine.Object
+        floatValues: []
+        intValues: 
+        boolValues: 
+        stringValues:
+        - Movement
+        vector4Values: []
+        objectReferences: []
       enumVariables: []
       categories:
       - 
-      variableCategoryIDs: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+      variableCategoryIDs: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     description: 
     docUrl: 
     showStateLabel: 0
@@ -1827,7 +2248,7 @@ MonoBehaviour:
     password: 
     locked: 0
     manualUpdate: 0
-    outVariableIndices: 01000000020000000300000004000000050000000600000007000000080000000900000011000000
+    outVariableIndices: 010000000200000003000000040000000500000006000000070000000a0000000b0000000c0000000d0000001a000000
     keepDelayedEventsOnStateExit: 0
     preprocessed: 0
     ExposedEvents: []

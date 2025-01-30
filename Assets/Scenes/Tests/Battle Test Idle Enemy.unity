@@ -595,6 +595,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 123925142347993844, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: fsm.outVariableIndices.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 123925142347993844, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: fsm.outVariableIndices.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 123925142347993844, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: fsm.variables.floatVariables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 123925142347993844, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: fsm.variables.stringVariables.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 123925142347993844, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: fsm.variables.variableCategoryIDs.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 123925142347993844, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: fsm.variables.boolVariables.Array.data[0].name
+      value: Config / Lock
+      objectReference: {fileID: 0}
+    - target: {fileID: 123925142347993844, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: fsm.variables.boolVariables.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 123925142347993844, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: fsm.variables.floatVariables.Array.data[0].name
+      value: Config / AutoUnlockValue
+      objectReference: {fileID: 0}
+    - target: {fileID: 123925142347993844, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: fsm.variables.floatVariables.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 123925142347993844, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: fsm.variables.stringVariables.Array.data[1].name
+      value: Config / VariableNameLockTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 123925142347993844, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: fsm.variables.floatVariables.Array.data[0].useVariable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 123925142347993844, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: fsm.variables.stringVariables.Array.data[1].useVariable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 123925142347993844, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: fsm.variables.floatVariables.Array.data[0].showInInspector
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 123925142347993844, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: fsm.variables.stringVariables.Array.data[1].showInInspector
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6144268658522476791, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.862521
