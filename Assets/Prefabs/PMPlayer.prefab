@@ -283,6 +283,18 @@ PrefabInstance:
       propertyPath: fsm.variables.gameObjectVariables.Array.data[0].useVariable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 616566665333086689, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
+      propertyPath: fsm.states.Array.data[1].actionData.fsmEventTargetParams.Array.data[0].fsmName.value
+      value: OnHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 616566665333086689, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
+      propertyPath: fsm.states.Array.data[1].actionData.fsmPropertyParams.Array.data[0].TargetObject.typeName
+      value: UnityEngine.Object
+      objectReference: {fileID: 0}
+    - target: {fileID: 616566665333086689, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
+      propertyPath: fsm.states.Array.data[1].actionData.fsmPropertyParams.Array.data[0].TargetObject.showInInspector
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 696124465089799398, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -293,7 +305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2984903239921790738, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2984903239921790738, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
       propertyPath: m_SortingOrder
@@ -301,7 +313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2984903239921790738, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
       propertyPath: m_SortingLayerID
-      value: -222540339
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7551470633314743620, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
       propertyPath: m_Name
@@ -365,7 +377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7764028227799849811, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -435,6 +447,14 @@ PrefabInstance:
       value: Input
       objectReference: {fileID: 0}
     - target: {fileID: 3175108130867201101, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175108130867201101, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.editorFlags
+      value: 224
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175108130867201101, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
       propertyPath: fsm.variables.floatVariables.Array.data[0].value
       value: 0.4
       objectReference: {fileID: 0}
@@ -487,8 +507,116 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 55b52487fb026e64e8d8cbe95348de8e, type: 2}
     - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.stringVariables.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.gameObjectVariables.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.variableCategoryIDs.Array.size
+      value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.intVariables.Array.data[1].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.intVariables.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.stringVariables.Array.data[6].name
+      value: Attack / FSMName
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.stringVariables.Array.data[7].name
+      value: Attack / VN / AttackSO
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.stringVariables.Array.data[6].value
+      value: TriggerHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.stringVariables.Array.data[7].value
+      value: AttackSO
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.gameObjectVariables.Array.data[5].name
+      value: '~ / GO / Animation '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.gameObjectVariables.Array.data[7].name
+      value: Attack / HitBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
       propertyPath: fsm.variables.gameObjectVariables.Array.data[2].value
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.gameObjectVariables.Array.data[5].value
+      value: 
+      objectReference: {fileID: 2334243574897315092}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.gameObjectVariables.Array.data[6].value
+      value: 
+      objectReference: {fileID: 8824323790894388638}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.gameObjectVariables.Array.data[7].value
+      value: 
+      objectReference: {fileID: 7388791510238110654}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.stringVariables.Array.data[6].useVariable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.stringVariables.Array.data[7].useVariable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.arrayVariables.Array.data[0].objectTypeName
+      value: UnityEngine.Object
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.arrayVariables.Array.data[1].objectTypeName
+      value: HutongGames.PlayMaker.None
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.arrayVariables.Array.data[2].objectTypeName
+      value: UnityEngine.Object
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.arrayVariables.Array.data[3].objectTypeName
+      value: UnityEngine.Object
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.gameObjectVariables.Array.data[5].useVariable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.gameObjectVariables.Array.data[7].useVariable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.stringVariables.Array.data[6].showInInspector
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.stringVariables.Array.data[7].showInInspector
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.gameObjectVariables.Array.data[5].showInInspector
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858744846216567843, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.variables.gameObjectVariables.Array.data[7].showInInspector
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6677321390832984904, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
       propertyPath: fsm.variables.gameObjectVariables.Array.data[2].value
@@ -538,6 +666,14 @@ PrefabInstance:
       propertyPath: fsm.states.Array.data[6].actionData.fsmOwnerDefaultParams.Array.data[1].gameObject.value
       value: 
       objectReference: {fileID: 8824323790894388638}
+    - target: {fileID: 7869968571361742072, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869968571361742072, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
+      propertyPath: fsm.editorFlags
+      value: 224
+      objectReference: {fileID: 0}
     - target: {fileID: 7869968571361742072, guid: 807d5491b1e1e6d4d9723c9f3cd890c4, type: 3}
       propertyPath: fsm.variables.stringVariables.Array.data[17].value
       value: 

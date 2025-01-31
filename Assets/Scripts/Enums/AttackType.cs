@@ -4,7 +4,7 @@ namespace egmp7.Types
     {
         Punch,
         Kick,
-        Dash,
+        Special,
     }
 }
 

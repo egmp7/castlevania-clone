@@ -1205,7 +1205,7 @@ MonoBehaviour:
         serializedVersion: 2
         x: 607.72656
         y: 382.40625
-        width: 130
+        width: 135
         height: 32
       isBreakpoint: 0
       isSequence: 0
@@ -1300,7 +1300,7 @@ MonoBehaviour:
         serializedVersion: 2
         x: 789.5547
         y: 288.14062
-        width: 102
+        width: 105
         height: 32
       isBreakpoint: 0
       isSequence: 0
@@ -1484,7 +1484,7 @@ MonoBehaviour:
         serializedVersion: 2
         x: 618.6406
         y: 262.91406
-        width: 113
+        width: 116
         height: 32
       isBreakpoint: 0
       isSequence: 0
@@ -1725,6 +1725,70 @@ MonoBehaviour:
         - everyFrame
         paramDataPos: 00000000000000000000000000000000000000000000000001000000
         paramByteDataSize: 00000000000000000000000001000000000000000000000001000000
+    - name: LockMode
+      description: 
+      colorIndex: 7
+      position:
+        serializedVersion: 2
+        x: 64.515625
+        y: 233.89844
+        width: 100
+        height: 16
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions: []
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.Wait
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 48c01101
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams:
+        - useVariable: 1
+          name: Lock / Wait Time
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams:
+        - idle
+        byteData: 00
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 0f0000001700000001000000
+        paramName:
+        - time
+        - finishEvent
+        - realTime
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000000000001000000
     events:
     - name: next
       isSystemEvent: 0
@@ -1759,6 +1823,15 @@ MonoBehaviour:
         isSystemEvent: 0
         isGlobal: 0
       toState: Wait for Input
+      linkStyle: 0
+      linkConstraint: 0
+      linkTarget: 0
+      colorIndex: 0
+    - fsmEvent:
+        name: Lock
+        isSystemEvent: 0
+        isGlobal: 1
+      toState: LockMode
       linkStyle: 0
       linkConstraint: 0
       linkTarget: 0
@@ -1809,6 +1882,12 @@ MonoBehaviour:
         value: 0
       - useVariable: 1
         name: _tapMinTime
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
+      - useVariable: 1
+        name: Lock / Wait Time
         tooltip: 
         showInInspector: 0
         networkSync: 0
@@ -1942,7 +2021,7 @@ MonoBehaviour:
       enumVariables: []
       categories:
       - 
-      variableCategoryIDs: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+      variableCategoryIDs: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     description: 
     docUrl: 
     showStateLabel: 0
@@ -1951,7 +2030,7 @@ MonoBehaviour:
     password: 
     locked: 0
     manualUpdate: 0
-    outVariableIndices: 03000000040000000500000006000000070000000800000009000000
+    outVariableIndices: 030000000400000005000000060000000700000008000000090000000a000000
     keepDelayedEventsOnStateExit: 0
     preprocessed: 0
     ExposedEvents: []

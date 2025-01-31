@@ -2201,6 +2201,10 @@ PrefabInstance:
       propertyPath: fsm.variables.gameObjectVariables.Array.data[0].showInInspector
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3290369063875587030, guid: 6ed7042285352d4458a15685823827bd, type: 3}
+      propertyPath: fsm.states.Array.data[2].actionData.fsmEventTargetParams.Array.data[0].gameObject.gameObject.value
+      value: 
+      objectReference: {fileID: 6095623108870941976}
     - target: {fileID: 7370407971692728549, guid: 6ed7042285352d4458a15685823827bd, type: 3}
       propertyPath: fsm.states.Array.data[1].actionData.fsmOwnerDefaultParams.Array.data[0].gameObject.value
       value: 

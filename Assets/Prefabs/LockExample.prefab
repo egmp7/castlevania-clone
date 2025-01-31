@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1286138544602034647}
   - component: {fileID: 4676511048812938942}
   m_Layer: 0
-  m_Name: Lock
+  m_Name: LockExample
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
