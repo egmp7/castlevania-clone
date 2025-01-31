@@ -10,11 +10,11 @@ namespace egmp7.Playmaker.Actions
         [RequiredField]
         [UIHint(UIHint.Variable)]
         [Tooltip("The float variable to multiply.")]
-        public FsmFloat floatVariable;
+        public FsmFloat value1;
 
         [RequiredField]
         [Tooltip("Multiply the float variable by this value.")]
-        public FsmFloat multiplyBy;
+        public FsmFloat value2;
 
         [UIHint(UIHint.Variable)]
         [Tooltip("Optionally store the result in a new variable.")]
@@ -25,8 +25,8 @@ namespace egmp7.Playmaker.Actions
 
         public override void Reset()
         {
-            floatVariable = null;
-            multiplyBy = null;
+            value1 = null;
+            value2 = null;
             storeResult = null;
             everyFrame = false;
         }
@@ -48,7 +48,7 @@ namespace egmp7.Playmaker.Actions
 
         private void DoMultiply()
         {
-            float result = floatVariable.Value * multiplyBy.Value;
+            float result = value1.Value * value2.Value;
 
             if (!storeResult.IsNone)
             {
@@ -56,14 +56,14 @@ namespace egmp7.Playmaker.Actions
             }
             else
             {
-                floatVariable.Value = result;
+                value1.Value = result;
             }
         }
 
 #if UNITY_EDITOR
         public override string AutoName()
         {
-            return ActionHelpers.AutoName(this, floatVariable, multiplyBy);
+            return ActionHelpers.AutoName(this, value1, value2);
         }
 #endif
     }

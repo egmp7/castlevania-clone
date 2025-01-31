@@ -34,3 +34,6 @@ MonoBehaviour:
   events:
   - OnDamage
   - StartFSM
+  - Lock
+  - nextLoop
+  - Attack

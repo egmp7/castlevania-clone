@@ -2,9 +2,9 @@ using Game.Sensors;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace egmp7.Game.Settings
+namespace egmp7.SO
 {
-    [CreateAssetMenu(fileName = "PlayerSettings", menuName = "Game/Player Settings", order = 1)]
+    [CreateAssetMenu(fileName = "PlayerSettings", menuName = "egmp7/PlayerSettings", order = 1)]
     public class PlayerSettings : ScriptableObject
     {
         public float maxHealth = 500f;
