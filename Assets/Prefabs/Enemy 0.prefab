@@ -248,26 +248,33 @@ MonoBehaviour:
       JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(431,364.916656)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(120,310)"},"ID":1,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-1091.25037,245.0078)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.HasReceivedEvent","NodeData":{"Offset":"(-124.117615,189.411743)"},"ID":3,"Name":"Has
         Received Event","Instant":true,"SharedStringeventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"OnDead"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(55.8823853,194.705872)"},"ID":4,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Dead
         BT EVENT"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-442.935883,389.679077)","Comment":"On
-        Hurt Listener"},"ID":5,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.HasReceivedEvent","NodeData":{"Offset":"(-136.338058,189.073914)"},"ID":6,"Name":"Has
-        Received Event","Instant":true,"SharedStringeventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"OnPunch"}},{"Type":"BehaviorDesigner.Runtime.Tasks.PlayMaker.StartFSM","NodeData":{"Offset":"(0.5555153,192.222229)"},"ID":7,"Name":"Is
-        Alive?","Instant":true,"SharedGameObjectplayMakerGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":0},"SharedStringFsmName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Is
-        Alive"},"SharedStringstartEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"StartFSM"},"SharedStringpauseEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedStringresumeEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedStringendEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedBoolwaitForFSMCompletion":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolresetOnComplete":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoolsynchronizeVariables":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoolsynchronizeGlobalVariables":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(133.520569,189.682251)"},"ID":8,"Name":"Random
-        Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-242.809326,211.656784)","Comment":"Hurt\nSequence"},"ID":9,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityAnimator.Play","NodeData":{"Offset":"(-158.695663,148.260864)"},"ID":10,"Name":"Play
-        Hurt Animation","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":1},"SharedStringstateName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Hurt"},"Int32layer":-1,"SinglenormalizedTime":0},{"Type":"egmp7.BehaviorDesigner.Enemy.CalcReactionForce","NodeData":{"Offset":"(3.80434418,145.760864)"},"ID":11,"Name":"Calc
-        Reaction Force","Instant":true,"SharedVector2reactionForce":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"ReactionForce","IsShared":true,"Vector2mValue":"(0,0)"},"SingleminDistance":1,"SinglemaxDistance":10,"SinglebaseForceMagnitude":32,"SinglemaxMultiplier":2.5},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityRigidbody2D.AddForce","NodeData":{"Offset":"(138.804321,145.760864)"},"ID":12,"Name":"Add
-        Force","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null},"SharedVector2force":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"ReactionForce","IsShared":true,"Vector2mValue":"(0,0)"}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(196.126221,211.594208)","Comment":"Block\nSequence"},"ID":13,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityAnimator.Play","NodeData":{"Offset":"(-164.054031,148.58992)"},"ID":14,"Name":"Play
-        Block Animation","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":2},"SharedStringstateName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Block"},"Int32layer":-1,"SinglenormalizedTime":0},{"Type":"egmp7.BehaviorDesigner.Enemy.CalcReactionForce","NodeData":{"Offset":"(-0.000122070313,145.616882)"},"ID":15,"Name":"Calc
-        Reaction Force","Instant":true,"SharedVector2reactionForce":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"ReactionForce","IsShared":true,"Vector2mValue":"(0,0)"},"SingleminDistance":1,"SinglemaxDistance":10,"SinglebaseForceMagnitude":12,"SinglemaxMultiplier":2.5},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityRigidbody2D.AddForce","NodeData":{"Offset":"(142.973022,145.616882)"},"ID":16,"Name":"Add
-        Force","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null},"SharedVector2force":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"ReactionForce","IsShared":true,"Vector2mValue":"(0,0)"}}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Idle","NodeData":{"Offset":"(-48.7725067,323.2333)"},"ID":17,"Name":"Idle","Instant":true}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"localScale","IsShared":true,"PropertyMapping":"UnityEngine.Transform/localScale","PropertyMappingOwner":3,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"localScaleX","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Is
-        Facing Right","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"ReactionForce","IsShared":true,"Vector2mValue":"(0,0)"}]}'
+        Hurt Listener"},"ID":5,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-435.897766,197.627319)"},"ID":6,"Name":"Selector","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-638.6106,128.333344)"},"ID":7,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.HasReceivedEvent","NodeData":{"Offset":"(-140.833191,151.666718)"},"ID":8,"Name":"Has
+        Received Event","Instant":true,"SharedStringeventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"OnPunch"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.SharedVariables.SetSharedObject","NodeData":{"Offset":"(27.534502,151.7615)"},"ID":9,"Name":"Set
+        Shared Object","Instant":true,"SharedObjecttargetValue":{"Type":"BehaviorDesigner.Runtime.SharedObject","Name":null,"ObjectmValue":0},"SharedObjecttargetVariable":{"Type":"BehaviorDesigner.Runtime.SharedObject","Name":"EnemyHurtSO","IsShared":true}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-286.25,140)"},"ID":10,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.HasReceivedEvent","NodeData":{"Offset":"(-140,150)"},"ID":11,"Name":"Has
+        Received Event","Instant":true,"SharedStringeventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"OnKick"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.SharedVariables.SetSharedObject","NodeData":{"Offset":"(30,150)"},"ID":12,"Name":"Set
+        Shared Object","Instant":true,"SharedObjecttargetValue":{"Type":"BehaviorDesigner.Runtime.SharedObject","Name":null,"ObjectmValue":1},"SharedObjecttargetVariable":{"Type":"BehaviorDesigner.Runtime.SharedObject","Name":"EnemyHurtSO","IsShared":true}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(41.8749924,140)"},"ID":13,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.HasReceivedEvent","NodeData":{"Offset":"(-140,150)"},"ID":14,"Name":"Has
+        Received Event","Instant":true,"SharedStringeventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"OnSpecial"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.SharedVariables.SetSharedObject","NodeData":{"Offset":"(30,150)"},"ID":15,"Name":"Set
+        Shared Object","Instant":true,"SharedObjecttargetValue":{"Type":"BehaviorDesigner.Runtime.SharedObject","Name":null,"ObjectmValue":2},"SharedObjecttargetVariable":{"Type":"BehaviorDesigner.Runtime.SharedObject","Name":"EnemyHurtSO","IsShared":true}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.PlayMaker.StartFSM","NodeData":{"Offset":"(41.09604,232.762756)"},"ID":16,"Name":"Is
+        Alive?","Instant":true,"SharedGameObjectplayMakerGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":3},"SharedStringFsmName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Is
+        Alive"},"SharedStringstartEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"StartFSM"},"SharedStringpauseEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedStringresumeEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedStringendEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedBoolwaitForFSMCompletion":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolresetOnComplete":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoolsynchronizeVariables":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoolsynchronizeGlobalVariables":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(187.574585,230.222778)"},"ID":17,"Name":"Random
+        Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-292.314026,217.22)","Comment":"Hurt\nSequence"},"ID":18,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"egmp7.BehaviorDesigner.Enemy.PlayHurtAnimation","NodeData":{"Offset":"(-177.485245,153.400391)"},"ID":19,"Name":"Play
+        Hurt Animation","Instant":true,"SharedObjectEnemyHurtSO":{"Type":"BehaviorDesigner.Runtime.SharedObject","Name":"EnemyHurtSO","IsShared":true}},{"Type":"egmp7.BehaviorDesigner.Enemy.CalcReactionForce","NodeData":{"Offset":"(3.80434418,145.760864)"},"ID":20,"Name":"Calc
+        Reaction Force","Instant":true,"SharedVector2reactionForce":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"ReactionForce","IsShared":true,"Vector2mValue":"(0,0)"},"SingleminDistance":1,"SinglemaxDistance":10,"SinglebaseForceMagnitude":32,"SinglemaxMultiplier":2.5},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityRigidbody2D.AddForce","NodeData":{"Offset":"(138.804321,145.760864)"},"ID":21,"Name":"Add
+        Force","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null},"SharedVector2force":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"ReactionForce","IsShared":true,"Vector2mValue":"(0,0)"}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(146.126221,221.594208)","Comment":"Block\nSequence"},"ID":22,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityAnimator.Play","NodeData":{"Offset":"(-164.054031,148.58992)"},"ID":23,"Name":"Play
+        Block Animation","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":4},"SharedStringstateName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Block"},"Int32layer":-1,"SinglenormalizedTime":0},{"Type":"egmp7.BehaviorDesigner.Enemy.CalcReactionForce","NodeData":{"Offset":"(-0.000122070313,145.616882)"},"ID":24,"Name":"Calc
+        Reaction Force","Instant":true,"SharedVector2reactionForce":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"ReactionForce","IsShared":true,"Vector2mValue":"(0,0)"},"SingleminDistance":1,"SinglemaxDistance":10,"SinglebaseForceMagnitude":12,"SinglemaxMultiplier":2.5},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityRigidbody2D.AddForce","NodeData":{"Offset":"(142.973022,145.616882)"},"ID":25,"Name":"Add
+        Force","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null},"SharedVector2force":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"ReactionForce","IsShared":true,"Vector2mValue":"(0,0)"}}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Idle","NodeData":{"Offset":"(-48.7725067,323.2333)"},"ID":26,"Name":"Idle","Instant":true}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"localScale","IsShared":true,"PropertyMapping":"UnityEngine.Transform/localScale","PropertyMappingOwner":5,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"localScaleX","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Is
+        Facing Right","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"ReactionForce","IsShared":true,"Vector2mValue":"(0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedObject","Name":"EnemyHurtSO","IsShared":true}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
         startIndex: 
         dataPosition: 
         unityObjects:
+        - {fileID: 11400000, guid: b05f30e0e808e404bbcb9cce63a268e6, type: 2}
+        - {fileID: 11400000, guid: 8a8600cc71f8c524da1bcf9a4ec070e6, type: 2}
+        - {fileID: 11400000, guid: 94d9498094c12554cb035c2d1e69fd46, type: 2}
         - {fileID: 6095623108870941976}
-        - {fileID: 2179212348285694670}
         - {fileID: 2179212348285694670}
         - {fileID: 6095623108870941976}
         byteData: 
@@ -298,7 +305,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 265.1953
+        x: 201.19531
         y: 98.80469
         width: 100
         height: 16
@@ -362,14 +369,14 @@ MonoBehaviour:
         - everyFrame
         paramDataPos: 000000000100000000000000
         paramByteDataSize: 000000000000000001000000
-    - name: ReceiveDamage
+    - name: GetDamage
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 55.851562
-        y: 199.75
-        width: 125
+        x: 51.851562
+        y: 196.74219
+        width: 100
         height: 48
       isBreakpoint: 0
       isSequence: 0
@@ -746,7 +753,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 270.35156
+        x: 206.35156
         y: 173.35938
         width: 100
         height: 32
@@ -839,7 +846,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 453.14844
+        x: 389.14844
         y: 194.30469
         width: 100
         height: 32
@@ -917,7 +924,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 248.79688
+        x: 184.79688
         y: 276.32812
         width: 135
         height: 64
@@ -1177,8 +1184,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 482
-        y: 311
+        x: 432
+        y: 308
         width: 100
         height: 16
       isBreakpoint: 0
@@ -1254,7 +1261,7 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 493
+        x: 429
         y: 350
         width: 100
         height: 16
@@ -1263,28 +1270,50 @@ MonoBehaviour:
       hideUnused: 0
       transitions: []
       actionData:
-        actionNames: []
-        customNames: []
-        actionEnabled: 
-        actionIsOpen: 
-        actionStartIndex: 
-        actionHashCodes: 
+        actionNames:
+        - HutongGames.PlayMaker.Action.SendEvent
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 15faf100
         unityObjectParams: []
         fsmGameObjectParams: []
-        fsmOwnerDefaultParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
         animationCurveParams: []
         functionCallParams: []
         fsmTemplateControlParams: []
         fsmEventTargetParams: []
         fsmPropertyParams: []
         layoutOptionParams: []
-        fsmStringParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: OnKick
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams: []
         fsmFloatParams: []
-        fsmIntParams: []
+        fsmIntParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
         fsmBoolParams: []
         fsmVector2Params: []
         fsmVector3Params: []
@@ -1297,16 +1326,19 @@ MonoBehaviour:
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 
-        paramName: []
-        paramDataPos: 
-        paramByteDataSize: 
+        paramDataType: 140000001000000012000000
+        paramName:
+        - gameObject
+        - group
+        - eventName
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000000000000000000
     - name: State 3
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 510
+        x: 446
         y: 395.08594
         width: 100
         height: 16
@@ -1315,28 +1347,50 @@ MonoBehaviour:
       hideUnused: 0
       transitions: []
       actionData:
-        actionNames: []
-        customNames: []
-        actionEnabled: 
-        actionIsOpen: 
-        actionStartIndex: 
-        actionHashCodes: 
+        actionNames:
+        - HutongGames.PlayMaker.Action.SendEvent
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 15faf100
         unityObjectParams: []
         fsmGameObjectParams: []
-        fsmOwnerDefaultParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
         animationCurveParams: []
         functionCallParams: []
         fsmTemplateControlParams: []
         fsmEventTargetParams: []
         fsmPropertyParams: []
         layoutOptionParams: []
-        fsmStringParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: OnSpecial
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams: []
         fsmFloatParams: []
-        fsmIntParams: []
+        fsmIntParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
         fsmBoolParams: []
         fsmVector2Params: []
         fsmVector3Params: []
@@ -1349,10 +1403,13 @@ MonoBehaviour:
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 
-        paramName: []
-        paramDataPos: 
-        paramByteDataSize: 
+        paramDataType: 140000001000000012000000
+        paramName:
+        - gameObject
+        - group
+        - eventName
+        paramDataPos: 000000000000000000000000
+        paramByteDataSize: 000000000000000000000000
     events:
     - name: dead
       isSystemEvent: 0
@@ -1383,7 +1440,7 @@ MonoBehaviour:
         name: Attack
         isSystemEvent: 0
         isGlobal: 1
-      toState: ReceiveDamage
+      toState: GetDamage
       linkStyle: 0
       linkConstraint: 0
       linkTarget: 0
@@ -2378,6 +2435,14 @@ PrefabInstance:
     - target: {fileID: 8406926455325847639, guid: 6ed7042285352d4458a15685823827bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186132159204749455, guid: 6ed7042285352d4458a15685823827bd, type: 3}
+      propertyPath: fsm.variables.colorVariables.Array.data[0].value.a
+      value: 0.627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186132159204749455, guid: 6ed7042285352d4458a15685823827bd, type: 3}
+      propertyPath: fsm.variables.colorVariables.Array.data[1].value.a
+      value: 0.627451
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
