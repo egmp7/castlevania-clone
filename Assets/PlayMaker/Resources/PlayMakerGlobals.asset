@@ -37,3 +37,4 @@ MonoBehaviour:
   - Lock
   - nextLoop
   - Attack
+  - StopFSM

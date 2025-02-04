@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 141848935751558519, guid: 27aad682ba2764f458aad22add249698, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 1106263339}
     - target: {fileID: 4421746996627711701, guid: 27aad682ba2764f458aad22add249698, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -175,6 +179,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuickSetup
       objectReference: {fileID: 0}
+    - target: {fileID: 8222227363075927862, guid: 27aad682ba2764f458aad22add249698, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222227363075927862, guid: 27aad682ba2764f458aad22add249698, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448672797012521959, guid: 27aad682ba2764f458aad22add249698, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448672797012521959, guid: 27aad682ba2764f458aad22add249698, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.57
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -194,7 +214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7537030207172301460, guid: d50ec8a4cc19a5741827bfd46354c0f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.71
+      value: 7.01
       objectReference: {fileID: 0}
     - target: {fileID: 7537030207172301460, guid: d50ec8a4cc19a5741827bfd46354c0f1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -237,6 +257,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d50ec8a4cc19a5741827bfd46354c0f1, type: 3}
+--- !u!4 &1106263339 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7537030207172301460, guid: d50ec8a4cc19a5741827bfd46354c0f1, type: 3}
+  m_PrefabInstance: {fileID: 1106263338}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1134087129
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,9 +336,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: HitBox
       objectReference: {fileID: 0}
+    - target: {fileID: 7551470633314743620, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7764028227799849811, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.158402
+      value: 8.561598
       objectReference: {fileID: 0}
     - target: {fileID: 7764028227799849811, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
       propertyPath: m_LocalPosition.y
