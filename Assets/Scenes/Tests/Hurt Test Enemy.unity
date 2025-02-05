@@ -212,6 +212,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7024976758488163834, guid: d50ec8a4cc19a5741827bfd46354c0f1, type: 3}
+      propertyPath: fsm.variables.boolVariables.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7537030207172301460, guid: d50ec8a4cc19a5741827bfd46354c0f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.01
@@ -250,6 +254,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7537030207172301460, guid: d50ec8a4cc19a5741827bfd46354c0f1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164138099679275853, guid: d50ec8a4cc19a5741827bfd46354c0f1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665462912492280896, guid: d50ec8a4cc19a5741827bfd46354c0f1, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -389,7 +401,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1134087131}
   - {fileID: 40227}
   - {fileID: 1106263338}
   - {fileID: 1927193493}
-  - {fileID: 1134087131}

@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 849327591777229249, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6144268658522476791, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.9699993
@@ -247,9 +251,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5794434502810083724, guid: 6ed7042285352d4458a15685823827bd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7595425409857370175, guid: 6ed7042285352d4458a15685823827bd, type: 3}
       propertyPath: m_Name
       value: HurtBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319811120713814163, guid: 6ed7042285352d4458a15685823827bd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8406926455325847639, guid: 6ed7042285352d4458a15685823827bd, type: 3}
       propertyPath: m_LocalScale.x
@@ -401,7 +413,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1997971075}
   - {fileID: 1045696061}
+  - {fileID: 1997971075}
   - {fileID: 108750291}
   - {fileID: 1207811547}

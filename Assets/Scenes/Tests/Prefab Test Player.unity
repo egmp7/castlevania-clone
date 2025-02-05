@@ -147,6 +147,14 @@ PrefabInstance:
       propertyPath: fsm.variables.gameObjectVariables.Array.data[10].value
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3992013828712240170, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5915241209052394613, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6144268658522476791, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.93
@@ -185,6 +193,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6144268658522476791, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807509665585796628, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528148008882479641, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8824323790894388638, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
