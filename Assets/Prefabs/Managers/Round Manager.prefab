@@ -150,7 +150,7 @@ MonoBehaviour:
     dataVersion: 2
     usedInTemplate: {fileID: 0}
     name: Enemy Destroyed Listener
-    startState: Round Loop
+    startState: Init
     states:
     - name: Idle
       description: 
@@ -158,7 +158,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 53.84375
-        y: 153.86719
+        y: 201.86719
         width: 100
         height: 16
       isBreakpoint: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 224.32812
-        y: 125.61719
+        y: 173.61719
         width: 135.5
         height: 48
       isBreakpoint: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 428.5703
-        y: 112.640625
+        y: 160.64062
         width: 205
         height: 48
       isBreakpoint: 0
@@ -430,7 +430,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 687.28125
-        y: 213.25781
+        y: 261.2578
         width: 176
         height: 48
       isBreakpoint: 0
@@ -523,7 +523,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 461.03906
-        y: 241.32812
+        y: 289.32812
         width: 100
         height: 16
       isBreakpoint: 0
@@ -533,12 +533,14 @@ MonoBehaviour:
       actionData:
         actionNames:
         - HutongGames.PlayMaker.Actions.ActivateGameObject
+        - HutongGames.PlayMaker.Actions.SetBoolValue
         customNames:
         - 
-        actionEnabled: 01
-        actionIsOpen: 00
-        actionStartIndex: 00000000
-        actionHashCodes: b2cf1000
+        - 
+        actionEnabled: 0101
+        actionIsOpen: 0000
+        actionStartIndex: 0000000005000000
+        actionHashCodes: b2cf100027fbe103
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -576,33 +578,48 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: 0
+        - useVariable: 1
+          name: GameCompleted
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
         fsmVector2Params: []
         fsmVector3Params: []
         fsmColorParams: []
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 0000
+        byteData: 000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 1400000011000000110000000100000001000000
+        paramDataType: 1400000011000000110000000100000001000000110000001100000001000000
         paramName:
         - gameObject
         - activate
         - recursive
         - resetOnExit
         - everyFrame
-        paramDataPos: 0000000000000000010000000000000001000000
-        paramByteDataSize: 0000000000000000000000000100000001000000
+        - boolVariable
+        - boolValue
+        - everyFrame
+        paramDataPos: 0000000000000000010000000000000001000000020000000300000002000000
+        paramByteDataSize: 0000000000000000000000000100000001000000000000000000000001000000
     - name: Activate current | Deactivate previous
       description: 
       colorIndex: 1
       position:
         serializedVersion: 2
         x: 911.39844
-        y: 226.09375
+        y: 274.09375
         width: 254
         height: 16
       isBreakpoint: 0
@@ -758,7 +775,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 909.3672
-        y: 194.58594
+        y: 242.58594
         width: 128
         height: 16
       isBreakpoint: 0
@@ -837,7 +854,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 697.7422
-        y: 117.49219
+        y: 165.49219
         width: 160
         height: 32
       isBreakpoint: 0
@@ -923,7 +940,7 @@ MonoBehaviour:
       position:
         serializedVersion: 2
         x: 713.8047
-        y: 165.92969
+        y: 213.92969
         width: 101
         height: 32
       isBreakpoint: 0
@@ -1003,6 +1020,84 @@ MonoBehaviour:
         - everyFrame
         paramDataPos: 0000000001000000000000000200000004000000
         paramByteDataSize: 0000000000000000040000000000000001000000
+    - name: Init
+      description: 
+      colorIndex: 2
+      position:
+        serializedVersion: 2
+        x: 489.57812
+        y: 107.546875
+        width: 100
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Round Loop
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.SetBoolValue
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 00
+        actionStartIndex: 00000000
+        actionHashCodes: 27fbe103
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams:
+        - useVariable: 1
+          name: GameCompleted
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 00
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 110000001100000001000000
+        paramName:
+        - boolVariable
+        - boolValue
+        - everyFrame
+        paramDataPos: 000000000100000000000000
+        paramByteDataSize: 000000000000000001000000
     events:
     - name: FINISHED
       isSystemEvent: 1
@@ -1071,7 +1166,13 @@ MonoBehaviour:
         showInInspector: 0
         networkSync: 0
         value: 0
-      boolVariables: []
+      boolVariables:
+      - useVariable: 1
+        name: GameCompleted
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
       stringVariables: []
       vector2Variables: []
       vector3Variables: []
@@ -1098,7 +1199,7 @@ MonoBehaviour:
       enumVariables: []
       categories:
       - 
-      variableCategoryIDs: 0000000000000000000000000000000000000000000000000000000000000000
+      variableCategoryIDs: 000000000000000000000000000000000000000000000000000000000000000000000000
     description: 
     docUrl: 
     showStateLabel: 0
@@ -1107,7 +1208,7 @@ MonoBehaviour:
     password: 
     locked: 0
     manualUpdate: 0
-    outVariableIndices: 01000000020000000500000006000000
+    outVariableIndices: 010000000200000005000000060000000700000008000000
     keepDelayedEventsOnStateExit: 0
     preprocessed: 0
     ExposedEvents: []

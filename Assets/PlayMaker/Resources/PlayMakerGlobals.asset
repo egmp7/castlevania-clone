@@ -51,3 +51,4 @@ MonoBehaviour:
   - Attack
   - InputEvent
   - EnemyDestroyed
+  - GameOver

@@ -11,5 +11,7 @@ namespace egmp7.SO
         public int enemiesDestroyed;
         public int currentHP;
         public int maxHP;
+        public bool gameOver;
+        public bool gameCompleted;
     }
 }
