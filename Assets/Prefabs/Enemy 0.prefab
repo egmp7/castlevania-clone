@@ -5843,6 +5843,42 @@ PrefabInstance:
       propertyPath: fsm.variables.colorVariables.Array.data[1].value.r
       value: 0.9791632
       objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[0].actionData.fsmStringParams.Array.data[0].value
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[0].actionData.fsmColorParams.Array.data[0].value.a
+      value: 0.11764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[0].actionData.fsmColorParams.Array.data[0].value.b
+      value: 0.5471698
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[0].actionData.fsmColorParams.Array.data[0].value.g
+      value: 0.5471698
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[0].actionData.fsmColorParams.Array.data[0].value.r
+      value: 0.5471698
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[1].actionData.fsmColorParams.Array.data[0].value.a
+      value: 0.11764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[1].actionData.fsmColorParams.Array.data[0].value.b
+      value: 0.3915094
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[1].actionData.fsmColorParams.Array.data[0].value.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[1].actionData.fsmColorParams.Array.data[0].value.r
+      value: 0.9791632
+      objectReference: {fileID: 0}
     - target: {fileID: 3298812688266872521, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
       propertyPath: m_Color.a
       value: 0.078431375
@@ -6030,6 +6066,14 @@ PrefabInstance:
       propertyPath: fsm.variables.colorVariables.Array.data[1].value.a
       value: 0.23529412
       objectReference: {fileID: 0}
+    - target: {fileID: 9186132159204749455, guid: 6ed7042285352d4458a15685823827bd, type: 3}
+      propertyPath: fsm.states.Array.data[0].actionData.fsmColorParams.Array.data[0].value.a
+      value: 0.23529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186132159204749455, guid: 6ed7042285352d4458a15685823827bd, type: 3}
+      propertyPath: fsm.states.Array.data[1].actionData.fsmColorParams.Array.data[0].value.a
+      value: 0.23529412
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6055,6 +6099,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 616566665333086689, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
       propertyPath: fsm.variables.stringVariables.Array.data[1].value
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 616566665333086689, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
+      propertyPath: fsm.states.Array.data[0].actionData.fsmStringParams.Array.data[0].value
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2984903239921790738, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
@@ -6139,6 +6187,42 @@ PrefabInstance:
     - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
       propertyPath: fsm.variables.colorVariables.Array.data[1].value.a
       value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[0].actionData.fsmStringParams.Array.data[0].value
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[0].actionData.fsmColorParams.Array.data[0].value.a
+      value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[0].actionData.fsmColorParams.Array.data[0].value.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[0].actionData.fsmColorParams.Array.data[0].value.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[0].actionData.fsmColorParams.Array.data[0].value.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[1].actionData.fsmColorParams.Array.data[0].value.a
+      value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[1].actionData.fsmColorParams.Array.data[0].value.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[1].actionData.fsmColorParams.Array.data[0].value.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.states.Array.data[1].actionData.fsmColorParams.Array.data[0].value.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3298812688266872521, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
       propertyPath: m_Enabled

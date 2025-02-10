@@ -19,7 +19,7 @@ MonoBehaviour:
       tooltip: 
       showInInspector: 0
       networkSync: 0
-      value: 0
+      value: 2
     intVariables: []
     boolVariables: []
     stringVariables: []
@@ -29,18 +29,26 @@ MonoBehaviour:
     rectVariables: []
     quaternionVariables: []
     gameObjectVariables: []
-    objectVariables: []
+    objectVariables:
+    - useVariable: 1
+      name: GameManagerSO
+      tooltip: 
+      showInInspector: 0
+      networkSync: 0
+      typeName: egmp7.SO.GameManagerSO
+      value: {fileID: 11400000, guid: fc881b28b982259468a233e0f4b7ce99, type: 2}
     materialVariables: []
     textureVariables: []
     arrayVariables: []
     enumVariables: []
     categories:
     - 
-    variableCategoryIDs: 0000000000000000000000000000000000000000
+    variableCategoryIDs: 000000000000000000000000000000000000000000000000
   events:
-  - OnDamage
   - StartFSM
   - Lock
   - nextLoop
   - Attack
-  - StopFSM
+  - InputEvent
+  - Run
+  - EnemyDestroyed

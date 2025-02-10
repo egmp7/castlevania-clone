@@ -71,13 +71,7 @@ MonoBehaviour:
         paramName: []
         paramDataPos: 
         paramByteDataSize: 
-    events:
-    - name: OnDamage
-      isSystemEvent: 0
-      isGlobal: 1
-    - name: done
-      isSystemEvent: 0
-      isGlobal: 0
+    events: []
     globalTransitions: []
     variables:
       floatVariables: []
