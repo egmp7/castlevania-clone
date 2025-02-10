@@ -5812,6 +5812,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 4099744726835441729}
     m_Modifications:
     - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.events.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
       propertyPath: fsm.variables.colorVariables.Array.data[0].value.a
       value: 0.11764706
       objectReference: {fileID: 0}
@@ -6098,6 +6102,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1586822212322776129}
     m_Modifications:
     - target: {fileID: 616566665333086689, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
+      propertyPath: fsm.events.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 616566665333086689, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
       propertyPath: fsm.variables.stringVariables.Array.data[1].value
       value: Player
       objectReference: {fileID: 0}
@@ -6180,6 +6188,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4099744726835441729}
     m_Modifications:
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: fsm.events.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
       propertyPath: fsm.variables.colorVariables.Array.data[0].value.a
       value: 0.19607843

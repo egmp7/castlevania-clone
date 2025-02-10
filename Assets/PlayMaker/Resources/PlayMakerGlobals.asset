@@ -50,5 +50,4 @@ MonoBehaviour:
   - nextLoop
   - Attack
   - InputEvent
-  - Run
   - EnemyDestroyed
