@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe129f8a97ca044b89c4607d7cb1cb7, type: 3}
   m_Name: GameManager
   m_EditorClassIdentifier: 
-  score: 600
-  round: 3
+  score: 100
+  round: 1
   enemiesDestroyed: 0
-  currentHP: 0
-  maxHP: 0
+  currentHP: 1000
+  maxHP: 1000
   gameOver: 0
-  gameCompleted: 1
+  gameCompleted: 0
