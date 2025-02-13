@@ -47,8 +47,8 @@ MonoBehaviour:
   events:
   - StartFSM
   - Lock
-  - nextLoop
   - Attack
-  - InputEvent
   - EnemyDestroyed
   - GameOver
+  - GameCompleted
+  - RoundCompleted

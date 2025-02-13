@@ -131,14 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1279768446618205530, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279768446618205530, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
-      propertyPath: fsm.editorFlags
-      value: 225
-      objectReference: {fileID: 0}
     - target: {fileID: 3295343287401753985, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
       propertyPath: fsm.variables.gameObjectVariables.Array.data[7].value
       value: 

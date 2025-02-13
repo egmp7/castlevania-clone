@@ -171,14 +171,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6344512689138897457, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7424883514672597792, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8824323790894388638, guid: 7fe0ec97afb17d14e84129ef154c2ab1, type: 3}
       propertyPath: m_Name
       value: PMPlayer
@@ -207,6 +199,10 @@ PrefabInstance:
     - target: {fileID: 616566665333086689, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
       propertyPath: fsm.states.Array.data[1].actionData.actionIsOpen.Array.data[1]
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 616566665333086689, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
+      propertyPath: fsm.states.Array.data[0].actionData.fsmStringParams.Array.data[0].value
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 696124465089799398, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
       propertyPath: m_Enabled
