@@ -15,5 +15,6 @@ MonoBehaviour:
   damage: 60
   attackType: 1
   animationName: Kick02
+  blockChance: 1
   tapMaxTime: 0.4
   tapMinTime: 0.2

@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb0448558a12025429a3b2d35e569c57, type: 3}
-  m_Name: testAttack
+  m_Script: {fileID: 11500000, guid: 4ff79b28e3367f94c9e0fc9eb1ba87cc, type: 3}
+  m_Name: EnemyStats
   m_EditorClassIdentifier: 
-  damage: 10
-  attackType: 0
-  animationName: Kick01
-  blockChance: 0.274
-  tapMaxTime: 0.4
-  tapMinTime: 0.1
+  points: 0
+  punchCount: 0
+  kickCount: 0
+  specialCount: 0
+  blockCount: 0

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: punch03
   m_EditorClassIdentifier: 
   damage: 30
+  attackType: 0
   animationName: Punch03
+  blockChance: 1
   tapMaxTime: 0.33
   tapMinTime: 0.13

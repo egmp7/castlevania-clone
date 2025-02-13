@@ -212,10 +212,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7024976758488163834, guid: d50ec8a4cc19a5741827bfd46354c0f1, type: 3}
-      propertyPath: fsm.variables.boolVariables.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7537030207172301460, guid: d50ec8a4cc19a5741827bfd46354c0f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.01
@@ -262,7 +258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8665462912492280896, guid: d50ec8a4cc19a5741827bfd46354c0f1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
