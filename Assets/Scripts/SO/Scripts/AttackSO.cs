@@ -10,10 +10,12 @@ namespace egmp7.SO
         public int damage;
         public AttackType attackType;
         public string animationName;
-        [Range(0, 1)] public float blockChance;
-
+        
         [Header("Attack Player")]
         public float tapMaxTime;
         public float tapMinTime;
+
+        [Header("Only for Enemy")]
+        [Range(0, 1)] public float blockChance;
     }
 }
