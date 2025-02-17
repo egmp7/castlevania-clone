@@ -9,10 +9,12 @@ public static class ErrorManager
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="gameObject"></param>
-    public static void LogMissingComponent<T>(GameObject gameObject) where T : Component
+    /// <param name="context">Optional additional context for the warning</param>
+    public static void LogMissingComponent<T>(GameObject gameObject, string context = "") where T : Component
     {
-        Debug.LogWarning($"{gameObject.name} game object does not have a {typeof(T).Name} component.");
+        Debug.LogWarning($"{gameObject.name} game object does not have a {typeof(T).Name} component. {context}".Trim());
     }
+
 
     /// <summary>
     /// Logs a warning when a Collider2D is missing an expected component
@@ -60,11 +62,11 @@ public static class ErrorManager
     /// Logs a warning when no GameObject is found with the specified tag.
     /// </summary>
     /// <param name="tag">The tag used to search for the GameObject.</param>
-    public static void LogMissingGameObjectWithTag(string tag)
+    /// <param name="context">Optional additional context for the warning</param>
+    public static void LogMissingGameObjectWithTag(string tag, string context = "")
     {
-        Debug.LogWarning($"No GameObject found with tag: {tag}");
+        Debug.LogWarning($"No GameObject found with tag: {tag}. {context}".Trim());
     }
-
 
 
     // Generic error for uninitialized values

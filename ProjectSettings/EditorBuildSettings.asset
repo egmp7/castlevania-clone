@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Tests/NotSupported/Player vs Enemy.unity
-    guid: 95e598fc099c2504c8b28c51c00ef422
+    path: Assets/Scenes/Init.unity
+    guid: 4ddbec2d7eed6264c963fa6a53340efb
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: 3c7407c166436554cb85a3bfecb3689a
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 6d149b6d42eb2f54b9412794d6b42dff, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 039c714f355531545bfb57135231a45e, type: 3}

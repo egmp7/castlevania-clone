@@ -1327,8 +1327,8 @@ MonoBehaviour:
         - layer
         - normalizedTime
         - everyFrame
-        - floatVariable
-        - multiplyBy
+        - value1
+        - value2
         - storeResult
         - everyFrame
         - gameObject
@@ -1541,8 +1541,8 @@ MonoBehaviour:
         - layer
         - normalizedTime
         - everyFrame
-        - floatVariable
-        - multiplyBy
+        - value1
+        - value2
         - storeResult
         - everyFrame
         - gameObject
@@ -1838,8 +1838,8 @@ MonoBehaviour:
         - layer
         - normalizedTime
         - everyFrame
-        - floatVariable
-        - multiplyBy
+        - value1
+        - value2
         - storeResult
         - everyFrame
         - gameObject
@@ -2052,8 +2052,8 @@ MonoBehaviour:
         - layer
         - normalizedTime
         - everyFrame
-        - floatVariable
-        - multiplyBy
+        - value1
+        - value2
         - storeResult
         - everyFrame
         - gameObject

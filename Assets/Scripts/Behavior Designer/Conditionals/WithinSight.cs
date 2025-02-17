@@ -1,10 +1,12 @@
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using egmp7.Game.Sensors;
-using System;
 
-namespace Enemy.AI
+namespace egmp7.BehaviorDesigner.Enemy
 {
+    [TaskIcon("Assets/Art/egmp7/customAction.png")]
+    [TaskCategory("egmp7")]
+    [TaskDescription("Calculates ReactionForce with proximity scaling and controlled output.")]
     public class WithinSight : Conditional
     {
         public SharedGameObject target; 
@@ -13,19 +15,31 @@ namespace Enemy.AI
 
         public override void OnAwake()
         {
-            if (!target.Value.TryGetComponent(out _collisionSensor))
-            {
-                throw new Exception($"_collisionSensor not initialized for {target.Name}");
-            }
+            ValidateFields();
         }
 
         public override TaskStatus OnUpdate()
         {
+            if (_collisionSensor == null) 
+            { 
+                return TaskStatus.Inactive; 
+            }
+
             if(_collisionSensor.GetState())
             {
                 return TaskStatus.Success;
             }
+
             return TaskStatus.Failure;
+        }
+
+        private void ValidateFields()
+        {
+            if (!target.Value.TryGetComponent(out _collisionSensor))
+            {
+                var warningContext = $"in {FriendlyName}";
+                ErrorManager.LogMissingComponent<CollisionSensor>(gameObject, warningContext);
+            }
         }
     }
 }
