@@ -15,6 +15,6 @@ MonoBehaviour:
   damage: 20
   attackType: 0
   animationName: Punch02
-  blockChance: 1
+  blockChance: 0.21
   tapMaxTime: 0.32
   tapMinTime: 0.12

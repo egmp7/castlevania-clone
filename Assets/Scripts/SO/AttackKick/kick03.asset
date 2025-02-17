@@ -15,6 +15,6 @@ MonoBehaviour:
   damage: 70
   attackType: 1
   animationName: Kick03
-  blockChance: 1
+  blockChance: 0.102
   tapMaxTime: 0.4
   tapMinTime: 0.2

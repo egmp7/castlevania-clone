@@ -15,5 +15,6 @@ MonoBehaviour:
   damage: 100
   attackType: 2
   animationName: Special1
+  blockChance: 0.102
   tapMaxTime: 0.4
   tapMinTime: 0.2
