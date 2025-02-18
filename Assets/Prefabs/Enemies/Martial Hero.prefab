@@ -1269,7 +1269,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 1
           networkSync: 0
-          value: 100
+          value: 800
         fsmBoolParams: []
         fsmVector2Params: []
         fsmVector3Params: []
@@ -2142,7 +2142,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 1
           networkSync: 0
-          value: 100
+          value: 800
         - useVariable: 1
           name: Max HP
           tooltip: 
@@ -2633,7 +2633,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 1
           networkSync: 0
-          value: 100
+          value: 800
         - useVariable: 1
           name: Damage
           tooltip: 
@@ -2759,7 +2759,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 1
           networkSync: 0
-          value: 100
+          value: 800
         - useVariable: 0
           name: 
           tooltip: 
@@ -2986,7 +2986,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 1
           networkSync: 0
-          value: 100
+          value: 800
         - useVariable: 1
           name: Block Damage
           tooltip: 

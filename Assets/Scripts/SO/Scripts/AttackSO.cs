@@ -9,9 +9,9 @@ namespace egmp7.SO
         [Header("Attack Main")]
         public int damage;
         public AttackType attackType;
-        public string animationName;
         
-        [Header("Attack Player")]
+        [Header("Only for Player")]
+        public string animationName;
         public float tapMaxTime;
         public float tapMinTime;
 
