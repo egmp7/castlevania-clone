@@ -969,19 +969,19 @@ MonoBehaviour:
         Received Event","Instant":true,"SharedStringeventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"OnDead"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Idle","NodeData":{"Offset":"(35.2862549,190.630554)"},"ID":4,"Name":"Idle","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-986.882935,283.6665)","Comment":"Hurt
         Sequence"},"ID":5,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.HasReceivedEvent","NodeData":{"Offset":"(-330.455963,178.5436)"},"ID":6,"Name":"Has
         Received Event","Instant":true,"SharedStringeventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"OnHurt"}},{"Type":"BehaviorDesigner.Runtime.Tasks.PlayMaker.StopFSM","NodeData":{"Offset":"(-191.494019,181.1187)"},"ID":7,"Name":"Stop
-        FSM","Instant":true,"SharedGameObjectplayMakerGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":0},"SharedStringFsmName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Fsm"},"SharedStringendEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"StopFSM"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-73.61028,189.654709)"},"ID":8,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":2},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-568.2352,279.411926)","Comment":"Attack
-        Sequence"},"ID":9,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"egmp7.BehaviorDesigner.Enemy.WithinSight","NodeData":{"Offset":"(-130.619659,169.360016)"},"ID":10,"Name":"Within
+        FSM","Instant":true,"SharedGameObjectplayMakerGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":0},"SharedStringFsmName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Fsm"},"SharedStringendEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"StopFSM"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-73.61028,189.654709)"},"ID":8,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":2},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-647.1826,279.411926)","Comment":"Attack
+        Sequence"},"ID":9,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"egmp7.BehaviorDesigner.Enemy.WithinSight","NodeData":{"Offset":"(-130.619659,169.360016)"},"ID":10,"Name":"Within
         Sight","Instant":true,"SharedGameObjecttarget":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityTransform.SetLocalScale","NodeData":{"Offset":"(-11.8474207,174.390137)"},"ID":11,"Name":"Set
-        Local Scale","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":2},"SharedVector3localScale":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":null,"Vector3mValue":"(5,2.3,1)"}},{"Type":"egmp7.BehaviorDesigner.Enemy.LookAtByTag","NodeData":{"Offset":"(118.125069,169.375)","Comment":"Look
+        Local Scale","Instant":true,"Disabled":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":2},"SharedVector3localScale":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":null,"Vector3mValue":"(5,2.3,1)"}},{"Type":"egmp7.BehaviorDesigner.Enemy.LookAtByTag","NodeData":{"Offset":"(118.125069,169.375)","Comment":"Look
         at Player"},"ID":12,"Name":"Look At By Tag","Instant":true,"SharedStringtargetTag":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Player"}},{"Type":"BehaviorDesigner.Runtime.Tasks.PlayMaker.StartFSM","NodeData":{"Offset":"(253.374374,165.5122)"},"ID":13,"Name":"Start
-        Attack Fsm","Instant":true,"SharedGameObjectplayMakerGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":3},"SharedStringFsmName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Fsm"},"SharedStringstartEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"StartFSM"},"SharedStringpauseEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedStringresumeEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedStringendEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedBoolwaitForFSMCompletion":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolresetOnComplete":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolsynchronizeVariables":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoolsynchronizeGlobalVariables":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-98.91068,280.751129)","Comment":"Chase
-        Sequence"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"egmp7.BehaviorDesigner.Enemy.WithinSight","NodeData":{"Offset":"(-61.2050552,192.633453)"},"ID":15,"Name":"Within
-        Sight","Instant":true,"SharedGameObjecttarget":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":4}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityTransform.SetLocalScale","NodeData":{"Offset":"(58.0504456,191.174072)"},"ID":16,"Name":"Set
-        Local Scale","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":5},"SharedVector3localScale":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":null,"Vector3mValue":"(22,3.5,1)"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityTransform.SetLocalScale","NodeData":{"Offset":"(189.318176,190)"},"ID":17,"Name":"Set
-        Local Scale","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":6},"SharedVector3localScale":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":null,"Vector3mValue":"(4,2.3,1)"}},{"Type":"egmp7.BehaviorDesigner.Enemy.LookAtByTag","NodeData":{"Offset":"(315.9687,193.0763)","Comment":"Look
-        at Player"},"ID":18,"Name":"Look At By Tag","Instant":true,"SharedStringtargetTag":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Player"}},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnFailure","NodeData":{"Offset":"(448.777954,186.861084)"},"ID":19,"Name":"Return
-        Failure","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.PlayMaker.StartFSM","NodeData":{"Offset":"(3.88888741,134.444458)"},"ID":20,"Name":"Start
-        Chase Fsm","Instant":true,"SharedGameObjectplayMakerGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":7},"SharedStringFsmName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Fsm"},"SharedStringstartEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"StartFSM"},"SharedStringpauseEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedStringresumeEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedStringendEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedBoolwaitForFSMCompletion":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolresetOnComplete":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolsynchronizeVariables":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoolsynchronizeGlobalVariables":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Idle","NodeData":{"Offset":"(223.513733,282.162354)"},"ID":21,"Name":"Idle","Instant":true}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"localScale","IsShared":true,"PropertyMapping":"UnityEngine.Transform/localScale","PropertyMappingOwner":8,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"localScaleX","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Is
+        Attack Fsm","Instant":true,"SharedGameObjectplayMakerGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":3},"SharedStringFsmName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Fsm"},"SharedStringstartEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"StartFSM"},"SharedStringpauseEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedStringresumeEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedStringendEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedBoolwaitForFSMCompletion":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolresetOnComplete":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolsynchronizeVariables":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoolsynchronizeGlobalVariables":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(365.9489,166.49469)"},"ID":14,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.4},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.8}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-98.91068,280.751129)","Comment":"Chase
+        Sequence"},"ID":15,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"egmp7.BehaviorDesigner.Enemy.WithinSight","NodeData":{"Offset":"(-61.2050552,192.633453)"},"ID":16,"Name":"Within
+        Sight","Instant":true,"SharedGameObjecttarget":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":4}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityTransform.SetLocalScale","NodeData":{"Offset":"(58.0504456,191.174072)"},"ID":17,"Name":"Set
+        Local Scale","Instant":true,"Disabled":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":5},"SharedVector3localScale":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":null,"Vector3mValue":"(22,3.5,1)"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityTransform.SetLocalScale","NodeData":{"Offset":"(189.318176,190)"},"ID":18,"Name":"Set
+        Local Scale","Instant":true,"Disabled":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":6},"SharedVector3localScale":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":null,"Vector3mValue":"(4,2.3,1)"}},{"Type":"egmp7.BehaviorDesigner.Enemy.LookAtByTag","NodeData":{"Offset":"(315.9687,193.0763)","Comment":"Look
+        at Player"},"ID":19,"Name":"Look At By Tag","Instant":true,"SharedStringtargetTag":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Player"}},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnFailure","NodeData":{"Offset":"(448.777954,186.861084)"},"ID":20,"Name":"Return
+        Failure","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.PlayMaker.StartFSM","NodeData":{"Offset":"(3.88888741,134.444458)"},"ID":21,"Name":"Start
+        Chase Fsm","Instant":true,"SharedGameObjectplayMakerGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":7},"SharedStringFsmName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Fsm"},"SharedStringstartEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"StartFSM"},"SharedStringpauseEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedStringresumeEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedStringendEventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedBoolwaitForFSMCompletion":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolresetOnComplete":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolsynchronizeVariables":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoolsynchronizeGlobalVariables":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Idle","NodeData":{"Offset":"(223.513733,282.162354)"},"ID":22,"Name":"Idle","Instant":true}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"localScale","IsShared":true,"PropertyMapping":"UnityEngine.Transform/localScale","PropertyMappingOwner":8,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"localScaleX","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Is
         Facing Right","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"ReactionForce","IsShared":true,"Vector2mValue":"(0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedObject","Name":"EnemyHurtSO","IsShared":true}]}'
       fieldSerializationData:
         typeName: []
@@ -5409,7 +5409,7 @@ MonoBehaviour:
           name: StartFSM
           isSystemEvent: 0
           isGlobal: 1
-        toState: Wait
+        toState: Play Idle Animation
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -5489,16 +5489,16 @@ MonoBehaviour:
         - HutongGames.PlayMaker.Actions.AnimatorPlay
         - HutongGames.PlayMaker.Actions.SetVelocity2d
         - HutongGames.PlayMaker.Actions.SetFsmObject
-        - HutongGames.PlayMaker.Actions.RandomWait
+        - HutongGames.PlayMaker.Actions.Wait
         customNames:
         - 
         - 
         - 
         - 
         actionEnabled: 01010101
-        actionIsOpen: 00000100
+        actionIsOpen: 00000000
         actionStartIndex: 00000000050000000b00000010000000
-        actionHashCodes: c34b410568fde30474cb92020d5f5c01
+        actionHashCodes: c34b410568fde30474cb920248c01101
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -5538,7 +5538,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Punch01
+          value: Attack01
         - useVariable: 0
           name: 
           tooltip: 
@@ -5558,7 +5558,7 @@ MonoBehaviour:
           showInInspector: 1
           networkSync: 0
           typeName: egmp7.SO.AttackSO
-          value: {fileID: 0}
+          value: {fileID: 11400000, guid: 464194a1717527e4abae29617e40f2d0, type: 2}
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams: []
@@ -5586,13 +5586,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: 0.1
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 1
+          value: 0.6
         fsmIntParams:
         - useVariable: 1
           name: 
@@ -5619,7 +5613,7 @@ MonoBehaviour:
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 1400000012000000100000000f0000000100000014000000250000000f0000000f000000070000000100000014000000120000001200000018000000010000000f0000000f0000001700000001000000
+        paramDataType: 1400000012000000100000000f0000000100000014000000250000000f0000000f000000070000000100000014000000120000001200000018000000010000000f0000001700000001000000
         paramName:
         - gameObject
         - stateName
@@ -5637,12 +5631,11 @@ MonoBehaviour:
         - variableName
         - setValue
         - everyFrame
-        - min
-        - max
+        - time
         - finishEvent
         - realTime
-        paramDataPos: 0000000000000000000000000000000000000000010000000000000001000000020000000100000005000000020000000100000002000000000000000600000003000000040000000000000007000000
-        paramByteDataSize: 0000000000000000000000000000000001000000000000000000000000000000000000000400000001000000000000000000000000000000000000000100000000000000000000000000000001000000
+        paramDataPos: 00000000000000000000000000000000000000000100000000000000010000000200000001000000050000000200000001000000020000000000000006000000030000000000000007000000
+        paramByteDataSize: 00000000000000000000000000000000010000000000000000000000000000000000000004000000010000000000000000000000000000000000000001000000000000000000000001000000
     - name: Attack2
       description: 
       colorIndex: 2
@@ -5719,7 +5712,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Punch02
+          value: Attack02
         - useVariable: 0
           name: 
           tooltip: 
@@ -5739,7 +5732,7 @@ MonoBehaviour:
           showInInspector: 1
           networkSync: 0
           typeName: egmp7.SO.AttackSO
-          value: {fileID: 0}
+          value: {fileID: 11400000, guid: bd7da626a18470d4a8a760e0f61ea242, type: 2}
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams: []
@@ -5951,8 +5944,8 @@ MonoBehaviour:
       colorIndex: 3
       position:
         serializedVersion: 2
-        x: 422.0078
-        y: 123.34375
+        x: 527.4922
+        y: 128.82031
         width: 103
         height: 16
       isBreakpoint: 0
@@ -6068,8 +6061,8 @@ MonoBehaviour:
       colorIndex: 2
       position:
         serializedVersion: 2
-        x: 249.83594
-        y: 112.296875
+        x: 341.03125
+        y: 135.28125
         width: 100
         height: 32
       isBreakpoint: 0
@@ -6091,7 +6084,7 @@ MonoBehaviour:
         customNames:
         - 
         actionEnabled: 01
-        actionIsOpen: 01
+        actionIsOpen: 00
         actionStartIndex: 00000000
         actionHashCodes: 0d5f5c01
         unityObjectParams: []
@@ -6143,6 +6136,100 @@ MonoBehaviour:
         - realTime
         paramDataPos: 00000000010000000000000000000000
         paramByteDataSize: 00000000000000000000000001000000
+    - name: Play Idle Animation
+      description: 
+      colorIndex: 2
+      position:
+        serializedVersion: 2
+        x: 318.66406
+        y: 75.671875
+        width: 139
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Wait
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 1
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.AnimatorPlay
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 00
+        actionStartIndex: 00000000
+        actionHashCodes: c34b4105
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 1
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 2179212348285694670}
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Idle
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams:
+        - useVariable: 1
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        fsmIntParams:
+        - useVariable: 1
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 00
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 1400000012000000100000000f00000001000000
+        paramName:
+        - gameObject
+        - stateName
+        - layer
+        - normalizedTime
+        - everyFrame
+        paramDataPos: 0000000000000000000000000000000000000000
+        paramByteDataSize: 0000000000000000000000000000000001000000
     events:
     - name: StartFSM
       isSystemEvent: 0
@@ -6491,6 +6578,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 4099744726835441729}
     m_Modifications:
     - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082254884883777324, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
       propertyPath: fsm.variables.colorVariables.Array.data[0].value.a
       value: 0.19607843
       objectReference: {fileID: 0}
@@ -6536,11 +6627,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3298812688266872521, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3413391860400204669, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
       propertyPath: m_Name
       value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507241450231805363, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: Color1.a
+      value: 0.15686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507241450231805363, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: Color1.b
+      value: 0.9716981
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507241450231805363, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: Color1.g
+      value: 0.7567381
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507241450231805363, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: Color1.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507241450231805363, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: Color2.a
+      value: 0.15686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507241450231805363, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: Color2.b
+      value: 0.6318803
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507241450231805363, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: Color2.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507241450231805363, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: Color2.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507241450231805363, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: ExpandSize.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507241450231805363, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: ExpandSize.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8567930216676123246, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
       propertyPath: m_LocalScale.x
@@ -6620,6 +6751,10 @@ PrefabInstance:
     - target: {fileID: 616566665333086689, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
       propertyPath: fsm.states.Array.data[0].actionData.fsmStringParams.Array.data[0].value
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984903239921790738, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7551470633314743620, guid: 1d9c1b2031cbfe34492406185e721839, type: 3}
       propertyPath: m_Name
@@ -6783,6 +6918,14 @@ PrefabInstance:
     - target: {fileID: 3413391860400204669, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
       propertyPath: m_Name
       value: Chase
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507241450231805363, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: ExpandSize.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507241450231805363, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
+      propertyPath: ExpandSize.y
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8567930216676123246, guid: 1f94d528bc42c554083ba015533525f4, type: 3}
       propertyPath: m_LocalScale.x
