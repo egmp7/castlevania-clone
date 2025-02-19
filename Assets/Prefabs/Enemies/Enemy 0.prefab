@@ -5492,7 +5492,7 @@ MonoBehaviour:
         - 
         - 
         actionEnabled: 01010101
-        actionIsOpen: 00000000
+        actionIsOpen: 00000100
         actionStartIndex: 00000000050000000b00000010000000
         actionHashCodes: c34b410568fde30474cb92020d5f5c01
         unityObjectParams: []
@@ -5554,7 +5554,7 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           typeName: UnityEngine.Object
-          value: {fileID: 11400000, guid: ea5801731408d9d48859018b09d836ad, type: 2}
+          value: {fileID: 11400000, guid: a1c077904c5708e419a52946a291249a, type: 2}
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams: []
@@ -5735,7 +5735,7 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           typeName: UnityEngine.Object
-          value: {fileID: 11400000, guid: 69e343fd9a1d7024d91daf13235d96b9, type: 2}
+          value: {fileID: 11400000, guid: feac875b8f762184e9acc20dea325c32, type: 2}
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams: []
@@ -5916,7 +5916,7 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           typeName: UnityEngine.Object
-          value: {fileID: 11400000, guid: 7c27339e49c6f4845a564588cb64e380, type: 2}
+          value: {fileID: 11400000, guid: fb4a2fa9a4cf6c249bec5e7f2b521da4, type: 2}
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams: []
@@ -6208,7 +6208,7 @@ MonoBehaviour:
         - 
         - 
         actionEnabled: 01010101
-        actionIsOpen: 00000100
+        actionIsOpen: 00000000
         actionStartIndex: 00000000050000000b00000010000000
         actionHashCodes: c34b410568fde30474cb92020d5f5c01
         unityObjectParams: []
@@ -6270,7 +6270,7 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           typeName: UnityEngine.Object
-          value: {fileID: 11400000, guid: b940a5b736da90449bc31bed152b589a, type: 2}
+          value: {fileID: 11400000, guid: 3c3c4b36a5de30244a26bb796ef81537, type: 2}
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams: []
@@ -6451,7 +6451,7 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           typeName: UnityEngine.Object
-          value: {fileID: 11400000, guid: d4e8c34b560bfc64394361b967e541b3, type: 2}
+          value: {fileID: 11400000, guid: 12095b29a84a8e6408782d4d44bc57e2, type: 2}
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams: []
@@ -6632,7 +6632,7 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           typeName: UnityEngine.Object
-          value: {fileID: 11400000, guid: 55b52487fb026e64e8d8cbe95348de8e, type: 2}
+          value: {fileID: 11400000, guid: 51798098b70457d458cb62786083191f, type: 2}
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams: []

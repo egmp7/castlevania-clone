@@ -131,10 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1158467486079466241, guid: b6378a7228d7a6641812391794abb98a, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2468396244691543076, guid: b6378a7228d7a6641812391794abb98a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -178,18 +174,6 @@ PrefabInstance:
     - target: {fileID: 3409487030239022403, guid: b6378a7228d7a6641812391794abb98a, type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3773609592881147245, guid: b6378a7228d7a6641812391794abb98a, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4048881876540690188, guid: b6378a7228d7a6641812391794abb98a, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5850138572491394354, guid: b6378a7228d7a6641812391794abb98a, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

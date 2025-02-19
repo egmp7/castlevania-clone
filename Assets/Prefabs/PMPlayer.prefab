@@ -7068,7 +7068,7 @@ MonoBehaviour:
         tooltip: 
         showInInspector: 1
         networkSync: 0
-        value: 3
+        value: 1.5
       - useVariable: 1
         name: HurtSpeed
         tooltip: 
@@ -7093,7 +7093,7 @@ MonoBehaviour:
         tooltip: 
         showInInspector: 1
         networkSync: 0
-        value: 1000
+        value: 2000
       - useVariable: 1
         name: HurtCount
         tooltip: 
@@ -7118,7 +7118,7 @@ MonoBehaviour:
         tooltip: 
         showInInspector: 1
         networkSync: 0
-        value: 1
+        value: 0
       - useVariable: 1
         name: 
         tooltip: 

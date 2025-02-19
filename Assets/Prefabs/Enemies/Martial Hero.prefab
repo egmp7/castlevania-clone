@@ -5196,7 +5196,7 @@ MonoBehaviour:
         tooltip: 
         showInInspector: 1
         networkSync: 0
-        value: 800
+        value: 500
       - useVariable: 1
         name: Hurt Speed
         tooltip: 
