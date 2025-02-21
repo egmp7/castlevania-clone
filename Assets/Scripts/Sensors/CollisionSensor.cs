@@ -18,7 +18,7 @@ namespace egmp7.Game.Sensors
         {
             if (other.CompareTag(tagName))
             {
-                _sensorState = true;
+                sensorState = true;
             }
         }
 
@@ -26,7 +26,7 @@ namespace egmp7.Game.Sensors
         {
             if (other.CompareTag(tagName))
             {
-                _sensorState = false;
+                sensorState = false;
             }
         }
 
